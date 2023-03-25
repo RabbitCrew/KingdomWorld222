@@ -5,17 +5,16 @@ using UnityEngine;
 public class MoveBackgroundAsMouse : MonoBehaviour
 {
     float mouseX, mouseY;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButton())
-        mouseX = Input.GetAxis("Mouse X");
-        mouseY = Input.GetAxis("Mouse Y");
+        if (Input.GetMouseButton(0))
+        {
+            mouseX = Input.GetAxis("Mouse X");
+            mouseY = Input.GetAxis("Mouse Y");
+
+            Camera.main.transform.position += new Vector3(-mouseX * 0.9f,0,-mouseY * 0.9f);
+        }
     }
 }

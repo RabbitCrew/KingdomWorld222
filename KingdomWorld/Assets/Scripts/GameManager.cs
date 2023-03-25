@@ -27,12 +27,12 @@ public class GameManager : Resource
         }
         else if (dayNightRatio >= 2f / 3f)
         {
-                Debug.Log("¹ã");
+                //Debug.Log("¹ã");
                 isDaytime = false;
         }
         else if (dayNightRatio >= 0f)
         {
-            Debug.Log("³·");
+            //Debug.Log("³·");
             isDaytime = true;
         }
     }
