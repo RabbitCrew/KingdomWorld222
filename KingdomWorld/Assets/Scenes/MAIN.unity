@@ -515,10 +515,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6531f79d091a26749b65a3e5649e12c6, type: 3}
   - {fileID: 21300000, guid: a7d9a84319a8879428c96f1d865028f0, type: 3}
   chunkSize: 20
-  zScreenSize: 0
-  xScreenSize: 0
-  worldSize: 60
-  noiseFreq: 0.38
+  gradientSize: 1000
+  worldSize: 80
+  noiseFreq: 0.12
   seed: 0
   noiseTexture: {fileID: 0}
   mother: {fileID: 1380076513}
