@@ -10,7 +10,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     [SerializeField] private int chunkSize = 20;    // 청크 사이즈는 20 * 20
     [SerializeField] private int gradientSize = 1000;
     [SerializeField] private int worldSize = 80;
-    [SerializeField] private float noiseFreq = 0.12f;
+    [SerializeField] private float noiseFreq = 0.2f;
 
     struct point
     {
@@ -179,11 +179,13 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         return noiseMap;
 	}
 
+    // 텍스쳐를 맵 위치에 맞게 다시 바꿔준다.
     private void RefreshTexture(GameObject chunk, float pointX, float pointY)
 	{
         float[,] noiseMap = new float[chunkSize, chunkSize];
         float[,] gradientMap = new float[chunkSize, chunkSize];
         Color[,] color = new Color[chunkSize, chunkSize];
+        // 청크 한개 사이즈만큼 반복
         for (int x = 0; x < chunkSize; x++)
 		{
             for (int y = 0; y < chunkSize; y++)
@@ -199,40 +201,31 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 value = Mathf.InverseLerp(0, 2, value);
                 color[x, y] = Color.Lerp(Color.black, Color.white, value);
 
-                if (color[x, y].grayscale < 0.125)
-                {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[0];
-                }
-                else if (color[x, y].grayscale < 0.25)
-                {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[1];
-                }
-                else if (color[x, y].grayscale < 0.375)
-                {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[2];
-                }
-                else if (color[x, y].grayscale < 0.5)
-                {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[3];
-                }
-                else if (color[x, y].grayscale < 0.625)
+                if (color[x, y].grayscale < 0.2)
                 {
                     chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[4];
                 }
-                else if (color[x, y].grayscale < 0.75)
+                else if (color[x, y].grayscale < 0.375)
                 {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[5];
+                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[3];
                 }
-                else if (color[x, y].grayscale < 0.875)
-                {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[6];
-                }
-                else
-                {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[7];
-                }
-
-            }
+				else if (color[x, y].grayscale < 0.475)
+				{
+					chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[2];
+				}
+				else if (color[x, y].grayscale < 0.6)
+				{
+					chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[0];
+				}
+				else if (color[x, y].grayscale < 0.785)
+				{
+					chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[1];
+				}
+				else
+				{
+					chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[5];
+				}
+			}
 		}
 
 
