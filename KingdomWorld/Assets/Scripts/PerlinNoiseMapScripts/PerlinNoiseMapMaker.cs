@@ -191,10 +191,8 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
         int chunkX = (int)chunk.transform.localPosition.x / 20;
         int chunkY = (int)chunk.transform.localPosition.y / 20;
-        // 해당 청크에서 나무 오브젝트가 한번도 생성된 적이 없으면 생성시킴
-        bool isTree = settingObject.ActiveTrueObjectPointList(chunkX, chunkY, (int)ObjectNum.TREE);
-        // 해당 청크에서 동굴 오브젝트가 한번도 생성된 적이 없으면 생성시킴
-        bool isMine = settingObject.ActiveTrueObjectPointList(chunkX, chunkY, (int)ObjectNum.MINE);
+        // 해당 청크에서 오브젝트가 한번도 생성된 적이 없으면 생성시킴
+        bool isObject = settingObject.ActiveTrueObjectPointList(chunkX, chunkY);
 
 
         // 청크 한개 사이즈만큼 반복
@@ -241,91 +239,44 @@ public class PerlinNoiseMapMaker : MonoBehaviour
             }
         }
 
+        // 생성해야될 오브젝트의 좌표를 구하고 저장한다.
         for (int x = 0; x < chunkSize; x++)
         {
             for (int y = 0; y < chunkSize; y++)
             {
-                int ran = Random.Range(0, 200);
+                int ran = Random.Range(0, 500);
 
-                if (!isTree)
+                if (!isObject)
                 {
-                    if (ran < 35)
+                    if (ran < 1)
                     {
-                        if (CheckTreeRange(chunk, x, y, (int)TileNum.OCEAN) &&
-                            CheckTreeRange(chunk, x, y, (int)TileNum.RIVER) &&
-                            CheckTreeRange(chunk, x, y, (int)TileNum.STONE))
+                        if (settingObject.CheckMineRange(chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
+                            settingObject.CheckMineRange(chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
+                            settingObject.CheckMineRange(chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
+                        {
+                            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.MINE, x, y);
+                        }
+                    }
+                    else if (ran < 80)
+                    {
+                        if (settingObject.CheckTreeRange(chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
+                            settingObject.CheckTreeRange(chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
+                            settingObject.CheckTreeRange(chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
                         {
                             //Debug.Log("발동 ! ! !");
                             settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.TREE, x, y);
                         }
                     }
+
                 }
 
-                if (!isMine)
-                {
-                    if (ran < 4)
-                    {
-                        if (CheckMineRange(chunk, x, y, (int)TileNum.OCEAN) &&
-                            CheckMineRange(chunk, x, y, (int)TileNum.RIVER) &&
-                            CheckMineRange(chunk, x, y, (int)TileNum.STONE))
-                        {
-                            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.MINE, x, y);
-                        }
-                    }
-                }
             }
         }
 
         //지정된 좌표에 오브젝트를 생성한다.
-        if (!isTree) { settingObject.CreateObejct(chunkX, chunkY, (int)ObjectNum.TREE); }
-        if (!isMine) { settingObject.CreateObejct(chunkX, chunkY, (int)ObjectNum.MINE); }
-        Debug.Log(chunkX + " " + chunkY);
-        isTree = true;
-        isMine = true;
+        if (!isObject) { settingObject.CreateObejct(chunkX, chunkY); }
+        isObject = true;
     }
-
-    private bool CheckMineRange(GameObject chunk, int x, int y, int tileNum)
-    {
-        if (x -1 <= 0 || x + 1 >= chunkSize || y -1 <= 0 || y + 1>= chunkSize)
-        {
-            return false;
-        }
-
-        for (int i = x - 1; i <= x + 1; i++)
-        {
-            for (int j = y - 1; j <= y + 1; j++)
-            {
-
-                if (chunk.transform.GetChild(i * chunkSize + j).GetComponent<SpriteRenderer>().sprite == tile[tileNum])
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    private bool CheckTreeRange(GameObject chunk, int x, int y, int tileNum)
-    {
-        if (y + 1 >= chunkSize)
-        {
-            return false;
-        }
-
-        for (int i = y; i <= y + 1; i++)
-        {
-            //Debug.Log(x + " " + i);
-            if (chunk.transform.GetChild(x * chunkSize + i).GetComponent<SpriteRenderer>().sprite == tile[tileNum])
-            {
-                return false;
-            }
-        }
-
-
-        return true;
-    }
-
 
     public float[,] GenerateMap(int width, int height)
     {
