@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using ObjectNS;
 public class PerlinNoiseMapMaker : MonoBehaviour
 {
     [SerializeField] private Texture2D gradientTex;
@@ -11,6 +11,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     [SerializeField] private int gradientSize = 1000;
     [SerializeField] private int worldSize = 80;
     [SerializeField] private float noiseFreq = 0.2f;
+    [SerializeField] private SettingObject settingObject;
 
     struct point
     {
@@ -114,10 +115,12 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 {
                     RefreshTexture(worldChunks[x,y], worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y);
                     pointList.Add(new point(worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y));
+                    // 오브젝트의 스프라이트 렌더러를 꺼준다.
+                
                 }
             }
         }
-
+        //현재 메인 카메라를 기준으로 화면상 비어있는 곳에 비활성화된 청크를 넣고 텍스처를 새로고침한다.
 		for (int x = cameraXMin; x < cameraXMax; x++)
 		{
 			for (int z = cameraZMin; z < cameraZMax; z++)
@@ -181,55 +184,147 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
     // 텍스쳐를 맵 위치에 맞게 다시 바꿔준다.
     private void RefreshTexture(GameObject chunk, float pointX, float pointY)
-	{
+    {
         float[,] noiseMap = new float[chunkSize, chunkSize];
         float[,] gradientMap = new float[chunkSize, chunkSize];
         Color[,] color = new Color[chunkSize, chunkSize];
+
+        int chunkX = (int)chunk.transform.localPosition.x / 20;
+        int chunkY = (int)chunk.transform.localPosition.y / 20;
+        // 해당 청크에서 나무 오브젝트가 한번도 생성된 적이 없으면 생성시킴
+        bool isTree = settingObject.ActiveTrueObjectPointList(chunkX, chunkY, (int)ObjectNum.TREE);
+        // 해당 청크에서 동굴 오브젝트가 한번도 생성된 적이 없으면 생성시킴
+        bool isMine = settingObject.ActiveTrueObjectPointList(chunkX, chunkY, (int)ObjectNum.MINE);
+
+
         // 청크 한개 사이즈만큼 반복
         for (int x = 0; x < chunkSize; x++)
-		{
+        {
             for (int y = 0; y < chunkSize; y++)
-			{
+            {
                 float v = Mathf.PerlinNoise((x + pointX + seed) * noiseFreq, (y + pointY + seed) * noiseFreq);
                 noiseMap[x, y] = v;
                 int xCoord = Mathf.RoundToInt((x + pointX + gradientSize * 0.5f) * (float)gradientTex.width / gradientSize);
                 int yCoord = Mathf.RoundToInt((y + pointY + gradientSize * 0.5f) * (float)gradientTex.height / gradientSize);
                 gradientMap[x, y] = gradientTex.GetPixel(xCoord, yCoord).grayscale;
-                if (gradientMap[x,y] <= 0.3f) { gradientMap[x, y] = 0f; }
-                else if (gradientMap[x,y] >= 0.75f) { gradientMap[x, y] = 0.75f; }
+                if (gradientMap[x, y] <= 0.3f) { gradientMap[x, y] = 0f; }
+                else if (gradientMap[x, y] >= 0.75f) { gradientMap[x, y] = 0.75f; }
                 float value = noiseMap[x, y] + gradientMap[x, y];
                 value = Mathf.InverseLerp(0, 2, value);
                 color[x, y] = Color.Lerp(Color.black, Color.white, value);
 
                 if (color[x, y].grayscale < 0.2)
                 {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[4];
+                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.OCEAN];
                 }
                 else if (color[x, y].grayscale < 0.375)
                 {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[3];
+                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.RIVER];
                 }
-				else if (color[x, y].grayscale < 0.475)
-				{
-					chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[2];
-				}
-				else if (color[x, y].grayscale < 0.6)
-				{
-					chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[0];
-				}
-				else if (color[x, y].grayscale < 0.785)
-				{
-					chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[1];
-				}
-				else
-				{
-					chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[5];
-				}
-			}
-		}
+                else if (color[x, y].grayscale < 0.475)
+                {
+                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.GLASS];
+                }
+                else if (color[x, y].grayscale < 0.6)
+                {
+                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.BUMPYTILE];
+                }
+                else if (color[x, y].grayscale < 0.785)
+                {
+                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.FLATTILE];
+                }
+                else
+                {
+                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.STONE];
+                }
+
+            }
+        }
+
+        for (int x = 0; x < chunkSize; x++)
+        {
+            for (int y = 0; y < chunkSize; y++)
+            {
+                int ran = Random.Range(0, 200);
+
+                if (!isTree)
+                {
+                    if (ran < 35)
+                    {
+                        if (CheckTreeRange(chunk, x, y, (int)TileNum.OCEAN) &&
+                            CheckTreeRange(chunk, x, y, (int)TileNum.RIVER) &&
+                            CheckTreeRange(chunk, x, y, (int)TileNum.STONE))
+                        {
+                            //Debug.Log("발동 ! ! !");
+                            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.TREE, x, y);
+                        }
+                    }
+                }
+
+                if (!isMine)
+                {
+                    if (ran < 4)
+                    {
+                        if (CheckMineRange(chunk, x, y, (int)TileNum.OCEAN) &&
+                            CheckMineRange(chunk, x, y, (int)TileNum.RIVER) &&
+                            CheckMineRange(chunk, x, y, (int)TileNum.STONE))
+                        {
+                            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.MINE, x, y);
+                        }
+                    }
+                }
+            }
+        }
+
+        //지정된 좌표에 오브젝트를 생성한다.
+        if (!isTree) { settingObject.CreateObejct(chunkX, chunkY, (int)ObjectNum.TREE); }
+        if (!isMine) { settingObject.CreateObejct(chunkX, chunkY, (int)ObjectNum.MINE); }
+        Debug.Log(chunkX + " " + chunkY);
+        isTree = true;
+        isMine = true;
+    }
+
+    private bool CheckMineRange(GameObject chunk, int x, int y, int tileNum)
+    {
+        if (x -1 <= 0 || x + 1 >= chunkSize || y -1 <= 0 || y + 1>= chunkSize)
+        {
+            return false;
+        }
+
+        for (int i = x - 1; i <= x + 1; i++)
+        {
+            for (int j = y - 1; j <= y + 1; j++)
+            {
+
+                if (chunk.transform.GetChild(i * chunkSize + j).GetComponent<SpriteRenderer>().sprite == tile[tileNum])
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private bool CheckTreeRange(GameObject chunk, int x, int y, int tileNum)
+    {
+        if (y + 1 >= chunkSize)
+        {
+            return false;
+        }
+
+        for (int i = y; i <= y + 1; i++)
+        {
+            //Debug.Log(x + " " + i);
+            if (chunk.transform.GetChild(x * chunkSize + i).GetComponent<SpriteRenderer>().sprite == tile[tileNum])
+            {
+                return false;
+            }
+        }
 
 
-	}
+        return true;
+    }
 
 
     public float[,] GenerateMap(int width, int height)
