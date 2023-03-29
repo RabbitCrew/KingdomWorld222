@@ -108,7 +108,10 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                         int n = pointList.FindIndex(a => a.x == worldChunks[x, y].transform.localPosition.x && a.z == worldChunks[x, y].transform.localPosition.y);
                         // 만약 좌표값이 저장되어 있을 경우 그 값을 리스트에서 삭제한다.
                         if (n != -1) { pointList.RemoveAt(n); }
-
+                        // 오브젝트의 스프라이트 렌더러를 꺼준다.
+                        int chunkX = (int)worldChunks[x, y].transform.localPosition.x / 20;
+                        int chunkY = (int)worldChunks[x, y].transform.localPosition.y / 20;
+                        settingObject.DisableSpriteRenderer(chunkX, chunkY);
                     }
                 }
                 // 청크가 필요한 자리에 이미 활성화하고 있지만 pointList에 좌표값이 저장되어있지 않을 때
@@ -119,7 +122,6 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                     RefreshTexture(worldChunks[x,y], worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y);
                     //청크 좌표를 청크 좌표 리스트(pointList)에 추가한다.
                     pointList.Add(new point(worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y));
-                    // 오브젝트의 스프라이트 렌더러를 꺼준다.
                 
                 }
             }
@@ -136,8 +138,10 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 					RefreshTexture(falseChunksList[0], x * chunkSize, z * chunkSize);
 					pointList.Add(new point(falseChunksList[0].transform.localPosition.x, falseChunksList[0].transform.localPosition.y));
                     falseChunksList.RemoveAt(0);
-				}
-			}
+                    // 오브젝트의 스프라이트 렌더러를 켜준다.
+                    settingObject.EnableSpriteRenderer(x, z);
+                }
+            }
 		}
 
 	}
@@ -254,6 +258,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
                 if (!isObject)
                 {
+                    // 동굴 생성 확률
                     if (ran < 1)
                     {
                         if (settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
@@ -263,6 +268,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                             settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.MINE, x, y);
                         }
                     }
+                    // 나무 생성 확률
                     else if (ran < 80)
                     {
                         if (settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&

@@ -40,7 +40,7 @@ public class SettingObject : MonoBehaviour
     [SerializeField] private GameObject motehrObject;
 
     private  Dictionary<ChunkPoint,List <TilePoint>> objectPointList = new Dictionary<ChunkPoint, List<TilePoint>>();
-    private Dictionary<TilePoint, GameObject> gameObjectWorldPointList = new Dictionary<TilePoint, GameObject>();
+    private Dictionary<ChunkPoint, List<GameObject>> gameObjectWorldPointList = new Dictionary<ChunkPoint, List<GameObject>>();
 
     private List<ObjectSize> objSize = new List<ObjectSize>();
     private ulong objCode = 0;
@@ -143,6 +143,17 @@ public class SettingObject : MonoBehaviour
                     ); ;
                 // 화면에 보이게 각도 설정
                 obj.transform.eulerAngles = new Vector3(90, 0, 0);
+
+                if (!gameObjectWorldPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
+                {
+                    List<GameObject> objList = new List<GameObject>();
+                    gameObjectWorldPointList.Add(new ChunkPoint(chunkX, chunkY), objList);
+                    gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
+                }
+                else
+                {
+                    gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
+                }
             }
         }
     }
@@ -184,10 +195,8 @@ public class SettingObject : MonoBehaviour
             if (objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
             {
                 int index = objectPointList[new ChunkPoint(chunkX, chunkY)].FindIndex(a => a.tileX == x && a.tileY == i);
-                //Debug.Log(index);
                 if (index != -1)
                 {
-                    //Debug.Log(index);
                     return false;
                 }
             }
@@ -198,5 +207,26 @@ public class SettingObject : MonoBehaviour
         }
 
         return true;
+    }
+    // 활성화된 청크 위치 있는 오브젝트의 스프라이트 렌더러를 켜준다.
+    public void EnableSpriteRenderer(int chunkX, int chunkY)
+    {
+        if (!gameObjectWorldPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
+
+        for (int i = 0; i < gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
+        {
+            gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = true;
+        }
+    }
+
+    // 비활성화된 청크 위치 있는 오브젝트의 스프라이트 렌더러를 꺼준다.
+    public void DisableSpriteRenderer(int chunkX, int chunkY)
+    {
+        if (!gameObjectWorldPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
+
+        for (int i = 0; i < gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
+        {
+            gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 }
