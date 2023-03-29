@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MoveBackgroundAsMouse : MonoBehaviour
 {
+    public Camera CAM;
+
     float mouseX, mouseY;
 
     // Update is called once per frame
@@ -14,7 +16,7 @@ public class MoveBackgroundAsMouse : MonoBehaviour
             mouseX = Input.GetAxis("Mouse X");
             mouseY = Input.GetAxis("Mouse Y");
 
-            Camera.main.transform.position += new Vector3(-mouseX * 0.9f,0,-mouseY * 0.9f);
+            CAM.transform.position += new Vector3(-mouseX * 0.9f,0,-mouseY * 0.9f);
         }
     }
 }
