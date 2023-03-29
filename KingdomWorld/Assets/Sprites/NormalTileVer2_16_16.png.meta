@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5c84010a6ac017a429e4bc281d879b6e
+guid: b71557843c6acbd4c92e64fdcb63605b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -65,7 +65,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -115,11 +115,23 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NormalTile_16_16_0
+      name: NormalTileVer2_16_16_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffa47adad9ed188478607a5e0234a69d
-      internalID: 373110269
+      spriteID: 0b89191fd6625534b91f74529b334a05
+      internalID: -840776253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NormalTile_16_16_1
+      name: NormalTileVer2_16_16_1
       rect:
         serializedVersion: 2
         x: 16
@@ -154,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f250a8f956c0584a827bdbd469f155f
-      internalID: 509399869
+      spriteID: 6b7f2093215e10c47b6eee4bfc8db601
+      internalID: 1601276224
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NormalTile_16_16_2
+      name: NormalTileVer2_16_16_2
       rect:
         serializedVersion: 2
         x: 32
@@ -175,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1dd6250cd841f0f489096fde43058c12
-      internalID: -1908389348
+      spriteID: 74280551c8368754cab8a4bcecf1f833
+      internalID: 1672406165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NormalTile_16_16_3
+      name: NormalTileVer2_16_16_3
       rect:
         serializedVersion: 2
         x: 48
@@ -196,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9e46b8d90ed6e64483cb3402f7f09c2
-      internalID: -295063584
+      spriteID: 90efb56ebd22ec4489b5576ef5eb6d88
+      internalID: 552291369
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NormalTile_16_16_4
+      name: NormalTileVer2_16_16_4
       rect:
         serializedVersion: 2
         x: 64
@@ -217,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0037b114058d43c43a1a8d8dbd4b388a
-      internalID: -1288523956
+      spriteID: 31edad901a7a92947b2c127db721be6d
+      internalID: 1342630318
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NormalTile_16_16_5
+      name: NormalTileVer2_16_16_5
       rect:
         serializedVersion: 2
         x: 80
@@ -238,8 +250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1f89138559dfd74b98b26f8d68b1981
-      internalID: -1910264367
+      spriteID: 331a2a43df39634458eaa957087de246
+      internalID: -1414254277
       vertices: []
       indices: 
       edges: []
@@ -247,7 +259,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 40ce5db76a131764e8dc942b1e4ea9df
+    spriteID: 005a6539a237d4844b060027e4dd2fa6
     internalID: 0
     vertices: []
     indices: 
@@ -255,12 +267,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      NormalTile_16_16_0: 373110269
-      NormalTile_16_16_1: 509399869
-      NormalTile_16_16_2: -1908389348
-      NormalTile_16_16_3: -295063584
-      NormalTile_16_16_4: -1288523956
-      NormalTile_16_16_5: -1910264367
+      NormalTileVer2_16_16_0: -840776253
+      NormalTileVer2_16_16_1: 1601276224
+      NormalTileVer2_16_16_2: 1672406165
+      NormalTileVer2_16_16_3: 552291369
+      NormalTileVer2_16_16_4: 1342630318
+      NormalTileVer2_16_16_5: -1414254277
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

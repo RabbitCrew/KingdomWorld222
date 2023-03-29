@@ -42,13 +42,14 @@ public class SettingObject : MonoBehaviour
     // 청크 좌표에 따른 오브젝트 좌표 리스트
     private  Dictionary<ChunkPoint,List <TilePoint>> objectPointList = new Dictionary<ChunkPoint, List<TilePoint>>();
     // 청크 좌표에 따른 게임오브젝트 리스트
-    private Dictionary<ChunkPoint, List<GameObject>> gameObjectWorldPointList = new Dictionary<ChunkPoint, List<GameObject>>();
+    private Dictionary<ChunkPoint, List<GameObject>> gameObjectChunkPointList = new Dictionary<ChunkPoint, List<GameObject>>();
 
     private List<ObjectSize> objSize = new List<ObjectSize>();
     private ulong objCode = 0;
 
     public void Awake()
     {
+        // 오브젝트의 가로 세로 사이즈를 땅 한 칸 사이즈(16픽셀)를 기준으로 정해둠.
         objSize.Add(new ObjectSize(1, 2, (int)ObjectNum.TREE));
         objSize.Add(new ObjectSize(3, 3, (int)ObjectNum.MINE));
         objSize.Add(new ObjectSize(3, 2, (int)ObjectNum.ANEXCHANGE));
@@ -85,18 +86,18 @@ public class SettingObject : MonoBehaviour
             // 키로 저장하고 있지 않으면 키로 저장.
             List<TilePoint> tilePoint = new List<TilePoint>();
             objectPointList.Add(new ChunkPoint(chunkX, chunkY), tilePoint);
-            // 
+            // 청크좌표에 오브젝트 정보를 담음.
             AddTilePoint(chunkX, chunkY, objectNum, tileX, tileY);
         }
         else
         {
-            int index = objectPointList[new ChunkPoint(chunkX, chunkY)].FindIndex(a => a.tileX == tileX && a.tileY == tileY);
-            if (index == -1)
-            {
+            //int index = objectPointList[new ChunkPoint(chunkX, chunkY)].FindIndex(a => a.tileX == tileX && a.tileY == tileY);
+            //if (index == -1)
+            //{
                 AddTilePoint(chunkX, chunkY, objectNum, tileX, tileY);
-            }
+            //}
 
-            return;
+            //return;
         }
     }
     // 청크 좌표에 오브젝트의 정보를 담음. 
@@ -150,16 +151,18 @@ public class SettingObject : MonoBehaviour
                     ); ;
                 // 화면에 보이게 각도 설정
                 obj.transform.eulerAngles = new Vector3(90, 0, 0);
-                // 
-                if (!gameObjectWorldPointList.ContainsKey(chunk))
+                // 해당 청크 좌표 key가 있는지 확인
+                if (!gameObjectChunkPointList.ContainsKey(chunk))
                 {
+                    // 키가 없으면 키 생성 및 그 청크 좌표 내 오브젝트를 value 값으로 추가
                     List<GameObject> objList = new List<GameObject>();
-                    gameObjectWorldPointList.Add(chunk, objList);
-                    gameObjectWorldPointList[chunk].Add(obj);
+                    gameObjectChunkPointList.Add(chunk, objList);
+                    gameObjectChunkPointList[chunk].Add(obj);
                 }
                 else
                 {
-                    gameObjectWorldPointList[chunk].Add(obj);
+                    // 청크 좌표 내 오브젝트를 value 값으로 추가
+                    gameObjectChunkPointList[chunk].Add(obj);
                 }
             }
         }
@@ -168,8 +171,9 @@ public class SettingObject : MonoBehaviour
     // 지정된 범위 내에 동굴을 생성할 조건을 만족하는지 여부를 판단
     public bool CheckMineRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
     {
+        // 동굴의 범위는 가로 3(*16픽셀),세로 3(*16픽셀)임. 따라서 상하좌우로 한칸 범위를 청크 사이즈 내에서 확보해야됨
         if (x - 1 <= 0 || x + 1 >= chunkSize || y - 1 <= 0 || y + 1 >= chunkSize) { return false; }
-
+        // 범위 확보 후, 해당 좌표 내 이미 오브젝트가 생성되어 있는지, 혹은 생성을 불가능케하는 타일이 있는지 확인함
         for (int i = x - 1; i <= x + 1; i++)
         {
             for (int j = y - 1; j <= y + 1; j++)
@@ -195,8 +199,9 @@ public class SettingObject : MonoBehaviour
     // 지정된 범위 내에 나무를 생성할 조건을 만족하는지 여부를 판단
     public bool CheckTreeRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
     {
+        // 나무의 범위는 가로 1(*16픽셀), 세로 2(*16)픽셀임. 위로 한칸 범위까지만 청크 사이즈 내에서 확보해야됨
         if (y + 1 >= chunkSize) { return false; }
-
+        // 범위 확보 후, 해당 좌표 내 이미 오브젝트가 생성되어 있는지, 혹은 생성을 불가능케하는 타일이 있는지 확인함.
         for (int i = y; i <= y + 1; i++)
         {
             if (objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
@@ -218,22 +223,22 @@ public class SettingObject : MonoBehaviour
     // 활성화된 청크 위치 있는 오브젝트의 스프라이트 렌더러를 켜준다.
     public void EnableSpriteRenderer(int chunkX, int chunkY)
     {
-        if (!gameObjectWorldPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
+        if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
 
-        for (int i = 0; i < gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
+        for (int i = 0; i < gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
         {
-            gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = true;
+            gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 
     // 비활성화된 청크 위치 있는 오브젝트의 스프라이트 렌더러를 꺼준다.
     public void DisableSpriteRenderer(int chunkX, int chunkY)
     {
-        if (!gameObjectWorldPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
+        if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
 
-        for (int i = 0; i < gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
+        for (int i = 0; i < gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
         {
-            gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = false;
+            gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 }

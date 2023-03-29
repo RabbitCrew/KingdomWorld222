@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 마우스를 드래그하여 화면을 이동시킨다.
 public class MoveBackgroundAsMouse : MonoBehaviour
 {
     public Camera CAM;
