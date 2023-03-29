@@ -97,23 +97,27 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                     (int)worldChunks[x, y].transform.localPosition.y / chunkSize >= cameraZMax ||
                     (int)worldChunks[x, y].transform.localPosition.y / chunkSize < cameraZMin))
                 {
-                   
+                    // 비활성화 시켜줄 청크가 비활성화 청크 리스트 (falseChunksList)에 있지 않아야 한다. 아직은 켜져있기 때문
                     if (falseChunksList.FindIndex(a => a.Equals(worldChunks[x, y])) == -1)
                     {
+                        // 해당 청크를 비활성화 시킨다.
                         worldChunks[x, y].SetActive(false);
+                        // 비활성화 청크 리스트(falseChunkList)에 추가한다.
                         falseChunksList.Add(worldChunks[x, y]);
+                        // 청크 좌표 리스트(pointList)에 비활성화시킨 청크의 좌표값이 저장되어있는지 인덱스 값을 구한다.
                         int n = pointList.FindIndex(a => a.x == worldChunks[x, y].transform.localPosition.x && a.z == worldChunks[x, y].transform.localPosition.y);
-                        if (n != -1)
-                        { 
-                            pointList.RemoveAt(n);
-                        }
+                        // 만약 좌표값이 저장되어 있을 경우 그 값을 리스트에서 삭제한다.
+                        if (n != -1) { pointList.RemoveAt(n); }
+
                     }
                 }
                 // 청크가 필요한 자리에 이미 활성화하고 있지만 pointList에 좌표값이 저장되어있지 않을 때
                 else if (pointList.FindIndex(a => a.x == worldChunks[x, y].transform.localPosition.x && a.z == worldChunks[x, y].transform.localPosition.y) == -1 &&
                          pointList.Count + falseChunksList.Count < worldChunks.GetLength(0) * worldChunks.GetLength(1))
                 {
+                    //청크 좌표에 맞춰 맵을 재생성한다.
                     RefreshTexture(worldChunks[x,y], worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y);
+                    //청크 좌표를 청크 좌표 리스트(pointList)에 추가한다.
                     pointList.Add(new point(worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y));
                     // 오브젝트의 스프라이트 렌더러를 꺼준다.
                 
@@ -155,6 +159,8 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 newTile.transform.parent = worldChunks[(int)chunkCoordX, (int)chunkCoordY].transform;
 
                 newTile.AddComponent<SpriteRenderer>();
+                newTile.AddComponent<BoxCollider>();
+                newTile.GetComponent<BoxCollider>().isTrigger = true;
                 newTile.transform.localPosition = new Vector3(x % chunkSize, y % chunkSize);
             }
         }
@@ -244,26 +250,25 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         {
             for (int y = 0; y < chunkSize; y++)
             {
-                int ran = Random.Range(0, 500);
+                int ran = Random.Range(0, 700);
 
                 if (!isObject)
                 {
                     if (ran < 1)
                     {
-                        if (settingObject.CheckMineRange(chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
-                            settingObject.CheckMineRange(chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
-                            settingObject.CheckMineRange(chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
+                        if (settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
+                            settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
+                            settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
                         {
                             settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.MINE, x, y);
                         }
                     }
                     else if (ran < 80)
                     {
-                        if (settingObject.CheckTreeRange(chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
-                            settingObject.CheckTreeRange(chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
-                            settingObject.CheckTreeRange(chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
+                        if (settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
+                            settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
+                            settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
                         {
-                            //Debug.Log("발동 ! ! !");
                             settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.TREE, x, y);
                         }
                     }
