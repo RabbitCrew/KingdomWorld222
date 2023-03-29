@@ -39,7 +39,9 @@ public class SettingObject : MonoBehaviour
     [SerializeField]private GameObject[] objectArr;
     [SerializeField] private GameObject motehrObject;
 
+    // 청크 좌표에 따른 오브젝트 좌표 리스트
     private  Dictionary<ChunkPoint,List <TilePoint>> objectPointList = new Dictionary<ChunkPoint, List<TilePoint>>();
+    // 청크 좌표에 따른 게임오브젝트 리스트
     private Dictionary<ChunkPoint, List<GameObject>> gameObjectWorldPointList = new Dictionary<ChunkPoint, List<GameObject>>();
 
     private List<ObjectSize> objSize = new List<ObjectSize>();
@@ -77,11 +79,13 @@ public class SettingObject : MonoBehaviour
     // tileX, tileY는 0~19 사이 어딘가
     public void AddObjectPointList(int chunkX, int chunkY, int objectNum, int tileX, int tileY)
     {
-
+        // 해당 청크 좌표 정보를 딕셔너리 키로 저장하고 있는지 확인
         if (!objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
         {
+            // 키로 저장하고 있지 않으면 키로 저장.
             List<TilePoint> tilePoint = new List<TilePoint>();
             objectPointList.Add(new ChunkPoint(chunkX, chunkY), tilePoint);
+            // 
             AddTilePoint(chunkX, chunkY, objectNum, tileX, tileY);
         }
         else
@@ -95,17 +99,19 @@ public class SettingObject : MonoBehaviour
             return;
         }
     }
-
+    // 청크 좌표에 오브젝트의 정보를 담음. 
     private void AddTilePoint(int chunkX, int chunkY, int objectNum, int tileX, int tileY)
     {
         int index = objSize.FindIndex(a => a.objNum == objectNum);
-
+        // 생성될 오브젝트 중앙을 기준으로 어느 타일에 오브젝트가 닿게 되는지 범위 계산
         int minX = tileX - (int)((float)objSize[index].sizeX / 2f) + ((objSize[index].sizeX + 1) % 2);
         int maxX = tileX + (int)((float)objSize[index].sizeX / 2f);
         int minY = tileY - (int)((float)objSize[index].sizeY / 2f) + ((objSize[index].sizeY + 1) % 2);
         int maxY = tileY + (int)((float)objSize[index].sizeY / 2f);
-        //Debug.Log("minX : " + minX + " maxX : " + maxX + " minY : " + minY + " maxY : " + maxY);
+
+        // 다른 좌표에 같은 오브젝트가 공유하고 있는 오브젝트 번호. ulong타입
         objCode++;
+        // 범위 내 닿고 있는 타일의 좌표를 오브젝트 번호와 함께 저장
         for (int i = minX; i <= maxX; i++)
         {
             for (int j = minY; j <= maxY; j++)
@@ -129,30 +135,31 @@ public class SettingObject : MonoBehaviour
         // 해당 청크 좌표 정보를 딕셔너리에 키로 저장하고 있는지 확인. 없으면 리턴
         if (!ActiveTrueObjectPointList(chunkX, chunkY)) { return; }
 
-        for (int i = 0; i < objectPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
+        ChunkPoint chunk = new ChunkPoint(chunkX, chunkY);
+        for (int i = 0; i < objectPointList[chunk].Count; i++)
         {
-            if (objectPointList[new ChunkPoint(chunkX, chunkY)][i].isRoot)
+            if (objectPointList[chunk][i].isRoot)
             {// 오브젝트 생성과 부모 오브젝트 설정
-                GameObject obj = Instantiate(objectArr[objectPointList[new ChunkPoint(chunkX, chunkY)][i].objectNum], motehrObject.transform);
+                GameObject obj = Instantiate(objectArr[objectPointList[chunk][i].objectNum], motehrObject.transform);
                 // 생성될 오브젝트의 좌표
                 obj.transform.position = new Vector3
                     (
-                    chunkX * 20 + objectPointList[new ChunkPoint(chunkX, chunkY)][i].tileX,
+                    chunkX * 20 + objectPointList[chunk][i].tileX,
                     0,
-                    chunkY * 20 + objectPointList[new ChunkPoint(chunkX, chunkY)][i].tileY
+                    chunkY * 20 + objectPointList[chunk][i].tileY
                     ); ;
                 // 화면에 보이게 각도 설정
                 obj.transform.eulerAngles = new Vector3(90, 0, 0);
-
-                if (!gameObjectWorldPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
+                // 
+                if (!gameObjectWorldPointList.ContainsKey(chunk))
                 {
                     List<GameObject> objList = new List<GameObject>();
-                    gameObjectWorldPointList.Add(new ChunkPoint(chunkX, chunkY), objList);
-                    gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
+                    gameObjectWorldPointList.Add(chunk, objList);
+                    gameObjectWorldPointList[chunk].Add(obj);
                 }
                 else
                 {
-                    gameObjectWorldPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
+                    gameObjectWorldPointList[chunk].Add(obj);
                 }
             }
         }
