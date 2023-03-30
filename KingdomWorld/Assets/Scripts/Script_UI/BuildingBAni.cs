@@ -8,10 +8,18 @@ public class BuildingBAni : MonoBehaviour
     public Image[] BImage = new Image[13];
 
     bool AniStart = false;
+    bool RBGo = false;
+    bool LBGo = false;
 
     int AniCount = 0;
 
     public int Speed = 20;
+
+    public GameObject RBTarget;
+    public GameObject LButton;
+    public GameObject RButton;
+
+    Vector3 RBTargetSP;
 
     private void Update()
     {
@@ -19,6 +27,9 @@ public class BuildingBAni : MonoBehaviour
         {
             BAniStart();
         }
+
+        RBAniStart();
+        LBAniStart();
     }
 
     public void BAniC()//처음 호출 시 모든 이미지 fillamount비우기 
@@ -29,6 +40,8 @@ public class BuildingBAni : MonoBehaviour
         }
 
         AniStart = true;
+
+        RBTargetSP = RBTarget.transform.position;
     }
 
     void BAniStart()//호출 시 배열에 있는 이미지 순서대로 speed값에 따라 fillamount 채워가도록 함.
@@ -136,5 +149,64 @@ public class BuildingBAni : MonoBehaviour
     {
         AniCount = 0;
         AniStart = false;
+
+        RBTarget.transform.position = RBTargetSP;
+        RBGo = false;
+        LBGo = false;
+    }
+
+    public void RightBAni()
+    {
+        RBGo = true;
+    }
+
+    public void LeftBAni()
+    {
+        LBGo = true;
+    }
+
+    void RBAniStart()
+    {
+        Vector3 TargetP;
+
+        TargetP = new Vector3(RBTarget.transform.localPosition.x - 72f, RBTarget.transform.localPosition.y, RBTarget.transform.localPosition.z);
+
+        if (RBGo == true)
+        {
+            RBTarget.transform.localPosition = TargetP;
+
+            LButton.SetActive(true);
+
+            RBGo = false;
+        }
+
+        if (RBTarget.transform.localPosition.x <= -180f)
+        {
+            RBTarget.transform.localPosition = new Vector3(-185, 132, 0);
+
+            RButton.SetActive(false);
+        }
+    }
+
+    void LBAniStart()
+    {
+        Vector3 TargetP;
+
+        TargetP = new Vector3(RBTarget.transform.localPosition.x + 72f, RBTarget.transform.localPosition.y, RBTarget.transform.localPosition.z);
+
+        if (LBGo == true)
+        {
+            RBTarget.transform.localPosition = TargetP;
+
+            LBGo = false;
+        }
+
+        if (RBTarget.transform.localPosition.x >= 0)
+        {
+            RBTarget.transform.localPosition = new Vector3(0, 132, 0);
+
+            LButton.SetActive(false);
+            RButton.SetActive(true);
+        }
     }
 }
