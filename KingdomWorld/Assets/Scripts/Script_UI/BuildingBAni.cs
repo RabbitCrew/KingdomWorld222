@@ -41,7 +41,7 @@ public class BuildingBAni : MonoBehaviour
 
         AniStart = true;
 
-        RBTargetSP = RBTarget.transform.position;
+        RBTargetSP = RBTarget.transform.position;//초반 버튼 위치 저장
     }
 
     void BAniStart()//호출 시 배열에 있는 이미지 순서대로 speed값에 따라 fillamount 채워가도록 함.
@@ -150,17 +150,17 @@ public class BuildingBAni : MonoBehaviour
         AniCount = 0;
         AniStart = false;
 
-        RBTarget.transform.position = RBTargetSP;
+        RBTarget.transform.position = RBTargetSP;//버튼 위치 원상복구
         RBGo = false;
         LBGo = false;
     }
 
-    public void RightBAni()
+    public void RightBAni()//우측 버튼 누르면 트리거 온
     {
         RBGo = true;
     }
 
-    public void LeftBAni()
+    public void LeftBAni()//좌측ㄴ 버튼 누르면 트리거 온
     {
         LBGo = true;
     }
@@ -169,9 +169,9 @@ public class BuildingBAni : MonoBehaviour
     {
         Vector3 TargetP;
 
-        TargetP = new Vector3(RBTarget.transform.localPosition.x - 72f, RBTarget.transform.localPosition.y, RBTarget.transform.localPosition.z);
+        TargetP = new Vector3(RBTarget.transform.localPosition.x - 72f, RBTarget.transform.localPosition.y, RBTarget.transform.localPosition.z);//움직일 위치 지정
 
-        if (RBGo == true)
+        if (RBGo == true)//트리거가 켜졌을 때 위치까지 움직이고, 가려진 버튼이 생길 시 좌측버튼 켜주고 트리거 꺼줌
         {
             RBTarget.transform.localPosition = TargetP;
 
@@ -180,7 +180,7 @@ public class BuildingBAni : MonoBehaviour
             RBGo = false;
         }
 
-        if (RBTarget.transform.localPosition.x <= -180f)
+        if (RBTarget.transform.localPosition.x <= -180f)// 더 나올 버튼이 없을 시 우측 버튼 꺼줌
         {
             RBTarget.transform.localPosition = new Vector3(-185, 132, 0);
 
@@ -192,16 +192,16 @@ public class BuildingBAni : MonoBehaviour
     {
         Vector3 TargetP;
 
-        TargetP = new Vector3(RBTarget.transform.localPosition.x + 72f, RBTarget.transform.localPosition.y, RBTarget.transform.localPosition.z);
+        TargetP = new Vector3(RBTarget.transform.localPosition.x + 72f, RBTarget.transform.localPosition.y, RBTarget.transform.localPosition.z);//움직일 위치 지정
 
-        if (LBGo == true)
+        if (LBGo == true)// 트리거가 켜졌을 때 위치까지 움직이고, 트리거 꺼줌
         {
             RBTarget.transform.localPosition = TargetP;
 
             LBGo = false;
         }
 
-        if (RBTarget.transform.localPosition.x >= 0)
+        if (RBTarget.transform.localPosition.x >= 0) //더 나올 버튼이 없을 시 좌측 버튼 꺼주고 우측 버튼 켜줌
         {
             RBTarget.transform.localPosition = new Vector3(0, 132, 0);
 
