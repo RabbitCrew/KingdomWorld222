@@ -4,8 +4,8 @@ public class GameManager : Resource
 {
     private float startTime;
     private float timeElapsed;
-    private float dayNightRatio;
-    private bool isDaytime;//true老锭 撤, false老锭 广
+    public float dayNightRatio { get; private set; }
+    public bool isDaytime { get; private set; }//true老锭 撤, false老锭 广
 
     void Start()
     {
@@ -16,9 +16,8 @@ public class GameManager : Resource
     void Update()
     {
         timeElapsed = Time.realtimeSinceStartup - startTime;
-        dayNightRatio = timeElapsed / 3f; // 180 seconds = 3 minutes
+        dayNightRatio = timeElapsed / 180f; // 180 seconds = 3 minutes
 
-        //Debug.Log(dayNightRatio);
         if (dayNightRatio >= 1f)
         {
             startTime = Time.realtimeSinceStartup;
