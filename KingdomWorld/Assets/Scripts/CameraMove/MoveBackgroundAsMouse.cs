@@ -36,7 +36,7 @@ public class MoveBackgroundAsMouse : MonoBehaviour
         //RaycastAll : 모두 설정된 BaseRaycaster를 사용을 통한 해당 씬으로의 레이 캐스팅.
         // -> 겹쳐있는 오브젝트들이 있다면 겹쳐있는 수로 results의 카운트가 바뀜
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        Debug.Log(results.Count);
+        //Debug.Log(results.Count);
         return results.Count > 0;
     }
 }

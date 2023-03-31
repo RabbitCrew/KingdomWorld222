@@ -8,35 +8,41 @@ using UnityEngine.EventSystems;
 public class BuildingButton2 : MonoBehaviour, IPointerClickHandler
 {
     public GameObject prefab; // 생성할 오브젝트 프리팹
-    private GameObject clone; // 생성된 오브젝트 인스턴스
-    private bool isDragging = false;
+    private static GameObject clone = null; // 생성된 오브젝트 인스턴스
+    private static bool isClick = false;
 
     List<GameObject> buildingList = new List<GameObject>();
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!isDragging)
+        if (clone == null)
         {
             clone = Instantiate(prefab);
-            //clone.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            isDragging = true;
         }
+        else
+        {
+            Destroy(clone.gameObject);
+            clone = Instantiate(prefab);
+        }
+        isClick = true;
     }
 
     private void Update()
     {
-        if (isDragging)
+        if (isClick)
         {
-            // Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - clone.transform.position;
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             clone.transform.position = new Vector3(mousePosition.x, 0, mousePosition.z);
-            Debug.Log(mousePosition);
-            Debug.Log(clone.transform.position);
         }
-        //if (isDragging && Input.GetMouseButtonDown(0))
-        //{
-        //    isDragging = false;
-        //}
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (clone != null)
+            {
+                Destroy(clone.gameObject);
+            }
+            isClick = false;
+        }
     }
 
 }
