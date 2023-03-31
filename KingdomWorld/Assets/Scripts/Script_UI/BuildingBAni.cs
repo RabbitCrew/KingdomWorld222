@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class BuildingBAni : MonoBehaviour
 {
-    public Image[] BImage = new Image[13];
+    public Image[] BImage = new Image[18];
 
     bool AniStart = false;
     bool RBGo = false;
@@ -180,11 +180,15 @@ public class BuildingBAni : MonoBehaviour
             RBGo = false;
         }
 
-        if (RBTarget.transform.localPosition.x <= -180f)// 더 나올 버튼이 없을 시 우측 버튼 꺼줌
+        if (RBTarget.transform.localPosition.x <= -220f)// 더 나올 버튼이 없을 시 우측 버튼 꺼줌
         {
-            RBTarget.transform.localPosition = new Vector3(-185, 132, 0);
+            RBTarget.transform.localPosition = new Vector3(-280, 132, 0);
 
             RButton.SetActive(false);
+        }
+        else
+        {
+            RButton.SetActive(true);
         }
     }
 
