@@ -25,7 +25,6 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         }
 	}
 
-
     public float seed;
     public Texture2D noiseTexture;
     public GameObject mother;
@@ -164,6 +163,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
                 newTile.AddComponent<SpriteRenderer>();
                 newTile.AddComponent<BoxCollider>();
+                newTile.AddComponent<TileColorChange>();
                 newTile.GetComponent<BoxCollider>().isTrigger = true;
                 newTile.transform.localPosition = new Vector3(x % chunkSize, y % chunkSize);
             }

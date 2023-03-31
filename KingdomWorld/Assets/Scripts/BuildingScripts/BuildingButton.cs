@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-public class BuildingButton2 : MonoBehaviour, IPointerClickHandler
+public class BuildingButton : MonoBehaviour, IPointerClickHandler
 {
     public GameObject prefab; // 생성할 오브젝트 프리팹
     private static GameObject clone = null; // 생성된 오브젝트 인스턴스
@@ -32,7 +32,30 @@ public class BuildingButton2 : MonoBehaviour, IPointerClickHandler
         if (isClick)
         {
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            clone.transform.position = new Vector3(mousePosition.x, 0, mousePosition.z);
+            float plusX = 0;
+            float plusZ = 0;
+            if ((clone.transform.GetComponent<SpriteRenderer>().sprite.rect.width / 16) % 2 == 1)
+            {
+                plusX = 0f;
+            }
+            else
+            {
+                plusX = 0.5f;
+            }
+
+            if ((clone.transform.GetComponent<SpriteRenderer>().sprite.rect.height / 16) % 2 == 1)
+            {
+                plusZ = 0f;
+            }
+            else
+            {
+                plusZ = 0.5f;
+            }
+
+            clone.transform.position = new Vector3(Mathf.RoundToInt(mousePosition.x) + plusX, 0, Mathf.RoundToInt(mousePosition.z) + plusZ);
+
+            //타일에 맞춰 한칸씩 마우스 이동
+            //Debug.Log(mousePosition);
         }
 
         if (Input.GetMouseButtonDown(1))
