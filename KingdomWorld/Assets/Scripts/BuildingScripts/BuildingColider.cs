@@ -8,10 +8,10 @@ public class BuildingColider : MonoBehaviour
     [SerializeField] private int objTypeNum;
     public bool isFollowMouse { get; set; }
     public bool isSettingComplete { get; set; }
-
+    public ulong objCode { get; set; }
     private List<Collider> colList = new List<Collider>();
     private CallBuildingButtonToBuildingColiderEventDriven callBuildingButtonToBuildingColiderEventDriven = new CallBuildingButtonToBuildingColiderEventDriven();
-
+    private CallSettingObjectToBuildingColiderEventDriven CallSettingObjectToBuildingColiderEventDriven = new CallSettingObjectToBuildingColiderEventDriven();
     public int GetObjTypeNum()
 	{
         return objTypeNum;
@@ -50,34 +50,36 @@ public class BuildingColider : MonoBehaviour
     }
     private void OnEnable()
 	{
+        objCode = 0;
         isSettingComplete = false;
         colList.Clear();
     }
     private void OnDisable()
     {
-
-        for (int i = 0; i < colList.Count; i++)
+        if (!isSettingComplete)
         {
-            if (colList[i] == null)
-			{
-                return;
-			}
-
-            if (colList[i].gameObject.GetComponent<TileColorChange>() != null)
+            for (int i = 0; i < colList.Count; i++)
             {
-                colList[i].gameObject.GetComponent<TileColorChange>().ChangeWhiteColor();
+                if (colList[i] == null)
+                {
+                    return;
+                }
+
+                if (colList[i].gameObject.GetComponent<TileColorChange>() != null)
+                {
+                    colList[i].gameObject.GetComponent<TileColorChange>().ChangeWhiteColor();
+                }
             }
+        }
+        else
+		{
+            CallSettingObjectToBuildingColiderEventDriven.RunGetObjectCodeEvent(objCode, this.gameObject);
         }
         colList.Clear();
     }
 
 	public void ClickObject()
 	{
-        if (isSettingComplete)
-        {
-            Debug.Log("만트라 !");
-        }
-
         if (isFollowMouse)
         {
             Debug.Log(colList.Count);
@@ -86,7 +88,7 @@ public class BuildingColider : MonoBehaviour
             {
                 if (colList[i].GetComponent<SpriteRenderer>().color != Color.green)
                 {
-                    Debug.Log(colList[i].GetComponent<SpriteRenderer>().color);
+                    //Debug.Log(colList[i].GetComponent<SpriteRenderer>().color);
                     return;
                 }
             }
@@ -105,8 +107,15 @@ public class BuildingColider : MonoBehaviour
             isFollowMouse = false;
             isSettingComplete = true;
         }
-
 	}
+    public void clickRemoveObject()
+    {
+        if (isSettingComplete)
+        {
+            //Debug.Log("만트라 !");
+            Destroy(this.gameObject);
+        }
+    }
 }
 
 

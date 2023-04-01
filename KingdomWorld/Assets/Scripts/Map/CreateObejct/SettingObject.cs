@@ -46,6 +46,19 @@ public class SettingObject : MonoBehaviour
 
     private ulong objCode = 0;
 
+	public void Awake()
+	{
+        CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent += RemoveObject;
+        RemoveEventDriven.isRemoveEvent += RemoveEvent;
+
+    }
+
+    private void RemoveEvent()
+	{
+        CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent -= RemoveObject;
+        RemoveEventDriven.isRemoveEvent -= RemoveEvent;
+    }
+
     // 해당 청크 좌표 정보를 딕셔너리에 키로 저장하고 있는지 확인. 있으면 true 리턴 없으면 false 리턴
     public bool ActiveTrueObjectPointList(int chunkX, int chunkY)
     {
@@ -115,6 +128,12 @@ public class SettingObject : MonoBehaviour
         int minY = pointZ - (int)((float)settingObjInfo.objSize[objectNum].sizeY / 2f) + ((settingObjInfo.objSize[objectNum].sizeY + 1) % 2);
         int maxY = pointZ + (int)((float)settingObjInfo.objSize[objectNum].sizeY / 2f);
         objCode++;
+
+        if (obj.GetComponent<BuildingColider>() != null)
+		{
+            obj.GetComponent<BuildingColider>().objCode = objCode;
+		}
+
 
         for (int i = minX; i <= maxX; i++)
         {
@@ -218,6 +237,39 @@ public class SettingObject : MonoBehaviour
             }
         }
     }
+
+    public void RemoveObject(ulong objCode, GameObject obj)
+	{
+        int inaccurateChunkX = (int)obj.transform.position.x / 20;
+        int inaccurateChunkY = (int)obj.transform.position.z / 20;
+
+        for (int x = inaccurateChunkX - 2; x < inaccurateChunkX + 2; x++)
+		{
+            for (int y = inaccurateChunkY - 2; y < inaccurateChunkY + 2; y++)
+			{
+                if (gameObjectChunkPointList.ContainsKey(new ChunkPoint(x, y)))
+				{
+                    int index = gameObjectChunkPointList[new ChunkPoint(x, y)].FindIndex(a => a.Equals(obj));
+
+                    if (index != -1)
+					{
+                        gameObjectChunkPointList[new ChunkPoint(x, y)].RemoveAt(index);
+					}
+				}
+
+                if (objectPointList.ContainsKey(new ChunkPoint(x, y)))
+				{
+                    List<TilePoint> list = objectPointList[new ChunkPoint(x, y)].FindAll(a => a.objectCode == objCode);
+
+                    for (int i = 0; i < list.Count; i++)
+					{
+                        objectPointList[new ChunkPoint(x, y)].Remove(list[i]);
+					}
+                    list.Clear();
+				}
+			}
+		}
+	}
 
     // 지정된 범위 내에 동굴을 생성할 조건을 만족하는지 여부를 판단
     public bool CheckMineRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)

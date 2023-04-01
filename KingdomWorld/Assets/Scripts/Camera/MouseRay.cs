@@ -27,5 +27,21 @@ public class MouseRay : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetMouseButtonDown(2))
+        {
+            //Debug.Log(1);
+            Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
+            hits = Physics.RaycastAll(ray, distance);
+            for (int i = 0; i < hits.Length; i++)
+            {
+
+                if (hits[i].transform.GetComponent<BuildingColider>() != null)
+                {
+                    //Debug.Log(hits[i].transform.name);
+                    hits[i].transform.GetComponent<BuildingColider>().clickRemoveObject();
+                }
+            }
+        }
     }
 }
