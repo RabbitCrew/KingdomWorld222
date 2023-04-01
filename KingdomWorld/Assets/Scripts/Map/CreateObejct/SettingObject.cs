@@ -120,10 +120,20 @@ public class SettingObject : MonoBehaviour
         {
             for (int j = minY; j <= maxY; j++)
             {
-                int chunkX = i / 20;
-                int chunkY = j / 20;
-                int tileX = i % 20;
-                int tileY = j % 20;
+                int chunkX, chunkY, tileX, tileY;
+
+                if (i >= 0) { chunkX = i / 20; }
+                else { chunkX = (i / 20) - 1; }
+
+                if (j >= 0) { chunkY = j / 20; }
+                else { chunkY = (i / 20) - 1; }
+
+                if (i >= 0) { tileX = i % 20; }
+                else { tileX = (i % 20) + 20; }
+               
+                if (j >= 0) { tileY = j % 20; }
+                else { tileY = (j % 20) + 20; }
+                
 
                 if (!objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
                 {
@@ -139,7 +149,7 @@ public class SettingObject : MonoBehaviour
 				{
                     objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, objectNum, objCode, false));
                 }
-                Debug.Log(chunkX + " " + chunkY + " " + tileX + " " + tileY + " " + objectNum);
+                Debug.Log("chunkX : " + chunkX + " chunkY : " + chunkY + " tileX : " + tileX + " tileY : " + tileY + " objectNum : " + objectNum + "  i : " + i + "  j : " + j + " pointX : " + pointX + "pointZ : " + pointZ);
             }
         }
     }

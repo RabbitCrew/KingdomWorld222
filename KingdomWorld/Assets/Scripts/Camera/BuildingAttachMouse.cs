@@ -86,8 +86,15 @@ public class BuildingAttachMouse : MonoBehaviour
     {
         if (clone.GetComponent<BuildingColider>() != null)
         {
-            Debug.Log(clone.GetComponent<BuildingColider>().GetObjTypeNum());
-            settingObj.AddTilePoint2((int)clone.transform.position.x, (int)clone.transform.position.z, clone.GetComponent<BuildingColider>().GetObjTypeNum());
+            float x, z;
+            Debug.Log(clone.transform.position.x + " " + clone.transform.position.z);
+            if (clone.transform.position.x % 1 != 0) { x = -0.5f; }
+            else { x = 0; }
+
+            if (clone.transform.position.z % 1 != 0) { z = -0.5f; }
+            else { z = 0; }
+
+            settingObj.AddTilePoint2((int)(clone.transform.position.x + x), (int)(clone.transform.position.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum());
         }
         //clone.GetComponent<BuildingColider>().isFollowMouse = false;
         clone = null;
