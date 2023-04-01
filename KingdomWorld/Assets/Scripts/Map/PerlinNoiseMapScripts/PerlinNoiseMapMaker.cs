@@ -23,7 +23,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
             this.x = x;
             this.z = z;
         }
-	}
+    }
 
     public float seed;
     public Texture2D noiseTexture;
@@ -35,7 +35,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     private List<GameObject> falseChunksList = new List<GameObject>();
 
     private void Awake()
-	{
+    {
         // 캐싱~
         cameraTrans = Camera.main.transform;
         // 시드를 랜덤으로 구함. 시드 값에 따라 다른 노이즈가 생성
@@ -49,15 +49,15 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         CreateChunks();
         DrawNoiseMap(fl, GenerateMap(worldSize, worldSize));
         GenerateTerrain();
-        mother.transform.eulerAngles = new Vector3(90,0,0);
+        mother.transform.eulerAngles = new Vector3(90, 0, 0);
     }
-	private void Update()
-	{
+    private void Update()
+    {
         RefreshChunks();
     }
     // 청크를 생성하는 함수
-	public void CreateChunks()
-	{
+    public void CreateChunks()
+    {
         int numChunksX = worldSize / chunkSize;
         int numChunksY = worldSize / chunkSize;
         worldChunks = new GameObject[numChunksX, numChunksY];
@@ -68,10 +68,10 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 GameObject newChunk = new GameObject();
                 newChunk.transform.parent = mother.transform;
                 newChunk.transform.localPosition = new Vector3(x * chunkSize, y * chunkSize, 0);
-                worldChunks[x,y] = newChunk;
+                worldChunks[x, y] = newChunk;
             }
         }
-	}
+    }
 
     // 오클루전 컬링을 위한 함수
     void RefreshChunks()
@@ -80,11 +80,11 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         int cameraZ = ((int)(cameraTrans.position.z) / chunkSize);
 
         int cameraXMax = Mathf.RoundToInt(cameraX + 1.8f);
-        int cameraXMin = Mathf.RoundToInt(cameraX  -1.8f);
+        int cameraXMin = Mathf.RoundToInt(cameraX - 1.8f);
         int cameraZMax = Mathf.RoundToInt(cameraZ + 1.8f);
-        int cameraZMin = Mathf.RoundToInt(cameraZ  -1.8f);
+        int cameraZMin = Mathf.RoundToInt(cameraZ - 1.8f);
 
- 
+
         // 메인 카메라 범위 밖에 있는 맵은 오브젝트를 꺼준다. 
         for (int x = 0; x < worldChunks.GetLength(0); x++)
         {
@@ -118,32 +118,32 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                          pointList.Count + falseChunksList.Count < worldChunks.GetLength(0) * worldChunks.GetLength(1))
                 {
                     //청크 좌표에 맞춰 맵을 재생성한다.
-                    RefreshTexture(worldChunks[x,y], worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y);
+                    RefreshTexture(worldChunks[x, y], worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y);
                     //청크 좌표를 청크 좌표 리스트(pointList)에 추가한다.
                     pointList.Add(new point(worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y));
-                
+
                 }
             }
         }
         //현재 메인 카메라를 기준으로 화면상 비어있는 곳에 비활성화된 청크를 넣고 텍스처를 새로고침한다.
-		for (int x = cameraXMin; x < cameraXMax; x++)
-		{
-			for (int z = cameraZMin; z < cameraZMax; z++)
-			{
-				if (pointList.FindIndex(a => a.x == x * chunkSize && a.z == z * chunkSize) == -1)
-				{
-					falseChunksList[0].SetActive(true);
-					falseChunksList[0].transform.localPosition = new Vector3(x * chunkSize, z * chunkSize, 0);
-					RefreshTexture(falseChunksList[0], x * chunkSize, z * chunkSize);
-					pointList.Add(new point(falseChunksList[0].transform.localPosition.x, falseChunksList[0].transform.localPosition.y));
+        for (int x = cameraXMin; x < cameraXMax; x++)
+        {
+            for (int z = cameraZMin; z < cameraZMax; z++)
+            {
+                if (pointList.FindIndex(a => a.x == x * chunkSize && a.z == z * chunkSize) == -1)
+                {
+                    falseChunksList[0].SetActive(true);
+                    falseChunksList[0].transform.localPosition = new Vector3(x * chunkSize, z * chunkSize, 0);
+                    RefreshTexture(falseChunksList[0], x * chunkSize, z * chunkSize);
+                    pointList.Add(new point(falseChunksList[0].transform.localPosition.x, falseChunksList[0].transform.localPosition.y));
                     falseChunksList.RemoveAt(0);
                     // 오브젝트의 스프라이트 렌더러를 켜준다.
                     settingObject.EnableSpriteRenderer(x, z);
                 }
             }
-		}
+        }
 
-	}
+    }
 
     public void GenerateTerrain()
     {
@@ -164,33 +164,37 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 newTile.AddComponent<SpriteRenderer>();
                 newTile.AddComponent<BoxCollider>();
                 newTile.AddComponent<TileColorChange>();
+                newTile.AddComponent<TileInfo>();
+
+                newTile.GetComponent<TileInfo>().InitSettingObject(settingObject);
                 newTile.GetComponent<BoxCollider>().isTrigger = true;
+
                 newTile.transform.localPosition = new Vector3(x % chunkSize, y % chunkSize);
             }
         }
     }
 
     private float[,] GenerateNoiseTexture()
-	{
+    {
         float[,] noiseMap = new float[worldSize, worldSize];
         noiseTexture = new Texture2D(worldSize, worldSize);
 
         for (int x = 0; x < noiseTexture.width; x++)
-		{
+        {
             for (int y = 0; y < noiseTexture.height; y++)
-			{
+            {
                 // PerlinNoise는 0~1 사이의 값을 반환하는 함수.
                 float v = Mathf.PerlinNoise((x + seed) * noiseFreq, (y + seed) * noiseFreq);
                 noiseTexture.SetPixel(x, y, new Color(v, v, v));
                 noiseMap[x, y] = v;
                 //Debug.Log(v);
-			}
-		}
+            }
+        }
 
         noiseTexture.Apply();
 
         return noiseMap;
-	}
+    }
 
     // 텍스쳐를 맵 위치에 맞게 다시 바꿔준다.
     private void RefreshTexture(GameObject chunk, float pointX, float pointY)
@@ -265,7 +269,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                             settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
                             settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
                         {
-                            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.MINE, x, y);
+                            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.MINE, x, y);
                         }
                     }
                     // 나무 생성 확률
@@ -275,7 +279,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                             settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
                             settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
                         {
-                            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectNum.TREE, x, y);
+                            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.TREE, x, y);
                         }
                     }
 
@@ -308,20 +312,54 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     }
 
     public Color[,] DrawNoiseMap(float[,] noiseMap, float[,] gradientMap)
-	{
-        Color[,] color = new Color[worldSize, worldSize]; 
+    {
+        Color[,] color = new Color[worldSize, worldSize];
         for (int x = 0; x < worldSize; x++)
-		{
+        {
             for (int y = 0; y < worldSize; y++)
-			{
+            {
                 float value = noiseMap[x, y] + gradientMap[x, y];
                 // 노이즈 맵과 그라디언트 맵을 더한 값을 0~1 사이의 값으로 변환
                 value = Mathf.InverseLerp(0, 2, value);
                 // 변환된 값에 해당하는 색상을 그레이 스케일로 저장
-                color[x,y] = Color.Lerp(Color.black, Color.white, value);
+                color[x, y] = Color.Lerp(Color.black, Color.white, value);
             }
-		}
+        }
 
         return color;
-	}
+    }
+
+    public bool CheckPossibleSettingBuilding(int[] objTypeNumArr, int chunkX, int chunkY, int tileX, int tileY)
+    {
+        GameObject chunk = null;
+
+        for (int x = 0; x < worldChunks.GetLength(0); x++)
+        {
+            for (int y = 0; y < worldChunks.GetLength(1); y++)
+            { 
+                if ((int)worldChunks[x,y].transform.position.x / 20 == chunkX &&
+                    (int)worldChunks[x,y].transform.position.z / 20 == chunkY)
+				{
+                    chunk = worldChunks[x, y];
+                    break;
+				}
+            }
+            if (chunk != null) { break; }
+        }
+
+        if (chunk == null) { return false; }
+
+        int cnt = 0;
+        for (int i = 0; i < objTypeNumArr.Length; i++)
+        {
+            if (chunk.transform.GetChild(tileX * chunkSize + tileY).GetComponent<SpriteRenderer>().sprite == tile[objTypeNumArr[i]])
+			{
+                cnt++;
+			}
+        }
+
+        if (cnt > 0) { return true; }
+
+        return false;
+    }
 }
