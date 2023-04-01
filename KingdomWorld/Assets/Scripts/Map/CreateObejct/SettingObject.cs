@@ -21,11 +21,11 @@ public class SettingObject : MonoBehaviour
     }
     struct TilePoint
     {
-        public int tileX { get; }
-        public int tileY { get; }
-        public int objectNum { get; }
-        public ulong objectCode { get; }
-        public bool isRoot { get; }
+        public int tileX { get; }   // 해당 청크 내 타일의 X축 번호 
+        public int tileY { get; }   // 해당 청크 내 타일의 Y축 번호
+        public int objectNum { get; }   // 오브젝트 종류를 분류하는 번호
+        public ulong objectCode { get; }    // 오브젝트 식별 코드
+        public bool isRoot { get; } // 오브젝트의 중심이 되는 위치인지 여부
         public TilePoint(int tileX, int tileY, int objectNum, ulong objectCode, bool isRoot)
         {
             this.tileX = tileX;
@@ -36,35 +36,27 @@ public class SettingObject : MonoBehaviour
         }
     }
 
-    [SerializeField]private GameObject[] objectArr;
+    [SerializeField] private GameObject[] objectArr;
     [SerializeField] private GameObject motehrObject;
-
+    [SerializeField] private SettingObjectInfo settingObjInfo;
     // 청크 좌표에 따른 오브젝트 좌표 리스트
     private  Dictionary<ChunkPoint,List <TilePoint>> objectPointList = new Dictionary<ChunkPoint, List<TilePoint>>();
     // 청크 좌표에 따른 게임오브젝트 리스트
     private Dictionary<ChunkPoint, List<GameObject>> gameObjectChunkPointList = new Dictionary<ChunkPoint, List<GameObject>>();
 
-    private List<ObjectSize> objSize = new List<ObjectSize>();
     private ulong objCode = 0;
 
-    public void Awake()
-    {
-        // 오브젝트의 가로 세로 사이즈를 땅 한 칸 사이즈(16픽셀)를 기준으로 정해둠.
-        objSize.Add(new ObjectSize(1, 2, (int)ObjectNum.TREE));
-        objSize.Add(new ObjectSize(3, 3, (int)ObjectNum.MINE));
-        objSize.Add(new ObjectSize(3, 2, (int)ObjectNum.ANEXCHANGE));
-        objSize.Add(new ObjectSize(3, 2, (int)ObjectNum.CARPENTERHOUSE));
-        objSize.Add(new ObjectSize(3, 3, (int)ObjectNum.CHEESEHOUSE));
-        objSize.Add(new ObjectSize(3, 3, (int)ObjectNum.FABRICHOUSE));
-        objSize.Add(new ObjectSize(4, 2, (int)ObjectNum.FARM));
-        objSize.Add(new ObjectSize(3, 3, (int)ObjectNum.HAMHOUSE));
-        objSize.Add(new ObjectSize(2, 2, (int)ObjectNum.HOUSE));
-        objSize.Add(new ObjectSize(2, 2, (int)ObjectNum.HUNTERHOUSE));
-        objSize.Add(new ObjectSize(2, 2, (int)ObjectNum.MINEWORKERHOUSE));
-        objSize.Add(new ObjectSize(2, 3, (int)ObjectNum.SMITHY));
-        objSize.Add(new ObjectSize(3, 2, (int)ObjectNum.STORAGE));
-        objSize.Add(new ObjectSize(3, 3, (int)ObjectNum.UNIVERSITAS));
-        objSize.Add(new ObjectSize(2, 2, (int)ObjectNum.WOODCUTTERHOUSE));
+	public void Awake()
+	{
+        CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent += RemoveObject;
+        RemoveEventDriven.isRemoveEvent += RemoveEvent;
+
+    }
+
+    private void RemoveEvent()
+	{
+        CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent -= RemoveObject;
+        RemoveEventDriven.isRemoveEvent -= RemoveEvent;
     }
 
     // 해당 청크 좌표 정보를 딕셔너리에 키로 저장하고 있는지 확인. 있으면 true 리턴 없으면 false 리턴
@@ -103,12 +95,12 @@ public class SettingObject : MonoBehaviour
     // 청크 좌표에 오브젝트의 정보를 담음. 
     private void AddTilePoint(int chunkX, int chunkY, int objectNum, int tileX, int tileY)
     {
-        int index = objSize.FindIndex(a => a.objNum == objectNum);
+        int index = settingObjInfo.objSize.FindIndex(a => a.objNum == objectNum);
         // 생성될 오브젝트 중앙을 기준으로 어느 타일에 오브젝트가 닿게 되는지 범위 계산
-        int minX = tileX - (int)((float)objSize[index].sizeX / 2f) + ((objSize[index].sizeX + 1) % 2);
-        int maxX = tileX + (int)((float)objSize[index].sizeX / 2f);
-        int minY = tileY - (int)((float)objSize[index].sizeY / 2f) + ((objSize[index].sizeY + 1) % 2);
-        int maxY = tileY + (int)((float)objSize[index].sizeY / 2f);
+        int minX = tileX - (int)((float)settingObjInfo.objSize[index].sizeX / 2f) + ((settingObjInfo.objSize[index].sizeX + 1) % 2);
+        int maxX = tileX + (int)((float)settingObjInfo.objSize[index].sizeX / 2f);
+        int minY = tileY - (int)((float)settingObjInfo.objSize[index].sizeY / 2f) + ((settingObjInfo.objSize[index].sizeY + 1) % 2);
+        int maxY = tileY + (int)((float)settingObjInfo.objSize[index].sizeY / 2f);
 
         // 다른 좌표에 같은 오브젝트가 공유하고 있는 오브젝트 번호. ulong타입
         objCode++;
@@ -127,6 +119,84 @@ public class SettingObject : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void AddTilePoint2(int pointX, int pointZ, int objectNum, GameObject obj)
+    {
+        int minX = pointX - (int)((float)settingObjInfo.objSize[objectNum].sizeX / 2f) + ((settingObjInfo.objSize[objectNum].sizeX + 1) % 2);
+        int maxX = pointX + (int)((float)settingObjInfo.objSize[objectNum].sizeX / 2f);
+        int minY = pointZ - (int)((float)settingObjInfo.objSize[objectNum].sizeY / 2f) + ((settingObjInfo.objSize[objectNum].sizeY + 1) % 2);
+        int maxY = pointZ + (int)((float)settingObjInfo.objSize[objectNum].sizeY / 2f);
+        objCode++;
+
+        if (obj.GetComponent<BuildingColider>() != null)
+		{
+            obj.GetComponent<BuildingColider>().objCode = objCode;
+		}
+
+
+        for (int i = minX; i <= maxX; i++)
+        {
+            for (int j = minY; j <= maxY; j++)
+            {
+                int chunkX, chunkY, tileX, tileY;
+
+                if (i >= 0) { chunkX = i / 20; }
+                else
+                {
+                    chunkX = (i / 20) - 1;
+                }
+
+                if (j >= 0) { chunkY = j / 20; }
+                else
+                {
+                    chunkY = (j / 20) - 1;
+                }
+                if (i >= 0) { tileX = i % 20; }
+                else 
+                {
+                    if (i % 20 == 0) { tileX = 0; chunkX++; }
+                    else { tileX = (i % 20) + 20; } 
+                }
+               
+                if (j >= 0) { tileY = j % 20; }
+                else 
+                {
+                    if (j % 20 == 0) { tileY = 0; chunkY++; }
+                    else { tileY = (j % 20) + 20; } 
+                }
+                
+
+                if (!objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
+                {
+                    List<TilePoint> tilePoint = new List<TilePoint>();
+                    objectPointList.Add(new ChunkPoint(chunkX, chunkY), tilePoint);
+                }
+
+                if (i == pointX && j == pointZ)
+				{
+                    objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, objectNum, objCode, true));
+                
+                    if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
+					{
+                        List<GameObject> objList = new List<GameObject>();
+                        gameObjectChunkPointList.Add(new ChunkPoint(chunkX,chunkY), objList);
+                        gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
+                    }
+                    else
+					{
+                        gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
+                    }
+                }
+                else
+				{
+                    objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, objectNum, objCode, false));
+                }
+                //Debug.Log("chunkX : " + chunkX + " chunkY : " + chunkY + " tileX : " + tileX + " tileY : " + tileY + " objectNum : " + objectNum + "  i : " + i + "  j : " + j + " pointX : " + pointX + "pointZ : " + pointZ);
+            }
+        }
+
+
     }
 
 
@@ -167,6 +237,39 @@ public class SettingObject : MonoBehaviour
             }
         }
     }
+
+    public void RemoveObject(ulong objCode, GameObject obj)
+	{
+        int inaccurateChunkX = (int)obj.transform.position.x / 20;
+        int inaccurateChunkY = (int)obj.transform.position.z / 20;
+
+        for (int x = inaccurateChunkX - 2; x < inaccurateChunkX + 2; x++)
+		{
+            for (int y = inaccurateChunkY - 2; y < inaccurateChunkY + 2; y++)
+			{
+                if (gameObjectChunkPointList.ContainsKey(new ChunkPoint(x, y)))
+				{
+                    int index = gameObjectChunkPointList[new ChunkPoint(x, y)].FindIndex(a => a.Equals(obj));
+
+                    if (index != -1)
+					{
+                        gameObjectChunkPointList[new ChunkPoint(x, y)].RemoveAt(index);
+					}
+				}
+
+                if (objectPointList.ContainsKey(new ChunkPoint(x, y)))
+				{
+                    List<TilePoint> list = objectPointList[new ChunkPoint(x, y)].FindAll(a => a.objectCode == objCode);
+
+                    for (int i = 0; i < list.Count; i++)
+					{
+                        objectPointList[new ChunkPoint(x, y)].Remove(list[i]);
+					}
+                    list.Clear();
+				}
+			}
+		}
+	}
 
     // 지정된 범위 내에 동굴을 생성할 조건을 만족하는지 여부를 판단
     public bool CheckMineRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
@@ -241,4 +344,29 @@ public class SettingObject : MonoBehaviour
             gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = false;
         }
     }
+
+    public bool CheckPossibleSettingBuilding(int objTypeNum, int chunkX, int chunkY, int tileX, int tileY)
+	{
+        // 청크 좌표 키가 있을 경우
+        if (objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
+		{
+            int index = objectPointList[new ChunkPoint(chunkX, chunkY)].FindIndex(a => a.tileX == tileX && a.tileY == tileY);
+            int index2 = settingObjInfo.objSize.FindIndex(a => a.objNum == objTypeNum);
+            // 청크 좌표 키를 통한 값 리스트에 타일에 대한 정보가 담겨있을 경우
+            if (index != -1)
+			{
+                return false;
+			}
+            else if (index2 != 1)
+			{
+                if (this.GetComponent<PerlinNoiseMapMaker>().CheckPossibleSettingBuilding(
+                    settingObjInfo.objSize[index2].possibleTileArr, chunkX, chunkY, tileX, tileY))
+				{
+                    return true;
+				}
+			}
+		}
+
+        return false;
+	}
 }

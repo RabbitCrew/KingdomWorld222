@@ -4,20 +4,22 @@ using UnityEngine;
 
 namespace ObjectNS
 {
-    public struct ObjectSize
+    public struct ObjectInfo
     {
         public int sizeX { get; }
         public int sizeY { get; }
         public int objNum { get; }
-        public ObjectSize(int sizeX, int sizeY, int objNum)
+        public int[] possibleTileArr { get; }
+        public ObjectInfo(int sizeX, int sizeY, int objNum, int[] possibleTileArr)
         {
             this.sizeX = sizeX;
             this.sizeY = sizeY;
             this.objNum = objNum;
+            this.possibleTileArr = possibleTileArr;
         }
     }
 
-    public enum ObjectNum
+    public enum ObjectTypeNum
     {
         TREE, MINE, ANEXCHANGE, CARPENTERHOUSE,
         CHEESEHOUSE, FABRICHOUSE, FARM, HAMHOUSE,

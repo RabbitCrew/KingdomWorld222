@@ -950,6 +950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &91924754
 MonoBehaviour:
@@ -1732,6 +1733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &167045498
 MonoBehaviour:
@@ -1926,6 +1928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &182620088
 MonoBehaviour:
@@ -2544,6 +2547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &266297166
 MonoBehaviour:
@@ -3425,6 +3429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &376944315
 MonoBehaviour:
@@ -3831,6 +3836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &437227448
 MonoBehaviour:
@@ -4686,6 +4692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &558322883
 MonoBehaviour:
@@ -5068,6 +5075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &622614688
 MonoBehaviour:
@@ -5208,6 +5216,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622614685}
   m_CullTransparentMesh: 1
+--- !u!1 &634348219
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 634348221}
+  - component: {fileID: 634348220}
+  m_Layer: 0
+  m_Name: BuildingAttachMouse
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &634348220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634348219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d34e84fb92bdff4b93c250d98f49a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingObj: {fileID: 1380076516}
+  motherBuildingObject: {fileID: 762512538}
+--- !u!4 &634348221
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634348219}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4213304, y: -0.71964145, z: 1.1490291}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &640424162
 GameObject:
   m_ObjectHideFlags: 0
@@ -5508,6 +5562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &664821715
 MonoBehaviour:
@@ -6048,6 +6103,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 739157405}
   m_CullTransparentMesh: 1
+--- !u!1 &762512538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 762512539}
+  m_Layer: 0
+  m_Name: MotherBuildingObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &762512539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762512538}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &767821593
 GameObject:
   m_ObjectHideFlags: 0
@@ -6502,6 +6588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &806157827
 MonoBehaviour:
@@ -6816,6 +6903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &847685615
 MonoBehaviour:
@@ -7087,6 +7175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &857772424
 MonoBehaviour:
@@ -7420,6 +7509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!1 &873750529
 GameObject:
@@ -7629,6 +7719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &932261176
 MonoBehaviour:
@@ -8146,6 +8237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &986586071
 MonoBehaviour:
@@ -8417,6 +8509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &992122854
 MonoBehaviour:
@@ -10149,6 +10242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1215408199
 MonoBehaviour:
@@ -10343,6 +10437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1218051631
 MonoBehaviour:
@@ -11814,6 +11909,7 @@ GameObject:
   - component: {fileID: 1380076514}
   - component: {fileID: 1380076516}
   - component: {fileID: 1380076517}
+  - component: {fileID: 1380076518}
   m_Layer: 0
   m_Name: CreatorMap
   m_TagString: Untagged
@@ -11893,6 +11989,7 @@ MonoBehaviour:
   - {fileID: 5463561290101031232, guid: 48904e2da00f6b945b23654cca7e7290, type: 3}
   - {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
   motehrObject: {fileID: 1647424489}
+  settingObjInfo: {fileID: 1380076518}
 --- !u!114 &1380076517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11907,6 +12004,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 83296662}
   light2D: {fileID: 1728955322}
+--- !u!114 &1380076518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380076513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae87ce21132c6a4f96d8a6f4c4b82f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1404150762
 GameObject:
   m_ObjectHideFlags: 0
@@ -12641,6 +12750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1479956129
 MonoBehaviour:
@@ -13047,6 +13157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1619362987
 MonoBehaviour:
@@ -13376,6 +13487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1626779895
 MonoBehaviour:
@@ -14123,6 +14235,7 @@ GameObject:
   - component: {fileID: 1764363982}
   - component: {fileID: 1764363985}
   - component: {fileID: 1764363986}
+  - component: {fileID: 1764363987}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14173,7 +14286,7 @@ Camera:
   far clip plane: 1000
   field of view: 20
   orthographic: 1
-  orthographic size: 11
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14260,6 +14373,18 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1764363987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764363981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3482e197484801e49b04a479ac4245dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1796132839
 GameObject:
   m_ObjectHideFlags: 0
@@ -14314,6 +14439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1796132842
 MonoBehaviour:
@@ -14907,6 +15033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1811877952
 MonoBehaviour:
@@ -15101,6 +15228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1823052828
 MonoBehaviour:
@@ -15295,6 +15423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1828162153
 MonoBehaviour:
@@ -16104,6 +16233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1923255350
 MonoBehaviour:
@@ -16298,6 +16428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &1930460639
 MonoBehaviour:
@@ -16704,6 +16835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &2033548472
 MonoBehaviour:
@@ -17168,6 +17300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &2061906705
 MonoBehaviour:
@@ -17439,6 +17572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 0}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!114 &2080679014
 MonoBehaviour:
@@ -26093,6 +26227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 7064245014530534050, guid: 8d70e6ef17160b748bdf3b357223ff95, type: 3}
 --- !u!1 &6119424830521668466
 GameObject:
@@ -26255,6 +26390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 8611218813536486430, guid: 700aa2d17f0051e4ba63da7d0a3c956a, type: 3}
 --- !u!114 &6261485096773019570
 MonoBehaviour:
@@ -27719,6 +27855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 8178324920415109876, guid: 79e86f7ab0b7dea4ca2fe5fc0331e43a, type: 3}
 --- !u!1 &7379723557219563328
 GameObject:
@@ -27826,6 +27963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 2007518261052910153, guid: 75bd8b3be76e6244a84d0b6ca2475150, type: 3}
 --- !u!224 &7425951764601347303
 RectTransform:
@@ -27951,6 +28089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 3746874954108442024, guid: 83c61bbea85228e468cf484575827490, type: 3}
 --- !u!114 &7487283404981927847
 MonoBehaviour:
@@ -28008,6 +28147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 2528093903898717892, guid: ce29db7c8e7b6b6468b82daa27ee67bb, type: 3}
 --- !u!1 &7511450969440117396
 GameObject:
@@ -28221,6 +28361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 1205513146831110588, guid: 4f3601925c3ee3a458a9d2979ebbe64c, type: 3}
 --- !u!224 &7699670388642235176
 RectTransform:
@@ -28999,6 +29140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
 --- !u!224 &8205476290557077984
 RectTransform:
@@ -29213,6 +29355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 5463561290101031232, guid: 48904e2da00f6b945b23654cca7e7290, type: 3}
 --- !u!224 &8493706457540365483
 RectTransform:
@@ -29277,6 +29420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 2459160076541427711, guid: 031197d993e49de4a95e285f6f6ea38c, type: 3}
 --- !u!222 &8513997215245907613
 CanvasRenderer:
@@ -29817,6 +29961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 8374223845103722785, guid: cd538158fcfa53646bcf2c2b9710d625, type: 3}
 --- !u!114 &8960537639447829819
 MonoBehaviour:
@@ -29946,6 +30091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 85906778023787547, guid: fe97e1d1704ad1d48b2ef55797b3be7a, type: 3}
 --- !u!114 &9012728652074190255
 MonoBehaviour:
@@ -30003,6 +30149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d08a01d977d8c1b4591134b02fc5ad2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingAttachMouse: {fileID: 634348220}
   prefab: {fileID: 8704300178716685400, guid: a52024e42e9922845856700addcd46f1, type: 3}
 --- !u!114 &9112109595095897925
 MonoBehaviour:

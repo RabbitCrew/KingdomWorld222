@@ -11,7 +11,6 @@ public class MoveBackgroundAsMouse : MonoBehaviour
     public Camera CAM;
 
     private float mouseX, mouseY;
-
     void Update()
     {
 
