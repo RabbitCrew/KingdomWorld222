@@ -5,6 +5,7 @@ using UnityEngine;
 public class BuildingAttachMouse : MonoBehaviour
 {
     [SerializeField] private SettingObject settingObj;
+    [SerializeField] private GameObject motherBuildingObject;
     public static GameObject clone { get; private set; } // 생성된 오브젝트 인스턴스
     public static bool isClick { get; private set; }
 
@@ -37,7 +38,6 @@ public class BuildingAttachMouse : MonoBehaviour
         if (clone.GetComponent<BuildingColider>() != null)
         {
             clone.GetComponent<BuildingColider>().isFollowMouse = true;
-            //Debug.Log("true");
         }
 
         isClick = true;
@@ -86,15 +86,16 @@ public class BuildingAttachMouse : MonoBehaviour
     {
         if (clone.GetComponent<BuildingColider>() != null)
         {
+            clone.transform.parent = motherBuildingObject.transform;
             float x, z;
-            Debug.Log(clone.transform.position.x + " " + clone.transform.position.z);
-            if (clone.transform.position.x % 1 != 0) { x = -0.5f; }
+            //Debug.Log(clone.transform.localPosition.x + " " + clone.transform.localPosition.z);
+            if (clone.transform.localPosition.x % 1 != 0) { x = -0.5f; }
             else { x = 0; }
 
-            if (clone.transform.position.z % 1 != 0) { z = -0.5f; }
+            if (clone.transform.localPosition.z % 1 != 0) { z = -0.5f; }
             else { z = 0; }
 
-            settingObj.AddTilePoint2((int)(clone.transform.position.x + x), (int)(clone.transform.position.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum());
+            settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), clone);
         }
         //clone.GetComponent<BuildingColider>().isFollowMouse = false;
         clone = null;

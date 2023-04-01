@@ -19,18 +19,21 @@ public class BuildingColider : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        colList.Add(col);
-        if (col.gameObject.GetComponent<TileColorChange>() != null)
+        if (!isSettingComplete)
         {
-            if (col.gameObject.GetComponent<TileInfo>() != null)
+            colList.Add(col);
+            if (col.gameObject.GetComponent<TileColorChange>() != null)
             {
-                if (col.gameObject.GetComponent<TileInfo>().CheckPossibleSettingBuilding(objTypeNum))
+                if (col.gameObject.GetComponent<TileInfo>() != null)
                 {
-                    col.gameObject.GetComponent<TileColorChange>().ChangeGreenColor();
-                }
-                else
-				{
-                    col.gameObject.GetComponent<TileColorChange>().ChangeRedColor();
+                    if (col.gameObject.GetComponent<TileInfo>().CheckPossibleSettingBuilding(objTypeNum))
+                    {
+                        col.gameObject.GetComponent<TileColorChange>().ChangeGreenColor();
+                    }
+                    else
+                    {
+                        col.gameObject.GetComponent<TileColorChange>().ChangeRedColor();
+                    }
                 }
             }
         }
@@ -70,6 +73,11 @@ public class BuildingColider : MonoBehaviour
 
 	public void ClickObject()
 	{
+        if (isSettingComplete)
+        {
+            Debug.Log("¸¸Æ®¶ó !");
+        }
+
         if (isFollowMouse)
         {
             Debug.Log(colList.Count);
@@ -98,10 +106,6 @@ public class BuildingColider : MonoBehaviour
             isSettingComplete = true;
         }
 
-        if (isSettingComplete)
-		{
-
-		}
 	}
 }
 

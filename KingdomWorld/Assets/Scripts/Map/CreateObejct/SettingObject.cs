@@ -108,7 +108,7 @@ public class SettingObject : MonoBehaviour
         }
     }
 
-    public void AddTilePoint2(int pointX, int pointZ, int objectNum)
+    public void AddTilePoint2(int pointX, int pointZ, int objectNum, GameObject obj)
     {
         int minX = pointX - (int)((float)settingObjInfo.objSize[objectNum].sizeX / 2f) + ((settingObjInfo.objSize[objectNum].sizeX + 1) % 2);
         int maxX = pointX + (int)((float)settingObjInfo.objSize[objectNum].sizeX / 2f);
@@ -123,16 +123,29 @@ public class SettingObject : MonoBehaviour
                 int chunkX, chunkY, tileX, tileY;
 
                 if (i >= 0) { chunkX = i / 20; }
-                else { chunkX = (i / 20) - 1; }
+                else
+                {
+                    chunkX = (i / 20) - 1;
+                }
 
                 if (j >= 0) { chunkY = j / 20; }
-                else { chunkY = (i / 20) - 1; }
-
+                else
+                {
+                    chunkY = (j / 20) - 1;
+                }
                 if (i >= 0) { tileX = i % 20; }
-                else { tileX = (i % 20) + 20; }
+                else 
+                {
+                    if (i % 20 == 0) { tileX = 0; chunkX++; }
+                    else { tileX = (i % 20) + 20; } 
+                }
                
                 if (j >= 0) { tileY = j % 20; }
-                else { tileY = (j % 20) + 20; }
+                else 
+                {
+                    if (j % 20 == 0) { tileY = 0; chunkY++; }
+                    else { tileY = (j % 20) + 20; } 
+                }
                 
 
                 if (!objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
@@ -144,14 +157,27 @@ public class SettingObject : MonoBehaviour
                 if (i == pointX && j == pointZ)
 				{
                     objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, objectNum, objCode, true));
+                
+                    if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
+					{
+                        List<GameObject> objList = new List<GameObject>();
+                        gameObjectChunkPointList.Add(new ChunkPoint(chunkX,chunkY), objList);
+                        gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
+                    }
+                    else
+					{
+                        gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
+                    }
                 }
                 else
 				{
                     objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, objectNum, objCode, false));
                 }
-                Debug.Log("chunkX : " + chunkX + " chunkY : " + chunkY + " tileX : " + tileX + " tileY : " + tileY + " objectNum : " + objectNum + "  i : " + i + "  j : " + j + " pointX : " + pointX + "pointZ : " + pointZ);
+                //Debug.Log("chunkX : " + chunkX + " chunkY : " + chunkY + " tileX : " + tileX + " tileY : " + tileY + " objectNum : " + objectNum + "  i : " + i + "  j : " + j + " pointX : " + pointX + "pointZ : " + pointZ);
             }
         }
+
+
     }
 
 

@@ -5246,6 +5246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingObj: {fileID: 1380076516}
+  motherBuildingObject: {fileID: 762512538}
 --- !u!4 &634348221
 Transform:
   m_ObjectHideFlags: 0
@@ -6112,7 +6113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 762512539}
   m_Layer: 0
-  m_Name: buildingObject
+  m_Name: MotherBuildingObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14285,7 +14286,7 @@ Camera:
   far clip plane: 1000
   field of view: 20
   orthographic: 1
-  orthographic size: 11
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
