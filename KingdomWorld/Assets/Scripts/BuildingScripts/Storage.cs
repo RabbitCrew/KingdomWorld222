@@ -17,43 +17,43 @@ public class Storage : MonoBehaviour
             switch (ResourceN)
             {
                 case 0:
-                    Resource.Resource_Instance.Wheat += ResourceStack;
+                    GameManager.instance.Wheat += ResourceStack;
                     break;
                 case 1:
-                    Resource.Resource_Instance.Food += ResourceStack;
+                    GameManager.instance.Food += ResourceStack;
                     break;
                 case 2:
-                    Resource.Resource_Instance.Wood += ResourceStack;
+                    GameManager.instance.Wood += ResourceStack;
                     break;
                 case 3:
-                    Resource.Resource_Instance.Meat += ResourceStack;
+                    GameManager.instance.Meat += ResourceStack;
                     break;
                 case 4:
-                    Resource.Resource_Instance.Leather += ResourceStack;
+                    GameManager.instance.Leather += ResourceStack;
                     break;
                 case 5:
-                    Resource.Resource_Instance.Gold += ResourceStack;
+                    GameManager.instance.Gold += ResourceStack;
                     break;
                 case 6:
-                    Resource.Resource_Instance.Itronstone += ResourceStack;
+                    GameManager.instance.Itronstone += ResourceStack;
                     break;
                 case 7:
-                    Resource.Resource_Instance.CastIron += ResourceStack;
+                    GameManager.instance.CastIron += ResourceStack;
                     break;
                 case 8:
-                    Resource.Resource_Instance.Cow += ResourceStack;
+                    GameManager.instance.Cow += ResourceStack;
                     break;
                 case 9:
-                    Resource.Resource_Instance.Sheep += ResourceStack;
+                    GameManager.instance.Sheep += ResourceStack;
                     break;
                 case 10:
-                    Resource.Resource_Instance.Cheese += ResourceStack;
+                    GameManager.instance.Cheese += ResourceStack;
                     break;
                 case 11:
-                    Resource.Resource_Instance.Fleece += ResourceStack;
+                    GameManager.instance.Fleece += ResourceStack;
                     break;
                 case 12:
-                    Resource.Resource_Instance.Cloth += ResourceStack;
+                    GameManager.instance.Cloth += ResourceStack;
                     break;
                 default:
                     break;  
