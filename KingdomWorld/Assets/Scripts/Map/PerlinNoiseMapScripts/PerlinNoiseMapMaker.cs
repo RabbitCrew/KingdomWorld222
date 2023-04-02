@@ -78,7 +78,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     {
         int cameraX = ((int)(cameraTrans.position.x) / chunkSize);
         int cameraZ = ((int)(cameraTrans.position.z) / chunkSize);
-
+        // 카메라 위치에 따른 보여줘야할 청크 좌표 범위를 정해준다.
         int cameraXMax = Mathf.RoundToInt(cameraX + 1.8f);
         int cameraXMin = Mathf.RoundToInt(cameraX - 1.8f);
         int cameraZMax = Mathf.RoundToInt(cameraZ + 1.8f);
@@ -144,7 +144,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         }
 
     }
-
+    // 타일을 생성해서 청크로 묶는다.
     public void GenerateTerrain()
     {
         for (int x = 0; x < worldSize; x++)
@@ -155,20 +155,22 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
                 // Round 함수는 반올림한 값을 float자료형으로 반환하는 함수.
                 // RoundToInt 함수는 반올림한 값을 int자료형으로 반환하는 함수.
+                // 청크 좌표를 구함
                 float chunkCoordX = (Mathf.RoundToInt(x / chunkSize) * chunkSize);
                 chunkCoordX /= chunkSize;
                 float chunkCoordY = (Mathf.RoundToInt(y / chunkSize) * chunkSize);
                 chunkCoordY /= chunkSize;
+                // 생성한 타일 오브젝트를 청크 좌표에 맞춰 부모 오브젝트로 지정. 
                 newTile.transform.parent = worldChunks[(int)chunkCoordX, (int)chunkCoordY].transform;
-
+                // 컴포넌트들을 넣어준다.
                 newTile.AddComponent<SpriteRenderer>();
                 newTile.AddComponent<BoxCollider>();
                 newTile.AddComponent<TileColorChange>();
                 newTile.AddComponent<TileInfo>();
-
+                // 후에 타일 오브젝트 내에서 SettingObject 클래스의 함수를 호출하기 위함.
                 newTile.GetComponent<TileInfo>().InitSettingObject(settingObject);
                 newTile.GetComponent<BoxCollider>().isTrigger = true;
-
+                // 타일 오브젝트의 위치를 지정함.
                 newTile.transform.localPosition = new Vector3(x % chunkSize, y % chunkSize);
             }
         }
@@ -214,17 +216,31 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         {
             for (int y = 0; y < chunkSize; y++)
             {
+                // 지정된 좌표에서의 펄린노이즈 값을 가져온다. 펄린 노이즈값은 0~1 사이의 값이다.
+                // seed는 awake에서 딱 한번 설정되므로 펄린 노이즈 값이 바뀌지 않는다.
                 float v = Mathf.PerlinNoise((x + pointX + seed) * noiseFreq, (y + pointY + seed) * noiseFreq);
                 noiseMap[x, y] = v;
+                //x와 y는 0~19사이의 값. 거기에 pointX,Y값은 청크 좌표의 위치값
+                //그리고 gradientSize는 그라디언트 텍스쳐에서 좌표값(gradientSize, gradientSize) 이므로 0.5f를 각각 곱해서 (0,0)좌표값을 텍스처의 중앙으로 맞춤
+                //그러면 텍스처의 중앙에서 (x + pointX, y + pointY)값을 더하게 되는 셈.
+                //거기에 실제 텍스처의 가로 세로 사이즈를 곱해주고, 이를 gradientSize로 만큼 분할해준다.(나눈다.)
+                //지정된 좌표값에 따른 그라디언트의 좌표값이 xCoord, yCoord값에 저장된다.
                 int xCoord = Mathf.RoundToInt((x + pointX + gradientSize * 0.5f) * (float)gradientTex.width / gradientSize);
                 int yCoord = Mathf.RoundToInt((y + pointY + gradientSize * 0.5f) * (float)gradientTex.height / gradientSize);
+                //Debug.Log(xCoord + " " + yCoord);
+                //그라디언트 텍스처에서 좌표값을 통하여 그레이스케일 값을 구하고 이를 배열에 저장한다. 이 값은 0에서 1사이 값을 가진다.
                 gradientMap[x, y] = gradientTex.GetPixel(xCoord, yCoord).grayscale;
+                //일정 값 아래는 0, 일정값 위에는 0.75로 고정한다.
                 if (gradientMap[x, y] <= 0.3f) { gradientMap[x, y] = 0f; }
                 else if (gradientMap[x, y] >= 0.75f) { gradientMap[x, y] = 0.75f; }
+                // 펄린노이즈 값과 그라디언트 값을 합친다.
                 float value = noiseMap[x, y] + gradientMap[x, y];
+                // 두 값의 합은 0에서 2사이 값을 지니게 된다.(일정값 위에는 0.75로 고정했지만 이는 무시)
+                // InverseLerp(a,b,c)는 a에서 b로 가는 c의 값을 퍼센트로 환산하여 0~1사이의 값으로 변환시켜서 반환한다. 즉 0~1사이의 값을 반환한다.
                 value = Mathf.InverseLerp(0, 2, value);
+                // Color.Lerp에 value 값을 사용하여 검정,각종 회색들, 흰색 값을 지정한다. 
                 color[x, y] = Color.Lerp(Color.black, Color.white, value);
-
+                // color 배열의 그레이스케일에 따라 타일의 스프라이트를 다시 설정한다.
                 if (color[x, y].grayscale < 0.2)
                 {
                     chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.OCEAN];
@@ -254,14 +270,15 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         }
 
         // 생성해야될 오브젝트의 좌표를 구하고 저장한다.
-        for (int x = 0; x < chunkSize; x++)
+        // 해당 청크에서 오브젝트가 한번도 생성된 적이 없으면 생성시킴
+        if (!isObject)
         {
-            for (int y = 0; y < chunkSize; y++)
+            for (int x = 0; x < chunkSize; x++)
             {
-                int ran = Random.Range(0, 700);
-
-                if (!isObject)
+                for (int y = 0; y < chunkSize; y++)
                 {
+                    int ran = Random.Range(0, 700);
+
                     // 동굴 생성 확률
                     if (ran < 1)
                     {
@@ -282,14 +299,13 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                             settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.TREE, x, y);
                         }
                     }
-
                 }
-
             }
         }
-
         //지정된 좌표에 오브젝트를 생성한다.
+        // 해당 청크에서 오브젝트가 한번도 생성된 적이 없으면 생성시킴
         if (!isObject) { settingObject.CreateObejct(chunkX, chunkY); }
+        // 위 과정을 통해 오브젝트가 확정적으로 생성되었으므로 isObject는 무조건 true(없어도 되는 코드인듯?)
         isObject = true;
     }
 
@@ -328,11 +344,12 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
         return color;
     }
-
+    // 해당 좌표에 빌딩을 생성할 수 있는지를 확인하는 함수이다.
+    // 인자값 objTypeNumArr은 생성이 가능한 타일 종류를 담은 배열이다.
     public bool CheckPossibleSettingBuilding(int[] objTypeNumArr, int chunkX, int chunkY, int tileX, int tileY)
     {
         GameObject chunk = null;
-
+        // 생성하려는 곳의 청크 좌표를 지닌 청크 오브젝트를 찾는다. 
         for (int x = 0; x < worldChunks.GetLength(0); x++)
         {
             for (int y = 0; y < worldChunks.GetLength(1); y++)
@@ -346,20 +363,24 @@ public class PerlinNoiseMapMaker : MonoBehaviour
             }
             if (chunk != null) { break; }
         }
-
+        // 청크 오브젝트를 찾지못하면 생성못함(false)을 반환한다.
         if (chunk == null) { return false; }
 
         int cnt = 0;
+        // 생성이 가능한 타일인지 확인한다.
         for (int i = 0; i < objTypeNumArr.Length; i++)
         {
+            // 생성 가능한 타일의 종류와 하나씩 비교해간다.
             if (chunk.transform.GetChild(tileX * chunkSize + tileY).GetComponent<SpriteRenderer>().sprite == tile[objTypeNumArr[i]])
-			{
+			{           
+                // 생성가능한 타일과 일치하면 cnt에 1을 더한다.
                 cnt++;
 			}
         }
-
+        // 생성가능한 타일과 일치하면 cnt는 1이 되고, 생성가능함(true)을 반환한다.
         if (cnt > 0) { return true; }
 
+        // 그 외엔 생성못함(false)을 반환한다.
         return false;
     }
 }
