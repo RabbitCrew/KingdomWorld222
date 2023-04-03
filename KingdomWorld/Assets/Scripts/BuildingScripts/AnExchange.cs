@@ -6,6 +6,8 @@ using TMPro;
 public class AnExchange : MonoBehaviour
 {
     public GameObject AnExchangeUI;
+    public Transform AnExchangeBP;
+    public GameObject AnExchangeB;
 
     public TMP_Dropdown CellThings;
 
@@ -28,6 +30,48 @@ public class AnExchange : MonoBehaviour
         OpenState();
 
         RIsOpen();
+
+        BuildFound();
+
+        ClickCheck();
+    }
+
+    void ClickCheck()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hit;
+
+            if(Physics.Raycast(ray, out hit))
+            {
+                if(hit.collider.gameObject.name == "An exchange")
+                {
+                    if (IsOpen == true)
+                    {
+                        AnExchangeUI.SetActive(true);
+                    }
+                    else
+                    {
+                        AnExchangeUI.SetActive(false);
+
+                        SMassage.SendMessage("MessageQ", "오늘은 상인이 없는 날입니다");
+                    }
+                }
+            }
+        }
+    }
+
+    void BuildFound()
+    {
+        for (int i = 0; i < AnExchangeBP.transform.childCount; i++)
+        {
+            if(AnExchangeBP.transform.GetChild(i).name == "Anexchange")
+            {
+                AnExchangeB = AnExchangeBP.transform.GetChild(i).gameObject;
+            }
+        }
     }
 
     void RIsOpen()
@@ -54,20 +98,6 @@ public class AnExchange : MonoBehaviour
         else
         {
             IsOpen = false;
-        }
-    }
-
-    private void OnMouseDown()
-    {
-        Debug.Log(IsOpen);
-
-        if (IsOpen == true)
-        {
-            AnExchangeUI.SetActive(true);
-        }
-        else
-        {
-            SMassage.SendMessage("MessageQ", "오늘은 상인이 없는 날입니다");
         }
     }
 

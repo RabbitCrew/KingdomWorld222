@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Storage : MonoBehaviour
 {
-    public GameObject StorageNPC;
-
     public int ResourceN;
 
     public int ResourceStack = 50;
