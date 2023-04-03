@@ -113,8 +113,6 @@ public class AnExchange : MonoBehaviour
         switch (CellValue)
         {
             case 0:
-                Resource.Resource_Instance.Wheat -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Wheat >= ResourceCount)
                 {
                     Resource.Resource_Instance.Wheat -= ResourceCount;
@@ -126,8 +124,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 1:
-                Resource.Resource_Instance.Food -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Food >= ResourceCount)
                 {
                     Resource.Resource_Instance.Food -= ResourceCount;
@@ -139,8 +135,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 2:
-                Resource.Resource_Instance.Wood -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Wood >= ResourceCount)
                 {
                     Resource.Resource_Instance.Wood -= ResourceCount;
@@ -152,8 +146,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 3:
-                Resource.Resource_Instance.Meat -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Meat >= ResourceCount)
                 {
                     Resource.Resource_Instance.Meat -= ResourceCount;
@@ -165,8 +157,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 4:
-                Resource.Resource_Instance.Leather -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Leather >= ResourceCount)
                 {
                     Resource.Resource_Instance.Leather -= ResourceCount;
@@ -178,8 +168,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 5:
-                Resource.Resource_Instance.Itronstone -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Itronstone >= ResourceCount)
                 {
                     Resource.Resource_Instance.Itronstone -= ResourceCount;
@@ -191,8 +179,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 6:
-                Resource.Resource_Instance.CastIron -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.CastIron >= ResourceCount)
                 {
                     Resource.Resource_Instance.CastIron -= ResourceCount;
@@ -204,8 +190,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 7:
-                Resource.Resource_Instance.Cow -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Cow >= ResourceCount)
                 {
                     Resource.Resource_Instance.Cow -= ResourceCount;
@@ -217,8 +201,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 8:
-                Resource.Resource_Instance.Sheep -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Sheep >= ResourceCount)
                 {
                     Resource.Resource_Instance.Sheep -= ResourceCount;
@@ -230,8 +212,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 9:
-                Resource.Resource_Instance.Cheese -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Cheese >= ResourceCount)
                 {
                     Resource.Resource_Instance.Cheese -= ResourceCount;
@@ -243,8 +223,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 10:
-                Resource.Resource_Instance.Fleece -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Fleece >= ResourceCount)
                 {
                     Resource.Resource_Instance.Fleece -= ResourceCount;
@@ -256,8 +234,6 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 11:
-                Resource.Resource_Instance.Cloth -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
                 if (Resource.Resource_Instance.Cloth >= ResourceCount)
                 {
                     Resource.Resource_Instance.Cloth -= ResourceCount;
@@ -267,81 +243,6 @@ public class AnExchange : MonoBehaviour
                 {
                     SMassage.SendMessage("MessageQ", "자원이 부족합니다.");
                 }
-                break;
-            default:
-                break;
-        }
-    }
-}                Resource.Resource_Instance.Wheat -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Wheat -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 1:
-                Resource.Resource_Instance.Food -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Food -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 2:
-                Resource.Resource_Instance.Wood -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Wood -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 3:
-                Resource.Resource_Instance.Meat -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Meat -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 4:
-                Resource.Resource_Instance.Leather -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Leather -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 5:
-                Resource.Resource_Instance.Itronstone -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Itronstone -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 6:
-                Resource.Resource_Instance.CastIron -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.CastIron -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 7:
-                Resource.Resource_Instance.Cow -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Cow -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 8:
-                Resource.Resource_Instance.Sheep -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Sheep -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 9:
-                Resource.Resource_Instance.Cheese -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Cheese -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 10:
-                Resource.Resource_Instance.Fleece -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Fleece -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
-                break;
-            case 11:
-                Resource.Resource_Instance.Cloth -= ResourceCount;
-                Resource.Resource_Instance.Gold += ResourceCount;
-                GameManager.instance.Cloth -= ResourceCount;
-                GameManager.instance.Gold += ResourceCount;
                 break;
             default:
                 break;

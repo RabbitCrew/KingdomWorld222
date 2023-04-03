@@ -34,9 +34,9 @@ public class Recource_UI : MonoBehaviour
             switch (i)
             {
                 case 0:
-                    RText[i].text = GameManager.instance.Wheat.ToString();
+                    RText[i].text = Resource.Resource_Instance.Wheat.ToString();
 
-                    if (GameManager.instance.Wheat <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Wheat <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                         ChangeWinOn();
@@ -47,9 +47,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 1:
-                    RText[i].text = GameManager.instance.Food.ToString();
+                    RText[i].text = Resource.Resource_Instance.Food.ToString();
 
-                    if (GameManager.instance.Food <= 0)//식량이 0개가 됬을 때 식량 치환 창 띄움 텍스트 색상 변경
+                    if (Resource.Resource_Instance.Food <= 0)//식량이 0개가 됬을 때 식량 치환 창 띄움 텍스트 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -59,9 +59,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 2:
-                    RText[i].text = GameManager.instance.Wood.ToString();
+                    RText[i].text = Resource.Resource_Instance.Wood.ToString();
 
-                    if (GameManager.instance.Wood <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Wood <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -71,9 +71,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 3:
-                    RText[i].text = GameManager.instance.Meat.ToString();
+                    RText[i].text = Resource.Resource_Instance.Meat.ToString();
 
-                    if (GameManager.instance.Meat <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Meat <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -83,9 +83,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 4:
-                    RText[i].text = GameManager.instance.Leather.ToString();
+                    RText[i].text = Resource.Resource_Instance.Leather.ToString();
 
-                    if (GameManager.instance.Leather <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Leather <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -95,9 +95,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 5:
-                    RText[i].text = GameManager.instance.Gold.ToString();
+                    RText[i].text = Resource.Resource_Instance.Gold.ToString();
 
-                    if (GameManager.instance.Gold <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Gold <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -107,9 +107,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 6:
-                    RText[i].text = GameManager.instance.Itronstone.ToString();
+                    RText[i].text = Resource.Resource_Instance.Itronstone.ToString();
 
-                    if (GameManager.instance.Itronstone <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Itronstone <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -119,9 +119,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 7:
-                    RText[i].text = GameManager.instance.CastIron.ToString();
+                    RText[i].text = Resource.Resource_Instance.CastIron.ToString();
 
-                    if (GameManager.instance.CastIron <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.CastIron <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -131,9 +131,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 8:
-                    RText[i].text = GameManager.instance.Cow.ToString();
+                    RText[i].text = Resource.Resource_Instance.Cow.ToString();
 
-                    if (GameManager.instance.Cow <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Cow <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -143,9 +143,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 9:
-                    RText[i].text = GameManager.instance.Sheep.ToString();
+                    RText[i].text = Resource.Resource_Instance.Sheep.ToString();
 
-                    if (GameManager.instance.Sheep <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Sheep <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -155,9 +155,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 10:
-                    RText[i].text = GameManager.instance.Cheese.ToString();
+                    RText[i].text = Resource.Resource_Instance.Cheese.ToString();
 
-                    if (GameManager.instance.Cheese <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Cheese <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -167,9 +167,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 11:
-                    RText[i].text = GameManager.instance.Fleece.ToString();
+                    RText[i].text = Resource.Resource_Instance.Fleece.ToString();
 
-                    if (GameManager.instance.Fleece <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Fleece <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -179,9 +179,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 12:
-                    RText[i].text = GameManager.instance.Cloth.ToString();
+                    RText[i].text = Resource.Resource_Instance.Cloth.ToString();
 
-                    if (GameManager.instance.Cloth <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (Resource.Resource_Instance.Cloth <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -202,10 +202,10 @@ public class Recource_UI : MonoBehaviour
         switch (value)
         {
             case 0:
-                if (GameManager.instance.Wheat >= 1)
+                if (Resource.Resource_Instance.Wheat >= 1)
                 {
-                    GameManager.instance.Food += 1;
-                    GameManager.instance.Wheat--;
+                    Resource.Resource_Instance.Food += 1;
+                    Resource.Resource_Instance.Wheat--;
                 }
                 else
                 {
@@ -213,10 +213,10 @@ public class Recource_UI : MonoBehaviour
                 }
                 break;
             case 1:
-                if (GameManager.instance.Meat >= 1)
+                if (Resource.Resource_Instance.Meat >= 1)
                 {
-                    GameManager.instance.Food += 10;
-                    GameManager.instance.Meat--;
+                    Resource.Resource_Instance.Food += 10;
+                    Resource.Resource_Instance.Meat--;
                 }
                 else
                 {
@@ -224,10 +224,10 @@ public class Recource_UI : MonoBehaviour
                 }
                 break;
             case 2:
-                if (GameManager.instance.Cheese >= 1)
+                if (Resource.Resource_Instance.Cheese >= 1)
                 {
-                    GameManager.instance.Food += 5;
-                    GameManager.instance.Cheese--;
+                    Resource.Resource_Instance.Food += 5;
+                    Resource.Resource_Instance.Cheese--;
                 }
                 else
                 {
@@ -242,10 +242,10 @@ public class Recource_UI : MonoBehaviour
         switch (value)
         {
             case 0:
-                if (GameManager.instance.Cow >= 1)
+                if (Resource.Resource_Instance.Cow >= 1)
                 {
-                    GameManager.instance.Meat++;
-                    GameManager.instance.Cow--;
+                    Resource.Resource_Instance.Meat++;
+                    Resource.Resource_Instance.Cow--;
                 }
                 else
                 {
@@ -253,10 +253,10 @@ public class Recource_UI : MonoBehaviour
                 }
                 break;
             case 1:
-                if (GameManager.instance.Sheep >= 1)
+                if (Resource.Resource_Instance.Sheep >= 1)
                 {
-                    GameManager.instance.Meat++;
-                    GameManager.instance.Sheep--;
+                    Resource.Resource_Instance.Meat++;
+                    Resource.Resource_Instance.Sheep--;
                 }
                 else
                 {

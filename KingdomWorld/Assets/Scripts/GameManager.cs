@@ -7,12 +7,6 @@ public class GameManager : Resource
     public float dayNightRatio { get; private set; }
     public bool isDaytime { get; private set; }//true¿œ∂ß ≥∑, false¿œ∂ß π„
 
-    public static GameManager instance;
-
-    private void Awake()
-    {
-        instance = this;
-    }
     void Start()
     {
         startTime = Time.realtimeSinceStartup;

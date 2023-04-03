@@ -21,7 +21,7 @@ public class Resource : MonoBehaviour
     private int cloth;
     public int MaxResource; //자원 최대치
 
-    
+    public static Resource Resource_Instance;
     public int Wheat {
         get { return wheat; } 
         set { if(value >= MaxResource)
@@ -164,5 +164,8 @@ public class Resource : MonoBehaviour
             cloth = value;
         }
     }
-    
+    private void Awake()
+    {
+        Resource_Instance = this;
+    }
 }
