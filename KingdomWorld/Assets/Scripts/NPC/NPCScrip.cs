@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class NPCScrip : Setgrid
 {
-    public bool NPCTrigger;
+    public bool NPCBUildTrigger;
     //public Setgrid Grid;
     public Transform StartPos;
     public Transform EndPos;
@@ -23,7 +23,7 @@ public class NPCScrip : Setgrid
     {
         InitializeGrid(1000, 1000);
         path = FindPath(start.position, end.position);
-        NPCTrigger = false;
+        NPCBUildTrigger = false;
     }
     public void Move()
     {

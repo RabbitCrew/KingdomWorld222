@@ -65,7 +65,7 @@ public class Setgrid : NPCParameter
                         weight = 1;
                         iswalkable = true;
                     }
-                    // 오브젝트가 walkable 레이어에 있다면 가중치를 2로 설정
+                    // 오브젝트가 walkable 레이어에 있다면 가중치를 10로 설정
                     else if (hit.collider.CompareTag("Walkable"))
                     {
                         weight = 10;

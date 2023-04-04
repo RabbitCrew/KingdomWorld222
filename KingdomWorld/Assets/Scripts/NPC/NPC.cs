@@ -25,11 +25,12 @@ public class NPC : NPCScrip
     //창고지기 
     void CargoClass()
     {
+
         //건물에 배정되었을때 경로수정
-        if (NPCTrigger)
+        if (NPCBUildTrigger)
         {
             ResetPath(this.transform, BuildingNum.transform);
-            NPCTrigger = false;
+            NPCBUildTrigger = false;
         }
         //낮과밤이 바뀔때 한번만 경로수정
         if (GameManager.instance.isDaytime && !reSetPathTrigger) 
@@ -52,11 +53,15 @@ public class NPC : NPCScrip
                  if(collider.건물내부저장공간 == colldier.건물내부저장공간최대치){
                     ResetPath(this.transform, collider.transform)
                     break;
-                }
-                 */
+                }*/
             }
         }
         Move();
     }
+    void WoodCutter()
+    {
+
+    }
+
 
 }

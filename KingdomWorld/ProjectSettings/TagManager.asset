@@ -15,6 +15,7 @@ TagManager:
   - MineWorker
   - WoodCutter
   - Smith
+  - House
   - AnExchange
   layers:
   - Default

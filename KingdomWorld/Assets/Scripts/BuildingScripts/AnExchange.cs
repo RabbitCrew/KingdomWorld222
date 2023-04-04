@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.EventSystems;
 
 public class AnExchange : MonoBehaviour
 {
@@ -13,7 +12,6 @@ public class AnExchange : MonoBehaviour
     public TMP_Dropdown CellThings;
 
     public int ResourceCount;
-    private float distance = 50f;
 
     public bool IsOpen;
 
@@ -40,30 +38,27 @@ public class AnExchange : MonoBehaviour
 
     void ClickCheck()
     {
-        if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            RaycastHit[] hits;
-            hits = Physics.RaycastAll(ray, distance);
-            for (int i = 0; i < hits.Length; i++)
+            RaycastHit hit;
+
+            if(Physics.Raycast(ray, out hit))
             {
-                if (hits[i].transform.GetComponent<BuildingColider>() != null)
+                if(hit.collider.gameObject.name == "An exchange")
                 {
-                    if (hits[i].collider.gameObject.tag.Equals("AnExchange") && hits[i].transform.GetComponent<BuildingColider>().isSettingComplete)
+                    if (IsOpen == true)
                     {
-                        if (IsOpen == true)
-                        {
-                            AnExchangeUI.SetActive(true);
+                        AnExchangeUI.SetActive(true);
 
-                            SMassage.SendMessage("MessageQ", "문이 열렸습니다");
-                        }
-                        else
-                        {
-                            AnExchangeUI.SetActive(false);
+                        SMassage.SendMessage("MessageQ", "문이 열렸습니다");
+                    }
+                    else
+                    {
+                        AnExchangeUI.SetActive(false);
 
-                            SMassage.SendMessage("MessageQ", "오늘은 상인이 없는 날입니다");
-                        }
+                        SMassage.SendMessage("MessageQ", "오늘은 상인이 없는 날입니다");
                     }
                 }
             }
@@ -74,7 +69,7 @@ public class AnExchange : MonoBehaviour
     {
         for (int i = 0; i < AnExchangeBP.transform.childCount; i++)
         {
-            if(AnExchangeBP.transform.GetChild(i).tag.Equals("AnExchange"))
+            if(AnExchangeBP.transform.GetChild(i).name == "An exchange")
             {
                 AnExchangeB = AnExchangeBP.transform.GetChild(i).gameObject;
             }
@@ -120,10 +115,10 @@ public class AnExchange : MonoBehaviour
         switch (CellValue)
         {
             case 0:
-                if (Resource.Resource_Instance.Wheat >= ResourceCount)
+                if (GameManager.instance.Wheat >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Wheat -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Wheat -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -131,10 +126,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 1:
-                if (Resource.Resource_Instance.Food >= ResourceCount)
+                if (GameManager.instance.Food >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Food -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Food -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -142,10 +137,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 2:
-                if (Resource.Resource_Instance.Wood >= ResourceCount)
+                if (GameManager.instance.Wood >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Wood -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Wood -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -153,10 +148,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 3:
-                if (Resource.Resource_Instance.Meat >= ResourceCount)
+                if (GameManager.instance.Meat >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Meat -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Meat -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -164,10 +159,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 4:
-                if (Resource.Resource_Instance.Leather >= ResourceCount)
+                if (GameManager.instance.Leather >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Leather -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Leather -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -175,10 +170,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 5:
-                if (Resource.Resource_Instance.Itronstone >= ResourceCount)
+                if (GameManager.instance.Itronstone >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Itronstone -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Itronstone -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -186,10 +181,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 6:
-                if (Resource.Resource_Instance.CastIron >= ResourceCount)
+                if (GameManager.instance.CastIron >= ResourceCount)
                 {
-                    Resource.Resource_Instance.CastIron -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.CastIron -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -197,10 +192,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 7:
-                if (Resource.Resource_Instance.Cow >= ResourceCount)
+                if (GameManager.instance.Cow >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Cow -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Cow -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -208,10 +203,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 8:
-                if (Resource.Resource_Instance.Sheep >= ResourceCount)
+                if (GameManager.instance.Sheep >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Sheep -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Sheep -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -219,10 +214,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 9:
-                if (Resource.Resource_Instance.Cheese >= ResourceCount)
+                if (GameManager.instance.Cheese >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Cheese -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Cheese -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -230,10 +225,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 10:
-                if (Resource.Resource_Instance.Fleece >= ResourceCount)
+                if (GameManager.instance.Fleece >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Fleece -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Fleece -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -241,10 +236,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 11:
-                if (Resource.Resource_Instance.Cloth >= ResourceCount)
+                if (GameManager.instance.Cloth >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Cloth -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Cloth -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -254,21 +249,5 @@ public class AnExchange : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    private bool IsPointerOverUIObject()
-    {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        //RaycastResult : BaseRaycastModule에서의 히트 결과.
-        List<RaycastResult> results = new List<RaycastResult>();
-        //EventSystem.current은 최근에 발생한 이벤트 시스템을 반환한다.
-        //첫번째 인자값 : 현재 포인터 데이터.
-        //두번째 인자값 : List of 'hits' to populate.
-        //RaycastAll : 모두 설정된 BaseRaycaster를 사용을 통한 해당 씬으로의 레이 캐스팅.
-        // -> 겹쳐있는 오브젝트들이 있다면 겹쳐있는 수로 results의 카운트가 바뀜
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        //Debug.Log(results.Count);
-        return results.Count > 0;
     }
 }
