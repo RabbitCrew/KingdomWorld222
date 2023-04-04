@@ -7,6 +7,12 @@ public class GameManager : Resource
     public float dayNightRatio { get; private set; }
     public bool isDaytime { get; private set; }//true老锭 撤, false老锭 广
 
+    public static GameManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         startTime = Time.realtimeSinceStartup;
@@ -26,8 +32,8 @@ public class GameManager : Resource
         }
         else if (dayNightRatio >= 2f / 3f)
         {
-                //Debug.Log("广");
-                isDaytime = false;
+            //Debug.Log("广");
+            isDaytime = false;
         }
         else if (dayNightRatio >= 0f)
         {
