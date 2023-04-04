@@ -115,10 +115,10 @@ public class AnExchange : MonoBehaviour
         switch (CellValue)
         {
             case 0:
-                if (Resource.Resource_Instance.Wheat >= ResourceCount)
+                if (GameManager.instance.Wheat >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Wheat -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Wheat -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -126,10 +126,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 1:
-                if (Resource.Resource_Instance.Food >= ResourceCount)
+                if (GameManager.instance.Food >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Food -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Food -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -137,10 +137,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 2:
-                if (Resource.Resource_Instance.Wood >= ResourceCount)
+                if (GameManager.instance.Wood >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Wood -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Wood -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -148,10 +148,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 3:
-                if (Resource.Resource_Instance.Meat >= ResourceCount)
+                if (GameManager.instance.Meat >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Meat -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Meat -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -159,10 +159,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 4:
-                if (Resource.Resource_Instance.Leather >= ResourceCount)
+                if (GameManager.instance.Leather >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Leather -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Leather -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -170,10 +170,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 5:
-                if (Resource.Resource_Instance.Itronstone >= ResourceCount)
+                if (GameManager.instance.Itronstone >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Itronstone -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Itronstone -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -181,10 +181,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 6:
-                if (Resource.Resource_Instance.CastIron >= ResourceCount)
+                if (GameManager.instance.CastIron >= ResourceCount)
                 {
-                    Resource.Resource_Instance.CastIron -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.CastIron -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -192,10 +192,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 7:
-                if (Resource.Resource_Instance.Cow >= ResourceCount)
+                if (GameManager.instance.Cow >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Cow -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Cow -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -203,10 +203,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 8:
-                if (Resource.Resource_Instance.Sheep >= ResourceCount)
+                if (GameManager.instance.Sheep >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Sheep -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Sheep -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -214,10 +214,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 9:
-                if (Resource.Resource_Instance.Cheese >= ResourceCount)
+                if (GameManager.instance.Cheese >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Cheese -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Cheese -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -225,10 +225,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 10:
-                if (Resource.Resource_Instance.Fleece >= ResourceCount)
+                if (GameManager.instance.Fleece >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Fleece -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Fleece -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {
@@ -236,10 +236,10 @@ public class AnExchange : MonoBehaviour
                 }
                 break;
             case 11:
-                if (Resource.Resource_Instance.Cloth >= ResourceCount)
+                if (GameManager.instance.Cloth >= ResourceCount)
                 {
-                    Resource.Resource_Instance.Cloth -= ResourceCount;
-                    Resource.Resource_Instance.Gold += ResourceCount;
+                    GameManager.instance.Cloth -= ResourceCount;
+                    GameManager.instance.Gold += ResourceCount;
                 }
                 else
                 {

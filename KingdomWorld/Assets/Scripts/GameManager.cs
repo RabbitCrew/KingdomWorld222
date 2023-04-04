@@ -1,11 +1,13 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class GameManager : Resource
 {
     private float startTime;
     private float timeElapsed;
     public float dayNightRatio { get; private set; }
-    public bool isDaytime { get; private set; }//trueÀÏ¶§ ³·, falseÀÏ¶§ ¹ã
+    public bool isDaytime { get; private set; }//trueï¿½Ï¶ï¿½ ï¿½ï¿½, falseï¿½Ï¶ï¿½ ï¿½ï¿½
+
+    List<GameObject> RestHuman= new List<GameObject>();
 
     public static GameManager instance;
 
@@ -32,12 +34,12 @@ public class GameManager : Resource
         }
         else if (dayNightRatio >= 2f / 3f)
         {
-            //Debug.Log("¹ã");
-            isDaytime = false;
+                //Debug.Log("ï¿½ï¿½");
+                isDaytime = false;
         }
         else if (dayNightRatio >= 0f)
         {
-            //Debug.Log("³·");
+            //Debug.Log("ï¿½ï¿½");
             isDaytime = true;
         }
     }
