@@ -51,6 +51,8 @@ public class AnExchange : MonoBehaviour
                     if (IsOpen == true)
                     {
                         AnExchangeUI.SetActive(true);
+
+                        SMassage.SendMessage("MessageQ", "문이 열렸습니다");
                     }
                     else
                     {
@@ -67,7 +69,7 @@ public class AnExchange : MonoBehaviour
     {
         for (int i = 0; i < AnExchangeBP.transform.childCount; i++)
         {
-            if(AnExchangeBP.transform.GetChild(i).name == "Anexchange")
+            if(AnExchangeBP.transform.GetChild(i).name == "An exchange")
             {
                 AnExchangeB = AnExchangeBP.transform.GetChild(i).gameObject;
             }
