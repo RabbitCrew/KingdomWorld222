@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - StorageNPC
+  - CarpenterNPC
+  - CheeseNPC
+  - FabricNPC
+  - FarmNPC
+  - HamNPC
+  - NPC
+  - Hunter
+  - MineWorker
+  - WoodCutter
+  - Smith
   layers:
   - Default
   - TransparentFX
