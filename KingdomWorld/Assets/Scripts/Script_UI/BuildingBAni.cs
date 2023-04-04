@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//폐기!
 public class BuildingBAni : MonoBehaviour
 {
     public Image[] BImage = new Image[18];
@@ -23,7 +23,7 @@ public class BuildingBAni : MonoBehaviour
 
     private void Update()
     {
-        if (AniStart == true)//anistart 체크되어있을 시 애니매이션 시작
+        if (AniStart == true)//anistart 체크되어있을 시 애니메이션 시작
         {
             BAniStart();
         }
@@ -160,7 +160,7 @@ public class BuildingBAni : MonoBehaviour
         RBGo = true;
     }
 
-    public void LeftBAni()//좌측ㄴ 버튼 누르면 트리거 온
+    public void LeftBAni()//좌측 버튼 누르면 트리거 온
     {
         LBGo = true;
     }
