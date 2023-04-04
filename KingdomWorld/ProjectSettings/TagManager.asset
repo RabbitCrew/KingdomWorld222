@@ -14,8 +14,9 @@ TagManager:
   - Hunter
   - MineWorker
   - WoodCutter
-  - Smith
   - House
+  - Smith
+  - AnExchange
   layers:
   - Default
   - TransparentFX
