@@ -15,6 +15,7 @@ TagManager:
   - MineWorker
   - WoodCutter
   - Smith
+  - AnExchange
   layers:
   - Default
   - TransparentFX
