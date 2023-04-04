@@ -16,6 +16,7 @@ TagManager:
   - WoodCutter
   - Smith
   - House
+  - AnExchange
   layers:
   - Default
   - TransparentFX
