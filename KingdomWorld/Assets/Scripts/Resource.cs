@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Resource : MonoBehaviour
+public class Resource : Setgrid
 {
     //¹Ð, ½Ä·®, ³ª¹«, À°·ù, °¡Á×, ±ÝÈ­, Ã¶±¤¼®, ÁÖÁ¶Ã¶, ¼Ò, ¾ç, Ä¡Áî, ¾çÅÐ, ¿Ê
 

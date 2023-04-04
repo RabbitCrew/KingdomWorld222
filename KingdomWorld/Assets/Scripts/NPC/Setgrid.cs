@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Setgrid : NPCParameter
+public class Setgrid : MonoBehaviour
 {
     // 그리드 크기
     private int _gridWidth;
@@ -10,7 +10,7 @@ public class Setgrid : NPCParameter
 
     // 그리드 노드들
     //월드 그리드를 위한 노드 배열
-    private Node[,] _grid;
+    public Node[,] _grid;
 
     // 다른 오브젝트를 위한 레이어
     /*public LayerMask streetLayer;
@@ -89,7 +89,6 @@ public class Setgrid : NPCParameter
     {
         Node startNode = _grid[Mathf.RoundToInt(startPos.x), Mathf.RoundToInt(startPos.z)];
         Node endNode = _grid[Mathf.RoundToInt(endPos.x), Mathf.RoundToInt(endPos.z)];
-        Debug.LogError(endPos);
         startNode.GCost = Vector3.Distance(startNode.WorldPosition, endNode.WorldPosition);
         
         List<Node> openSet = new List<Node>(); // 아직 방문하지 않은 노드들

@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class NPC : NPCScrip
 {
+    public GameObject TestBuildingTransform;
+    
     public string NPCClass;
     public delegate void MyDelegate(Transform start, Transform end);
 
@@ -14,6 +16,8 @@ public class NPC : NPCScrip
 
     private void Start()
     {
+        Grid = GameManager.instance.GetComponent<Setgrid>();
+        BuildingNum = TestBuildingTransform;
         Speed = 3f;
         reSetPathTrigger = false;
     }
@@ -23,6 +27,7 @@ public class NPC : NPCScrip
     }
 
     //창고지기 
+    private bool WorkStart = false;
     void CargoClass()
     {
 
@@ -30,7 +35,7 @@ public class NPC : NPCScrip
         if (NPCBUildTrigger)
         {
             ResetPath(this.transform, BuildingNum.transform);
-            
+            currentPathIndex = 0;
             NPCBUildTrigger = false;
         }
         if(BuildingNum != null)
@@ -38,34 +43,42 @@ public class NPC : NPCScrip
             //낮과밤이 바뀔때 한번만 경로수정
             if (GameManager.instance.isDaytime && !reSetPathTrigger)
             {
-                Debug.LogError("낮path실행");
                 ResetPath(this.transform, BuildingNum.transform);
+                currentPathIndex = 0;
                 reSetPathTrigger = true;
             }
             else if (!GameManager.instance.isDaytime && reSetPathTrigger)
             {
                 ResetPath(this.transform, HouseTr);
+                currentPathIndex = 0;
                 reSetPathTrigger = false;
             }
 
-            if (GameManager.instance.isDaytime)
+            Transform building = null;
+            if (GameManager.instance.isDaytime && !WorkStart)
             {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
                 foreach (Collider collider in colliders)
                 {
+                    building = collider.transform;
                     /*
                      if(collider.건물내부저장공간 == colldier.건물내부저장공간최대치){
                         ResetPath(this.transform, collider.transform)
+                        currentPathIndex = 0;
+                        WorkStart = true;
                         break;
                     }*/
                 }
+            }else if (GameManager.instance.isDaytime && (this.transform.position == building.position))
+            {
+                /*건물에서 자원꺼내기*/
             }
             Move();
         }
         
     }
 
-    bool treeCuting = false;
+    private bool treeCuting = false;
     void WoodCutter()
     {
         bool workTrigger = false; //출근했는지 체크
