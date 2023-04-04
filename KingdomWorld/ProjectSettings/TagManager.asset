@@ -15,6 +15,7 @@ TagManager:
   - MineWorker
   - WoodCutter
   - Smith
+  - House
   layers:
   - Default
   - TransparentFX
