@@ -8,7 +8,7 @@ public class Storage : MonoBehaviour
 
     public int ResourceStack = 50;
 
-    private void OnTriggerEnter(Collider col)
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if(col.tag == "StorageNPC")
         {
