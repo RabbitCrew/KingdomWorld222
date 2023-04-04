@@ -48,6 +48,8 @@ public class SpawnCitizen : MonoBehaviour
             CSpawn.GetComponent<SpriteRenderer>().sprite = CtSpriteList[RandomSprite()];
 
             CitizenList.Add(CSpawn);
+
+            GameManager.instance.RestHuman.Add(CSpawn);
         }
     }
 

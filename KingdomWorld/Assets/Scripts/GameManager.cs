@@ -5,9 +5,9 @@ public class GameManager : Resource
     private float startTime;
     private float timeElapsed;
     public float dayNightRatio { get; private set; }
-    public bool isDaytime { get; private set; }//true�϶� ��, false�϶� ��
+    public bool isDaytime { get; private set; }//true 낮, false 밤
 
-    List<GameObject> RestHuman= new List<GameObject>();
+    public List<GameObject> RestHuman = new List<GameObject>();
 
     public static GameManager instance;
 
