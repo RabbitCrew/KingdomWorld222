@@ -89,7 +89,7 @@ public class Setgrid : NPCParameter
     {
         Node startNode = _grid[Mathf.RoundToInt(startPos.x), Mathf.RoundToInt(startPos.z)];
         Node endNode = _grid[Mathf.RoundToInt(endPos.x), Mathf.RoundToInt(endPos.z)];
-
+        Debug.LogError(endPos);
         startNode.GCost = Vector3.Distance(startNode.WorldPosition, endNode.WorldPosition);
         
         List<Node> openSet = new List<Node>(); // 아직 방문하지 않은 노드들

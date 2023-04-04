@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class NPCScrip : Setgrid
 {
-    public bool NPCBUildTrigger;
+    public bool NPCBUildTrigger = false;
     //public Setgrid Grid;
     public Transform StartPos;
     public Transform EndPos;
 
     //private List<Setgrid.Node> path;
-    private List<Node> path;
+    private List<Node> path = null;
     private int currentPathIndex = 0;
 
     private void Start()
@@ -27,9 +27,11 @@ public class NPCScrip : Setgrid
     }
     public void Move()
     {
+        
         if (path != null && currentPathIndex < path.Count)
         {
-            transform.LookAt(path[currentPathIndex].WorldPosition);
+            Debug.LogError("path ½ÇÇà");
+            //transform.LookAt(path[currentPathIndex].WorldPosition);
             transform.position = Vector3.MoveTowards(transform.position, path[currentPathIndex].WorldPosition, Speed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, path[currentPathIndex].WorldPosition) < 0.1f)

@@ -17,6 +17,8 @@ TagManager:
   - Smith
   - House
   - AnExchange
+  - Walkable
+  - Street
   layers:
   - Default
   - TransparentFX

@@ -35,7 +35,9 @@ public class BuildingNPCSet : MonoBehaviour
         {
             case 0:
                 NPC.gameObject.tag = "StorageNPC";
+
                 NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+                
                 break;
             case 1:
                 NPC.gameObject.tag = "CarpenterNPC";
