@@ -26,7 +26,7 @@ public class BuildingSetting : MonoBehaviour
         string name;
 
         name = "wood";
-        items.Add(name, 50);
+        items.Add(name, 1);
     }
 
     // Update is called once per frame
@@ -54,7 +54,11 @@ public class BuildingSetting : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-
+        if(collision.tag == "NPC")
+        {
+            //npc가 가지고 있는 자원
+            AddItem("wood", 1);
+        }
     }
 
 
