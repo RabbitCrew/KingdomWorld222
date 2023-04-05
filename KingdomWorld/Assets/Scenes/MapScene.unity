@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &84657901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6437372420253581698, guid: 4d047832961685940b638e2cf830b37a, type: 3}
+  m_PrefabInstance: {fileID: 7026201891076444463}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &10035051611250908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10548,12 +10553,12 @@ GameObject:
   - component: {fileID: 7311586853587998003}
   - component: {fileID: 2809504557558122456}
   m_Layer: 5
-  m_Name: WoodcutterHouse
+  m_Name: Road
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!222 &3308092615621772035
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10720,7 +10725,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NULL
+  m_text: "<b>\uBC2D</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
   m_sharedMaterial: {fileID: -7897185509842292026, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
@@ -15928,7 +15933,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NULL
+  m_text: "<b>\uAE38</b>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
   m_sharedMaterial: {fileID: -7897185509842292026, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
@@ -20586,12 +20591,12 @@ GameObject:
   - component: {fileID: 1239032746086097772}
   - component: {fileID: 4973342476564736444}
   m_Layer: 5
-  m_Name: WoodcutterHouse
+  m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6323610637453327927
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24731,6 +24736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8980907421625192887}
   - component: {fileID: 8288484724152713079}
+  - component: {fileID: 8980907421625192888}
   m_Layer: 0
   m_Name: BuildingAttachMouse
   m_TagString: Untagged
@@ -29549,6 +29555,27 @@ Transform:
   m_Father: {fileID: 4556894844854116812}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8980907421625192888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624158175038270414}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5379773e958638c45a5cc823409782a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnExchangeUI: {fileID: 0}
+  AnExchangeBP: {fileID: 8980907421625192887}
+  AnExchangeB: {fileID: 0}
+  CellThings: {fileID: 0}
+  ResourceCount: 0
+  IsOpen: 0
+  gM: {fileID: 205572011923339597}
+  SMassage: {fileID: 84657901}
+  RandomOpen: 0
 --- !u!111 &8985981167858751094
 Animation:
   m_ObjectHideFlags: 0

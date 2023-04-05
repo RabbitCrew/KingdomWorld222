@@ -57,8 +57,8 @@ public class BuildingPanelOpenUI : MonoBehaviour
                     buttonTrans[i].localPosition = new Vector3(i * 80 - 922, -12, 0);
                     continue;
                 }
-                int ran = Random.Range(-19, 20);
-                buttonTrans[i].localPosition = Vector3.Lerp(buttonTrans[i].localPosition, new Vector3(i * 80 - 922,-12 + ran,0), Time.deltaTime * 5f);
+                //nt ran = Random.Range(-19, 20);
+                buttonTrans[i].localPosition = Vector3.Lerp(buttonTrans[i].localPosition, new Vector3(i * 80 - 922,-12 ,0), Time.deltaTime * 5f);
             }
 
             isMove = false;
@@ -84,8 +84,8 @@ public class BuildingPanelOpenUI : MonoBehaviour
                     continue;
                 }
 
-                int ran = Random.Range(-19, 20);
-                buttonTrans[i].localPosition = Vector3.Lerp(buttonTrans[i].localPosition, new Vector3(- 922, -12 + ran, 0), Time.deltaTime * 5f);
+                //int ran = Random.Range(-19, 20);
+                buttonTrans[i].localPosition = Vector3.Lerp(buttonTrans[i].localPosition, new Vector3(- 922, -12, 0), Time.deltaTime * 5f);
 
             }
 
