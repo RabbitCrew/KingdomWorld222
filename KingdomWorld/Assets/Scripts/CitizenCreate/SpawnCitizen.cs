@@ -18,6 +18,9 @@ public class SpawnCitizen : MonoBehaviour
 
     public int HouseNum = 0;
 
+
+    private Dictionary<int, GameObject> houseDic = new Dictionary<int, GameObject>();
+
     private void Start()
     {
         InvokeRepeating("SpawnintgCitizen", SpawnTime, SpawnTime);
@@ -26,11 +29,15 @@ public class SpawnCitizen : MonoBehaviour
     void HouseCount()//생성된 건물 중 거주지 수 카운트.
     {
         HouseNum = 0;
+        houseDic.Clear();
+        int n = 0;
 
         for (int i = 0; i < BuildingParent.transform.childCount; i++)
         {
             if(BuildingParent.transform.GetChild(i).tag == "House")
             {
+                houseDic.Add(n, BuildingParent.transform.GetChild(i).gameObject);
+                n++;
                 HouseNum++;
             }
         }
@@ -40,16 +47,24 @@ public class SpawnCitizen : MonoBehaviour
     {
         HouseCount();
 
-        if (CitizenList.Count < CitizenNum * HouseNum) // 거주지 수 비례 인구 수보다 현재 인구 수가 적을 시 인구 생성.
+        for (int i = 0; i < houseDic.Count; i++)
         {
-            GameObject CSpawn = Instantiate(Citizen);
-            CSpawn.transform.parent = SpawnPoint.transform;
+            if (CitizenList.Count < CitizenNum * HouseNum) // 거주지 수 비례 인구 수보다 현재 인구 수가 적을 시 인구 생성.
+            {
+                GameObject CSpawn = Instantiate(Citizen);
+                CSpawn.transform.parent = SpawnPoint.transform;
 
-            CSpawn.GetComponent<SpriteRenderer>().sprite = CtSpriteList[RandomSprite()];
+                if (houseDic.ContainsKey(i))
+                {
+                    CSpawn.transform.position = houseDic[i].transform.position;
+                }
 
-            CitizenList.Add(CSpawn); //시민 생성 후 리스트에 넣음.
+                CSpawn.GetComponent<SpriteRenderer>().sprite = CtSpriteList[RandomSprite()];
 
-            GameManager.instance.RestHuman.Add(CSpawn);
+                CitizenList.Add(CSpawn); //시민 생성 후 리스트에 넣음.
+
+                GameManager.instance.RestHuman.Add(CSpawn);
+            }
         }
     }
 

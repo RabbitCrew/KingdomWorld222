@@ -4,6 +4,8 @@ using UnityEngine;
 
 delegate void VoidVoidEvent();
 delegate void VoidUlongGameObjectEvent(ulong n, GameObject obj);
+
+
 class RemoveEventDriven
 {
 	public static event VoidVoidEvent isRemoveEvent;
@@ -41,3 +43,5 @@ class CallSettingObjectToBuildingColiderEventDriven
 		}
 	}
 }
+
+

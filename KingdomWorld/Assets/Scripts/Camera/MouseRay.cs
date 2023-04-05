@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class MouseRay : MonoBehaviour
 {
+    [SerializeField] private UIManager uiManager;
+
     private float distance = 50f;
     private RaycastHit[] hits;
 
@@ -25,6 +27,17 @@ public class MouseRay : MonoBehaviour
                 {
                     //Debug.Log(hits[i].transform.name);
                     hits[i].transform.GetComponent<BuildingColider>().ClickObject();
+                }
+
+
+            }
+            uiManager.isOpenCitizenPanel = false;
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].transform.GetComponent<CitizenInfoPanel>() != null)
+                {
+                    uiManager.isOpenCitizenPanel = true;
                 }
             }
         }
