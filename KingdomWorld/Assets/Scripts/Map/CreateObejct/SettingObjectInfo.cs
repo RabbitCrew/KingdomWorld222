@@ -37,6 +37,10 @@ public class SettingObjectInfo : MonoBehaviour
         objSize.Add(new ObjectInfo(3, 2, (int)ObjectTypeNum.STORAGE, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
         objSize.Add(new ObjectInfo(3, 3, (int)ObjectTypeNum.UNIVERSITAS, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
         objSize.Add(new ObjectInfo(2, 2, (int)ObjectTypeNum.WOODCUTTERHOUSE, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
+        objSize.Add(new ObjectInfo(1, 1, (int)ObjectTypeNum.FIELD, new int[2] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE}));
+        objSize.Add(new ObjectInfo(1, 1, (int)ObjectTypeNum.ROAD, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
+
+
     }
 
 }
