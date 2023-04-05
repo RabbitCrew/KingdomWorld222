@@ -16,14 +16,19 @@ public class NPC : NPCScrip
 
     private void Start()
     {
-        Grid = GameManager.instance.GetComponent<Setgrid>();
         BuildingNum = TestBuildingTransform;
+        Grid = GameManager.instance.GetComponent<Setgrid>();
         Speed = 3f;
-        reSetPathTrigger = false;
     }
     void Update()
     {
-        CargoClass();
+        if (gameObject.CompareTag("StorageNPC"))
+        {
+            CargoClass();
+        }else if (gameObject.CompareTag("WoodCutter"))
+        {
+            WoodCutter();
+        }
     }
 
     //창고지기 
@@ -84,55 +89,59 @@ public class NPC : NPCScrip
         bool workTrigger = false; //출근했는지 체크
         
         Transform tree = null;
-        //건물에 배정되었을때 경로수정
-        if (NPCBUildTrigger)
+        if(BuildingNum != null)
         {
-            ResetPath(this.transform, BuildingNum.transform);
-            NPCBUildTrigger = false;
-        }
-        //낮과밤이 바뀔때 한번만 경로수정
-        if (GameManager.instance.isDaytime && !reSetPathTrigger && !workTrigger)
-        {
-            ResetPath(this.transform, BuildingNum.transform);
-            reSetPathTrigger = true;
-        }
-        else if (!GameManager.instance.isDaytime && reSetPathTrigger)
-        {
-            ResetPath(this.transform, HouseTr);
-            reSetPathTrigger = false;
-        }
-        if(this.transform.position == BuildingNum.transform.position)
-        {
-            workTrigger = true;
-        }
-        if (workTrigger)
-        {
-            if (!treeCuting)
+            //건물에 배정되었을때 경로수정
+            if (NPCBUildTrigger)
             {
-                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-                foreach (Collider collider in colliders)
+                ResetPath(this.transform, BuildingNum.transform);
+                NPCBUildTrigger = false;
+            }
+            //낮과밤이 바뀔때 한번만 경로수정
+            if (GameManager.instance.isDaytime && !reSetPathTrigger && !workTrigger)
+            {
+                ResetPath(this.transform, BuildingNum.transform);
+                reSetPathTrigger = true;
+            }
+            else if (!GameManager.instance.isDaytime && reSetPathTrigger)
+            {
+                ResetPath(this.transform, HouseTr);
+                reSetPathTrigger = false;
+                workTrigger = false; //퇴근
+            }
+            if (this.transform.position == BuildingNum.transform.position && GameManager.instance.isDaytime)
+            {
+                workTrigger = true;//출근
+            }
+            if (workTrigger)
+            {
+                if (!treeCuting)//나무탐색
                 {
-                    if (collider.CompareTag("tree"))
+                    Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+                    foreach (Collider collider in colliders)
                     {
-                        tree = collider.transform;
-                        ResetPath(this.transform, tree);
-                        treeCuting = true;
-                        break;
+                        if (collider.CompareTag("tree"))
+                        {
+                            tree = collider.transform;
+                            ResetPath(this.transform, tree);
+                            treeCuting = true;
+                            break;
+                        }
                     }
                 }
+                if (this.transform.position == tree.position)
+                {
+                    StartCoroutine(CuttingTree(3f, tree));
+                }
             }
-            if(this.transform.position == tree.position)
-            {
-                StartCoroutine(DestroyAfterDelay(3f, tree));
-            }
-
+            Move();
         }
     }
-    private IEnumerator DestroyAfterDelay(float delay, Transform tree)
+    private IEnumerator CuttingTree(float delay, Transform tree)
     {
         yield return new WaitForSeconds(delay);
         Destroy(tree);
-        treeCuting = true;
+        treeCuting = false;//나무자르기 완료
     }
 
 
