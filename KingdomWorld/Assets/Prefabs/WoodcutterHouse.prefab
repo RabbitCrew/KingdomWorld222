@@ -162,11 +162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   citizen: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
-  carpenter: {fileID: 0}
   BuildingNum: 14
   BuildingHp: 100
   BuildingTime: 0
   carpenternCheck: 0
   citizenCount: 1
   citizens: []
-  store: 50
+  store: 0

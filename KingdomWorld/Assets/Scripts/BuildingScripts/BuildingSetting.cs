@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class BuildingSetting : MonoBehaviour
 {
-    public GameObject citizen;
+    public GameObject npc;
     public int BuildingNum = 0;
     public int BuildingHp = 100;
     public float BuildingTime;
     public bool carpenternCheck = false;
 
-    public int citizenCount = 0;
-    public GameObject[] citizens;
+    public int npcCount = 0;
+    public GameObject[] npcs;
     private int arrayIndex = 0;
 
+    public int storeMax = 50;
     public int store = 0;       // . . . 저장량
     public Dictionary<string, int> items = new Dictionary<string, int>();
+
+    private Resource resource;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +32,7 @@ public class BuildingSetting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        citizens = new GameObject[citizenCount];
+        npcs = new GameObject[npcCount];
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -39,14 +42,19 @@ public class BuildingSetting : MonoBehaviour
             carpenternCheck = true;
         }
 
-        if (other)
+        if (other.tag == "NPC")
         {
-            if (arrayIndex < citizens.Length)
+            if (arrayIndex < npcs.Length)
             {
-                citizens[arrayIndex] = other.gameObject;
+                npcs[arrayIndex] = other.gameObject;
                 arrayIndex++;
             }
         }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
     }
 
 
@@ -54,7 +62,7 @@ public class BuildingSetting : MonoBehaviour
     {
     }
 
-    private bool ArrayContains(GameObject[] array, GameObject item)     //item체크
+    private bool ArrayContains(GameObject[] array, GameObject item)     //item체크 . . . citizen 배열 체크
     {
         for (int i = 0; i < array.Length; i++)
         {
@@ -107,7 +115,12 @@ public class BuildingSetting : MonoBehaviour
             for (int i = 0; i <= amount; i++)
             {
                 store++;
+                if(store == storeMax)
+                {
+                    break;
+                }
             }
         }
     }
+
 }

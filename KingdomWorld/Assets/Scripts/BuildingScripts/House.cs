@@ -7,14 +7,14 @@ public class House : MonoBehaviour
     private float increaseInterval = 10f;
     private float timer = 0f;
 
-    public BuildingSetting buildingsetting;
+    private BuildingSetting buildingsetting;
 
     public void AddCitizen()        // . . . ÀÏÁ¤½Ã°£¸¶´Ù ½Ã¹ÎÃÖ´ëÄ¡¸¦ ´Ã·ÁÁÜ
     {
         if (timer >= increaseInterval)
         {
             timer = 0f;
-            buildingsetting.citizenCount++;
+            buildingsetting.npcCount++;
         }
     }
 
@@ -22,5 +22,7 @@ public class House : MonoBehaviour
     {
         timer += Time.deltaTime;
         AddCitizen();
+
     }
+
 }
