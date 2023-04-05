@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private RectTransform jobChangeUI;
+    [SerializeField] private CitizenButtonListPanel citizenButtonListPanel;
 
-    public bool isOpenCitizenPanel { get; set; }
+    public bool isOpenCitizenPanel { get; private set; }
 
     private Vector3 openJobChangeUIVec;
     private Vector3 closeJobChangeUIVec;
@@ -19,6 +20,14 @@ public class UIManager : MonoBehaviour
         openJobChangeUIVec = new Vector3(-760f, 100f, 0f);
         closeJobChangeUIVec = new Vector3(-1160f, 100f, 0f);
     }
+
+    public void SetIsOpenCitizenPanel(bool bo)
+	{
+        isOpenCitizenPanel = bo;
+
+        if (!bo) { citizenButtonListPanel.isOpenJobListPanel = false; }
+	}
+
 
     // Update is called once per frame
     void Update()

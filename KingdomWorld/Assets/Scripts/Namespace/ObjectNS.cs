@@ -32,6 +32,4 @@ namespace ObjectNS
     {
         BUMPYTILE, FLATTILE, GLASS, RIVER, OCEAN, STONE
     };
-
-
 }
