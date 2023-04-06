@@ -11,6 +11,7 @@ public class BuildingAttachMouse : MonoBehaviour
     // 생성한 프리팹에 부모오브젝트로 설정하기 위한 게임오브젝트
     [SerializeField] private GameObject motherBuildingObject;
     public static GameObject clone { get; private set; } // 생성된 오브젝트 인스턴스
+    public static GameObject waitingClone { get; private set; }
     public static bool isClick { get; private set; }    // 버튼 클릭 여부
 
     public void Awake()

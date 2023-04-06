@@ -13,8 +13,6 @@ public class MouseRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.DrawRay(transform.position, transform.forward * distance, Color.blue, 0.3f);
-        //Debug.Log((Physics.Raycast(transform.position, transform.forward, out hit, distance)));
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
         {
             //Debug.Log(1);
@@ -22,14 +20,11 @@ public class MouseRay : MonoBehaviour
             hits = Physics.RaycastAll(ray, distance);
             for (int i = 0; i < hits.Length; i++)
             {
-                
                 if (hits[i].transform.GetComponent<BuildingColider>() != null)
                 {
                     //Debug.Log(hits[i].transform.name);
                     hits[i].transform.GetComponent<BuildingColider>().ClickObject();
                 }
-
-
             }
 
             uiManager.SetIsOpenCitizenPanel(false, null);
