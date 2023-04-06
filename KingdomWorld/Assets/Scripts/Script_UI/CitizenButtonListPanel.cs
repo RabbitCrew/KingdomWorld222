@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CitizenButtonListPanel : MonoBehaviour
 {
-    [SerializeField] private RectTransform jobListPanelUI;
+    [SerializeField] private GameObject jobListObj;
     [SerializeField] private RectTransform numberOfEmployeesPanelUI;
+    
+    private RectTransform jobListPanelUI;
     public bool isOpenJobListPanel { get; set; }
 
     private Vector3 openJobListPanel;
@@ -17,6 +19,8 @@ public class CitizenButtonListPanel : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        jobListPanelUI = jobListObj.GetComponent<RectTransform>();
+
         openJobListPanel = new Vector3(75,100,0);
         closeJobListPanel = new Vector3(-175, 100, 0);
 
@@ -34,6 +38,16 @@ public class CitizenButtonListPanel : MonoBehaviour
         {
             isOpenJobListPanel = true;
         }
+    }
+
+    public void InitButnInfo()
+    {
+        jobListObj.GetComponent<JobListPanelScrollView>().InitButnInfo();
+    }
+
+    public void SetCitizenInfoPanel(CitizenInfoPanel citizenInfo)
+    {
+        jobListObj.GetComponent<JobListPanelScrollView>().citizenInfoPanel = citizenInfo;
     }
 
 

@@ -85,7 +85,7 @@ public class BuildingColider : MonoBehaviour
 	{
         if (isFollowMouse)
         {
-            Debug.Log(colList.Count);
+            //Debug.Log(colList.Count);
             //Debug.Log("Asdfasdf");
             for (int i = 0; i < colList.Count; i++)
             {

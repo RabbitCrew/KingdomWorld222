@@ -18,10 +18,12 @@ public class JobListButn : MonoBehaviour
     public void SetButn(int num)
 	{
         butnNum = num;
-        textPro.text = butnNum.ToString();
+        //textPro.text = butnNum.ToString();
 	}
-
-
+    public void SetText(string str)
+    {
+        textPro.text = str;
+    }
     // Update is called once per frame
     void Update()
     {

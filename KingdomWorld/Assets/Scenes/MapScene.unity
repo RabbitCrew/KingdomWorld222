@@ -264,6 +264,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 506381010}
     m_Modifications:
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 603295832}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickJobButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JobListPanelScrollView, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6353190275895782991, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_Name
       value: JobListButn (4)
@@ -510,6 +542,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 506381010}
     m_Modifications:
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 603295832}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickJobButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JobListPanelScrollView, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6353190275895782991, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_Name
       value: JobListButn (2)
@@ -734,7 +798,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1010483327}
   m_Direction: 2
   m_Value: 0.9999998
-  m_Size: 0.4999999
+  m_Size: 0.25000012
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -817,7 +881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 150}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99994}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &547912976
@@ -828,6 +892,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 506381010}
     m_Modifications:
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 603295832}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickJobButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JobListPanelScrollView, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6353190275895782991, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_Name
       value: JobListButn (3)
@@ -1030,6 +1126,8 @@ MonoBehaviour:
   - {fileID: 198153087}
   - {fileID: 1940369741}
   - {fileID: 688951307}
+  spriteManager: {fileID: 1343495056}
+  contentObj: {fileID: 506381009}
 --- !u!1001 &688951305
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1038,6 +1136,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 506381010}
     m_Modifications:
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 603295832}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickJobButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JobListPanelScrollView, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6353190275895782991, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_Name
       value: JobListButn (6)
@@ -1281,6 +1411,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 506381010}
     m_Modifications:
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 603295832}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickJobButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JobListPanelScrollView, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6353190275895782991, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_Name
       value: JobListButn (1)
@@ -1645,6 +1807,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1332535288}
   m_CullTransparentMesh: 1
+--- !u!1 &1343495054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1343495055}
+  - component: {fileID: 1343495056}
+  m_Layer: 0
+  m_Name: SpriteManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1343495055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343495054}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4556894844854116812}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1343495056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343495054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0d37be5e1167d41b97d492e2f11ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  citizenSprArr:
+  - {fileID: 21300000, guid: f9d9ca1e136502344921ef0f9cc8d1a3, type: 3}
+  - {fileID: 21300000, guid: 493024ded7cbda546a79fc51299dc1a8, type: 3}
+  - {fileID: 21300000, guid: 72fa0799ebdf5364c8e0229754895a75, type: 3}
+  - {fileID: 21300000, guid: fe4b3fca3218c23449508213d6e51639, type: 3}
+  - {fileID: 21300000, guid: 42930815baaa4d4488760176b69ccc5e, type: 3}
+  - {fileID: 21300000, guid: 635c7a12094b35a49bd1f51f8c339fdc, type: 3}
 --- !u!1 &1539323339
 GameObject:
   m_ObjectHideFlags: 0
@@ -1990,7 +2203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c44e0c05c472cd469c1396cfa5f68cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jobListPanelUI: {fileID: 603295829}
+  jobListObj: {fileID: 603295828}
   numberOfEmployeesPanelUI: {fileID: 1696145417}
 --- !u!1 &1822934704
 GameObject:
@@ -2147,6 +2360,38 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 506381010}
     m_Modifications:
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 603295832}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickJobButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JobListPanelScrollView, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6353190275895782991, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_Name
       value: JobListButn (5)
@@ -17170,6 +17415,7 @@ Transform:
   - {fileID: 8980907421625192887}
   - {fileID: 792103690832351508}
   - {fileID: 1114978599}
+  - {fileID: 1343495055}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19361,6 +19607,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 506381010}
     m_Modifications:
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 603295832}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ClickJobButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: JobListPanelScrollView, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6042454210681373715, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6353190275895782991, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_Name
       value: JobListButn

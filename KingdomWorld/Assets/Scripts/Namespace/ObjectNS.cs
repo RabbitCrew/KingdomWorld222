@@ -32,4 +32,9 @@ namespace ObjectNS
     {
         BUMPYTILE, FLATTILE, GLASS, RIVER, OCEAN, STONE
     };
+
+    public enum JobNum
+    {
+        CITIZEN, WOODCUTTER, CARPENTER, HUNTER, FARMER, PASTORALIST, WAREHOUSEKEEPER
+    };
 }

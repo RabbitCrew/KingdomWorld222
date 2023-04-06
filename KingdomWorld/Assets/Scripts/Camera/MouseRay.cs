@@ -31,13 +31,14 @@ public class MouseRay : MonoBehaviour
 
 
             }
-            uiManager.SetIsOpenCitizenPanel(false);
+
+            uiManager.SetIsOpenCitizenPanel(false, null);
 
             for (int i = 0; i < hits.Length; i++)
             {
                 if (hits[i].transform.GetComponent<CitizenInfoPanel>() != null)
                 {
-                    uiManager.SetIsOpenCitizenPanel(true);
+                    uiManager.SetIsOpenCitizenPanel(true, hits[i].transform.GetComponent<CitizenInfoPanel>());
                 }
             }
         }

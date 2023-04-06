@@ -21,11 +21,17 @@ public class UIManager : MonoBehaviour
         closeJobChangeUIVec = new Vector3(-1160f, 100f, 0f);
     }
 
-    public void SetIsOpenCitizenPanel(bool bo)
+    public void SetIsOpenCitizenPanel(bool bo, CitizenInfoPanel citizenInfo)
 	{
         isOpenCitizenPanel = bo;
+        citizenButtonListPanel.SetCitizenInfoPanel(citizenInfo);
 
-        if (!bo) { citizenButtonListPanel.isOpenJobListPanel = false; }
+        if (!bo)
+        { 
+            citizenButtonListPanel.isOpenJobListPanel = false;
+            citizenButtonListPanel.InitButnInfo();
+        }
+
 	}
 
 
