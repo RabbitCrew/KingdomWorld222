@@ -5,18 +5,12 @@ using UnityEngine;
 
 public class NPC : NPCScrip
 {
-    public GameObject TestBuildingTransform;
-    private bool work = false;//출근 체크 변수
-    public string NPCClass;
-    public delegate void MyDelegate(Transform start, Transform end);
-
-    public MyDelegate myDelegate = null;
+    public bool work = false;//출근 체크 변수
 
     private bool reSetPathTrigger = false;//update마다 Astar가 작동하지 않게 해주는 bool값
 
     private void Start()
     {
-        BuildingNum = TestBuildingTransform;
         Grid = GameManager.instance.GetComponent<Setgrid>();
         Speed = 3f;
     }
@@ -36,9 +30,32 @@ public class NPC : NPCScrip
         {
             Farmer();
         }
-        else if (gameObject.CompareTag("MineWorker"))
+        else if (gameObject.CompareTag("StoneMineWorker"))
         {
-            Miner();
+            StoneMiner();
+        }else if (gameObject.CompareTag("IronMineWorker"))
+        {
+            ironMiner();
+        }
+        else if (gameObject.CompareTag("Smith"))
+        {
+            Smith();
+        }
+        else if (gameObject.CompareTag("CheeseNPC"))
+        {
+            Cheese();
+        }
+        else if (gameObject.CompareTag("HamNPC"))
+        {
+            Ham();
+        }
+        else if (gameObject.CompareTag("CarpenterNPC"))
+        {
+            Carpenter();
+        }
+        else if (gameObject.CompareTag("FabricNPC"))
+        {
+            fabric();
         }
     }
     void dayTimeResetPath()
@@ -70,7 +87,6 @@ public class NPC : NPCScrip
                 work = true;//출근
             }
         }
-
     }
     //창고지기 
     private bool WorkStart = false;
@@ -184,7 +200,7 @@ public class NPC : NPCScrip
         dayTimeResetPath();
         Move();
     }
-    void Miner()
+    void StoneMiner()
     {
         dayTimeResetPath();
         Transform stone = null;
@@ -217,5 +233,76 @@ public class NPC : NPCScrip
         yield return new WaitForSeconds(delay);
         Destroy(stone);
         mining = false;//바위 채광 완료
+    }
+
+    void ironMiner()
+    {
+        dayTimeResetPath();
+        Transform iron = null;
+        if (!mining)//광물탐색
+        {
+            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+            foreach (Collider collider in colliders)
+            {
+                if (collider.CompareTag("stone"))
+                {
+                    iron = collider.transform;
+                    ResetPath(this.transform, iron);
+                    currentPathIndex = 0;
+                    mining = true;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            if (this.transform.position == iron.position)
+            {
+                StartCoroutine(MiningIron(3f, iron));
+            }
+        }
+        Move();
+    }
+    private IEnumerator MiningIron(float delay, Transform iron)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(iron);
+        mining = false;//바위 채광 완료
+    }
+    void Smith()
+    {
+        dayTimeResetPath();
+        /*대장장이구현*/
+        Move();
+    }
+
+    void Cheese()//치즈장인
+    {
+        dayTimeResetPath();
+        Move();
+    }
+
+    void Ham()//햄장인
+    {
+        dayTimeResetPath();
+        Move();
+    }
+    
+    void Carpenter()//목수
+    {
+        dayTimeResetPath();
+        if (work)
+        {
+            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+            //1. 건설대기 건물 찾기
+            //2. 손상된 건물 찾기
+        }
+        Move();
+    }
+
+    void fabric()//옷감장인
+    {
+        dayTimeResetPath();
+        Move();
     }
 }

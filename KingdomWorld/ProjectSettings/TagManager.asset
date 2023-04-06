@@ -19,6 +19,8 @@ TagManager:
   - AnExchange
   - Walkable
   - Street
+  - StoneMineWorker
+  - IronMineWorker
   layers:
   - Default
   - TransparentFX
