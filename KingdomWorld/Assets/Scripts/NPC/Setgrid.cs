@@ -22,13 +22,13 @@ public class Setgrid : MonoBehaviour
     {
         public int X { get; set; }
         public int Z { get; set; }
-        public float Weight { get; set; }
-        public Vector3 WorldPosition { get; set; }
-        public float GCost { get; set; }
-        public float HCost { get; set; }
+        public float Weight { get; set; }//가중치
+        public Vector3 WorldPosition { get; set; }//레이쏘는위치
+        public float GCost { get; set; }//현재노드에서 다음노드 거리 + 가중치
+        public float HCost { get; set; }//다음노드에서 목적지 까지 일직선 거리
         public float FCost { get { return GCost + HCost; } }
-        public bool IsWalkable { get; set; }
-        public Node Parent { get; set; }
+        public bool IsWalkable { get; set; }//지나갈수있는지 확인
+        public Node Parent { get; set; }//최종경로탐색시 사용할 부모노드
 
         public Node(int x, int z, Vector3 worldPosition, int weight, bool isWalkable)
         {
@@ -107,7 +107,7 @@ public class Setgrid : MonoBehaviour
                     currentNode = openSet[i];
                 }
             }
-
+           
             // 현재 노드를 오픈셋에서 제거하고 클로즈드셋에 추가
             openSet.Remove(currentNode);
             closedSet.Add(currentNode);
@@ -133,7 +133,7 @@ public class Setgrid : MonoBehaviour
                     
                     neighbor.GCost = newCostToNeighbor;
                     neighbor.HCost = Vector3.Distance(neighbor.WorldPosition, endNode.WorldPosition);
-                    neighbor.Parent = currentNode;
+                    neighbor.Parent = currentNode;//neighbor노드의 부모노드를 currentNode로 지정
 
                     // 이웃 노드가 오픈셋에 없으면 추가
                     if (!openSet.Contains(neighbor))

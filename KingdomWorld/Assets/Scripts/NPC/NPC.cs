@@ -6,7 +6,6 @@ using UnityEngine;
 public class NPC : NPCScrip
 {
     public bool work = false;//출근 체크 변수
-
     private bool reSetPathTrigger = false;//update마다 Astar가 작동하지 않게 해주는 bool값
 
     private void Start()
@@ -60,32 +59,37 @@ public class NPC : NPCScrip
     }
     void dayTimeResetPath()
     {
-        //건물에 배정되었을때 경로수정
-        if (NPCBUildTrigger && GameManager.instance.isDaytime)
-        {
-            ResetPath(this.transform, BuildingNum.transform);
-            currentPathIndex = 0;
-            NPCBUildTrigger = false;
-        }
         if (BuildingNum != null)
         {
+            //건물에 배정되었을때 경로수정
+            if (NPCBUildTrigger && GameManager.instance.isDaytime)//중간에 NPC배정했을시
+            {
+                ResetPath(this.transform, BuildingNum.transform);
+                currentPathIndex = 0;
+                NPCBUildTrigger = false;
+            }
+        
             //낮과밤이 바뀔때 한번만 경로수정
-            if (GameManager.instance.isDaytime && !reSetPathTrigger && !work)
+            if (GameManager.instance.isDaytime && !reSetPathTrigger && !work)//출근시작
             {
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
                 reSetPathTrigger = true;
             }
-            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work)
+            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work)//퇴근
             {
                 ResetPath(this.transform, HouseTr);
                 currentPathIndex = 0;
                 reSetPathTrigger = false;
-                work = false; //퇴근
-            }else if (this.transform.position == BuildingNum.transform.position && GameManager.instance.isDaytime)
+                work = false;
+            }else if (this.transform.position == BuildingNum.transform.position && GameManager.instance.isDaytime)//출근
             {
-                work = true;//출근
+                work = true;
             }
+        }
+        else
+        {
+            NPCBUildTrigger = false;
         }
     }
     //창고지기 
@@ -94,26 +98,28 @@ public class NPC : NPCScrip
     void CargoClass()
     {
         dayTimeResetPath();
-            if (GameManager.instance.isDaytime && !isCargoWorkStart)
+        if (GameManager.instance.isDaytime && !isCargoWorkStart)
+        {
+            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+            foreach (Collider collider in colliders)
             {
-                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-                foreach (Collider collider in colliders)
-                {
                 fullbuilding = collider.transform;
-                
-                 if(fullbuilding.GetComponent<BuildingSetting>().store == fullbuilding.GetComponent<BuildingSetting>().storeMax)
+                if (fullbuilding.GetComponent<BuildingSetting>() != null)
                 {
-                    isCargoWorkStart = true;
-                    ResetPath(this.transform, fullbuilding);
-                    currentPathIndex = 0;
-                    break;
+                    if (fullbuilding.GetComponent<BuildingSetting>().store == fullbuilding.GetComponent<BuildingSetting>().storeMax)
+                    {
+                        isCargoWorkStart = true;
+                        ResetPath(this.transform, fullbuilding);
+                        currentPathIndex = 0;
+                        break;
+                    }
                 }
             }
         }
         else if (GameManager.instance.isDaytime && (this.transform.position == fullbuilding.position) && isCargoWorkStart)
         {
 
-                /*건물에서 무슨자원인지 알아야함 자원꺼내기*/
+            /*건물에서 무슨자원인지 알아야함 자원꺼내기*/
         }
         Move();
     }
