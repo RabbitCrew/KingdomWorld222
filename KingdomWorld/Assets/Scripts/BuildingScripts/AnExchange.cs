@@ -18,8 +18,12 @@ public class AnExchange : MonoBehaviour
     public GameObject SMassage;
     public GameObject IsOpenImage;
     public GameObject ChatViewer;
+    public GameObject TChatViewer;
+    public GameObject TNegoSder;
+    public GameObject TCellBtns;
 
     private float distance = 50f;
+    float ExchangeRate = 100f;
 
     public int ResourceCount;
     public int ResourceCount_Buy;
@@ -33,6 +37,7 @@ public class AnExchange : MonoBehaviour
     bool IsOpen;
     bool isLerp = false;
     bool IsApear = false;
+    bool IsTApear = false;
     bool isNego = false;
 
     Vector3 CellBtnPosition;
@@ -50,8 +55,6 @@ public class AnExchange : MonoBehaviour
 
     public Image RSpriteToCell;
     public Image RSpriteToBuy;
-
-    float ExchangeRate = 100f;
 
     public Slider MySlider;
     public Slider CellerSlider;
@@ -277,6 +280,18 @@ public class AnExchange : MonoBehaviour
         }
     }
 
+    public void TBClicked()
+    {
+        if (IsTApear == true)
+        {
+            IsTApear = false;
+        }
+        else
+        {
+            IsTApear = true;
+        }
+    }
+
     void CellThingsLerp()
     {
         if (IsApear == true)
@@ -299,7 +314,7 @@ public class AnExchange : MonoBehaviour
 
             ChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
                  Vector3.Lerp(ChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
-                 new Vector3(0, 0, 0), Time.deltaTime * 4f);
+                 new Vector3(0, 80, 0), Time.deltaTime * 4f);
         }
         else
         {
@@ -322,6 +337,35 @@ public class AnExchange : MonoBehaviour
             ChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
                  Vector3.Lerp(ChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
                  ChatViewerPosition, Time.deltaTime * 4f);
+        }
+
+        if (IsTApear == true)
+        {
+            TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+           Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+           new Vector3(0, 350, 0), Time.deltaTime * 4f);
+
+            TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
+                   Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
+                   new Vector3(0, 570, 0), Time.deltaTime * 4f);
+
+            TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
+                  Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
+                  new Vector3(0, 0, 0), Time.deltaTime * 4f);
+        }
+        else
+        {
+            TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+          Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+          new Vector3(0,1000,0), Time.deltaTime * 4f);
+
+            TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
+                   Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
+                   new Vector3(0, 690, 0), Time.deltaTime * 4f);
+
+            TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
+                  Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
+                  NegoBtnPosition, Time.deltaTime * 4f);
         }
     }
 
