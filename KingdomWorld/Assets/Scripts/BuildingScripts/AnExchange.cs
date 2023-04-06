@@ -17,6 +17,7 @@ public class AnExchange : MonoBehaviour
     public GameObject NegoSder;
     public GameObject SMassage;
     public GameObject IsOpenImage;
+    public GameObject ChatViewer;
 
     private float distance = 50f;
 
@@ -38,6 +39,7 @@ public class AnExchange : MonoBehaviour
     Vector3 ExitBtnPosition;
     Vector3 NegoBtnPosition;
     Vector3 NegoSderPositon;
+    Vector3 ChatViewerPosition;
 
     public TextMeshProUGUI SelectedRToCell;
     public TextMeshProUGUI SelectedRToBuy;
@@ -119,6 +121,7 @@ public class AnExchange : MonoBehaviour
         ExitBtnPosition = ExitBOn.GetComponent<RectTransform>().anchoredPosition3D;
         NegoBtnPosition = NegoBtns.GetComponent<RectTransform>().anchoredPosition3D;
         NegoSderPositon = NegoSder.GetComponent<RectTransform>().anchoredPosition3D;
+        ChatViewerPosition = ChatViewer.GetComponent<RectTransform>().anchoredPosition3D;
     }
 
     public void CellResourcesGet(int RNum)
@@ -293,6 +296,10 @@ public class AnExchange : MonoBehaviour
             NegoSder.GetComponent<RectTransform>().anchoredPosition3D =
                  Vector3.Lerp(NegoSder.GetComponent<RectTransform>().anchoredPosition3D,
                  new Vector3(0, 0, 0), Time.deltaTime * 4f);
+
+            ChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+                 Vector3.Lerp(ChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+                 new Vector3(0, 0, 0), Time.deltaTime * 4f);
         }
         else
         {
@@ -311,6 +318,10 @@ public class AnExchange : MonoBehaviour
             NegoSder.GetComponent<RectTransform>().anchoredPosition3D =
                  Vector3.Lerp(NegoSder.GetComponent<RectTransform>().anchoredPosition3D,
                  NegoSderPositon, Time.deltaTime * 4f);
+
+            ChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+                 Vector3.Lerp(ChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+                 ChatViewerPosition, Time.deltaTime * 4f);
         }
     }
 
@@ -410,6 +421,8 @@ public class AnExchange : MonoBehaviour
         Debug.Log(ResourceCount);
 
         BuyRNum.text = (ResourceCount * (ExchangeRate / 100) * Value).ToString();
+
+        ResourceCount = (int)(ResourceCount * (100 / ExchangeRate) * Value);
     }
 
     public void GetQuantityBuy(string value)
@@ -419,100 +432,160 @@ public class AnExchange : MonoBehaviour
         Debug.Log(ResourceCount_Buy);
 
         CellRNum.text = (ResourceCount_Buy * (ExchangeRate / 100) * Value).ToString();
+
+        ResourceCount_Buy = (int)(ResourceCount_Buy * (ExchangeRate / 100) * Value);
     }
 
     public void CellResources()
     {
+        bool CellCheck = false;
+
         switch (CValue)
         {
             //¹Ð, ½Ä·®, ³ª¹«, À°·ù, °¡Á×, ±ÝÈ­, Ã¶±¤¼®, ÁÖÁ¶Ã¶, ¼Ò, ¾ç, Ä¡Áî, ¾çÅÐ, ¿Ê
             case 0:
-                GameManager.instance.Wheat -= ResourceCount;
-                break;
+                if (ResourceCount >= GameManager.instance.Wheat)
+                {
+                    GameManager.instance.Wheat -= ResourceCount;
+                    CellCheck = true;
+                }
+                    break;
             case 1:
-                GameManager.instance.Food -= ResourceCount;
+                if (ResourceCount >= GameManager.instance.Food)
+                {
+                    GameManager.instance.Food -= ResourceCount;
+                    CellCheck = true;
+                }
                 break;
             case 2:
-                GameManager.instance.Wood -= ResourceCount;
-                break;
+                if (ResourceCount >= GameManager.instance.Wood)
+                {
+                    GameManager.instance.Wood -= ResourceCount;
+                    CellCheck = true;
+                }
+                    break;
             case 3:
-                GameManager.instance.Meat -= ResourceCount;
+                if (ResourceCount >= GameManager.instance.Meat)
+                {
+                    GameManager.instance.Meat -= ResourceCount;
+                    CellCheck = true;
+                }
                 break;
             case 4:
-                GameManager.instance.Leather -= ResourceCount;
-                break;
+                if (ResourceCount >= GameManager.instance.Leather)
+                {
+                    GameManager.instance.Leather -= ResourceCount;
+                    CellCheck = true;
+                }
+                    break;
             case 5:
-                GameManager.instance.Gold -= ResourceCount;
+                if (ResourceCount >= GameManager.instance.Gold)
+                {
+                    GameManager.instance.Gold -= ResourceCount;
+                    CellCheck = true;
+                }
                 break;
             case 6:
-                GameManager.instance.Itronstone -= ResourceCount;
+                if (ResourceCount >= GameManager.instance.Itronstone)
+                {
+                    GameManager.instance.Itronstone -= ResourceCount;
+                    CellCheck = true;
+                }
                 break;
             case 7:
-                GameManager.instance.CastIron -= ResourceCount;
-                break;
+                if (ResourceCount >= GameManager.instance.CastIron)
+                {
+                    GameManager.instance.CastIron -= ResourceCount;
+                    CellCheck = true;
+                }
+                    break;
             case 8:
-                GameManager.instance.Cow -= ResourceCount;
-                break;
+                if (ResourceCount >= GameManager.instance.Cow)
+                {
+                    GameManager.instance.Cow -= ResourceCount;
+                    CellCheck = true;
+                }
+                    break;
             case 9:
-                GameManager.instance.Sheep -= ResourceCount;
-                break;
+                if (ResourceCount >= GameManager.instance.Sheep)
+                {
+                    GameManager.instance.Sheep -= ResourceCount;
+                    CellCheck = true;
+                }
+                    break;
             case 10:
-                GameManager.instance.Cheese -= ResourceCount;
-                break;
+                if (ResourceCount >= GameManager.instance.Cheese)
+                {
+                    GameManager.instance.Cheese -= ResourceCount;
+                    CellCheck = true;
+                }
+                    break;
             case 11:
-                GameManager.instance.Fleece -= ResourceCount;
-                break;
+                if (ResourceCount >= GameManager.instance.Fleece)
+                {
+                    GameManager.instance.Fleece -= ResourceCount;
+                    CellCheck = true;
+                }
+                    break;
             case 12:
-                GameManager.instance.Cloth -= ResourceCount;
-                break;
+                if (ResourceCount >= GameManager.instance.Cloth)
+                {
+                    GameManager.instance.Cloth -= ResourceCount;
+                    CellCheck = true;
+                }
+                    break;
             default:
+                CellCheck = false;
                 break;
         }
 
-        switch (BValue)
+        if (CellCheck == true)
         {
-            //¹Ð, ½Ä·®, ³ª¹«, À°·ù, °¡Á×, ±ÝÈ­, Ã¶±¤¼®, ÁÖÁ¶Ã¶, ¼Ò, ¾ç, Ä¡Áî, ¾çÅÐ, ¿Ê
-            case 0:
-                GameManager.instance.Wheat += ResourceCount_Buy;
-                break;
-            case 1:
-                GameManager.instance.Food += ResourceCount_Buy;
-                break;
-            case 2:
-                GameManager.instance.Wood += ResourceCount_Buy;
-                break;
-            case 3:
-                GameManager.instance.Meat += ResourceCount_Buy;
-                break;
-            case 4:
-                GameManager.instance.Leather += ResourceCount_Buy;
-                break;
-            case 5:
-                GameManager.instance.Gold += ResourceCount_Buy;
-                break;
-            case 6:
-                GameManager.instance.Itronstone += ResourceCount_Buy;
-                break;
-            case 7:
-                GameManager.instance.CastIron += ResourceCount_Buy;
-                break;
-            case 8:
-                GameManager.instance.Cow += ResourceCount_Buy;
-                break;
-            case 9:
-                GameManager.instance.Sheep += ResourceCount_Buy;
-                break;
-            case 10:
-                GameManager.instance.Cheese += ResourceCount_Buy;
-                break;
-            case 11:
-                GameManager.instance.Fleece += ResourceCount_Buy;
-                break;
-            case 12:
-                GameManager.instance.Cloth += ResourceCount_Buy;
-                break;
-            default:
-                break;
+            switch (BValue)
+            {
+                //¹Ð, ½Ä·®, ³ª¹«, À°·ù, °¡Á×, ±ÝÈ­, Ã¶±¤¼®, ÁÖÁ¶Ã¶, ¼Ò, ¾ç, Ä¡Áî, ¾çÅÐ, ¿Ê
+                case 0:
+                    GameManager.instance.Wheat += ResourceCount_Buy;
+                    break;
+                case 1:
+                    GameManager.instance.Food += ResourceCount_Buy;
+                    break;
+                case 2:
+                    GameManager.instance.Wood += ResourceCount_Buy;
+                    break;
+                case 3:
+                    GameManager.instance.Meat += ResourceCount_Buy;
+                    break;
+                case 4:
+                    GameManager.instance.Leather += ResourceCount_Buy;
+                    break;
+                case 5:
+                    GameManager.instance.Gold += ResourceCount_Buy;
+                    break;
+                case 6:
+                    GameManager.instance.Itronstone += ResourceCount_Buy;
+                    break;
+                case 7:
+                    GameManager.instance.CastIron += ResourceCount_Buy;
+                    break;
+                case 8:
+                    GameManager.instance.Cow += ResourceCount_Buy;
+                    break;
+                case 9:
+                    GameManager.instance.Sheep += ResourceCount_Buy;
+                    break;
+                case 10:
+                    GameManager.instance.Cheese += ResourceCount_Buy;
+                    break;
+                case 11:
+                    GameManager.instance.Fleece += ResourceCount_Buy;
+                    break;
+                case 12:
+                    GameManager.instance.Cloth += ResourceCount_Buy;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
