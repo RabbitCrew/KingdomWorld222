@@ -38,7 +38,6 @@ public class Setgrid : MonoBehaviour
             Weight = weight;
             IsWalkable = isWalkable;
         }
-
     }
 
     // 그리드 초기화

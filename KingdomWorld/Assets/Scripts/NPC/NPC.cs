@@ -61,7 +61,7 @@ public class NPC : NPCScrip
     void dayTimeResetPath()
     {
         //건물에 배정되었을때 경로수정
-        if (NPCBUildTrigger)
+        if (NPCBUildTrigger && GameManager.instance.isDaytime)
         {
             ResetPath(this.transform, BuildingNum.transform);
             currentPathIndex = 0;
@@ -70,13 +70,13 @@ public class NPC : NPCScrip
         if (BuildingNum != null)
         {
             //낮과밤이 바뀔때 한번만 경로수정
-            if (GameManager.instance.isDaytime && !reSetPathTrigger)
+            if (GameManager.instance.isDaytime && !reSetPathTrigger && !work)
             {
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
                 reSetPathTrigger = true;
             }
-            else if (!GameManager.instance.isDaytime && reSetPathTrigger && !work)
+            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work)
             {
                 ResetPath(this.transform, HouseTr);
                 currentPathIndex = 0;
@@ -89,38 +89,40 @@ public class NPC : NPCScrip
         }
     }
     //창고지기 
-    private bool WorkStart = false;
+    private bool isCargoWorkStart = false;
+    Transform fullbuilding = null;
     void CargoClass()
     {
         dayTimeResetPath();
-
-            Transform building = null;
-            if (GameManager.instance.isDaytime && !WorkStart)
+            if (GameManager.instance.isDaytime && !isCargoWorkStart)
             {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
                 foreach (Collider collider in colliders)
                 {
-                    building = collider.transform;
-                    /*
-                     if(collider.건물내부저장공간 == colldier.건물내부저장공간최대치){
-                        ResetPath(this.transform, collider.transform)
-                        currentPathIndex = 0;
-                        WorkStart = true;
-                        break;
-                    }*/
+                fullbuilding = collider.transform;
+                
+                 if(fullbuilding.GetComponent<BuildingSetting>().store == fullbuilding.GetComponent<BuildingSetting>().storeMax)
+                {
+                    isCargoWorkStart = true;
+                    ResetPath(this.transform, fullbuilding);
+                    currentPathIndex = 0;
+                    break;
                 }
-            }else if (GameManager.instance.isDaytime && (this.transform.position == building.position))
-            {
-                /*건물에서 자원꺼내기*/
             }
-            Move();
+        }
+        else if (GameManager.instance.isDaytime && (this.transform.position == fullbuilding.position) && isCargoWorkStart)
+        {
+
+                /*건물에서 무슨자원인지 알아야함 자원꺼내기*/
+        }
+        Move();
     }
         
 
     private bool treeCuting = false;
+    Transform tree = null;
     void WoodCutter()
     {
-        Transform tree = null;
         dayTimeResetPath();
         
         if (work)
@@ -159,10 +161,10 @@ public class NPC : NPCScrip
     }
 
     private bool hunting = false;
+    Transform animal = null;
     void Hunter()
     {
         dayTimeResetPath();
-        Transform animal = null;
         if (!hunting)//나무탐색
         {
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
@@ -187,23 +189,25 @@ public class NPC : NPCScrip
         }
         Move();
     }
+
     private IEnumerator HuntingAnimal(float delay, Transform animal)
     {
         yield return new WaitForSeconds(delay);
         Destroy(animal);
         hunting = false;//동물 사냥 완료
     }
-    
-    private bool mining = false;
+
     void Farmer()
     {
         dayTimeResetPath();
         Move();
     }
+
+    private bool mining = false;
+    Transform stone = null;
     void StoneMiner()
     {
         dayTimeResetPath();
-        Transform stone = null;
         if (!mining)//광물탐색
         {
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
@@ -234,11 +238,10 @@ public class NPC : NPCScrip
         Destroy(stone);
         mining = false;//바위 채광 완료
     }
-
+    Transform iron = null;
     void ironMiner()
     {
         dayTimeResetPath();
-        Transform iron = null;
         if (!mining)//광물탐색
         {
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
@@ -287,19 +290,65 @@ public class NPC : NPCScrip
         dayTimeResetPath();
         Move();
     }
-    
+    bool isBuilingStart = false;
+    bool isRepairStart = false;
+    Transform Building = null;
+    float currentBuildingGauge = 0f;
     void Carpenter()//목수
     {
         dayTimeResetPath();
         if (work)
         {
-            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-            //1. 건설대기 건물 찾기
+            if(!isBuilingStart && Building == null)
+            {
+                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+                //1. 건설대기 건물 찾기 
+                foreach (Collider collider in colliders)
+                {
+                    if (collider.CompareTag("WaitingBuilding"))
+                    {
+                        isBuilingStart = true;
+                        Building = collider.transform;
+                        ResetPath(this.transform, Building);
+                        currentPathIndex = 0;
+                        break;
+                    }else if(collider.GetComponent<BuildingSetting>().BuildingHp < collider.GetComponent<BuildingSetting>().MaxBuildingHp)
+                    {
+                        isRepairStart = true;
+                        Building = collider.transform;
+                        ResetPath(this.transform, Building);
+                        currentPathIndex = 0;
+                        break;
+                    }
+                }
+            }
+            if(Building.position == transform.position && isBuilingStart && Building != null)
+            {
+                currentBuildingGauge += BuildingSpeed * Time.deltaTime;
+                if(currentBuildingGauge >= Building.GetComponent<BuildingSetting>().BuildingTime)
+                {
+                    //건설완료
+                    isBuilingStart = false;
+                    Building = null;
+                }
+            }else if(Building.position == transform.position && isRepairStart && Building != null)
+            {
+                StartCoroutine(Repair(3f, Building));
+            }
             //2. 손상된 건물 찾기
         }
         Move();
     }
-
+    private IEnumerator Repair(float delay, Transform building)
+    {
+        yield return new WaitForSeconds(delay);
+        building.GetComponent<BuildingSetting>().BuildingHp += 1;
+        if(building.GetComponent<BuildingSetting>().BuildingHp == building.GetComponent<BuildingSetting>().MaxBuildingHp)
+        {
+            isRepairStart = false;//수리 완료
+        }
+        
+    }
     void fabric()//옷감장인
     {
         dayTimeResetPath();

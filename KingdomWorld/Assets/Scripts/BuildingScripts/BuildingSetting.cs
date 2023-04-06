@@ -6,6 +6,7 @@ public class BuildingSetting : MonoBehaviour
 {
     public GameObject npc;
     public int BuildingNum = 0;
+    public int MaxBuildingHp = 100;
     public int BuildingHp = 100;
     public float BuildingTime;
     public bool carpenternCheck = false;
