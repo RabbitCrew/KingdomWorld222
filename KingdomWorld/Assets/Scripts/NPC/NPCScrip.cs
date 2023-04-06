@@ -25,7 +25,6 @@ public class NPCScrip : NPCParameter
     {
         //InitializeGrid(1000, 1000);
         path = Grid.FindPath(start.position, end.position);//게임매니저의 FindPath를 사용한다
-        Debug.LogError(path);
         NPCBUildTrigger = false;
     }
     public void Move()
@@ -35,7 +34,6 @@ public class NPCScrip : NPCParameter
         {
             //transform.LookAt(path[currentPathIndex].WorldPosition);
             transform.position = Vector3.MoveTowards(transform.position, path[currentPathIndex].WorldPosition, Speed * Time.deltaTime);
-            Debug.LogError(path[currentPathIndex].WorldPosition);
             if (Vector3.Distance(transform.position, path[currentPathIndex].WorldPosition) < 0.1f)
             {
                 currentPathIndex++;

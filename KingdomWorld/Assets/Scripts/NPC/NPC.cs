@@ -7,9 +7,10 @@ public class NPC : NPCScrip
 {
     public bool work = false;//출근 체크 변수
     private bool reSetPathTrigger = false;//update마다 Astar가 작동하지 않게 해주는 bool값
-
+    public GameObject Testbuilding;
     private void Start()
     {
+        BuildingNum = Testbuilding;
         Grid = GameManager.instance.GetComponent<Setgrid>();
         Speed = 3f;
     }

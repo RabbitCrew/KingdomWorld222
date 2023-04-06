@@ -45,11 +45,11 @@ public class Setgrid : MonoBehaviour
     {
         _gridWidth = width;
         _gridHeight = height;
-        _grid = new Node[width, height];//월드 그리드크기 만큼 노드 생성
-        //한칸한칸 노드 그리드 생성
-        for (int x = 0; x < width; x++)
+        _grid = new Node[width*2, height*2];//월드 그리드크기 만큼 노드 생성
+        //한칸한칸 노드 그리드 생성 width2넣어서*2 = 4 0123    4개 -1 + 2 = 1 -2 + 2 = 0
+        for (int x = -_gridWidth; x < width; x++)
         {
-            for (int z = 0; z < height; z++)
+            for (int z = -_gridHeight; z < height; z++)
             {
                 Vector3 worldPosition = new Vector3(x, 0, z);
                 int weight = 1;
@@ -79,15 +79,18 @@ public class Setgrid : MonoBehaviour
                         iswalkable = false;
                     }*/
                 }
-
-                _grid[x, z] = new Node(x, z, worldPosition, weight, iswalkable);
+                
+                _grid[x + _gridWidth, z + _gridHeight] = new Node(x, z, worldPosition, weight, iswalkable);
             }
         }
     }
     public List<Node> FindPath(Vector3 startPos, Vector3 endPos)//startPos에는 플레이어위치, endPos에는 목표위치
     {
-        Node startNode = _grid[Mathf.RoundToInt(startPos.x), Mathf.RoundToInt(startPos.z)];
-        Node endNode = _grid[Mathf.RoundToInt(endPos.x), Mathf.RoundToInt(endPos.z)];
+        //Debug.LogError("FindPath실행");
+        Node startNode = _grid[Mathf.RoundToInt(startPos.x) + _gridWidth, Mathf.RoundToInt(startPos.z) + _gridHeight];
+        //Debug.Log(_grid[Mathf.RoundToInt(startPos.x) + _gridWidth, Mathf.RoundToInt(startPos.z) + _gridHeight].WorldPosition);
+        Node endNode = _grid[Mathf.RoundToInt(endPos.x)+ _gridWidth, Mathf.RoundToInt(endPos.z) + _gridHeight];
+        //Debug.Log(_grid[Mathf.RoundToInt(endPos.x) + _gridWidth, Mathf.RoundToInt(endPos.z) + _gridHeight].WorldPosition);
         startNode.GCost = Vector3.Distance(startNode.WorldPosition, endNode.WorldPosition);
         
         List<Node> openSet = new List<Node>(); // 아직 방문하지 않은 노드들
@@ -110,9 +113,12 @@ public class Setgrid : MonoBehaviour
            
             // 현재 노드를 오픈셋에서 제거하고 클로즈드셋에 추가
             openSet.Remove(currentNode);
+            //Debug.Log(currentNode.WorldPosition);
             closedSet.Add(currentNode);
+            
             if (currentNode == endNode)
             {
+                //Debug.Log("리버스패스실행");
                 return RetracePath(startNode, endNode);
             }
 
@@ -130,7 +136,6 @@ public class Setgrid : MonoBehaviour
                 if (newCostToNeighbor < neighbor.GCost || !openSet.Contains(neighbor))
                 {
                     // 이웃 노드의 비용과 휴리스틱을 업데이트
-                    
                     neighbor.GCost = newCostToNeighbor;
                     neighbor.HCost = Vector3.Distance(neighbor.WorldPosition, endNode.WorldPosition);
                     neighbor.Parent = currentNode;//neighbor노드의 부모노드를 currentNode로 지정
@@ -142,6 +147,8 @@ public class Setgrid : MonoBehaviour
                     }
                 }
             }
+            //Debug.Log(currentNode.WorldPosition+"현재노드");
+            //Debug.Log(endNode.WorldPosition+"목표노드");
         }
 
         // 경로를 찾을 수 없는 경우
@@ -191,11 +198,11 @@ public class Setgrid : MonoBehaviour
                 // 대각선 이웃 노드는 건너뜀
                 //if (x != 0 && z != 0) continue;
 
-                int checkX = node.X + x;
-                int checkZ = node.Z + z;
+                int checkX = node.X + _gridWidth + x;
+                int checkZ = node.Z + _gridHeight + z;
 
                 // 이웃 노드가 그리드 내에 있는지 확인
-                if (checkX >= 0 && checkX < _gridWidth && checkZ >= 0 && checkZ < _gridHeight)
+                if (checkX >= 0 && checkX < _gridWidth*2 && checkZ >= 0 && checkZ < _gridHeight*2)
                 {
                     neighbors.Add(_grid[checkX, checkZ]);
                 }
