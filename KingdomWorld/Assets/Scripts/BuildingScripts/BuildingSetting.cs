@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BuildingSetting : MonoBehaviour
 {
+    // . . . 건물 제한 ( 거래소 / 연구소는 제한 1 / 나머지는 임의로 지정 
+
     public GameObject npc;
     public int BuildingNum = 0;
     public int BuildingHp = 100;
+    public float BuildingTime = 10f;
     public bool carpenternCheck = false;
 
     public int npcCount = 0;
@@ -17,7 +20,6 @@ public class BuildingSetting : MonoBehaviour
     public int store = 0;       // . . . 저장량
     public Dictionary<string, int> items = new Dictionary<string, int>();
 
-    private Resource resource;
 
     // Start is called before the first frame update
     void Start()
@@ -142,10 +144,10 @@ public class BuildingSetting : MonoBehaviour
         name = "itronstone";
         items.Add(name, 1);
 
-        name = "cow";
+        name = "castIron";
         items.Add(name, 1);
 
-        name = "sheep";
+        name = "milk";
         items.Add(name, 1);
 
         name = "cheese";

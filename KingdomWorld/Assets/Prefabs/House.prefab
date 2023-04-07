@@ -167,8 +167,8 @@ MonoBehaviour:
   BuildingHp: 100
   BuildingTime: 0
   carpenternCheck: 0
-  citizenCount: 5
-  citizens: []
+  npcCount: 5
+  npcs: []
   storeMax: 0
   store: 0
 --- !u!114 &-6236440270005168184
@@ -183,6 +183,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50506bc5d26bb1144851eb5300c7fff1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
-  npcCheck: 0
-  buildingsetting: {fileID: 3573079051689541709}

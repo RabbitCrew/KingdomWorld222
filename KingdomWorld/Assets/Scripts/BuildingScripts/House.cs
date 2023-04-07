@@ -18,6 +18,11 @@ public class House : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        buildingsetting = GetComponent<BuildingSetting>();
+    }
+
     private void Update()
     {
         timer += Time.deltaTime;
