@@ -63,13 +63,9 @@ public class AnExchange : MonoBehaviour
 
     private void Awake()
     {
-        IsOpenImage.SetActive(false);
+        IsOpenImage.SetActive(false);//문열었는지 표시해주는 이미지. 시작할때 꺼줌
 
         PositionSet();
-
-        // 임시 테스트용. 테스트 끝나고 지워야되!!
-        AnExchangeUI.SetActive(true);
-        isLerp = true;
     }
 
     private void Update()
@@ -87,7 +83,7 @@ public class AnExchange : MonoBehaviour
 
         RIsOpen();
 
-        if (AnExchangeB != null)
+        if (AnExchangeB != null) // 거래소가 설치된 후 거래소를 찾았을 시
         {
             OpenState();
             ClickCheck();
@@ -100,16 +96,16 @@ public class AnExchange : MonoBehaviour
 
     void NegoGageCtrl()
     {
-        if (isNego == true)
+        if (isNego == true)//네고를 진행했을 때
         {
-            MySlider.value = MySlider.value + (float)IsNegoNum / 10f;
-            CellerSlider.value = CellerSlider.value - ((float)IsNegoNum - 1f) / 10f;
+            MySlider.value = MySlider.value + (float)IsNegoNum / 10f;//성공하면 그대로 두고 실패 시 게이지가 올라감
+            CellerSlider.value = CellerSlider.value + (float)IsNegoNum / 10f;//동문이하
 
-            if (MySlider.value >= 1)
+            if (MySlider.value >= 1)//게이지가 꽉차면 네고 못하게 하고
             {
                 NegoBtn.interactable = false;
             }
-            else
+            else//아니면 계속
             {
                 NegoBtn.interactable = true;
             }
@@ -118,7 +114,7 @@ public class AnExchange : MonoBehaviour
         }
     }
 
-    void PositionSet()
+    void PositionSet()// Lerp 전 위치 저장
     {
         CellBtnPosition = CellBtns.GetComponent<RectTransform>().anchoredPosition3D;
         ExitBtnPosition = ExitBOn.GetComponent<RectTransform>().anchoredPosition3D;
@@ -127,14 +123,14 @@ public class AnExchange : MonoBehaviour
         ChatViewerPosition = ChatViewer.GetComponent<RectTransform>().anchoredPosition3D;
     }
 
-    public void CellResourcesGet(int RNum)
+    public void CellResourcesGet(int RNum)// 매개변수로 인덱스 값 받아서 팔 자원 지정
     {
-        RSpriteToCell.sprite = ResourceSprite[RNum];
+        RSpriteToCell.sprite = ResourceSprite[RNum];//받은 인덱스값에 따라 스프라이트 지정
 
-        Value = RNum + 1;
-        CValue = RNum;
+        Value = RNum + 1;//임시로 배율 지정함
+        CValue = RNum;//인덱스값 저장
 
-        switch (RNum)
+        switch (RNum)//받은 인덱스값에 따라 텍스트 지정
         {
             //밀, 식량, 나무, 육류, 가죽, 금화, 철광석, 주조철, 소, 양, 치즈, 양털, 옷
             case 0:
@@ -181,12 +177,12 @@ public class AnExchange : MonoBehaviour
         }
     }
 
-    public void ButResourcesGet(int RNum)
+    public void ButResourcesGet(int RNum)// 매개변수로 인덱스 값 받아서 살 자원 지정
     {
         RSpriteToBuy.sprite = ResourceSprite[RNum];
 
-        Value = RNum + 1;
-        BValue = RNum;
+        Value = RNum + 1;//임시로 배율 지정
+        BValue = RNum;//인덱스값 저장
 
         switch (RNum)
         {
@@ -241,7 +237,7 @@ public class AnExchange : MonoBehaviour
         {
             CellBtns.GetComponent<RectTransform>().anchoredPosition3D =
             Vector3.Lerp(CellBtns.GetComponent<RectTransform>().anchoredPosition3D,
-            new Vector3(-520, 0, 0), Time.deltaTime * 4f);
+            new Vector3(-520, 0, 0), Time.deltaTime * 4f);//선형보간으로 숨겨뒀던 UI를 목표위치까지 서서히 이동해서 나타나게 함
 
             ExitBOn.GetComponent<RectTransform>().anchoredPosition3D =
                  Vector3.Lerp(ExitBOn.GetComponent<RectTransform>().anchoredPosition3D,
@@ -251,24 +247,26 @@ public class AnExchange : MonoBehaviour
         {
             CellBtns.GetComponent<RectTransform>().anchoredPosition3D =
            Vector3.Lerp(CellBtns.GetComponent<RectTransform>().anchoredPosition3D,
-           CellBtnPosition, Time.deltaTime * 4f);
+           CellBtnPosition, Time.deltaTime * 4f);//저장해뒀던 위치로 다시 복구
 
             ExitBOn.GetComponent<RectTransform>().anchoredPosition3D =
                  Vector3.Lerp(ExitBOn.GetComponent<RectTransform>().anchoredPosition3D,
-                 CellBtnPosition, Time.deltaTime * 4f);
+                 ExitBtnPosition, Time.deltaTime * 4f);
         }
     }
 
-    public void ExitBtnOn()
+    public void ExitBtnOn()// 나가기 버튼으로 유아이 전부 꺼줌
     {
         IsApear = false;
 
         isLerp = false;
 
+        RandomOpen = 5;
+
         AnExchangeUI.SetActive(false);
     }
 
-    public void CellBClicked()
+    public void CellBClicked()// 거래 버튼 누를 시 해당되는 유아이를 나오게 하기 위해 bool형으로 체크해줌 //나와 있으면 들어가고 들어가 있으면 나오게.
     {
         if (IsApear == true)
         {
@@ -277,10 +275,11 @@ public class AnExchange : MonoBehaviour
         else
         {
             IsApear = true;
+            IsTApear = false;
         }
     }
 
-    public void TBClicked()
+    public void TBClicked()// 유물거래 UI
     {
         if (IsTApear == true)
         {
@@ -289,12 +288,13 @@ public class AnExchange : MonoBehaviour
         else
         {
             IsTApear = true;
+            IsApear = false;
         }
     }
 
     void CellThingsLerp()
     {
-        if (IsApear == true)
+        if (IsApear == true)//거래 관련 UI 선형보간으로 나오게
         {
             CellThings.GetComponent<RectTransform>().anchoredPosition3D =
            Vector3.Lerp(CellThings.GetComponent<RectTransform>().anchoredPosition3D,
@@ -373,26 +373,28 @@ public class AnExchange : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);// ray로 마우스 눌렀을 때 마우스 위치 받아옴
 
             RaycastHit[] hits;
             hits = Physics.RaycastAll(ray, distance);
 
-            for (int i = 0; i < hits.Length; i++)
+            for (int i = 0; i < hits.Length; i++) // 레이로 클릭한 부분의 오브젝트 뒤져서
             {
-                if (hits[i].collider.GetComponent<BuildingColider>() != null)
+                if (hits[i].collider.GetComponent<BuildingColider>() != null) // 건물에 할당한 콜라이더가 있을 시
                 {
-                    if (hits[i].collider.gameObject.tag.Equals("AnExchange") && hits[i].collider.GetComponent<BuildingColider>().isSettingComplete)
+                    if (hits[i].collider.gameObject.tag.Equals("AnExchange") && hits[i].collider.GetComponent<BuildingColider>().isSettingComplete) // 태그로 AnExchange가 달려있으면
                     {
-                        if (IsOpen == true)
+                        if (IsOpen == true) // 거래소가 열리면
                         {
-                            AnExchangeUI.SetActive(true);
+                            AnExchangeUI.SetActive(true); // UI켜주고
 
-                            isLerp = true;
+                            isLerp = true; // 선형보간 (버튼)
+
+                            RandomExchangeRate();
                         }
                         else
                         {
-                            AnExchangeUI.SetActive(false);
+                            AnExchangeUI.SetActive(false); //아닐시 꺼주기
 
                             isLerp = false;
                         }
@@ -406,13 +408,13 @@ public class AnExchange : MonoBehaviour
     {
         for (int i = 0; i < AnExchangeBP.transform.childCount; i++)
         {
-            if (AnExchangeBP.transform.GetChild(i).tag.Equals("AnExchange"))
+            if (AnExchangeBP.transform.GetChild(i).tag.Equals("AnExchange")) // 건물 생성 오브젝트 하위에 있는 오브젝트 중 태그가 AnExchange인 건물이 있으면 
             {
-                AnExchangeB = AnExchangeBP.transform.GetChild(i).gameObject;
+                AnExchangeB = AnExchangeBP.transform.GetChild(i).gameObject; // 게임오브젝트에 연결
             }
             else
             {
-                return;
+                return; // 없을 시 리턴
             }
         }
     }
@@ -421,36 +423,34 @@ public class AnExchange : MonoBehaviour
     {
         if (GameManager.instance.dayNightRatio == 1f || GameManager.instance.dayNightRatio == 0f)
         {
-            RandomOpen = Random.Range(0, 2);
+            RandomOpen = Random.Range(0, 8);// 7분의 1 확률 가챠!! 열릴수도 있고~ 아닐수도 있고~
         }
     }
 
     void OpenState()
     {
-        if (GameManager.instance.isDaytime == true)
+        if (GameManager.instance.isDaytime == true)//낮이면
         {
-            if (RandomOpen == 0)
+            if (RandomOpen == 0)//랜덤으로 열리는 값이 들어오면
             {
-                IsOpen = true;
+                IsOpen = true; //문열기
 
-                RandomExchangeRate();
-
-                IsOpenImage.gameObject.SetActive(true);
+                IsOpenImage.gameObject.SetActive(true);//알림 이미지 키고
 
                 IsOpenImage.transform.position = new Vector3(AnExchangeB.transform.position.x + 1.5f, 
-                    AnExchangeB.transform.position.y, AnExchangeB.transform.position.z + 1.5f);
+                    AnExchangeB.transform.position.y, AnExchangeB.transform.position.z + 1.5f);// 거래소 위치로 이동
 
                 MySlider.value = 0;
                 CellerSlider.value = 0;
             }
-            else
+            else//0이 아니면 무조건 닫기
             {
                 IsOpen = false;
 
-                IsOpenImage.gameObject.SetActive(false);
+                IsOpenImage.gameObject.SetActive(false);//알림 이미지 끔
             }
         }
-        else
+        else//밤이면 무조건 닫기
         {
             IsOpen = false;
 
@@ -458,7 +458,7 @@ public class AnExchange : MonoBehaviour
         }
     }
 
-    public void GetQuantity(string value)
+    public void GetQuantity(string value) // 팔 물건 갯수 받아서 환률 적용해서 살 물건 갯수 계산하고 표기.
     {
         ResourceCount = int.Parse (value);
 
@@ -467,7 +467,7 @@ public class AnExchange : MonoBehaviour
         BuyRNum.text = ResourceCount.ToString();
     }
 
-    public void GetQuantityBuy(string value)
+    public void GetQuantityBuy(string value)//살 물건 갯수 받아서 환률 적용해서 파ㅓㄹ 물건 갯수 계산하고 표기
     {
         ResourceCount_Buy = int.Parse(value);
 
@@ -480,6 +480,7 @@ public class AnExchange : MonoBehaviour
     {
         bool CellCheck = false;
 
+        // 팔 물건 수가 가진 것보다 적으면 창고에서 소모, bool형 체크해줘서
         switch (CValue)
         {
             //밀, 식량, 나무, 육류, 가죽, 금화, 철광석, 주조철, 소, 양, 치즈, 양털, 옷
@@ -579,6 +580,7 @@ public class AnExchange : MonoBehaviour
                 break;
         }
 
+        //bool형 체크 되있으면 받아올 물건 받아오기
         if (CellCheck == true)
         {
             switch (BValue)
@@ -645,16 +647,16 @@ public class AnExchange : MonoBehaviour
         return results.Count > 0;
     }
 
-    float RandomExchangeRate()
+    float RandomExchangeRate()//랜덤환률
     {
         ExchangeRate = 100;
 
-        Random.Range(0, 200);
+        Random.Range(0, 201);
 
         return ExchangeRate;
     }
 
-    int IsNegoOn(int Num)
+    int IsNegoOn(int Num)// 네고요청 한 후 네고 받으면 환률 증가 아니면 감소
     {
         isNego = true;
         IsNegoNum = Num;

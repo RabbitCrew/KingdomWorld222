@@ -31,7 +31,7 @@ public class SVScrollBttm : MonoBehaviour
         AutoScroll();
     }
 
-    void AutoScroll()
+    void AutoScroll() // 대사 나올때마다 밑으로 스크롤 해주기
     {
         if (IsLerp == true)
         {
@@ -39,9 +39,9 @@ public class SVScrollBttm : MonoBehaviour
         }
     }
 
-    public void TryNego()
+    public void TryNego() // 텍스트 띄우고 포지션 값 정해서 대사 바꿔준 뒤 정렬해주고 대사 리스트에 넣기
     {
-        NegoButton.interactable = false;
+        NegoButton.interactable = false;//대사 나오는동안 버튼 클릭 막음
 
         NegoT = Instantiate(NegoText.gameObject, NegoTextMama.transform.position, Quaternion.identity, NegoTextMama.transform);
         NegoT.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
@@ -99,21 +99,21 @@ public class SVScrollBttm : MonoBehaviour
         IsLerp = false;
     }
 
-    int RandomNum(int Num)
+    int RandomNum(int Num)//첫 대사 뭐로 칠지 랜덤 + 성공할지 아닐지 랜덤
     {
         Rancount = Random.Range(0, Num);
 
         return Rancount;
     }
 
-    int RandomEvenNum(int Num)
+    int RandomEvenNum(int Num)//성공했을 시 나오는 대사 랜덤
     {
         Rancount = Random.Range(0, Num / 2);
 
         return Rancount * 2;
     }
 
-    int RandomOddNum(int Num)
+    int RandomOddNum(int Num)//실패했을 시 나오는 대사 랜덤
     {
         Rancount = Random.Range(1, Num);
 

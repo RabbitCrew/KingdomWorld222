@@ -92,8 +92,8 @@ public class BuildingAttachMouse : MonoBehaviour
         {
             float x, z;
             // 건물(생성중)을 하나 가져온다.
-            GameObject waitC = Instantiate(waitingClone);
-            waitC.transform.parent = motherBuildingObject.transform;
+           // GameObject waitC = Instantiate(waitingClone);
+            //waitC.transform.parent = motherBuildingObject.transform;
 
 
             // 프리팹의 부모 오브젝트를 미리 지정해둔 오브젝트로 지정한다.
@@ -107,7 +107,7 @@ public class BuildingAttachMouse : MonoBehaviour
             else { z = 0; }
 
             // AddTilePoint2함수를 통해 청크 좌표에 있는 타일별로 건물(생성중)의 정보를 담는다.
-            settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), waitC);
+            //settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), waitC);
             // AddTilePoint2함수를 통해 청크 좌표에 있는 타일별로 해당 프리팹의 정보를 담는다.
             settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), clone);
             

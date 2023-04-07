@@ -79,7 +79,7 @@ public class JobListPanelScrollView : MonoBehaviour
             {
                 jobButtonPoolingArr[i].GetComponent<RectTransform>().anchoredPosition3D += new Vector3(0f, heightButn * jobButtonPoolingArr.Length, 0f);
                 jobListButnArr[i].SetButn(jobListButnArr[i].butnNum - jobButtonPoolingArr.Length);
-               
+                Debug.Log(jobListButnArr[i].butnNum);
                 if (jobArr.Length > jobListButnArr[i].butnNum) { jobListButnArr[i].SetText(jobArr[jobListButnArr[i].butnNum]); }
                 else { jobListButnArr[i].SetText(null); }
             }

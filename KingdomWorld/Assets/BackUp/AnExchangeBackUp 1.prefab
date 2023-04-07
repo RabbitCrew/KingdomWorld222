@@ -11575,6 +11575,7 @@ GameObject:
   - component: {fileID: 7475840705470261950}
   - component: {fileID: 8371979065281653664}
   - component: {fileID: 3190027819748111124}
+  - component: {fileID: 6245570221551656155}
   m_Layer: 5
   m_Name: MainSceneBackup
   m_TagString: Untagged
@@ -11672,6 +11673,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6245570221551656155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3270027761178220152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5da78daa6a83f4c89b56347dea5892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jobChangeUI: {fileID: 0}
+  citizenButtonListPanel: {fileID: 0}
 --- !u!1 &3271924503835518276
 GameObject:
   m_ObjectHideFlags: 0

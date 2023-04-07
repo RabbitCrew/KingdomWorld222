@@ -1251,6 +1251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settingObj: {fileID: 2448027733691604183}
   motherBuildingObject: {fileID: 4061929523570181222}
+  waitingClone: {fileID: 0}
 --- !u!1 &8389445388467172128
 GameObject:
   m_ObjectHideFlags: 0
