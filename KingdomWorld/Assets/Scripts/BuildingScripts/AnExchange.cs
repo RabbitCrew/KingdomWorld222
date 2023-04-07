@@ -462,22 +462,18 @@ public class AnExchange : MonoBehaviour
     {
         ResourceCount = int.Parse (value);
 
-        Debug.Log(ResourceCount);
-
-        BuyRNum.text = (ResourceCount * (ExchangeRate / 100) * Value).ToString();
-
         ResourceCount = (int)(ResourceCount * (100 / ExchangeRate) * Value);
+
+        BuyRNum.text = ResourceCount.ToString();
     }
 
     public void GetQuantityBuy(string value)
     {
         ResourceCount_Buy = int.Parse(value);
 
-        Debug.Log(ResourceCount_Buy);
-
-        CellRNum.text = (ResourceCount_Buy * (ExchangeRate / 100) * Value).ToString();
-
         ResourceCount_Buy = (int)(ResourceCount_Buy * (ExchangeRate / 100) * Value);
+
+        CellRNum.text = ResourceCount_Buy.ToString();
     }
 
     public void CellResources()
@@ -488,91 +484,91 @@ public class AnExchange : MonoBehaviour
         {
             //¹Ð, ½Ä·®, ³ª¹«, À°·ù, °¡Á×, ±ÝÈ­, Ã¶±¤¼®, ÁÖÁ¶Ã¶, ¼Ò, ¾ç, Ä¡Áî, ¾çÅÐ, ¿Ê
             case 0:
-                if (ResourceCount >= GameManager.instance.Wheat)
+                if (ResourceCount <= GameManager.instance.Wheat)
                 {
                     GameManager.instance.Wheat -= ResourceCount;
                     CellCheck = true;
                 }
                     break;
             case 1:
-                if (ResourceCount >= GameManager.instance.Food)
+                if (ResourceCount <= GameManager.instance.Food)
                 {
                     GameManager.instance.Food -= ResourceCount;
                     CellCheck = true;
                 }
                 break;
             case 2:
-                if (ResourceCount >= GameManager.instance.Wood)
+                if (ResourceCount <= GameManager.instance.Wood)
                 {
                     GameManager.instance.Wood -= ResourceCount;
                     CellCheck = true;
                 }
                     break;
             case 3:
-                if (ResourceCount >= GameManager.instance.Meat)
+                if (ResourceCount <= GameManager.instance.Meat)
                 {
                     GameManager.instance.Meat -= ResourceCount;
                     CellCheck = true;
                 }
                 break;
             case 4:
-                if (ResourceCount >= GameManager.instance.Leather)
+                if (ResourceCount <= GameManager.instance.Leather)
                 {
                     GameManager.instance.Leather -= ResourceCount;
                     CellCheck = true;
                 }
                     break;
             case 5:
-                if (ResourceCount >= GameManager.instance.Gold)
+                if (ResourceCount <= GameManager.instance.Gold)
                 {
                     GameManager.instance.Gold -= ResourceCount;
                     CellCheck = true;
                 }
                 break;
             case 6:
-                if (ResourceCount >= GameManager.instance.Itronstone)
+                if (ResourceCount <= GameManager.instance.Itronstone)
                 {
                     GameManager.instance.Itronstone -= ResourceCount;
                     CellCheck = true;
                 }
                 break;
             case 7:
-                if (ResourceCount >= GameManager.instance.CastIron)
+                if (ResourceCount <= GameManager.instance.CastIron)
                 {
                     GameManager.instance.CastIron -= ResourceCount;
                     CellCheck = true;
                 }
                     break;
             case 8:
-                if (ResourceCount >= GameManager.instance.Cow)
+                if (ResourceCount <= GameManager.instance.Cow)
                 {
                     GameManager.instance.Cow -= ResourceCount;
                     CellCheck = true;
                 }
                     break;
             case 9:
-                if (ResourceCount >= GameManager.instance.Sheep)
+                if (ResourceCount <= GameManager.instance.Sheep)
                 {
                     GameManager.instance.Sheep -= ResourceCount;
                     CellCheck = true;
                 }
                     break;
             case 10:
-                if (ResourceCount >= GameManager.instance.Cheese)
+                if (ResourceCount <= GameManager.instance.Cheese)
                 {
                     GameManager.instance.Cheese -= ResourceCount;
                     CellCheck = true;
                 }
                     break;
             case 11:
-                if (ResourceCount >= GameManager.instance.Fleece)
+                if (ResourceCount <= GameManager.instance.Fleece)
                 {
                     GameManager.instance.Fleece -= ResourceCount;
                     CellCheck = true;
                 }
                     break;
             case 12:
-                if (ResourceCount >= GameManager.instance.Cloth)
+                if (ResourceCount <= GameManager.instance.Cloth)
                 {
                     GameManager.instance.Cloth -= ResourceCount;
                     CellCheck = true;

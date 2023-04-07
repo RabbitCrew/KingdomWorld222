@@ -14,6 +14,7 @@ public class GameManager : Resource
     private void Awake()
     {
         instance = this;
+        InitializeGrid(100, 100);
     }
     void Start()
     {

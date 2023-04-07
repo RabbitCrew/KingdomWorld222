@@ -17,6 +17,10 @@ TagManager:
   - Smith
   - House
   - AnExchange
+  - Walkable
+  - Street
+  - StoneMineWorker
+  - IronMineWorker
   layers:
   - Default
   - TransparentFX
