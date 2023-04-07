@@ -18,7 +18,8 @@ public class BuildingAttachMouse : MonoBehaviour
     public void Awake()
     {
         //이벤트 드리븐
-        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent += DetachClone;
+        CallBuildingAttachMouseToWaitingBuildingEventDriven.getObjectEvent += CreateBuilding;
+        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent += DetachWatingClone;
         RemoveEventDriven.isRemoveEvent += RemoveEvent;
 
         isClick = false;
@@ -27,7 +28,8 @@ public class BuildingAttachMouse : MonoBehaviour
 
     private void RemoveEvent()
     {
-        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent -= DetachClone;
+        CallBuildingAttachMouseToWaitingBuildingEventDriven.getObjectEvent -= CreateBuilding;
+        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent -= DetachWatingClone;
         RemoveEventDriven.isRemoveEvent -= RemoveEvent;
     }
     // 빌딩 생성버튼을 클릭시 BuildingButton에서 호출하는 함수이다.
@@ -86,7 +88,7 @@ public class BuildingAttachMouse : MonoBehaviour
         }
     }
     // 생성한 프리팹을 마우스에서 떨어지도록 해준다.
-    private void DetachClone()
+    private void DetachWatingClone()
     {
         if (clone.GetComponent<BuildingColider>() != null)
         {
@@ -94,7 +96,12 @@ public class BuildingAttachMouse : MonoBehaviour
             // 건물(생성중)을 하나 가져온다.
             GameObject waitC = Instantiate(waitingClone);
             waitC.transform.parent = motherBuildingObject.transform;
-
+            waitC.GetComponent<SpriteRenderer>().sprite = clone.GetComponent<SpriteRenderer>().sprite;
+            waitC.GetComponent<WaitingBuilding>().SetBuilding(clone);
+            waitC.GetComponent<BuildingColider>().isSettingComplete = true;
+            waitC.GetComponent<BoxCollider>().size
+                = new Vector3(waitC.GetComponent<SpriteRenderer>().sprite.rect.width/ 16 - 0.2f, waitC.GetComponent<SpriteRenderer>().sprite.rect.height/ 16 - 0.2f, 0.2f);
+            waitC.transform.localPosition = clone.transform.localPosition;
 
             // 프리팹의 부모 오브젝트를 미리 지정해둔 오브젝트로 지정한다.
             clone.transform.parent = motherBuildingObject.transform;
@@ -108,13 +115,29 @@ public class BuildingAttachMouse : MonoBehaviour
 
             // AddTilePoint2함수를 통해 청크 좌표에 있는 타일별로 건물(생성중)의 정보를 담는다.
             settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), waitC);
-            // AddTilePoint2함수를 통해 청크 좌표에 있는 타일별로 해당 프리팹의 정보를 담는다.
-            settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), clone);
-            
+            //settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), clone);
         }
+        Destroy(clone.gameObject);
+
         // 프리팹을 null로 초기화한다.
-        clone = null;
+        //clone = null;
         // 마우스 클릭 여부를 false로 해두었으니 이제 마우스에서 떨어진다.
         isClick = false;
+    }
+
+    private void CreateBuilding(GameObject building)
+    {
+        float x, z;
+
+        // 타일 단위로 움직이기 위해 위에서 plusX, plusZ를 더해줬으므로 원래 포지션에서 그 차이값만큼을 다시 계산하고 빼준다.
+        // 뺀 값은 아래 AddTilePoint2에 인자값으로 쓰기 위해 사용된다. 
+        if (building.transform.localPosition.x % 1 != 0) { x = -0.5f; }
+        else { x = 0; }
+
+        if (building.transform.localPosition.z % 1 != 0) { z = -0.5f; }
+        else { z = 0; }
+        // AddTilePoint2함수를 통해 청크 좌표에 있는 타일별로 해당 프리팹의 정보를 담는다.
+        settingObj.AddTilePoint2((int)(building.transform.localPosition.x + x), (int)(building.transform.localPosition.z + z), building.GetComponent<BuildingColider>().GetObjTypeNum(), building);
+
     }
 }

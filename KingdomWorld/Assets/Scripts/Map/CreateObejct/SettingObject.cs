@@ -192,7 +192,7 @@ public class SettingObject : MonoBehaviour
                 if (i == pointX && j == pointZ)
 				{
                     //청크 좌표 키를 통해 TilePoint리스트에 TilePoint 구조체 형식을 저장한다.
-                    objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, objectNum, objCode, true));
+                    objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, obj.GetComponent<BuildingColider>().GetObjTypeNum(), objCode, true));
                 
                     // 해당 청크 좌표 키가 없으면 추가해주고, 그 청크 좌표 키를 통해 GameObject리스트에 GameObject를 넣어준다.
                     if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
@@ -211,7 +211,7 @@ public class SettingObject : MonoBehaviour
                 else
 				{
                     //청크 좌표 키를 통해 TilePoint리스트에 TilePoint 구조체 형식을 저장한다.
-                    objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, objectNum, objCode, false));
+                    objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, obj.GetComponent<BuildingColider>().GetObjTypeNum(), objCode, false));
                 }
                 //Debug.Log("chunkX : " + chunkX + " chunkY : " + chunkY + " tileX : " + tileX + " tileY : " + tileY + " objectNum : " + objectNum + "  i : " + i + "  j : " + j + " pointX : " + pointX + "pointZ : " + pointZ);
             }

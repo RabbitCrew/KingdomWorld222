@@ -40,7 +40,7 @@ public class MouseRay : MonoBehaviour
 
         if (Input.GetMouseButtonDown(2) && !IsPointerOverUIObject())
         {
-            //Debug.Log(1);
+            Debug.Log(1);
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
             hits = Physics.RaycastAll(ray, distance);
             for (int i = 0; i < hits.Length; i++)

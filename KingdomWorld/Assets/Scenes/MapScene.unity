@@ -793,7 +793,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1010483327}
   m_Direction: 2
   m_Value: 0.9999998
-  m_Size: 0.4999999
+  m_Size: 0.49999985
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -876,7 +876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 149.99997}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99994}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &547912976
@@ -7683,7 +7683,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6922482480489312100}
   m_Layer: 0
-  m_Name: Mother
+  m_Name: MotherTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20905,7 +20905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6566049271719271358}
   m_Layer: 0
-  m_Name: MotherObject
+  m_Name: MotherObjectNature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27231,6 +27231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8980907421625192887}
   - component: {fileID: 8288484724152713079}
+  - component: {fileID: 8980907421625192888}
   m_Layer: 0
   m_Name: BuildingAttachMouse
   m_TagString: Untagged
@@ -32065,6 +32066,19 @@ Transform:
   m_Father: {fileID: 4556894844854116812}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8980907421625192888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7624158175038270414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e238e7e2da90174cb589d7f269865bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objTypeNum: -1
 --- !u!111 &8985981167858751094
 Animation:
   m_ObjectHideFlags: 0

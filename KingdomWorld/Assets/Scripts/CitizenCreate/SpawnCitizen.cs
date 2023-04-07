@@ -34,7 +34,7 @@ public class SpawnCitizen : MonoBehaviour
 
         for (int i = 0; i < BuildingParent.transform.childCount; i++)
         {
-            if(BuildingParent.transform.GetChild(i).tag == "House")
+            if(BuildingParent.transform.GetChild(i).tag == "House" && BuildingParent.transform.GetChild(i).gameObject.activeSelf)
             {
                 houseDic.Add(n, BuildingParent.transform.GetChild(i).gameObject);
                 n++;
