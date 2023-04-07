@@ -10,8 +10,9 @@ public class BuildingAttachMouse : MonoBehaviour
     [SerializeField] private SettingObject settingObj;
     // 생성한 프리팹에 부모오브젝트로 설정하기 위한 게임오브젝트
     [SerializeField] private GameObject motherBuildingObject;
+    [SerializeField] private GameObject waitingClone;
+
     public static GameObject clone { get; private set; } // 생성된 오브젝트 인스턴스
-    public static GameObject waitingClone { get; private set; }
     public static bool isClick { get; private set; }    // 버튼 클릭 여부
 
     public void Awake()
@@ -89,9 +90,14 @@ public class BuildingAttachMouse : MonoBehaviour
     {
         if (clone.GetComponent<BuildingColider>() != null)
         {
+            float x, z;
+            // 건물(생성중)을 하나 가져온다.
+            GameObject waitC = Instantiate(waitingClone);
+            waitC.transform.parent = motherBuildingObject.transform;
+
+
             // 프리팹의 부모 오브젝트를 미리 지정해둔 오브젝트로 지정한다.
             clone.transform.parent = motherBuildingObject.transform;
-            float x, z;
             // 타일 단위로 움직이기 위해 위에서 plusX, plusZ를 더해줬으므로 원래 포지션에서 그 차이값만큼을 다시 계산하고 빼준다.
             // 뺀 값은 아래 AddTilePoint2에 인자값으로 쓰기 위해 사용된다. 
             if (clone.transform.localPosition.x % 1 != 0) { x = -0.5f; }
@@ -99,8 +105,12 @@ public class BuildingAttachMouse : MonoBehaviour
 
             if (clone.transform.localPosition.z % 1 != 0) { z = -0.5f; }
             else { z = 0; }
+
+            // AddTilePoint2함수를 통해 청크 좌표에 있는 타일별로 건물(생성중)의 정보를 담는다.
+            settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), waitC);
             // AddTilePoint2함수를 통해 청크 좌표에 있는 타일별로 해당 프리팹의 정보를 담는다.
             settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), clone);
+            
         }
         // 프리팹을 null로 초기화한다.
         clone = null;
