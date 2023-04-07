@@ -264,6 +264,9 @@ public class AnExchange : MonoBehaviour
         RandomOpen = 5;
 
         AnExchangeUI.SetActive(false);
+
+        ChatViewer.SendMessage("ListReset");
+        TChatViewer.SendMessage("ListReset");
     }
 
     public void CellBClicked()// 거래 버튼 누를 시 해당되는 유아이를 나오게 하기 위해 bool형으로 체크해줌 //나와 있으면 들어가고 들어가 있으면 나오게.
@@ -628,6 +631,10 @@ public class AnExchange : MonoBehaviour
                 default:
                     break;
             }
+        }
+        else
+        {
+            SMassage.SendMessage("MessageQ", "자원이 부족합니다.");
         }
     }
 

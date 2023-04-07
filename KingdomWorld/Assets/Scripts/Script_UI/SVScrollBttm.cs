@@ -126,4 +126,9 @@ public class SVScrollBttm : MonoBehaviour
             return Rancount;
         }
     }
+
+    void ListReset()
+    {
+        NegoTexts.Clear();
+    }
 }
