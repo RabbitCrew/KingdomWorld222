@@ -13,8 +13,6 @@ public class Recource_UI : MonoBehaviour
     Color TextColor;
     Color defaultTextColor = new Color(1, 1, 1, 1);
 
-    //bool IsEmpty = false;
-
     private void Update()
     {
         ResourceSearch();
