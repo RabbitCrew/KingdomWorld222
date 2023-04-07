@@ -17,15 +17,9 @@ public class AnExchange : MonoBehaviour
 
     public bool IsOpen;
 
-    public GameManager gM;
     public GameObject SMassage;
 
     public int RandomOpen;
-
-    private void Start()
-    {
-        gM = gM.GetComponent<GameManager>();
-    }
 
     private void Update()
     {
@@ -84,7 +78,7 @@ public class AnExchange : MonoBehaviour
 
     void RIsOpen()
     {
-        if (gM.dayNightRatio == 1f || gM.dayNightRatio == 0f)
+        if (GameManager.instance.dayNightRatio == 1f || GameManager.instance.dayNightRatio == 0f)
         {
             RandomOpen = Random.Range(0, 2);
         }
@@ -92,7 +86,7 @@ public class AnExchange : MonoBehaviour
 
     void OpenState()
     {
-        if (gM.isDaytime == true)
+        if (GameManager.instance.isDaytime == true)
         {
             if (RandomOpen == 0)
             {
