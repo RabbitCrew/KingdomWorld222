@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: -2538979524183147578}
   - component: {fileID: -1032215776031185551}
   - component: {fileID: 7723240284650998090}
+  - component: {fileID: -2453783799290183586}
+  - component: {fileID: 5123814152574304622}
   m_Layer: 0
   m_Name: Citizen1
   m_TagString: NPC
@@ -150,6 +152,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clothesSpr: {fileID: 6324827402360720314}
+  jobNumEnum: 0
+--- !u!114 &-2453783799290183586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459160076541427711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b77cfe292588d4d92b6be5fd1e80b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Grid: {fileID: 0}
+  NPCBUildTrigger: 0
+  StartPos: {fileID: 0}
+  EndPos: {fileID: 0}
+  work: 0
+--- !u!95 &5123814152574304622
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459160076541427711}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d00952f0aa82be645857016fd0984422, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5670400018435681349
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,20 +328,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.38, y: 0.2, z: 0.20000005}
   m_Center: {x: 0, y: -0.4, z: 0}
---- !u!114 &-2453783799290183586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2459160076541427711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0b77cfe292588d4d92b6be5fd1e80b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BuildingNum: {fileID: 0}
-  NPCBUildTrigger: 0
-  StartPos: {fileID: 0}
-  EndPos: {fileID: 0}
-  NPCClass: 
