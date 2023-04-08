@@ -2,23 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// BuildingButton Å¬·¡½º¿¡¼­ »ý¼ºµÇ´ø ÇÁ¸®ÆÕÀ» ÀÌ ½ºÅ©¸³Æ®ÂÊÀ¸·Î ¿Å°å´Ù.
-// ÇÁ¸®ÆÕÀ» »ý¼ºÇÏ°Å³ª, BuildingColider¿¡¼­ È£Ãâ¹Þ¾Æ ºôµùÀ» ¹èÄ¡ÇÏ´Â ÇÔ¼ö¸¦ ¹ßµ¿ÇÏ±âµµ ÇÑ´Ù.
+// BuildingButton Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°Å³ï¿½, BuildingColiderï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Þ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ßµï¿½ï¿½Ï±âµµ ï¿½Ñ´ï¿½.
 public class BuildingAttachMouse : MonoBehaviour
 {
-    // AddTilePoint2ÇÔ¼ö¸¦ È£ÃâÇÏ±â À§ÇÑ SettingObjectÇü º¯¼ö
+    // AddTilePoint2ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ SettingObjectï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private SettingObject settingObj;
-    // »ý¼ºÇÑ ÇÁ¸®ÆÕ¿¡ ºÎ¸ð¿ÀºêÁ§Æ®·Î ¼³Á¤ÇÏ±â À§ÇÑ °ÔÀÓ¿ÀºêÁ§Æ®
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ¿ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     [SerializeField] private GameObject motherBuildingObject;
     [SerializeField] private GameObject waitingClone;
 
-    public static GameObject clone { get; private set; } // »ý¼ºµÈ ¿ÀºêÁ§Æ® ÀÎ½ºÅÏ½º
-    public static bool isClick { get; private set; }    // ¹öÆ° Å¬¸¯ ¿©ºÎ
+    public static GameObject clone { get; private set; } // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Î½ï¿½ï¿½Ï½ï¿½
+    public static bool isClick { get; private set; }    // ï¿½ï¿½Æ° Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
     public void Awake()
     {
-        //ÀÌº¥Æ® µå¸®ºì
-        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent += DetachClone;
+        //ï¿½Ìºï¿½Æ® ï¿½å¸®ï¿½ï¿½
+        CallBuildingAttachMouseToWaitingBuildingEventDriven.getObjectEvent += CreateBuilding;
+        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent += DetachWatingClone;
         RemoveEventDriven.isRemoveEvent += RemoveEvent;
 
         isClick = false;
@@ -27,31 +28,32 @@ public class BuildingAttachMouse : MonoBehaviour
 
     private void RemoveEvent()
     {
-        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent -= DetachClone;
+        CallBuildingAttachMouseToWaitingBuildingEventDriven.getObjectEvent -= CreateBuilding;
+        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent -= DetachWatingClone;
         RemoveEventDriven.isRemoveEvent -= RemoveEvent;
     }
-    // ºôµù »ý¼º¹öÆ°À» Å¬¸¯½Ã BuildingButton¿¡¼­ È£ÃâÇÏ´Â ÇÔ¼öÀÌ´Ù.
-    // ÇÁ¸®ÆÕÀ» »ý¼ºÇÏ°í, ÇØ´ç ÇÁ¸®ÆÕÀÇ BuildingColiderÀÇ isFollowMouse¸¦ true·Î ¹Ù²ãÁØ´Ù.
-    // isFollowMouse´Â ÇÁ¸®ÆÕÀÌ ¸¶¿ì½º ÁÂÇ¥¸¦ µû¶ó´Ù´Ï´ÂÁö ¿©ºÎÀÌ´Ù.
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ BuildingButtonï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ï¿½Ì´ï¿½.
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½, ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BuildingColiderï¿½ï¿½ isFollowMouseï¿½ï¿½ trueï¿½ï¿½ ï¿½Ù²ï¿½ï¿½Ø´ï¿½.
+    // isFollowMouseï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù´Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
     public void CloneInst(GameObject obj)
 	{
-        // ÇÁ¸®ÆÕÀÌ nullÀÌ¸é ÇÁ¸®ÆÕÀ» »ý¼ºÇØÁØ´Ù.
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nullï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
         if (clone == null)
         {
             clone = Instantiate(obj);
         }
-        // ÀÌ¹Ì »ý¼ºµÈ ÇÁ¸®ÆÕÀÌ Á¸ÀçÇÑ´Ù¸é ±× ÇÁ¸®ÆÕÀ» ÆÄ±«ÇÏ°í »õ·Ó°Ô ÇÁ¸®ÆÕÀ» »ý¼ºÇÑ´Ù.
+        // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´Ù¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ä±ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Ó°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
         else
         {
             Destroy(clone.gameObject);
             clone = Instantiate(obj);
         }
-        // isFollowMouse¸¦ true·Î ¹Ù²ãÁØ´Ù. ÀÌ´Â ÇÁ¸®ÆÕÀÌ ¸¶¿ì½º ÁÂÇ¥¸¦ µû¶ó´Ù´Ï´ÂÁö ¿©ºÎÀÌ´Ù.
+        // isFollowMouseï¿½ï¿½ trueï¿½ï¿½ ï¿½Ù²ï¿½ï¿½Ø´ï¿½. ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù´Ï´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì´ï¿½.
         if (clone.GetComponent<BuildingColider>() != null)
         {
             clone.GetComponent<BuildingColider>().isFollowMouse = true;
         }
-        // ¹öÆ°À» Å¬¸¯Çß´ÂÁö ¿©ºÎÀÌ¸ç, ÀÌ°ÍÀÌ true·Î µÇ¾îÀÖÀ¸¸é ¸¶¿ì½º ÁÂÇ¥¸¦ ÇÁ¸®ÆÕÀÌ µû¶ó´Ù´Ñ´Ù.
+        // ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½, ï¿½Ì°ï¿½ï¿½ï¿½ trueï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù´Ñ´ï¿½.
         isClick = true;
     }
 
@@ -60,22 +62,22 @@ public class BuildingAttachMouse : MonoBehaviour
     {
         if (isClick)
         {
-            //ScreenToWorldPoint´Â Ä«¸Þ¶ó°¡ ºñÃß°í ÀÖ´Â È­¸é ³»ÀÇ ÁÂÇ¥°ªÀ» »ç¿ëÇÒ ¼ö ÀÖ°Ô ÇØÁØ´Ù.
-            //¸¶¿ì½ºÀÇ ÁÂÇ¥¸¦ ÀÎÀÚ°ªÀ¸·Î ³Ö¾î ÀÌ ¿ùµåÁÂÇ¥¸¦ È­¸éÁÂÇ¥·Î º¯°æÇØÁØ´Ù.
+            //ScreenToWorldPointï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ß°ï¿½ ï¿½Ö´ï¿½ È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö°ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.
+            //ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø´ï¿½.
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float plusX = 0;
             float plusZ = 0;
-            // Å¸ÀÏ ´ÜÀ§·Î »ý¼ºµÈ ÇÁ¸®ÆÕÀ» ÀÌµ¿ÇÏ±â À§ÇÑ Ãß°¡·Î x,zÃà¿¡ ´õÇØÁÙ ¼öÄ¡ÀÌ´Ù.
+            // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½ x,zï¿½à¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½Ì´ï¿½.
             if ((clone.transform.GetComponent<SpriteRenderer>().sprite.rect.width / 16) % 2 == 1) { plusX = 0f;}
             else { plusX = 0.5f;}
 
             if ((clone.transform.GetComponent<SpriteRenderer>().sprite.rect.height / 16) % 2 == 1) { plusZ = 0f;}
             else { plusZ = 0.5f;}
 
-            //Å¸ÀÏ¿¡ ¸ÂÃç ÇÑÄ­¾¿ ¸¶¿ì½º ÀÌµ¿
+            //Å¸ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä­ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½Ìµï¿½
             clone.transform.position = new Vector3(Mathf.RoundToInt(mousePosition.x) + plusX, 0, Mathf.RoundToInt(mousePosition.z) + plusZ);
         }
-        // ¿ìÅ¬¸¯À» ÇÏ¸é ¸¶¿ì½º¿¡ ºÙ¾îÀÖ´ø ÇÁ¸®ÆÕÀ» Áö¿öÁÜ
+        // ï¿½ï¿½Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (Input.GetMouseButtonDown(1))
         {
             if (clone != null)
@@ -85,36 +87,57 @@ public class BuildingAttachMouse : MonoBehaviour
             isClick = false;
         }
     }
-    // »ý¼ºÇÑ ÇÁ¸®ÆÕÀ» ¸¶¿ì½º¿¡¼­ ¶³¾îÁöµµ·Ï ÇØÁØ´Ù.
-    private void DetachClone()
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.
+    private void DetachWatingClone()
     {
         if (clone.GetComponent<BuildingColider>() != null)
         {
             float x, z;
-            // °Ç¹°(»ý¼ºÁß)À» ÇÏ³ª °¡Á®¿Â´Ù.
-           // GameObject waitC = Instantiate(waitingClone);
-            //waitC.transform.parent = motherBuildingObject.transform;
+            // ï¿½Ç¹ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
+            GameObject waitC = Instantiate(waitingClone);
+            waitC.transform.parent = motherBuildingObject.transform;
+            waitC.GetComponent<SpriteRenderer>().sprite = clone.GetComponent<SpriteRenderer>().sprite;
+            waitC.GetComponent<WaitingBuilding>().SetBuilding(clone);
+            waitC.GetComponent<BuildingColider>().isSettingComplete = true;
+            waitC.GetComponent<BoxCollider>().size
+                = new Vector3(waitC.GetComponent<SpriteRenderer>().sprite.rect.width/ 16 - 0.2f, waitC.GetComponent<SpriteRenderer>().sprite.rect.height/ 16 - 0.2f, 0.2f);
+            waitC.transform.localPosition = clone.transform.localPosition;
 
-
-            // ÇÁ¸®ÆÕÀÇ ºÎ¸ð ¿ÀºêÁ§Æ®¸¦ ¹Ì¸® ÁöÁ¤ÇØµÐ ¿ÀºêÁ§Æ®·Î ÁöÁ¤ÇÑ´Ù.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
             clone.transform.parent = motherBuildingObject.transform;
-            // Å¸ÀÏ ´ÜÀ§·Î ¿òÁ÷ÀÌ±â À§ÇØ À§¿¡¼­ plusX, plusZ¸¦ ´õÇØÁáÀ¸¹Ç·Î ¿ø·¡ Æ÷Áö¼Ç¿¡¼­ ±× Â÷ÀÌ°ª¸¸Å­À» ´Ù½Ã °è»êÇÏ°í »©ÁØ´Ù.
-            // »« °ªÀº ¾Æ·¡ AddTilePoint2¿¡ ÀÎÀÚ°ªÀ¸·Î ¾²±â À§ÇØ »ç¿ëµÈ´Ù. 
+            // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ plusX, plusZï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½Å­ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.
+            // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ AddTilePoint2ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½È´ï¿½. 
             if (clone.transform.localPosition.x % 1 != 0) { x = -0.5f; }
             else { x = 0; }
 
             if (clone.transform.localPosition.z % 1 != 0) { z = -0.5f; }
             else { z = 0; }
 
-            // AddTilePoint2ÇÔ¼ö¸¦ ÅëÇØ Ã»Å© ÁÂÇ¥¿¡ ÀÖ´Â Å¸ÀÏº°·Î °Ç¹°(»ý¼ºÁß)ÀÇ Á¤º¸¸¦ ´ã´Â´Ù.
-            //settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), waitC);
-            // AddTilePoint2ÇÔ¼ö¸¦ ÅëÇØ Ã»Å© ÁÂÇ¥¿¡ ÀÖ´Â Å¸ÀÏº°·Î ÇØ´ç ÇÁ¸®ÆÕÀÇ Á¤º¸¸¦ ´ã´Â´Ù.
-            settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), clone);
-            
+            // AddTilePoint2ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã»Å© ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ö´ï¿½ Å¸ï¿½Ïºï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
+            settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), waitC);
+            //settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), clone);
         }
-        // ÇÁ¸®ÆÕÀ» null·Î ÃÊ±âÈ­ÇÑ´Ù.
-        clone = null;
-        // ¸¶¿ì½º Å¬¸¯ ¿©ºÎ¸¦ false·Î ÇØµÎ¾úÀ¸´Ï ÀÌÁ¦ ¸¶¿ì½º¿¡¼­ ¶³¾îÁø´Ù.
+        Destroy(clone.gameObject);
+
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ nullï¿½ï¿½ ï¿½Ê±ï¿½È­ï¿½Ñ´ï¿½.
+        //clone = null;
+        // ï¿½ï¿½ï¿½ì½º Å¬ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ falseï¿½ï¿½ ï¿½ØµÎ¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
         isClick = false;
+    }
+
+    private void CreateBuilding(GameObject building)
+    {
+        float x, z;
+
+        // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ plusX, plusZï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¿ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ì°ï¿½ï¿½ï¿½Å­ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½Ø´ï¿½.
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ·ï¿½ AddTilePoint2ï¿½ï¿½ ï¿½ï¿½ï¿½Ú°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½È´ï¿½. 
+        if (building.transform.localPosition.x % 1 != 0) { x = -0.5f; }
+        else { x = 0; }
+
+        if (building.transform.localPosition.z % 1 != 0) { z = -0.5f; }
+        else { z = 0; }
+        // AddTilePoint2ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã»Å© ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ö´ï¿½ Å¸ï¿½Ïºï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â´ï¿½.
+        settingObj.AddTilePoint2((int)(building.transform.localPosition.x + x), (int)(building.transform.localPosition.z + z), building.GetComponent<BuildingColider>().GetObjTypeNum(), building);
+
     }
 }

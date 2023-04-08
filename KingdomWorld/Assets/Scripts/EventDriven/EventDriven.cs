@@ -4,7 +4,7 @@ using UnityEngine;
 
 delegate void VoidVoidEvent();
 delegate void VoidUlongGameObjectEvent(ulong n, GameObject obj);
-
+delegate void VoidGameObjectEvent(GameObject obj);
 
 class RemoveEventDriven
 {
@@ -42,6 +42,19 @@ class CallSettingObjectToBuildingColiderEventDriven
 			getObjectCodeEvent(objCode, obj);
 		}
 	}
+}
+
+class CallBuildingAttachMouseToWaitingBuildingEventDriven
+{
+	public static event VoidGameObjectEvent getObjectEvent;
+
+	public void RunGetObjectEvent(GameObject obj)
+    {
+		if (getObjectEvent != null)
+        {
+			getObjectEvent(obj);
+        }
+    }
 }
 
 

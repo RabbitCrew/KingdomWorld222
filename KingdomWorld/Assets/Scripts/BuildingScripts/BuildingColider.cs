@@ -59,6 +59,8 @@ public class BuildingColider : MonoBehaviour
     }
     private void OnDisable()
     {
+        //Debug.Log(isSettingComplete);
+
         if (!isSettingComplete)
         {
             for (int i = 0; i < colList.Count; i++)
@@ -87,9 +89,10 @@ public class BuildingColider : MonoBehaviour
         {
             for (int i = 0; i < colList.Count; i++)
             {
+                if (colList[i] == null) { colList.RemoveAt(i); i = 0; continue; }
+
                 if (colList[i].GetComponent<SpriteRenderer>().color != Color.green)
                 {
-                    //Debug.Log(colList[i].GetComponent<SpriteRenderer>().color);
                     return;
                 }
             }
@@ -107,10 +110,12 @@ public class BuildingColider : MonoBehaviour
             callBuildingButtonToBuildingColiderEventDriven.RunIsClickFalseEvent();
             isFollowMouse = false;
             isSettingComplete = true;
+            //Debug.Log("만트라 ! " + isSettingComplete);
         }
 	}
     public void clickRemoveObject()
     {
+        Debug.Log("만트라 !");
         if (isSettingComplete)
         {
             //Debug.Log("만트라 !");
