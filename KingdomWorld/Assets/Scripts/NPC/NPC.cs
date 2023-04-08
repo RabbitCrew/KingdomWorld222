@@ -7,10 +7,10 @@ public class NPC : NPCScrip
 {
     public bool work = false;//출근 체크 변수
     private bool reSetPathTrigger = false;//update마다 Astar가 작동하지 않게 해주는 bool값
-    public GameObject Testbuilding;
+    //public GameObject Testbuilding;
     private void Start()
     {
-        BuildingNum = Testbuilding;
+        //BuildingNum = Testbuilding;
         Grid = GameManager.instance.GetComponent<Setgrid>();
         Speed = 3f;
     }
@@ -56,6 +56,20 @@ public class NPC : NPCScrip
         else if (gameObject.CompareTag("FabricNPC"))
         {
             fabric();
+        }
+    }
+    //public bool SearchMyBuildingTrigger = false;
+    public void searchMyBuilding()
+    {
+        if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.WAREHOUSEKEEPER)
+        {
+            var SearchedBuilding = GameObject.FindWithTag("Storage");
+            Debug.Log(SearchedBuilding);
+            if (SearchedBuilding.GetComponent<BuildingSetting>().npcCount == 0 && GameManager.instance.isDaytime && SearchedBuilding != null)
+            {
+                BuildingNum = SearchedBuilding;
+                NPCBUildTrigger = true;
+            }
         }
     }
     void dayTimeResetPath()

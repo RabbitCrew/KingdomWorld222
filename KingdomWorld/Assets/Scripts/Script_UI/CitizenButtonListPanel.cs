@@ -48,6 +48,7 @@ public class CitizenButtonListPanel : MonoBehaviour
     public void SetCitizenInfoPanel(CitizenInfoPanel citizenInfo)
     {
         jobListObj.GetComponent<JobListPanelScrollView>().citizenInfoPanel = citizenInfo;
+
     }
 
 

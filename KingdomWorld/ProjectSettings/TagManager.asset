@@ -21,6 +21,7 @@ TagManager:
   - Street
   - StoneMineWorker
   - IronMineWorker
+  - Storage
   layers:
   - Default
   - TransparentFX
