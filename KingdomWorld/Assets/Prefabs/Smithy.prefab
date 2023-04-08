@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3775099098301083398}
   - component: {fileID: -5768849464931611439}
   - component: {fileID: 7644437399047548631}
+  - component: {fileID: 7846658614816487041}
   m_Layer: 0
   m_Name: Smithy
   m_TagString: Untagged
@@ -161,11 +162,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  citizen: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
+  npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
   BuildingNum: 11
   BuildingHp: 100
   BuildingTime: 0
   carpenternCheck: 0
-  citizenCount: 1
-  citizens: []
-  store: 50
+  npcCount: 0
+  npcs: []
+  storeMax: 50
+  store: 10
+--- !u!114 &7846658614816487041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374223845103722785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa7425931946fab4187255f2233b54f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itronstone: 10
+  castIron: 0

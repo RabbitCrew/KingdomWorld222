@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BuildingSetting : MonoBehaviour
 {
+    // . . . 건물 제한 ( 거래소 / 연구소는 제한 1 / 나머지는 임의로 지정 
+
     public GameObject npc;
     public int BuildingNum = 0;
     public int MaxBuildingHp = 100;
     public int BuildingHp = 100;
-    public float BuildingTime;
+    public float BuildingTime = 10f;
     public bool carpenternCheck = false;
 
     public int npcCount = 0;
@@ -19,15 +21,11 @@ public class BuildingSetting : MonoBehaviour
     public int store = 0;       // . . . 저장량
     public Dictionary<string, int> items = new Dictionary<string, int>();
 
-    private Resource resource;
 
     // Start is called before the first frame update
     void Start()
     {
-        string name;
-
-        name = "wood";
-        items.Add(name, 1);
+        ItemSetting();
     }
 
     // Update is called once per frame
@@ -58,7 +56,7 @@ public class BuildingSetting : MonoBehaviour
         if(collision.tag == "NPC")
         {
             //npc가 가지고 있는 자원
-            AddItem("wood", 1);
+            AddItem("Wood", 1);
         }
     }
 
@@ -119,13 +117,48 @@ public class BuildingSetting : MonoBehaviour
         {
             for (int i = 0; i <= amount; i++)
             {
-                store++;
                 if(store == storeMax)
                 {
                     break;
                 }
+                store++;
             }
         }
+    }
+
+    public void ItemSetting()
+    {
+        string name;
+
+        name = "wheat";
+        items.Add(name, 1);
+
+        name = "wood";
+        items.Add(name, 1);
+
+        name = "meat";
+        items.Add(name, 1);
+
+        name = "leather";
+        items.Add(name, 1);
+
+        name = "itronstone";
+        items.Add(name, 1);
+
+        name = "castIron";
+        items.Add(name, 1);
+
+        name = "milk";
+        items.Add(name, 1);
+
+        name = "cheese";
+        items.Add(name, 1);
+
+        name = "fleece";
+        items.Add(name, 1);
+
+        name = "cloth";
+        items.Add(name, 1);
     }
 
 }
