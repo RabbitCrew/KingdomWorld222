@@ -7,30 +7,8 @@ public class BuildingNPCSet : MonoBehaviour
 {
     public GameObject NPC;
 
-    public GameObject NPCInfo;
-
-    public TMP_Dropdown NpcJobSelect;
-
-    public TextMeshProUGUI NPCName;
-    public TextMeshProUGUI NPCJob;
-
-    public string NameSave;
-    public string JobSave;
-
-    private void OnMouseDown()
-    {
-        NPCInfo.SetActive(true);
-
-        NPCName.text = NameSave;
-        NPCJob.text = JobSave;
-    }
-
     public void SetBNPC(int BuildNum)
     {
-        NPCJob.text = NpcJobSelect.options[BuildNum].text;
-
-        JobSave = NpcJobSelect.options[BuildNum].text;
-
         switch (BuildNum)
         {
             case 0:
@@ -80,11 +58,5 @@ public class BuildingNPCSet : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    public void NPCNameSet(string Name)
-    {
-        NPCName.text = Name;
-        NameSave = Name;
     }
 }
