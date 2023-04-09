@@ -75,13 +75,6 @@ public class AnExchange : MonoBehaviour
         CellThingsLerp();
 
         NegoGageCtrl();
-    }
-
-    private void FixedUpdate()
-    {
-        BuildFound();
-
-        RIsOpen();
 
         if (AnExchangeB != null) // 거래소가 설치된 후 거래소를 찾았을 시
         {
@@ -92,6 +85,15 @@ public class AnExchange : MonoBehaviour
         {
             return;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        BuildFound();
+
+        RIsOpen();
+
+
     }
 
     void NegoGageCtrl()
@@ -426,7 +428,7 @@ public class AnExchange : MonoBehaviour
     {
         if (GameManager.instance.dayNightRatio == 1f || GameManager.instance.dayNightRatio == 0f)
         {
-            RandomOpen = Random.Range(0, 8);// 7분의 1 확률 가챠!! 열릴수도 있고~ 아닐수도 있고~
+            RandomOpen = Random.Range(0, 1);// 7분의 1 확률 가챠!! 열릴수도 있고~ 아닐수도 있고~
         }
     }
 
@@ -436,12 +438,17 @@ public class AnExchange : MonoBehaviour
         {
             if (RandomOpen == 0)//랜덤으로 열리는 값이 들어오면
             {
+                //Debug.Log(Camera.main.WorldToScreenPoint(AnExchangeB.transform.position));
                 IsOpen = true; //문열기
 
                 IsOpenImage.gameObject.SetActive(true);//알림 이미지 키고
 
-                IsOpenImage.transform.position = new Vector3(AnExchangeB.transform.position.x + 1.5f, 
-                    AnExchangeB.transform.position.y, AnExchangeB.transform.position.z + 1.5f);// 거래소 위치로 이동
+                float x = GameManager.instance.uiSizeX / Camera.main.scaledPixelWidth;
+                float y = GameManager.instance.uiSizeY / Camera.main.scaledPixelHeight;
+                
+                Vector3 vec = Camera.main.WorldToScreenPoint(AnExchangeB.transform.position);
+                IsOpenImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(vec.x * x, vec.y * y, vec.z);
+
 
                 MySlider.value = 0;
                 CellerSlider.value = 0;

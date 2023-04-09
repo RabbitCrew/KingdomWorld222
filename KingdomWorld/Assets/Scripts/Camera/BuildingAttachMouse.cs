@@ -17,7 +17,7 @@ public class BuildingAttachMouse : MonoBehaviour
 
     public void Awake()
     {
-        //�̺�Ʈ �帮��
+        //이벤트 드리븐
         CallBuildingAttachMouseToWaitingBuildingEventDriven.getObjectEvent += CreateBuilding;
         CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent += DetachWatingClone;
         RemoveEventDriven.isRemoveEvent += RemoveEvent;
