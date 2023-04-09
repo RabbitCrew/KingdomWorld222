@@ -63,15 +63,17 @@ public class SpawnCitizen : MonoBehaviour
 
                 CitizenList.Add(CSpawn); //시민 생성 후 리스트에 넣음.
 
+                CSpawn.SendMessage("SetPAni", Count);
+
                 GameManager.instance.RestHuman.Add(CSpawn);
             }
         }
     }
 
+    int Count = 0;
+
     int RandomSprite() //일반 시민 스프라이트 랜덤 지정
     {
-        int Count = 0;
-
         Count = Random.Range(0, CtSpriteList.Length - 1);
 
         return Count;

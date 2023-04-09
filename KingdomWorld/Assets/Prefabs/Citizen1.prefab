@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -658061582517763237}
   m_Layer: 0
   m_Name: Citizen1
-  m_TagString: NPC
+  m_TagString: StorageNPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Grid: {fileID: 0}
-  NPCBUildTrigger: 0
+  NPCBUildTrigger: 1
   StartPos: {fileID: 0}
   EndPos: {fileID: 0}
   work: 0
@@ -181,7 +181,7 @@ Animator:
   m_GameObject: {fileID: 2459160076541427711}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d00952f0aa82be645857016fd0984422, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7819167d9be6da14bb446feec3c8e8e2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c54b9572ab45d94db08ab621b386ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 5123814152574304622}
   NPC: {fileID: 2459160076541427711}
 --- !u!1 &5670400018435681349
 GameObject:
@@ -221,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6980230087296022211
 Transform:
   m_ObjectHideFlags: 0

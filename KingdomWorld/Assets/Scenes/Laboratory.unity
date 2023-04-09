@@ -5978,10 +5978,12 @@ MonoBehaviour:
   SpawnPoint: {fileID: 384141666}
   CitizenList: []
   CtSpriteList:
-  - {fileID: -444469783, guid: ffdb731fb93558849a325e75a47942da, type: 3}
-  - {fileID: 249833567, guid: ffdb731fb93558849a325e75a47942da, type: 3}
-  - {fileID: -1104551943, guid: ffdb731fb93558849a325e75a47942da, type: 3}
-  - {fileID: -541674754, guid: ffdb731fb93558849a325e75a47942da, type: 3}
+  - {fileID: -1370853688, guid: eaceb68b211747146b357b17a92fdf3b, type: 3}
+  - {fileID: 336152876, guid: add9c2c951a279841869e64ea270052b, type: 3}
+  - {fileID: 154145681, guid: f41efede13a6a7042b79a2aefe7e7c0c, type: 3}
+  - {fileID: 1787339983, guid: 484e328ca28e0f046af06468751b8ce1, type: 3}
+  - {fileID: 910871540, guid: 5463b6b42d1f9724faa10ea903f5c064, type: 3}
+  - {fileID: 1361328661, guid: be97282732168784a91c5f85b6714d55, type: 3}
   SpawnTime: 10
   CitizenNum: 3
   HouseNum: 0
@@ -27456,6 +27458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c54b9572ab45d94db08ab621b386ff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   NPC: {fileID: 0}
 --- !u!1 &1666936937
 GameObject:
