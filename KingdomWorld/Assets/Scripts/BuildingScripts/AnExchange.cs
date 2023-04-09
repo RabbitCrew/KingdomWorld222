@@ -16,7 +16,7 @@ public class AnExchange : MonoBehaviour
     public GameObject NegoBtns;
     public GameObject NegoSder;
     public GameObject SMassage;
-    public GameObject IsOpenImage;
+    public GameObject IsOpenImageObj;
     public GameObject ChatViewer;
     public GameObject TChatViewer;
     public GameObject TNegoSder;
@@ -39,6 +39,7 @@ public class AnExchange : MonoBehaviour
     bool IsApear = false;
     bool IsTApear = false;
     bool isNego = false;
+    bool isClickOpenMark = false;
 
     Vector3 CellBtnPosition;
     Vector3 ExitBtnPosition;
@@ -52,18 +53,23 @@ public class AnExchange : MonoBehaviour
     public TMP_InputField CellRNum;
 
     public List<Sprite> ResourceSprite = new List<Sprite>();
+    public Sprite[] isOpenSprite;
 
     public Image RSpriteToCell;
     public Image RSpriteToBuy;
+    public Image isOpenImage;
 
+    
     public Slider MySlider;
     public Slider CellerSlider;
 
     public Button NegoBtn;
 
+
+
     private void Awake()
     {
-        IsOpenImage.SetActive(false);//문열었는지 표시해주는 이미지. 시작할때 꺼줌
+        IsOpenImageObj.SetActive(false);//문열었는지 표시해주는 이미지. 시작할때 꺼줌
 
         PositionSet();
     }
@@ -85,6 +91,12 @@ public class AnExchange : MonoBehaviour
         {
             return;
         }
+
+        if (isClickOpenMark)
+		{
+            MoveTOAnExchange();
+        }
+
     }
 
     private void FixedUpdate()
@@ -438,17 +450,32 @@ public class AnExchange : MonoBehaviour
         {
             if (RandomOpen == 0)//랜덤으로 열리는 값이 들어오면
             {
-                //Debug.Log(Camera.main.WorldToScreenPoint(AnExchangeB.transform.position));
                 IsOpen = true; //문열기
 
-                IsOpenImage.gameObject.SetActive(true);//알림 이미지 키고
+                IsOpenImageObj.gameObject.SetActive(true);//알림 이미지 키고
 
                 float x = GameManager.instance.uiSizeX / Camera.main.scaledPixelWidth;
                 float y = GameManager.instance.uiSizeY / Camera.main.scaledPixelHeight;
-                
-                Vector3 vec = Camera.main.WorldToScreenPoint(AnExchangeB.transform.position);
-                IsOpenImage.GetComponent<RectTransform>().anchoredPosition = new Vector3(vec.x * x, vec.y * y, vec.z);
 
+                Vector3 vec = Camera.main.WorldToScreenPoint(AnExchangeB.transform.position + new Vector3(1.3f,0f,1.4f));
+
+                float vecX = 0f;
+                float vecY = 0f;
+
+                bool isX = false;
+                bool isY = false;
+
+                if (vec.x * x < 330f) { vecX = 330f; isX = false; }
+                else if (vec.x * x > 1610f) { vecX = 1610f; isX = false; }
+                else { vecX = vec.x * x; isX = true; }
+
+                if (vec.y * y < 180f) { vecY = 180f; isY = false; }
+                else if (vec.y * y > 900f) { vecY = 900f; isY = false; }
+                else { vecY = vec.y * y; isY = true; }
+
+                if (isX && isY) { isOpenImage.sprite = isOpenSprite[0]; }
+                else { isOpenImage.sprite = isOpenSprite[1]; }
+                IsOpenImageObj.GetComponent<RectTransform>().anchoredPosition = new Vector3(vecX, vecY, vec.z);
 
                 MySlider.value = 0;
                 CellerSlider.value = 0;
@@ -457,14 +484,33 @@ public class AnExchange : MonoBehaviour
             {
                 IsOpen = false;
 
-                IsOpenImage.gameObject.SetActive(false);//알림 이미지 끔
+                IsOpenImageObj.gameObject.SetActive(false);//알림 이미지 끔
             }
         }
         else//밤이면 무조건 닫기
         {
             IsOpen = false;
 
-            IsOpenImage.gameObject.SetActive(false);
+            IsOpenImageObj.gameObject.SetActive(false);
+        }
+    }
+
+    public void ClickOpenMark()
+	{
+        isClickOpenMark = true;
+	}
+
+    private void MoveTOAnExchange()
+    {
+        if (Vector3.SqrMagnitude(Camera.main.transform.position - (AnExchangeB.transform.position + new Vector3(0f, 40f, 0f))) > 3f)
+        {
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, AnExchangeB.transform.position + new Vector3(0f,40f,0f), Time.deltaTime * 5f);
+        }
+        else
+		{
+            Camera.main.transform.position = AnExchangeB.transform.position + new Vector3(0f, 40f, 0f);
+            isClickOpenMark = false;
+
         }
     }
 
@@ -477,7 +523,7 @@ public class AnExchange : MonoBehaviour
         BuyRNum.text = ResourceCount.ToString();
     }
 
-    public void GetQuantityBuy(string value)//살 물건 갯수 받아서 환률 적용해서 파ㅓㄹ 물건 갯수 계산하고 표기
+    public void GetQuantityBuy(string value)//살 물건 갯수 받아서 환률 적용해서 팔 물건 갯수 계산하고 표기
     {
         ResourceCount_Buy = int.Parse(value);
 
