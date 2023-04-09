@@ -40,11 +40,15 @@ public class BuildingNPCSet : MonoBehaviour
         {
             case 0:
                 NPC.gameObject.tag = "StorageNPC";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;    
+                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", 5);
                 break;
             case 1:
                 NPC.gameObject.tag = "CarpenterNPC";
                 NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", 1);
                 break;
             case 2:
                 NPC.gameObject.tag = "CheeseNPC";
@@ -57,6 +61,8 @@ public class BuildingNPCSet : MonoBehaviour
             case 4:
                 NPC.gameObject.tag = "FarmNPC";
                 NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", 2);
                 break;
             case 5:
                 NPC.gameObject.tag = "HamNPC";
@@ -65,10 +71,14 @@ public class BuildingNPCSet : MonoBehaviour
             case 6:
                 NPC.gameObject.tag = "NPC";
                 NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", -1);
                 break;
             case 7:
                 NPC.gameObject.tag = "Hunter";
                 NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", 3);
                 break;
             case 8:
                 NPC.gameObject.tag = "MineWorker";
@@ -77,6 +87,8 @@ public class BuildingNPCSet : MonoBehaviour
             case 9:
                 NPC.gameObject.tag = "WoodCutter";
                 NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", 10);
                 break;
             case 10:
                 NPC.gameObject.tag = "Smith";
