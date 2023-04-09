@@ -63,7 +63,7 @@ public class AnExchange : MonoBehaviour
 
     private void Awake()
     {
-        IsOpenImage.SetActive(false);//문열었는지 표시해주는 이미지. 시작할때 꺼줌
+       // IsOpenImage.SetActive(false);//문열었는지 표시해주는 이미지. 시작할때 꺼줌
 
         PositionSet();
     }
@@ -98,8 +98,8 @@ public class AnExchange : MonoBehaviour
     {
         if (isNego == true)//네고를 진행했을 때
         {
-            MySlider.value = MySlider.value + (float)IsNegoNum / 10f;//성공하면 그대로 두고 실패 시 게이지가 올라감
-            CellerSlider.value = CellerSlider.value + (float)IsNegoNum / 10f;//동문이하
+            MySlider.value = MySlider.value + 0.1f;//성공하면 그대로 두고 실패 시 게이지가 올라감
+            CellerSlider.value = CellerSlider.value + 0.1f;//동문이하
 
             if (MySlider.value >= 1)//게이지가 꽉차면 네고 못하게 하고
             {
@@ -257,6 +257,9 @@ public class AnExchange : MonoBehaviour
 
     public void ExitBtnOn()// 나가기 버튼으로 유아이 전부 꺼줌
     {
+        ChatViewer.SendMessage("ListReset");
+        //TChatViewer.SendMessage("ListReset");
+
         IsApear = false;
 
         isLerp = false;
@@ -264,9 +267,6 @@ public class AnExchange : MonoBehaviour
         RandomOpen = 5;
 
         AnExchangeUI.SetActive(false);
-
-        ChatViewer.SendMessage("ListReset");
-        TChatViewer.SendMessage("ListReset");
     }
 
     public void CellBClicked()// 거래 버튼 누를 시 해당되는 유아이를 나오게 하기 위해 bool형으로 체크해줌 //나와 있으면 들어가고 들어가 있으면 나오게.
@@ -393,6 +393,9 @@ public class AnExchange : MonoBehaviour
 
                             isLerp = true; // 선형보간 (버튼)
 
+                            MySlider.value = 0;
+                            CellerSlider.value = 0;
+
                             RandomExchangeRate();
                         }
                         else
@@ -442,9 +445,6 @@ public class AnExchange : MonoBehaviour
 
                 IsOpenImage.transform.position = new Vector3(AnExchangeB.transform.position.x + 1.5f, 
                     AnExchangeB.transform.position.y, AnExchangeB.transform.position.z + 1.5f);// 거래소 위치로 이동
-
-                MySlider.value = 0;
-                CellerSlider.value = 0;
             }
             else//0이 아니면 무조건 닫기
             {
