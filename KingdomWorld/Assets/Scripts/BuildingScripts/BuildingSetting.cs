@@ -5,12 +5,15 @@ using UnityEngine;
 public class BuildingSetting : MonoBehaviour
 {
     // . . . 건물 제한 ( 거래소 / 연구소는 제한 1 / 나머지는 임의로 지정 
+    public int buildingShield { get; set; }
+    public int maxBuildingShield { get; set; }
+    public int BuildingHp { get; set; }
+    public int MaxBuildingHp { get; set; }
 
     public GameObject npc;
     public int BuildingNum = 0;
-    public int MaxBuildingHp = 100;
-    public int BuildingHp = 100;
-    public float BuildingTime = 10f;
+    
+    public float BuildingTime { get; set; }
     public bool carpenternCheck = false;
 
     public int npcCount = 0;
@@ -23,6 +26,14 @@ public class BuildingSetting : MonoBehaviour
 
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        BuildingTime = 10f;
+        MaxBuildingHp = 100;
+        BuildingHp = 100;
+        buildingShield = 0;
+        maxBuildingShield = 100;
+    }
     void Start()
     {
         ItemSetting();

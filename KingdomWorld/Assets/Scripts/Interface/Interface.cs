@@ -6,3 +6,9 @@ interface IVoidClickObject
 {
 	public void ClickObject();
 }
+
+interface IBuildingProperty
+{
+	public string buildingName { get; set; }
+
+}

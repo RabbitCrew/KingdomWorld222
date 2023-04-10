@@ -13,16 +13,43 @@ public class MouseRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsPointerOverUIObject())
+		{
+            Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
+            hits = Physics.RaycastAll(ray, distance);
+
+            for (int i = 0; i < hits.Length; i++)
+			{
+                if (hits[i].transform.GetComponent<WaitingBuilding>() != null)
+				{
+                    uiManager.SetIsHpAndShieldBarUIObj(
+                        true, (int)(hits[i].transform.GetComponent<WaitingBuilding>().time * 100), hits[i].transform.GetComponent<WaitingBuilding>().shield,
+                        (int)(hits[i].transform.GetComponent<WaitingBuilding>().maxTime * 100), hits[i].transform.GetComponent<WaitingBuilding>().maxShield);
+
+                    break;
+                }
+                else if (hits[i].transform.GetComponent<BuildingSetting>() != null)
+				{
+                    uiManager.SetIsHpAndShieldBarUIObj(
+                        true, hits[i].transform.GetComponent<BuildingSetting>().BuildingHp, hits[i].transform.GetComponent<BuildingSetting>().buildingShield,
+                        hits[i].transform.GetComponent<BuildingSetting>().MaxBuildingHp, hits[i].transform.GetComponent<BuildingSetting>().maxBuildingShield);
+                    break;
+                }
+                else
+				{
+                    uiManager.SetIsHpAndShieldBarUIObj(false, 1, 1, 1, 1);
+				}
+			}
+        }
+
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
         {
-            //Debug.Log(1);
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
             hits = Physics.RaycastAll(ray, distance);
             for (int i = 0; i < hits.Length; i++)
             {
                 if (hits[i].transform.GetComponent<BuildingColider>() != null)
                 {
-                    //Debug.Log(hits[i].transform.name);
                     hits[i].transform.GetComponent<BuildingColider>().ClickObject();
                 }
             }
@@ -48,13 +75,13 @@ public class MouseRay : MonoBehaviour
 
                 if (hits[i].transform.GetComponent<BuildingColider>() != null)
                 {
-                    //Debug.Log(hits[i].transform.name);
                     hits[i].transform.GetComponent<BuildingColider>().clickRemoveObject();
                 }
             }
         }
     }
 
+    // 마우스 포인터가 UI위에 있으면 true값을 아니면 false를 반환한다.
     private bool IsPointerOverUIObject()
     {
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);

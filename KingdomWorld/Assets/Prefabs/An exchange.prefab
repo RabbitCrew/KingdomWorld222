@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &922143601154697168
 SpriteRenderer:
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: 2c860af782350644b95675d8a42534f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56934e00f88bd9f4980feae33dd52477, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,7 +119,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.8, y: 1.8, z: 0.20000005}
+  m_Size: {x: 3.8, y: 3.8, z: 0.20000005}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-1032215776031185551
 Rigidbody:

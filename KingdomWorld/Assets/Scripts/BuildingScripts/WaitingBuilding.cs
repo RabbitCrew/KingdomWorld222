@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class WaitingBuilding : MonoBehaviour
 {
-    public int makeTime { get; set; }
+    //public int makeTime { get; set; }
     public GameObject building { get; private set; }
-
+    public float time { get; set; }
+    public float maxTime { get; set; }
+    public int shield { get; set; }
+    public int maxShield { get; set; }
     private CallBuildingAttachMouseToWaitingBuildingEventDriven callBuildingAttachMouseToWaitingBuildingEventDriven = new CallBuildingAttachMouseToWaitingBuildingEventDriven();
     private Material material;
-    private float time = 0f;
-    private float fade = 0f;
-    void Start()
+    private float fade;
+
+	private void Awake()
+	{
+        time = 0f;
+        fade = 0f;
+        shield = 0;
+    }
+	void Start()
     {
-        makeTime = Random.Range(1, 10);
+
+        //makeTime = Random.Range(1, 10);
         material = GetComponent<SpriteRenderer>().material;
         material.SetFloat("_Fade", fade + 0.2f);
 
@@ -23,6 +33,15 @@ public class WaitingBuilding : MonoBehaviour
     {
         building = Instantiate(obj);
         building.transform.parent = this.transform.parent;
+
+        if (building.GetComponent<BuildingSetting>() != null)
+        {
+            maxTime = building.GetComponent<BuildingSetting>().BuildingTime;
+        }
+        else
+		{
+            maxTime = 10f;
+		}
         building.SetActive(false);
     }
 
@@ -31,12 +50,12 @@ public class WaitingBuilding : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        fade = Mathf.InverseLerp(0, makeTime, time);
+        fade = Mathf.InverseLerp(0, maxTime, time);
         fade *= 0.6f;
 
         //Debug.Log(fade);
 
-        if (time >= makeTime)
+        if (time >= maxTime)
         {
             building.SetActive(true);
             building.GetComponent<BuildingColider>().isSettingComplete = true;
