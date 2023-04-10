@@ -24,7 +24,7 @@ public class SettingObjectInfo : MonoBehaviour
         // 오브젝트의 가로 세로 사이즈를 땅 한 칸 사이즈(16픽셀)를 기준으로 정해둠.
         objSize.Add(new ObjectInfo(1, 2, (int)ObjectTypeNum.TREE, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
         objSize.Add(new ObjectInfo(3, 3, (int)ObjectTypeNum.MINE, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
-        objSize.Add(new ObjectInfo(3, 2, (int)ObjectTypeNum.ANEXCHANGE, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
+        objSize.Add(new ObjectInfo(4, 4, (int)ObjectTypeNum.ANEXCHANGE, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
         objSize.Add(new ObjectInfo(3, 2, (int)ObjectTypeNum.CARPENTERHOUSE, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
         objSize.Add(new ObjectInfo(3, 3, (int)ObjectTypeNum.CHEESEHOUSE, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));
         objSize.Add(new ObjectInfo(3, 3, (int)ObjectTypeNum.FABRICHOUSE, new int[3] { (int)TileNum.BUMPYTILE, (int)TileNum.FLATTILE, (int)TileNum.GLASS }));

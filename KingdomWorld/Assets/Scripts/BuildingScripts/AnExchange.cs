@@ -457,7 +457,7 @@ public class AnExchange : MonoBehaviour
                 float x = GameManager.instance.uiSizeX / Camera.main.scaledPixelWidth;
                 float y = GameManager.instance.uiSizeY / Camera.main.scaledPixelHeight;
 
-                Vector3 vec = Camera.main.WorldToScreenPoint(AnExchangeB.transform.position + new Vector3(1.3f,0f,1.4f));
+                Vector3 vec = Camera.main.WorldToScreenPoint(AnExchangeB.transform.position + new Vector3(1.5f,0f,1.6f));
 
                 float vecX = 0f;
                 float vecY = 0f;

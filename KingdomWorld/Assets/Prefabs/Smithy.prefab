@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: ea7ec4dad7667bd4abbd63cd7c150ff8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7fbedb5e796ada343826303b70fd6c35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,8 +164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
   BuildingNum: 11
-  BuildingHp: 100
-  BuildingTime: 0
   carpenternCheck: 0
   npcCount: 0
   npcs: []
