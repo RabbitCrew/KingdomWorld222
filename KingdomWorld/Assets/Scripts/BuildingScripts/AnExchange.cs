@@ -24,7 +24,7 @@ public class AnExchange : MonoBehaviour
     public GameObject TCellBtns;
 
     private float distance = 50f;
-    float ExchangeRate = 100f;
+    public float ExchangeRate = 100f;
 
     public int ResourceCount;
     public int ResourceCount_Buy;
@@ -76,13 +76,7 @@ public class AnExchange : MonoBehaviour
 
     private void Start()
     {
-        AnExchangeUI.SetActive(true);
-
         PositionSet(); //포시션 값 받음
-        isLerp = true;
-
-        //IsApear = false;
-        //IsTApear = false;
     }
 
     private void Update()
@@ -340,8 +334,6 @@ public class AnExchange : MonoBehaviour
 
     void CellThingsLerp()
     {
-        if (IsPosSet == false)
-        {
             if (IsApear == true)//거래 관련 UI 선형보간으로 나오게
             {
                 CellThings.GetComponent<RectTransform>().anchoredPosition3D =
@@ -387,34 +379,33 @@ public class AnExchange : MonoBehaviour
                      ChatViewerPosition, Time.deltaTime * 4f);
             }
 
-            if (IsTApear == true)
-            {
-                TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
-               Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
-               new Vector3(0, 350, 0), Time.deltaTime * 4f);
+        if (IsTApear == true)
+        {
+            TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+           Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+           new Vector3(0, 350, 0), Time.deltaTime * 4f);
 
-                TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
-                       Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
-                       new Vector3(0, 570, 0), Time.deltaTime * 4f);
+            TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
+                   Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
+                   new Vector3(0, 570, 0), Time.deltaTime * 4f);
 
-                TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
-                      Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
-                      new Vector3(0, 0, 0), Time.deltaTime * 4f);
-            }
-            else
-            {
-                TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
-              Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
-              new Vector3(0, 1000, 0), Time.deltaTime * 4f);
+            TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
+                  Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
+                  new Vector3(0, 0, 0), Time.deltaTime * 4f);
+        }
+        else
+        {
+            TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+          Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+          new Vector3(0, 1000, 0), Time.deltaTime * 4f);
 
-                TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
-                       Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
-                       new Vector3(0, 690, 0), Time.deltaTime * 4f);
+            TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
+                   Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
+                   new Vector3(0, 690, 0), Time.deltaTime * 4f);
 
-                TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
-                      Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
-                      NegoBtnPosition, Time.deltaTime * 4f);
-            }
+            TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
+                  Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
+                  NegoBtnPosition, Time.deltaTime * 4f);
         }
     }
 
@@ -718,6 +709,8 @@ public class AnExchange : MonoBehaviour
                 default:
                     break;
             }
+
+            SMassage.SendMessage("MessageQ", "구매해주셔서 감사합니다!");
         }
         else
         {
@@ -743,9 +736,7 @@ public class AnExchange : MonoBehaviour
 
     float RandomExchangeRate()//랜덤환률
     {
-        ExchangeRate = 100;
-
-        Random.Range(0, 201);
+        ExchangeRate = Random.Range(0, 201);
 
         return ExchangeRate;
     }
