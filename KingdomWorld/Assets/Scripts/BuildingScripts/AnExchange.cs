@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class AnExchange : MonoBehaviour
 {
     public GameObject AnExchangeUI;
+    public GameObject UIImage;
     public Transform AnExchangeBP;
     public GameObject AnExchangeB;
     public GameObject CellBtns;
@@ -34,7 +35,7 @@ public class AnExchange : MonoBehaviour
     int BValue;
     int IsNegoNum;
 
-    bool IsOpen;
+    public bool IsOpen;
     bool isLerp = false;
     bool IsApear = false;
     bool IsTApear = false;
@@ -46,6 +47,7 @@ public class AnExchange : MonoBehaviour
     Vector3 NegoBtnPosition;
     Vector3 NegoSderPositon;
     Vector3 ChatViewerPosition;
+    Vector3 AnExchangeUIPos;
 
     public TextMeshProUGUI SelectedRToCell;
     public TextMeshProUGUI SelectedRToBuy;
@@ -58,20 +60,29 @@ public class AnExchange : MonoBehaviour
     public Image RSpriteToCell;
     public Image RSpriteToBuy;
     public Image isOpenImage;
-
     
     public Slider MySlider;
     public Slider CellerSlider;
 
     public Button NegoBtn;
 
-
-
     private void Awake()
     {
         IsOpenImageObj.SetActive(false);//문열었는지 표시해주는 이미지. 시작할때 꺼줌
+                                        // IsOpenImage.SetActive(false);//문열었는지 표시해주는 이미지. 시작할때 꺼줌
 
-        PositionSet();
+        AnExchangeUIPos = UIImage.GetComponent<RectTransform>().anchoredPosition3D;
+    }
+
+    private void Start()
+    {
+        AnExchangeUI.SetActive(true);
+
+        PositionSet(); //포시션 값 받음
+        isLerp = true;
+
+        //IsApear = false;
+        //IsTApear = false;
     }
 
     private void Update()
@@ -96,7 +107,6 @@ public class AnExchange : MonoBehaviour
 		{
             MoveTOAnExchange();
         }
-
     }
 
     private void FixedUpdate()
@@ -104,16 +114,14 @@ public class AnExchange : MonoBehaviour
         BuildFound();
 
         RIsOpen();
-
-
     }
 
     void NegoGageCtrl()
     {
         if (isNego == true)//네고를 진행했을 때
         {
-            MySlider.value = MySlider.value + (float)IsNegoNum / 10f;//성공하면 그대로 두고 실패 시 게이지가 올라감
-            CellerSlider.value = CellerSlider.value + (float)IsNegoNum / 10f;//동문이하
+            MySlider.value = MySlider.value + 0.1f;//성공하면 그대로 두고 실패 시 게이지가 올라감
+            CellerSlider.value = CellerSlider.value + 0.1f;//동문이하
 
             if (MySlider.value >= 1)//게이지가 꽉차면 네고 못하게 하고
             {
@@ -247,40 +255,61 @@ public class AnExchange : MonoBehaviour
 
     void BtnLerp()
     {
+        float LerpTime = 4f;
+        float DefaultLerpTime = 4f;
+
         if (isLerp == true)
         {
-            CellBtns.GetComponent<RectTransform>().anchoredPosition3D =
-            Vector3.Lerp(CellBtns.GetComponent<RectTransform>().anchoredPosition3D,
-            new Vector3(-520, 0, 0), Time.deltaTime * 4f);//선형보간으로 숨겨뒀던 UI를 목표위치까지 서서히 이동해서 나타나게 함
+            UIImage.GetComponent<RectTransform>().anchoredPosition3D =
+           Vector3.Lerp(UIImage.GetComponent<RectTransform>().anchoredPosition3D,
+           new Vector3(0, 0, 0), Time.deltaTime * DefaultLerpTime);//선형보간으로 숨겨뒀던 UI를 목표위치까지 서서히 이동해서 나타나게 함
 
-            ExitBOn.GetComponent<RectTransform>().anchoredPosition3D =
-                 Vector3.Lerp(ExitBOn.GetComponent<RectTransform>().anchoredPosition3D,
-                 new Vector3(520, 0, 0), Time.deltaTime * 4f);
+            if (AnExchangeUI.GetComponent<RectTransform>().anchoredPosition3D == new Vector3(0, 0, 0))
+            {
+                CellBtns.GetComponent<RectTransform>().anchoredPosition3D =
+                Vector3.Lerp(CellBtns.GetComponent<RectTransform>().anchoredPosition3D,
+                new Vector3(-520, 0, 0), Time.deltaTime * DefaultLerpTime);//선형보간으로 숨겨뒀던 UI를 목표위치까지 서서히 이동해서 나타나게 함
+
+                ExitBOn.GetComponent<RectTransform>().anchoredPosition3D =
+                     Vector3.Lerp(ExitBOn.GetComponent<RectTransform>().anchoredPosition3D,
+                     new Vector3(520, 0, 0), Time.deltaTime * DefaultLerpTime);
+            }
         }
         else
         {
             CellBtns.GetComponent<RectTransform>().anchoredPosition3D =
            Vector3.Lerp(CellBtns.GetComponent<RectTransform>().anchoredPosition3D,
-           CellBtnPosition, Time.deltaTime * 4f);//저장해뒀던 위치로 다시 복구
+           CellBtnPosition, Time.deltaTime * DefaultLerpTime);//저장해뒀던 위치로 다시 복구
 
             ExitBOn.GetComponent<RectTransform>().anchoredPosition3D =
                  Vector3.Lerp(ExitBOn.GetComponent<RectTransform>().anchoredPosition3D,
-                 ExitBtnPosition, Time.deltaTime * 4f);
+                 ExitBtnPosition, Time.deltaTime * DefaultLerpTime);
+
+            UIImage.GetComponent<RectTransform>().anchoredPosition3D =
+          Vector3.Lerp(UIImage.GetComponent<RectTransform>().anchoredPosition3D,
+         AnExchangeUIPos, Time.deltaTime * DefaultLerpTime);
+
+            LerpTime -= Time.deltaTime;
+
+            if (LerpTime <= 0f)
+            {
+                AnExchangeUI.SetActive(false);
+
+                LerpTime = DefaultLerpTime;
+            }
         }
     }
 
     public void ExitBtnOn()// 나가기 버튼으로 유아이 전부 꺼줌
     {
-        IsApear = false;
-
-        isLerp = false;
+        ChatViewer.SendMessage("ListReset");
 
         RandomOpen = 5;
 
-        AnExchangeUI.SetActive(false);
+        IsApear = false;
+        IsTApear = false;
 
-        ChatViewer.SendMessage("ListReset");
-        TChatViewer.SendMessage("ListReset");
+        isLerp = false;
     }
 
     public void CellBClicked()// 거래 버튼 누를 시 해당되는 유아이를 나오게 하기 위해 bool형으로 체크해줌 //나와 있으면 들어가고 들어가 있으면 나오게.
@@ -311,78 +340,81 @@ public class AnExchange : MonoBehaviour
 
     void CellThingsLerp()
     {
-        if (IsApear == true)//거래 관련 UI 선형보간으로 나오게
+        if (IsPosSet == false)
         {
-            CellThings.GetComponent<RectTransform>().anchoredPosition3D =
-           Vector3.Lerp(CellThings.GetComponent<RectTransform>().anchoredPosition3D,
-           new Vector3(-420, 0, 0), Time.deltaTime * 4f);
+            if (IsApear == true)//거래 관련 UI 선형보간으로 나오게
+            {
+                CellThings.GetComponent<RectTransform>().anchoredPosition3D =
+               Vector3.Lerp(CellThings.GetComponent<RectTransform>().anchoredPosition3D,
+               new Vector3(-420, 0, 0), Time.deltaTime * 4f);
 
-            BuyThings.GetComponent<RectTransform>().anchoredPosition3D =
-                   Vector3.Lerp(BuyThings.GetComponent<RectTransform>().anchoredPosition3D,
-                   new Vector3(420, 0, 0), Time.deltaTime * 4f);
+                BuyThings.GetComponent<RectTransform>().anchoredPosition3D =
+                       Vector3.Lerp(BuyThings.GetComponent<RectTransform>().anchoredPosition3D,
+                       new Vector3(420, 0, 0), Time.deltaTime * 4f);
 
-            NegoBtns.GetComponent<RectTransform>().anchoredPosition3D =
-                  Vector3.Lerp(NegoBtns.GetComponent<RectTransform>().anchoredPosition3D,
-                  new Vector3(0, -270, 0), Time.deltaTime * 4f);
+                NegoBtns.GetComponent<RectTransform>().anchoredPosition3D =
+                      Vector3.Lerp(NegoBtns.GetComponent<RectTransform>().anchoredPosition3D,
+                      new Vector3(0, -270, 0), Time.deltaTime * 4f);
 
-            NegoSder.GetComponent<RectTransform>().anchoredPosition3D =
-                 Vector3.Lerp(NegoSder.GetComponent<RectTransform>().anchoredPosition3D,
-                 new Vector3(0, 0, 0), Time.deltaTime * 4f);
+                NegoSder.GetComponent<RectTransform>().anchoredPosition3D =
+                     Vector3.Lerp(NegoSder.GetComponent<RectTransform>().anchoredPosition3D,
+                     new Vector3(0, 0, 0), Time.deltaTime * 4f);
 
-            ChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
-                 Vector3.Lerp(ChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
-                 new Vector3(0, 80, 0), Time.deltaTime * 4f);
-        }
-        else
-        {
-            CellThings.GetComponent<RectTransform>().anchoredPosition3D =
-            Vector3.Lerp(CellThings.GetComponent<RectTransform>().anchoredPosition3D,
-            CellBtnPosition, Time.deltaTime * 4f);
+                ChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+                     Vector3.Lerp(ChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+                     new Vector3(0, 80, 0), Time.deltaTime * 4f);
+            }
+            else
+            {
+                CellThings.GetComponent<RectTransform>().anchoredPosition3D =
+                Vector3.Lerp(CellThings.GetComponent<RectTransform>().anchoredPosition3D,
+                CellBtnPosition, Time.deltaTime * 4f);
 
-            BuyThings.GetComponent<RectTransform>().anchoredPosition3D =
-                   Vector3.Lerp(BuyThings.GetComponent<RectTransform>().anchoredPosition3D,
-                   ExitBtnPosition, Time.deltaTime * 4f);
+                BuyThings.GetComponent<RectTransform>().anchoredPosition3D =
+                       Vector3.Lerp(BuyThings.GetComponent<RectTransform>().anchoredPosition3D,
+                       ExitBtnPosition, Time.deltaTime * 4f);
 
-            NegoBtns.GetComponent<RectTransform>().anchoredPosition3D =
-                  Vector3.Lerp(NegoBtns.GetComponent<RectTransform>().anchoredPosition3D,
-                  NegoBtnPosition, Time.deltaTime * 4f);
+                NegoBtns.GetComponent<RectTransform>().anchoredPosition3D =
+                      Vector3.Lerp(NegoBtns.GetComponent<RectTransform>().anchoredPosition3D,
+                      NegoBtnPosition, Time.deltaTime * 4f);
 
-            NegoSder.GetComponent<RectTransform>().anchoredPosition3D =
-                 Vector3.Lerp(NegoSder.GetComponent<RectTransform>().anchoredPosition3D,
-                 NegoSderPositon, Time.deltaTime * 4f);
+                NegoSder.GetComponent<RectTransform>().anchoredPosition3D =
+                     Vector3.Lerp(NegoSder.GetComponent<RectTransform>().anchoredPosition3D,
+                     NegoSderPositon, Time.deltaTime * 4f);
 
-            ChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
-                 Vector3.Lerp(ChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
-                 ChatViewerPosition, Time.deltaTime * 4f);
-        }
+                ChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+                     Vector3.Lerp(ChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+                     ChatViewerPosition, Time.deltaTime * 4f);
+            }
 
-        if (IsTApear == true)
-        {
-            TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
-           Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
-           new Vector3(0, 350, 0), Time.deltaTime * 4f);
+            if (IsTApear == true)
+            {
+                TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+               Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+               new Vector3(0, 350, 0), Time.deltaTime * 4f);
 
-            TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
-                   Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
-                   new Vector3(0, 570, 0), Time.deltaTime * 4f);
+                TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
+                       Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
+                       new Vector3(0, 570, 0), Time.deltaTime * 4f);
 
-            TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
-                  Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
-                  new Vector3(0, 0, 0), Time.deltaTime * 4f);
-        }
-        else
-        {
-            TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
-          Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
-          new Vector3(0,1000,0), Time.deltaTime * 4f);
+                TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
+                      Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
+                      new Vector3(0, 0, 0), Time.deltaTime * 4f);
+            }
+            else
+            {
+                TChatViewer.GetComponent<RectTransform>().anchoredPosition3D =
+              Vector3.Lerp(TChatViewer.GetComponent<RectTransform>().anchoredPosition3D,
+              new Vector3(0, 1000, 0), Time.deltaTime * 4f);
 
-            TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
-                   Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
-                   new Vector3(0, 690, 0), Time.deltaTime * 4f);
+                TNegoSder.GetComponent<RectTransform>().anchoredPosition3D =
+                       Vector3.Lerp(TNegoSder.GetComponent<RectTransform>().anchoredPosition3D,
+                       new Vector3(0, 690, 0), Time.deltaTime * 4f);
 
-            TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
-                  Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
-                  NegoBtnPosition, Time.deltaTime * 4f);
+                TCellBtns.GetComponent<RectTransform>().anchoredPosition3D =
+                      Vector3.Lerp(TCellBtns.GetComponent<RectTransform>().anchoredPosition3D,
+                      NegoBtnPosition, Time.deltaTime * 4f);
+            }
         }
     }
 
@@ -406,6 +438,9 @@ public class AnExchange : MonoBehaviour
                             AnExchangeUI.SetActive(true); // UI켜주고
 
                             isLerp = true; // 선형보간 (버튼)
+
+                            MySlider.value = 0;
+                            CellerSlider.value = 0;
 
                             RandomExchangeRate();
                         }
@@ -510,7 +545,6 @@ public class AnExchange : MonoBehaviour
 		{
             Camera.main.transform.position = AnExchangeB.transform.position + new Vector3(0f, 40f, 0f);
             isClickOpenMark = false;
-
         }
     }
 

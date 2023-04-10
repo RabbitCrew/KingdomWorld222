@@ -127,7 +127,7 @@ public class SVScrollBttm : MonoBehaviour
         }
     }
 
-    void ListReset()
+    public void ListReset()
     {
         NegoTexts.Clear();
     }
