@@ -12,6 +12,9 @@ public class BuildingNPCSet : MonoBehaviour
     private void Awake()
     {
         NPCPos = NPC.transform.position;
+
+        animator.SetInteger("IsIdle", 80);
+        animator.SetInteger("IsWearingClothes", 80);
     }
 
     private void Start()

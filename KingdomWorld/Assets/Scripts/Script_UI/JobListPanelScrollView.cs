@@ -13,8 +13,8 @@ public class JobListPanelScrollView : MonoBehaviour
     public CitizenInfoPanel citizenInfoPanel { get; set; }
 
     private JobListButn[] jobListButnArr;
-    private string[] jobArr = new string[7]
-    { "Citizen", "Woodcutter", "Carpenter", "Hunter", "Farmer", "Pastoralist", "Warehouse Keeper" };
+    private string[] jobArr = new string[13]
+    { "Citizen", "Woodcutter", "Carpenter", "Hunter", "Farmer", "Pastoralist", "Warehouse Keeper", "Iron Miner", "Stone Miner", "Ham Npc", "Cheese Npc", "Cloth Npc", "Smith" };
 
     private Vector3 startVec;
 

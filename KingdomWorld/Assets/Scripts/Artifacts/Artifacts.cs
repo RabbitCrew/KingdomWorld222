@@ -7,6 +7,8 @@ using TMPro;
 public class Artifacts : NPCParameter
 {
     //유물 구매 스크립트
+    public NPC npcState;
+
     public AnExchange AnExchangeUI;
 
     [SerializeField] int ArtifactNums = 30;
@@ -57,7 +59,7 @@ public class Artifacts : NPCParameter
     {
         AtNum = ANum;
 
-        PriceText.text = ArtifactPrice[TodayArtifact[ANum]].ToString();
+        PriceText.text = (ArtifactPrice[TodayArtifact[ANum]] * AnExchangeUI.ExchangeRate).ToString();
         InfoText.text = ArtifactInfo[TodayArtifact[ANum]];
         NameText[ANum].text = ArtifactName[TodayArtifact[ANum]];
     }
@@ -129,7 +131,10 @@ public class Artifacts : NPCParameter
                         //시계
                         if (SetOnOffState[i] == true)
                         {
-                            Time.timeScale = 2 * HasArtifact[i];
+                            if (HasArtifact[i] <= 2)
+                                Time.timeScale = 2 * HasArtifact[i];
+                            else if (HasArtifact[i] > 2)
+                                Time.timeScale = 4;
                         }
                         else
                         {
@@ -137,6 +142,7 @@ public class Artifacts : NPCParameter
                         }
                         break;
                     case 1:
+
                         break;
                     case 2:
                         break;
@@ -181,7 +187,6 @@ public class Artifacts : NPCParameter
                     default:
                         break;
                 }
-
             }
         }
     }
