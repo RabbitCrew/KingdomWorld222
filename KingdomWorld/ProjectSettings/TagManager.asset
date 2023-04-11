@@ -22,6 +22,15 @@ TagManager:
   - StoneMineWorker
   - IronMineWorker
   - Storage
+  - WoodCutter_house
+  - Carpenter_house
+  - Hunter_house
+  - Wheat
+  - Farm_house
+  - Mine_house
+  - Ham_house
+  - Cheese_house
+  - Cloth_house
   layers:
   - Default
   - TransparentFX
