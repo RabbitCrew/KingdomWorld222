@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: -7175832374317345968}
   - component: {fileID: -1963380477289513433}
   - component: {fileID: -7000544258104759562}
+  - component: {fileID: 1963439050909237368}
   m_Layer: 0
   m_Name: Storage
-  m_TagString: Untagged
+  m_TagString: Storage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: a7b5b51bd8d39b9489216f7f671167da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 64a663a172d1e44418b8415a7c8eefa4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -161,6 +162,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df90b215165dc5b4e9b43f8672e0e9d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StorageNPC: {fileID: 0}
   ResourceN: 0
   ResourceStack: 50
+--- !u!114 &1963439050909237368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611218813536486430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 0}
+  BuildingNum: 0
+  carpenternCheck: 0
+  npcCount: 0
+  npcs: []
+  storeMax: 50
+  store: 0

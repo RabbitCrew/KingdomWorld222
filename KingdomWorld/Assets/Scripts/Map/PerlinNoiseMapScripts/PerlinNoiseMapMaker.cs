@@ -244,26 +244,32 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 if (color[x, y].grayscale < 0.2)
                 {
                     chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.OCEAN];
+                    chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
                 }
                 else if (color[x, y].grayscale < 0.375)
                 {
                     chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.RIVER];
+                    chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
                 }
                 else if (color[x, y].grayscale < 0.475)
                 {
                     chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.GLASS];
+                    chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
                 }
                 else if (color[x, y].grayscale < 0.6)
                 {
                     chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.BUMPYTILE];
+                    chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
                 }
                 else if (color[x, y].grayscale < 0.785)
                 {
                     chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.FLATTILE];
+                    chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
                 }
                 else
                 {
                     chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.STONE];
+                    chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
                 }
 
             }

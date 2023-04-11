@@ -12,7 +12,7 @@ public class SpawnCitizen : MonoBehaviour
     public List<GameObject> CitizenList = new List<GameObject>();
     public Sprite[] CtSpriteList;
 
-    public float SpawnTime = 10f;
+    public float SpawnTime = 30f;
 
     public int CitizenNum = 3;
 
@@ -53,27 +53,29 @@ public class SpawnCitizen : MonoBehaviour
             {
                 GameObject CSpawn = Instantiate(Citizen);
                 CSpawn.transform.parent = SpawnPoint.transform;
-
                 if (houseDic.ContainsKey(i))
                 {
                     CSpawn.transform.position = houseDic[i].transform.position;
+                    CSpawn.GetComponent<NPC>().HouseTr = houseDic[i].transform;
                 }
 
                 CSpawn.GetComponent<SpriteRenderer>().sprite = CtSpriteList[RandomSprite()];
 
                 CitizenList.Add(CSpawn); //시민 생성 후 리스트에 넣음.
 
+                CSpawn.SendMessage("SetPAni", Count);
+
                 GameManager.instance.RestHuman.Add(CSpawn);
             }
         }
     }
 
+    int Count = 0;
+
     int RandomSprite() //일반 시민 스프라이트 랜덤 지정
     {
-        int Count = 0;
-
         Count = Random.Range(0, CtSpriteList.Length - 1);
-
+        Debug.Log(Count);
         return Count;
     }
 }

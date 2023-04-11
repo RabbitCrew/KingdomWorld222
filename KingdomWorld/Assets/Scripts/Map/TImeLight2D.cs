@@ -9,7 +9,7 @@ public class TImeLight2D : MonoBehaviour
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Light2D light2D;
 
-    private float colorLerp = 0;    // 시간 파트 별로 진행도
+    public float colorLerp { get; private set; }    // 시간 파트 별로 진행도
     private Color colorDawn;    // 새벽 시간
     private Color colorMorning; // 아침 시간
     private Color colorEvening; // 저녁 시간
@@ -17,6 +17,7 @@ public class TImeLight2D : MonoBehaviour
 
     void Start()
     {
+        colorLerp = 0;
         colorDawn = new Color(53 / 255f, 77 / 255f, 157 / 255f);    //새벽 조명 색깔
         colorMorning = new Color(255 / 255f, 249 / 255f, 219 / 255f);   // 아침 조명 색깔
         colorEvening = new Color(221 / 255f, 149 / 255f, 66 / 255f);    // 저녁 조명 색깔

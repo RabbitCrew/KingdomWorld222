@@ -8,7 +8,7 @@ public class NPCParameter : MonoBehaviour
     private GameObject buildingNum;
     private Transform houseTr;
     private float speed;
-    
+    private float buildingSpeed;
     public int HP
     {
         get { return hp; }
@@ -31,5 +31,10 @@ public class NPCParameter : MonoBehaviour
     {
         get { return speed; }
         set { speed = value; }
+    }
+    public float BuildingSpeed
+    {
+        get { return buildingSpeed; }
+        set { buildingSpeed = value; }
     }
 }

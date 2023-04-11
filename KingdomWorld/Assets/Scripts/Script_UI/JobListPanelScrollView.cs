@@ -13,8 +13,8 @@ public class JobListPanelScrollView : MonoBehaviour
     public CitizenInfoPanel citizenInfoPanel { get; set; }
 
     private JobListButn[] jobListButnArr;
-    private string[] jobArr = new string[7]
-    { "Citizen", "Woodcutter", "Carpenter", "Hunter", "Farmer", "Pastoralist", "Warehouse Keeper" };
+    private string[] jobArr = new string[13]
+    { "Citizen", "Woodcutter", "Carpenter", "Hunter", "Farmer", "Pastoralist", "Warehouse Keeper", "Iron Miner", "Stone Miner", "Ham Npc", "Cheese Npc", "Cloth Npc", "Smith" };
 
     private Vector3 startVec;
 
@@ -27,7 +27,7 @@ public class JobListPanelScrollView : MonoBehaviour
         startVec = contentsTrans.anchoredPosition3D;
 
         jobListButnArr = new JobListButn[jobButtonPoolingArr.Length];
-        contentsTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, butnCount * 50f);
+        contentsTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, jobArr.Length * heightButn);
 
         visibleButnNum = 0;
 
@@ -47,7 +47,7 @@ public class JobListPanelScrollView : MonoBehaviour
             if (jobArr.Length > i) { jobListButnArr[i].SetText(jobArr[i]); }
             else { jobListButnArr[i].SetText(null); }
 
-            jobButtonPoolingArr[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(0f, (butnCount * heightButn - 525f) - (i * heightButn), 0f);
+            jobButtonPoolingArr[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(0f, (jobArr.Length * heightButn - (25 + jobArr.Length * 25)) - (i * heightButn), 0f);
         }
     }
 
@@ -79,7 +79,7 @@ public class JobListPanelScrollView : MonoBehaviour
             {
                 jobButtonPoolingArr[i].GetComponent<RectTransform>().anchoredPosition3D += new Vector3(0f, heightButn * jobButtonPoolingArr.Length, 0f);
                 jobListButnArr[i].SetButn(jobListButnArr[i].butnNum - jobButtonPoolingArr.Length);
-               
+                Debug.Log(jobListButnArr[i].butnNum);
                 if (jobArr.Length > jobListButnArr[i].butnNum) { jobListButnArr[i].SetText(jobArr[jobListButnArr[i].butnNum]); }
                 else { jobListButnArr[i].SetText(null); }
             }
@@ -92,7 +92,10 @@ public class JobListPanelScrollView : MonoBehaviour
         {
             if (jobListButnArr.Length > index && index > -1)
             {
+                Debug.Log(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1));
                 citizenInfoPanel.WareClothes(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1), jobListButnArr[index].butnNum);
+                citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
+                citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
             }
         }
     }

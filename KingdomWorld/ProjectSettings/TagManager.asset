@@ -17,6 +17,25 @@ TagManager:
   - Smith
   - House
   - AnExchange
+  - Walkable
+  - Street
+  - StoneMineWorker
+  - IronMineWorker
+  - Storage
+  - WoodCutter_house
+  - Carpenter_house
+  - Hunter_house
+  - Wheat
+  - Farm_house
+  - Mine_house
+  - Ham_house
+  - Cheese_house
+  - Cloth_house
+  - Smith_house
+  - tree
+  - NotWalkable
+  - Animal
+  - Pastoralist
   layers:
   - Default
   - TransparentFX
@@ -24,7 +43,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Building
   - 
   - 
   - 

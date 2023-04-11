@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: -2538979524183147578}
   - component: {fileID: -1032215776031185551}
   - component: {fileID: 7723240284650998090}
+  - component: {fileID: -2453783799290183586}
+  - component: {fileID: 5123814152574304622}
+  - component: {fileID: -658061582517763237}
   m_Layer: 0
   m_Name: Citizen1
   m_TagString: NPC
@@ -78,12 +81,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2500
-  m_Sprite: {fileID: -444469783, guid: ffdb731fb93558849a325e75a47942da, type: 3}
+  m_Sprite: {fileID: -1370853688, guid: eaceb68b211747146b357b17a92fdf3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3, y: 2}
+  m_Size: {x: 0.625, y: 1.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -150,6 +153,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clothesSpr: {fileID: 6324827402360720314}
+  jobNumEnum: 0
+--- !u!114 &-2453783799290183586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459160076541427711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0b77cfe292588d4d92b6be5fd1e80b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Grid: {fileID: 0}
+  NPCBUildTrigger: 1
+  StartPos: {fileID: 0}
+  EndPos: {fileID: 0}
+  work: 0
+  Sleep: 0
+--- !u!95 &5123814152574304622
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459160076541427711}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7819167d9be6da14bb446feec3c8e8e2, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-658061582517763237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459160076541427711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c54b9572ab45d94db08ab621b386ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 5123814152574304622}
+  NPC: {fileID: 2459160076541427711}
 --- !u!1 &5670400018435681349
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +285,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

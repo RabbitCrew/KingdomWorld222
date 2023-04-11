@@ -6,14 +6,19 @@ public class GameManager : Resource
     private float timeElapsed;
     public float dayNightRatio { get; private set; }
     public bool isDaytime { get; private set; }//true 낮, false 밤
-
+    public float uiSizeX { get; private set; }
+    public float uiSizeY { get; private set; }
     public List<GameObject> RestHuman = new List<GameObject>();
 
     public static GameManager instance;
 
     private void Awake()
     {
+        uiSizeX = 1920;
+        uiSizeY = 1080;
+
         instance = this;
+        InitializeGrid(100, 100);
     }
     void Start()
     {

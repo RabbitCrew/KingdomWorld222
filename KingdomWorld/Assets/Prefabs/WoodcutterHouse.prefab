@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 6012810040494706975}
   - component: {fileID: 7187346799613798572}
   - component: {fileID: -9215272626472457928}
-  m_Layer: 0
+  - component: {fileID: 7592597449236887131}
+  m_Layer: 6
   m_Name: WoodcutterHouse
-  m_TagString: Untagged
+  m_TagString: WoodCutter_house
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: 7b45ffa349511c241bd10fbc6c69aea9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67556e3c3a6f33b40a9f36bea57df54d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,3 +149,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7592597449236887131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818869694617374017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
+  BuildingNum: 14
+  carpenternCheck: 0
+  npcCount: 1
+  npcs: []
+  storeMax: 50
+  store: 0

@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1198625801439479435}
   - component: {fileID: 1585703499352990856}
   - component: {fileID: -125596591813637330}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CheeseHouse
-  m_TagString: Untagged
+  m_TagString: Cheese_house
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: 0a3ba80bb8d38524a920f596f25e30df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ea2583cece459248baac8a249d742d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

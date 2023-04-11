@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Setgrid : NPCParameter
+public class Setgrid : MonoBehaviour
 {
     // 그리드 크기
     private int _gridWidth;
@@ -10,7 +10,7 @@ public class Setgrid : NPCParameter
 
     // 그리드 노드들
     //월드 그리드를 위한 노드 배열
-    private Node[,] _grid;
+    public Node[,] _grid;
 
     // 다른 오브젝트를 위한 레이어
     /*public LayerMask streetLayer;
@@ -22,13 +22,13 @@ public class Setgrid : NPCParameter
     {
         public int X { get; set; }
         public int Z { get; set; }
-        public float Weight { get; set; }
-        public Vector3 WorldPosition { get; set; }
-        public float GCost { get; set; }
-        public float HCost { get; set; }
+        public float Weight { get; set; }//가중치
+        public Vector3 WorldPosition { get; set; }//레이쏘는위치
+        public float GCost { get; set; }//현재노드에서 다음노드 거리 + 가중치
+        public float HCost { get; set; }//다음노드에서 목적지 까지 일직선 거리
         public float FCost { get { return GCost + HCost; } }
-        public bool IsWalkable { get; set; }
-        public Node Parent { get; set; }
+        public bool IsWalkable { get; set; }//지나갈수있는지 확인
+        public Node Parent { get; set; }//최종경로탐색시 사용할 부모노드
 
         public Node(int x, int z, Vector3 worldPosition, int weight, bool isWalkable)
         {
@@ -38,7 +38,6 @@ public class Setgrid : NPCParameter
             Weight = weight;
             IsWalkable = isWalkable;
         }
-
     }
 
     // 그리드 초기화
@@ -46,18 +45,18 @@ public class Setgrid : NPCParameter
     {
         _gridWidth = width;
         _gridHeight = height;
-        _grid = new Node[width, height];//월드 그리드크기 만큼 노드 생성
-        //한칸한칸 노드 그리드 생성
-        for (int x = 0; x < width; x++)
+        _grid = new Node[width*2, height*2];//월드 그리드크기 만큼 노드 생성
+        //한칸한칸 노드 그리드 생성 width2넣어서*2 = 4 0123    4개 -1 + 2 = 1 -2 + 2 = 0
+        for (int x = -_gridWidth; x < width; x++)
         {
-            for (int z = 0; z < height; z++)
+            for (int z = -_gridHeight; z < height; z++)
             {
                 Vector3 worldPosition = new Vector3(x, 0, z);
                 int weight = 1;
-                bool iswalkable = true;
+                bool iswalkable = false;
                 // 현재 위치가 거리인지 확인
                 RaycastHit hit;
-                if (Physics.Raycast(worldPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity))
+                if (Physics.Raycast(worldPosition + Vector3.up * 20, Vector3.down, out hit, Mathf.Infinity))
                 {
                     // 오브젝트가 거리 레이어에 있다면 가중치를 1로 설정
                     if (hit.collider.CompareTag("Street"))
@@ -71,25 +70,25 @@ public class Setgrid : NPCParameter
                         weight = 10;
                         iswalkable = true;
                     }
-                    /*else if (((1 << hit.collider.gameObject.layer) & stoneLayer) != 0)
+                    else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
                     {
+                        weight = 100;
                         iswalkable = false;
                     }
-                    else if (((1 << hit.collider.gameObject.layer) & treeLayer) != 0)
+                    else if (hit.collider.CompareTag("tree"))
                     {
+                        weight = 100;
                         iswalkable = false;
-                    }*/
+                    }
                 }
-
-                _grid[x, z] = new Node(x, z, worldPosition, weight, iswalkable);
+                _grid[x + _gridWidth, z + _gridHeight] = new Node(x, z, worldPosition, weight, iswalkable);
             }
         }
     }
     public List<Node> FindPath(Vector3 startPos, Vector3 endPos)//startPos에는 플레이어위치, endPos에는 목표위치
     {
-        Node startNode = _grid[Mathf.RoundToInt(startPos.x), Mathf.RoundToInt(startPos.z)];
-        Node endNode = _grid[Mathf.RoundToInt(endPos.x), Mathf.RoundToInt(endPos.z)];
-
+        Node startNode = _grid[Mathf.RoundToInt(startPos.x) + _gridWidth, Mathf.RoundToInt(startPos.z) + _gridHeight];
+        Node endNode = _grid[Mathf.RoundToInt(endPos.x)+ _gridWidth, Mathf.RoundToInt(endPos.z) + _gridHeight];
         startNode.GCost = Vector3.Distance(startNode.WorldPosition, endNode.WorldPosition);
         
         List<Node> openSet = new List<Node>(); // 아직 방문하지 않은 노드들
@@ -109,10 +108,11 @@ public class Setgrid : NPCParameter
                     currentNode = openSet[i];
                 }
             }
-
+           
             // 현재 노드를 오픈셋에서 제거하고 클로즈드셋에 추가
             openSet.Remove(currentNode);
             closedSet.Add(currentNode);
+            
             if (currentNode == endNode)
             {
                 return RetracePath(startNode, endNode);
@@ -132,10 +132,9 @@ public class Setgrid : NPCParameter
                 if (newCostToNeighbor < neighbor.GCost || !openSet.Contains(neighbor))
                 {
                     // 이웃 노드의 비용과 휴리스틱을 업데이트
-                    
                     neighbor.GCost = newCostToNeighbor;
                     neighbor.HCost = Vector3.Distance(neighbor.WorldPosition, endNode.WorldPosition);
-                    neighbor.Parent = currentNode;
+                    neighbor.Parent = currentNode;//neighbor노드의 부모노드를 currentNode로 지정
 
                     // 이웃 노드가 오픈셋에 없으면 추가
                     if (!openSet.Contains(neighbor))
@@ -193,11 +192,11 @@ public class Setgrid : NPCParameter
                 // 대각선 이웃 노드는 건너뜀
                 //if (x != 0 && z != 0) continue;
 
-                int checkX = node.X + x;
-                int checkZ = node.Z + z;
+                int checkX = node.X + _gridWidth + x;
+                int checkZ = node.Z + _gridHeight + z;
 
                 // 이웃 노드가 그리드 내에 있는지 확인
-                if (checkX >= 0 && checkX < _gridWidth && checkZ >= 0 && checkZ < _gridHeight)
+                if (checkX >= 0 && checkX < _gridWidth*2 && checkZ >= 0 && checkZ < _gridHeight*2)
                 {
                     neighbors.Add(_grid[checkX, checkZ]);
                 }

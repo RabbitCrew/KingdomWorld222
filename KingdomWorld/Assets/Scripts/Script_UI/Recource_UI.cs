@@ -11,9 +11,7 @@ public class Recource_UI : MonoBehaviour
     public TextMeshProUGUI[] RText = new TextMeshProUGUI[13];
 
     Color TextColor;
-    Color defaultTextColor;
-
-    //bool IsEmpty = false;
+    Color defaultTextColor = new Color(1, 1, 1, 1);
 
     private void Update()
     {

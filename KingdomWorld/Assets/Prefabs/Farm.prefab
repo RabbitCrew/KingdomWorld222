@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 8992853759274777051}
   - component: {fileID: 3795320096379683747}
   - component: {fileID: -8651781458077199414}
-  m_Layer: 0
+  - component: {fileID: 6815368435585192989}
+  - component: {fileID: -8722687033631352920}
+  m_Layer: 6
   m_Name: Farm
-  m_TagString: Untagged
+  m_TagString: Farm_house
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: 831e45360f2db09459561af2a206a5b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 217d1e42016453c47b7f976129a3c315, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,3 +150,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6815368435585192989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205513146831110588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
+  BuildingNum: 6
+  carpenternCheck: 0
+  npcCount: 0
+  npcs: []
+  storeMax: 40
+  store: 0
+--- !u!114 &-8722687033631352920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205513146831110588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 589f710ca30313345942f1aa2d53b28e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cow: 2
+  sheep: 2
+  animalstore: 0
