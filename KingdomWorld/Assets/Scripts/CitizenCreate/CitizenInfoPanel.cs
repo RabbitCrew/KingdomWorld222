@@ -8,10 +8,10 @@ public class CitizenInfoPanel : MonoBehaviour
     [SerializeField] private SpriteRenderer clothesSpr;
     public JobNum jobNumEnum;  // 시민의 직업 정보를 담고 있음.
 
-    public void WareClothes(Sprite clothes, int jobCode)
+    public void WareClothes(Sprite clothes, int jobCode) 
     {
-        if (clothes == null) { clothesSpr.sprite = null; Debug.Log("ab"); }
-        else { clothesSpr.sprite = clothes; Debug.Log("abc"); }
+        if (clothes == null) { clothesSpr.sprite = null; }
+        else { clothesSpr.sprite = clothes;}
 
         if (System.Enum.GetValues(typeof(JobNum)).Length <= jobCode)
         {

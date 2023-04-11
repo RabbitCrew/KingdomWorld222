@@ -39,63 +39,90 @@ public class BuildingNPCSet : MonoBehaviour
 
     public void SetBNPC(int BuildNum)
     {
+        //Debug.Log(this.name);
         switch (BuildNum)
         {
+            // ½Ã¹Î
             case 0:
-                NPC.gameObject.tag = "StorageNPC";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", 5);
-                break;
-            case 1:
-                NPC.gameObject.tag = "CarpenterNPC";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", 1);
-                break;
-            case 2:
-                NPC.gameObject.tag = "CheeseNPC";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
-                break;
-            case 3:
-                NPC.gameObject.tag = "FabricNPC";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
-                break;
-            case 4:
-                NPC.gameObject.tag = "FarmNPC";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", 2);
-                break;
-            case 5:
-                NPC.gameObject.tag = "HamNPC";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
-                break;
-            case 6:
-                NPC.gameObject.tag = "NPC";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+                NPC.tag = "NPC";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
 
                 animator.SetInteger("IsWearingClothes", -1);
                 break;
-            case 7:
-                NPC.gameObject.tag = "Hunter";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+            // ³ª¹«²Û
+            case 1:
+                NPC.tag = "WoodCutter";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", 6);
+
+                break;
+            // ¸ñ¼ö
+            case 2:
+                NPC.tag = "CarpenterNPC";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", 1);
+
+                break;
+            // »ç³É²Û
+            case 3:
+                NPC.tag = "Hunter";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
 
                 animator.SetInteger("IsWearingClothes", 3);
                 break;
-            case 8:
-                NPC.gameObject.tag = "MineWorker";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
-                break;
-            case 9:
-                NPC.gameObject.tag = "WoodCutter";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+            // ³óºÎ
+            case 4:
+                NPC.tag = "FarmNPC";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
 
-                animator.SetInteger("IsWearingClothes", 6);
+                animator.SetInteger("IsWearingClothes", 2);
                 break;
+            // ¸ñÃà¾÷ÀÚ
+            case 5:
+                NPC.tag = "Pastoralist";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", 4);
+                break;
+            // Ã¢°íÁö±â
+            case 6:
+                NPC.tag = "StorageNPC";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                animator.SetInteger("IsWearingClothes", 5);
+                break;
+            // Ã¶ ±¤ºÎ
+            case 7:
+                NPC.tag = "IronMineWorker";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
+                break;
+            // µ¹ ±¤ºÎ
+            case 8:
+                NPC.tag = "StoneMineWorker";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
+                break;
+            // ÇÜ °¡°ø»ç
+            case 9:
+                NPC.tag = "HamNPC";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
+                break;
+            // Ä¡Áî °¡°ø»ç
             case 10:
-                NPC.gameObject.tag = "Smith";
-                NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
+                NPC.tag = "CheeseNPC";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
+
+                break;
+            // ¿Ê°¨ °¡°ø»ç
+            case 11:
+                NPC.tag = "FabricNPC";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
+                break;
+            // ´ëÀåÀåÀÌ
+            case 12:
+                NPC.tag = "Smith";
+                NPC.GetComponent<NPC>().NPCBUildTrigger = true;
                 break;
             default:
                 break;

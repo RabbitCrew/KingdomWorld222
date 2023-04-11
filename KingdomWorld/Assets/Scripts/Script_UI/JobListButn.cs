@@ -21,8 +21,7 @@ public class JobListButn : MonoBehaviour
 	{
         butnNum = num;
 
-        BNSet.SetBNPC(num);
-        //textPro.text = butnNum.ToString();
+        //BNSet.SetBNPC(num);
     }
     public void SetText(string str)
     {

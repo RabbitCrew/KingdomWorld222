@@ -94,6 +94,7 @@ public class JobListPanelScrollView : MonoBehaviour
             {
                 Debug.Log(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1));
                 citizenInfoPanel.WareClothes(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1), jobListButnArr[index].butnNum);
+                citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
                 citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
             }
         }
