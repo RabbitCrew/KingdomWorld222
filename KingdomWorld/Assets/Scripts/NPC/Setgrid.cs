@@ -80,27 +80,15 @@ public class Setgrid : MonoBehaviour
                         weight = 100;
                         iswalkable = false;
                     }
-                    /*else if (((1 << hit.collider.gameObject.layer) & stoneLayer) != 0)
-                    {
-                        iswalkable = false;
-                    }
-                    else if (((1 << hit.collider.gameObject.layer) & treeLayer) != 0)
-                    {
-                        iswalkable = false;
-                    }*/
                 }
-                
                 _grid[x + _gridWidth, z + _gridHeight] = new Node(x, z, worldPosition, weight, iswalkable);
             }
         }
     }
     public List<Node> FindPath(Vector3 startPos, Vector3 endPos)//startPos에는 플레이어위치, endPos에는 목표위치
     {
-        //Debug.LogError("FindPath실행");
         Node startNode = _grid[Mathf.RoundToInt(startPos.x) + _gridWidth, Mathf.RoundToInt(startPos.z) + _gridHeight];
-        //Debug.Log(_grid[Mathf.RoundToInt(startPos.x) + _gridWidth, Mathf.RoundToInt(startPos.z) + _gridHeight].WorldPosition);
         Node endNode = _grid[Mathf.RoundToInt(endPos.x)+ _gridWidth, Mathf.RoundToInt(endPos.z) + _gridHeight];
-        //Debug.Log(_grid[Mathf.RoundToInt(endPos.x) + _gridWidth, Mathf.RoundToInt(endPos.z) + _gridHeight].WorldPosition);
         startNode.GCost = Vector3.Distance(startNode.WorldPosition, endNode.WorldPosition);
         
         List<Node> openSet = new List<Node>(); // 아직 방문하지 않은 노드들
@@ -123,12 +111,10 @@ public class Setgrid : MonoBehaviour
            
             // 현재 노드를 오픈셋에서 제거하고 클로즈드셋에 추가
             openSet.Remove(currentNode);
-            //Debug.Log(currentNode.WorldPosition);
             closedSet.Add(currentNode);
             
             if (currentNode == endNode)
             {
-                //Debug.Log("리버스패스실행");
                 return RetracePath(startNode, endNode);
             }
 
@@ -157,8 +143,6 @@ public class Setgrid : MonoBehaviour
                     }
                 }
             }
-            //Debug.Log(currentNode.WorldPosition+"현재노드");
-            //Debug.Log(endNode.WorldPosition+"목표노드");
         }
 
         // 경로를 찾을 수 없는 경우

@@ -61,8 +61,10 @@ public class NPC : NPCScrip
     //public bool SearchMyBuildingTrigger = false;
     public void searchMyBuilding()
     {
+        
         if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.WAREHOUSEKEEPER)
         {
+            Debug.Log("건물검색실행");
             SearchMyBuilding("Storage");
         }
         else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.WOODCUTTER)
@@ -129,6 +131,7 @@ public class NPC : NPCScrip
             //건물에 배정되었을때 경로수정
             if (NPCBUildTrigger && GameManager.instance.isDaytime)//중간에 NPC배정했을시
             {
+                Debug.Log("이동시작");
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
                 NPCBUildTrigger = false;
@@ -148,10 +151,6 @@ public class NPC : NPCScrip
                 reSetPathTrigger = false;
                 work = false;
             }
-        }
-        else
-        {
-            NPCBUildTrigger = false;
         }
     }
     //창고지기 
@@ -425,9 +424,13 @@ public class NPC : NPCScrip
     
     private void OnTriggerEnter(Collider other)//목적지 도착시 일시작
     {
-        if (other.tag == BuildingNum.tag && !work)
+        if(BuildingNum != null)
         {
-            work = true;
+            if (other.tag == BuildingNum.tag && !work)
+            {
+                work = true;
+            }
         }
+        
     }
 }

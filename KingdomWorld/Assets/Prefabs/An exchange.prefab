@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8752280454011058906}
   - component: {fileID: -2538979524183147578}
   - component: {fileID: -1032215776031185551}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: An exchange
   m_TagString: AnExchange
   m_Icon: {fileID: 0}

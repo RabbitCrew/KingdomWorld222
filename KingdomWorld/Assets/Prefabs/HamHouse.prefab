@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2175327000222202050}
   - component: {fileID: 572162901210503324}
   - component: {fileID: 5137101579848262872}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: HamHouse
   m_TagString: Ham_house
   m_Icon: {fileID: 0}

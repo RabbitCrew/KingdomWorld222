@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1622952435707187746}
   - component: {fileID: 3666426271718097715}
   - component: {fileID: 5165641087673085271}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: HunterHouse
   m_TagString: Hunter_house
   m_Icon: {fileID: 0}
