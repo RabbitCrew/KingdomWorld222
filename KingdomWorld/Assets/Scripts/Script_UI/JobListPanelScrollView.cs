@@ -13,8 +13,8 @@ public class JobListPanelScrollView : MonoBehaviour
     public CitizenInfoPanel citizenInfoPanel { get; set; }
 
     private JobListButn[] jobListButnArr;
-    private string[] jobArr = new string[7]
-    { "Citizen", "Woodcutter", "Carpenter", "Hunter", "Farmer", "Pastoralist", "Warehouse Keeper" };
+    private string[] jobArr = new string[13]
+    { "Citizen", "Woodcutter", "Carpenter", "Hunter", "Farmer", "Pastoralist", "Warehouse Keeper", "Iron Miner", "Stone Miner", "Ham Npc", "Cheese Npc", "Cloth Npc", "Smith" };
 
     private Vector3 startVec;
 
@@ -27,7 +27,7 @@ public class JobListPanelScrollView : MonoBehaviour
         startVec = contentsTrans.anchoredPosition3D;
 
         jobListButnArr = new JobListButn[jobButtonPoolingArr.Length];
-        contentsTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, butnCount * 50f);
+        contentsTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, jobArr.Length * heightButn);
 
         visibleButnNum = 0;
 
@@ -47,7 +47,7 @@ public class JobListPanelScrollView : MonoBehaviour
             if (jobArr.Length > i) { jobListButnArr[i].SetText(jobArr[i]); }
             else { jobListButnArr[i].SetText(null); }
 
-            jobButtonPoolingArr[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(0f, (butnCount * heightButn - 525f) - (i * heightButn), 0f);
+            jobButtonPoolingArr[i].GetComponent<RectTransform>().anchoredPosition = new Vector3(0f, (jobArr.Length * heightButn - (25 + jobArr.Length * 25)) - (i * heightButn), 0f);
         }
     }
 
