@@ -138,6 +138,6 @@ public class BuildingAttachMouse : MonoBehaviour
         else { z = 0; }
         // AddTilePoint2�Լ��� ���� ûũ ��ǥ�� �ִ� Ÿ�Ϻ��� �ش� �������� ������ ��´�.
         settingObj.AddTilePoint2((int)(building.transform.localPosition.x + x), (int)(building.transform.localPosition.z + z), building.GetComponent<BuildingColider>().GetObjTypeNum(), building);
-
+        GameManager.instance.InitializeGrid(200, 200);
     }
 }

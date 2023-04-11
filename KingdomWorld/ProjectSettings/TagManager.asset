@@ -34,7 +34,7 @@ TagManager:
   - Smith_house
   - tree
   - NotWalkable
-  - Pastoralist
+  - Animal
   layers:
   - Default
   - TransparentFX
@@ -42,7 +42,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Building
   - 
   - 
   - 

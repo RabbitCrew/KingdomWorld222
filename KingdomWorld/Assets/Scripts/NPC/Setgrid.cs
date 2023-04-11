@@ -53,10 +53,10 @@ public class Setgrid : MonoBehaviour
             {
                 Vector3 worldPosition = new Vector3(x, 0, z);
                 int weight = 1;
-                bool iswalkable = true;
+                bool iswalkable = false;
                 // 현재 위치가 거리인지 확인
                 RaycastHit hit;
-                if (Physics.Raycast(worldPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity))
+                if (Physics.Raycast(worldPosition + Vector3.up * 20, Vector3.down, out hit, Mathf.Infinity))
                 {
                     // 오브젝트가 거리 레이어에 있다면 가중치를 1로 설정
                     if (hit.collider.CompareTag("Street"))
@@ -72,30 +72,23 @@ public class Setgrid : MonoBehaviour
                     }
                     else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
                     {
-
+                        weight = 100;
                         iswalkable = false;
                     }
-                    /*else if (((1 << hit.collider.gameObject.layer) & stoneLayer) != 0)
+                    else if (hit.collider.CompareTag("tree"))
                     {
+                        weight = 100;
                         iswalkable = false;
                     }
-                    else if (((1 << hit.collider.gameObject.layer) & treeLayer) != 0)
-                    {
-                        iswalkable = false;
-                    }*/
                 }
-                
                 _grid[x + _gridWidth, z + _gridHeight] = new Node(x, z, worldPosition, weight, iswalkable);
             }
         }
     }
     public List<Node> FindPath(Vector3 startPos, Vector3 endPos)//startPos에는 플레이어위치, endPos에는 목표위치
     {
-        //Debug.LogError("FindPath실행");
         Node startNode = _grid[Mathf.RoundToInt(startPos.x) + _gridWidth, Mathf.RoundToInt(startPos.z) + _gridHeight];
-        //Debug.Log(_grid[Mathf.RoundToInt(startPos.x) + _gridWidth, Mathf.RoundToInt(startPos.z) + _gridHeight].WorldPosition);
         Node endNode = _grid[Mathf.RoundToInt(endPos.x)+ _gridWidth, Mathf.RoundToInt(endPos.z) + _gridHeight];
-        //Debug.Log(_grid[Mathf.RoundToInt(endPos.x) + _gridWidth, Mathf.RoundToInt(endPos.z) + _gridHeight].WorldPosition);
         startNode.GCost = Vector3.Distance(startNode.WorldPosition, endNode.WorldPosition);
         
         List<Node> openSet = new List<Node>(); // 아직 방문하지 않은 노드들
@@ -118,12 +111,10 @@ public class Setgrid : MonoBehaviour
            
             // 현재 노드를 오픈셋에서 제거하고 클로즈드셋에 추가
             openSet.Remove(currentNode);
-            //Debug.Log(currentNode.WorldPosition);
             closedSet.Add(currentNode);
             
             if (currentNode == endNode)
             {
-                //Debug.Log("리버스패스실행");
                 return RetracePath(startNode, endNode);
             }
 
@@ -152,8 +143,6 @@ public class Setgrid : MonoBehaviour
                     }
                 }
             }
-            //Debug.Log(currentNode.WorldPosition+"현재노드");
-            //Debug.Log(endNode.WorldPosition+"목표노드");
         }
 
         // 경로를 찾을 수 없는 경우
