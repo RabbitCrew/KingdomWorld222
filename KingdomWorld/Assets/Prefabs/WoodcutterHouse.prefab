@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7187346799613798572}
   - component: {fileID: -9215272626472457928}
   - component: {fileID: 7592597449236887131}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WoodcutterHouse
   m_TagString: WoodCutter_house
   m_Icon: {fileID: 0}

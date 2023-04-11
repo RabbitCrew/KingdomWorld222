@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1198625801439479435}
   - component: {fileID: 1585703499352990856}
   - component: {fileID: -125596591813637330}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CheeseHouse
   m_TagString: Cheese_house
   m_Icon: {fileID: 0}
