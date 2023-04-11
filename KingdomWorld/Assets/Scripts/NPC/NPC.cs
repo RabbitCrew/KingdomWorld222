@@ -148,9 +148,6 @@ public class NPC : NPCScrip
                 currentPathIndex = 0;
                 reSetPathTrigger = false;
                 work = false;
-            }else if (this.transform.position == BuildingNum.transform.position && GameManager.instance.isDaytime)//출근
-            {
-                work = true;
             }
         }
         else
@@ -425,5 +422,13 @@ public class NPC : NPCScrip
     {
         dayTimeResetPath();
         Move();
+    }
+    
+    private void OnTriggerEnter(Collider other)//목적지 도착시 일시작
+    {
+        if (other.tag == BuildingNum.tag && !work)
+        {
+            work = true;
+        }
     }
 }
