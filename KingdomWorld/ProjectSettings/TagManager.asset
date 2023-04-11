@@ -33,6 +33,7 @@ TagManager:
   - Cloth_house
   - Smith_house
   - tree
+  - NotWalkable
   layers:
   - Default
   - TransparentFX
