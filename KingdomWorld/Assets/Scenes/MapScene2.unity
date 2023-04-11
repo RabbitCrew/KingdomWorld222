@@ -17822,7 +17822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 149.99994}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99997}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3131164600481875948
@@ -29703,8 +29703,11 @@ MonoBehaviour:
   RSpriteToBuy: {fileID: 3376626391988116304}
   isOpenImage: {fileID: 1138014392}
   MySlider: {fileID: 5210598890886590198}
+  TMySlider: {fileID: 0}
   CellerSlider: {fileID: 6825552195209227132}
+  TCellerSlider: {fileID: 0}
   NegoBtn: {fileID: 692715688870844186}
+  TNegoBtn: {fileID: 0}
 --- !u!114 &5400579463173531104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31414,8 +31417,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6643640726211473793}
   m_HandleRect: {fileID: 7344787744186435867}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.4999999
+  m_Value: 0.9999998
+  m_Size: 0.24999996
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -44817,7 +44820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5d75eda31dd2640bce36c0151bdcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
+  cam: {fileID: 8991755954299252449}
 --- !u!224 &8359437258127280959
 RectTransform:
   m_ObjectHideFlags: 0
