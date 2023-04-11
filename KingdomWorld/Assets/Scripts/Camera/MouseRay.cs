@@ -13,6 +13,20 @@ public class MouseRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsPointerOverUIObject())
+        {
+            Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
+            hits = Physics.RaycastAll(ray, distance);
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].transform.GetComponent<WaitingBuildingInfo>() != null)
+                {
+
+                }
+            }
+        }
+
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
         {
             //Debug.Log(1);

@@ -7,7 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private RectTransform jobChangeUI;
     [SerializeField] private CitizenButtonListPanel citizenButtonListPanel;
-
+    [SerializeField] private GameObject hpAndShieldBarUIPanelObj;
     public bool isOpenCitizenPanel { get; private set; }
 
     private Vector3 openJobChangeUIVec;

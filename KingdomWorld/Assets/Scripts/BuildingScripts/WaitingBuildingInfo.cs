@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaitingBuilding : MonoBehaviour
+public class WaitingBuildingInfo : MonoBehaviour
 {
     public int makeTime { get; set; }
     public GameObject building { get; private set; }
