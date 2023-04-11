@@ -29658,6 +29658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnExchangeUI: {fileID: 1331021430024700827}
+  UIImage: {fileID: 2453829640202731809}
   AnExchangeBP: {fileID: 455167354651772683}
   AnExchangeB: {fileID: 0}
   CellBtns: {fileID: 8584359367964413261}
@@ -29675,6 +29676,7 @@ MonoBehaviour:
   ResourceCount: 0
   ResourceCount_Buy: 0
   RandomOpen: 0
+  IsOpen: 0
   SelectedRToCell: {fileID: 4266503851442554440}
   SelectedRToBuy: {fileID: 1556851777361807799}
   BuyRNum: {fileID: 2004048359570292445}
@@ -31412,7 +31414,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7344787744186435867}
   m_Direction: 2
   m_Value: 0.9999998
-  m_Size: 0.4999999
+  m_Size: 0.25000015
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
