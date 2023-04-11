@@ -102,6 +102,10 @@ public class NPC : NPCScrip
         {
             SearchMyBuilding("Cloth_house");
         }
+        else if (this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.SMITH)
+        {
+            SearchMyBuilding("Smith_house");
+        }
     }
     void SearchMyBuilding(string Building)
     {
@@ -113,6 +117,7 @@ public class NPC : NPCScrip
                 if (collider.GetComponent<BuildingSetting>().npcCount <= 3 && GameManager.instance.isDaytime)
                 {
                     NPCBUildTrigger = true;
+                    break;
                 }
             }
         }

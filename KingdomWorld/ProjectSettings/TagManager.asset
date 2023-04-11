@@ -31,6 +31,8 @@ TagManager:
   - Ham_house
   - Cheese_house
   - Cloth_house
+  - Smith_house
+  - tree
   layers:
   - Default
   - TransparentFX
