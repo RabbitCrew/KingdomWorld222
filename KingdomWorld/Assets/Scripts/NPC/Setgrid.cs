@@ -70,7 +70,11 @@ public class Setgrid : MonoBehaviour
                         weight = 10;
                         iswalkable = true;
                     }
-                    
+                    else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
+                    {
+
+                        iswalkable = false;
+                    }
                     /*else if (((1 << hit.collider.gameObject.layer) & stoneLayer) != 0)
                     {
                         iswalkable = false;
