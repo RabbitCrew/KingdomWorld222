@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -658061582517763237}
   m_Layer: 0
   m_Name: Citizen1
-  m_TagString: StorageNPC
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -171,6 +171,7 @@ MonoBehaviour:
   StartPos: {fileID: 0}
   EndPos: {fileID: 0}
   work: 0
+  Sleep: 0
 --- !u!95 &5123814152574304622
 Animator:
   serializedVersion: 5
