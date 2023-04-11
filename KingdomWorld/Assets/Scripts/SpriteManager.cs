@@ -16,7 +16,7 @@ public class SpriteManager : MonoBehaviour
     {
         if (index < citizenSprArr.Length && index > -1)
         {
-            return citizenSprArr[index];
+            return citizenSprArr[index]; 
         }
         else
         {
