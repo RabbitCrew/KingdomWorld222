@@ -121,8 +121,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6499667378243639361}
   m_HandleRect: {fileID: 8732805569686486617}
   m_Direction: 2
-  m_Value: 0.9999997
-  m_Size: 0.64250875
+  m_Value: 0.9999994
+  m_Size: 0.64250857
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1781,7 +1781,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 988aad686dc1fec48bbc0dee20cead64, type: 3}
   - {fileID: 21300000, guid: 046f821c76a004e4c91b9f27ee906194, type: 3}
   - {fileID: 21300000, guid: e37ee0b1cbe20c5458102626b95a6b7c, type: 3}
-  isOpenSprite: []
+  isOpenSprite:
+  - {fileID: 21300000, guid: 5ce1a78ee5409824f80a41ed2d55b7d8, type: 3}
+  - {fileID: 21300000, guid: 11734f8b2194dc34481d810c942c4846, type: 3}
   RSpriteToCell: {fileID: 706905181045255107}
   RSpriteToBuy: {fileID: 7593830003702902853}
   isOpenImage: {fileID: 0}
@@ -1790,7 +1792,7 @@ MonoBehaviour:
   CellerSlider: {fileID: 1803586618705461353}
   TCellerSlider: {fileID: 4203673143198922141}
   NegoBtn: {fileID: 5630518541036796943}
-  TNegoBtn: {fileID: 0}
+  TNegoBtn: {fileID: 5630518541036796943}
 --- !u!114 &8109294031682630575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1809,13 +1811,13 @@ MonoBehaviour:
   ArtifactPrice: 0a0000000a0000000a0000000a0000000a000000
   HasArtifact: 0000000000000000000000000000000000000000
   ArtifactInfo:
-  - "\uD14C\uC2A4\uD2B8\uC6A9 \uC124\uBA85\uC785\uB2C8\uB2E4."
+  - "\uC2DC\uAC04\uC774 \uBE60\uB974\uAC8C \uD750\uB985\uB2C8\uB2E4."
   - "\uC74C\uC624\uC544\uC608"
   - "\uC81C\uBC1C\uB418\uB77C"
   - "\u315C\u315C\u315C\u315C\u315C"
   - "\uC548\uB418\uB294\uC774\uC720\uAC00\uBB50\uC57C"
   ArtifactName:
-  - "\uC74C"
+  - "\uACE0\uC7A5\uB09C \uC2DC\uACC4"
   - "\uC774\uB984"
   - "\uBB50\uB77C\uD558\uC9C0"
   - "\uBAA8\uB974\uACA0\uB2E4"
@@ -1859,7 +1861,10 @@ MonoBehaviour:
   - {fileID: 0}
   PriceText: {fileID: 3616552023622549853}
   InfoText: {fileID: 5695785703990272962}
-  NameText: {fileID: 0}
+  NameText:
+  - {fileID: 5569488223659956665}
+  - {fileID: 6535959784943284248}
+  - {fileID: 9008892008665950851}
 --- !u!1 &1069378114624102830
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,8 +2039,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5486961760756285900}
   m_HandleRect: {fileID: 2631693791687449979}
   m_Direction: 2
-  m_Value: 0.9999997
-  m_Size: 0.64250875
+  m_Value: 0.9999994
+  m_Size: 0.64250857
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -13206,7 +13211,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7328301045184522804}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 

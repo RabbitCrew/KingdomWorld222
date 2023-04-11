@@ -12,7 +12,7 @@ public class SpawnCitizen : MonoBehaviour
     public List<GameObject> CitizenList = new List<GameObject>();
     public Sprite[] CtSpriteList;
 
-    public float SpawnTime = 10f;
+    public float SpawnTime = 30f;
 
     public int CitizenNum = 3;
 
