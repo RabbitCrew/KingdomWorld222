@@ -53,10 +53,10 @@ public class SpawnCitizen : MonoBehaviour
             {
                 GameObject CSpawn = Instantiate(Citizen);
                 CSpawn.transform.parent = SpawnPoint.transform;
-
                 if (houseDic.ContainsKey(i))
                 {
                     CSpawn.transform.position = houseDic[i].transform.position;
+                    CSpawn.GetComponent<NPC>().HouseTr = houseDic[i].transform;
                 }
 
                 CSpawn.GetComponent<SpriteRenderer>().sprite = CtSpriteList[RandomSprite()];
