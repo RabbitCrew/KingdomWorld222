@@ -29658,6 +29658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnExchangeUI: {fileID: 1331021430024700827}
+  UIImage: {fileID: 0}
   AnExchangeBP: {fileID: 455167354651772683}
   AnExchangeB: {fileID: 0}
   CellBtns: {fileID: 8584359367964413261}
@@ -29672,9 +29673,11 @@ MonoBehaviour:
   TChatViewer: {fileID: 6703410219684037078}
   TNegoSder: {fileID: 8673545676539944942}
   TCellBtns: {fileID: 1494618227470357087}
+  ExchangeRate: 100
   ResourceCount: 0
   ResourceCount_Buy: 0
   RandomOpen: 0
+  IsOpen: 0
   SelectedRToCell: {fileID: 4266503851442554440}
   SelectedRToBuy: {fileID: 1556851777361807799}
   BuyRNum: {fileID: 2004048359570292445}
