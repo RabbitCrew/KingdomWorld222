@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731703, g: 0.13414727, b: 0.121078506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12620,7 +12620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5d75eda31dd2640bce36c0151bdcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CAM: {fileID: 8829654963470995113}
+  cam: {fileID: 0}
 --- !u!114 &2209786640353692483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17822,7 +17822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 149.99997}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99994}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3131164600481875948
@@ -29658,7 +29658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnExchangeUI: {fileID: 1331021430024700827}
-  UIImage: {fileID: 0}
+  UIImage: {fileID: 2453829640202731809}
   AnExchangeBP: {fileID: 455167354651772683}
   AnExchangeB: {fileID: 0}
   CellBtns: {fileID: 8584359367964413261}
@@ -31414,7 +31414,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6643640726211473793}
   m_HandleRect: {fileID: 7344787744186435867}
   m_Direction: 2
-  m_Value: 0.9999998
+  m_Value: 1
   m_Size: 0.4999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36562,7 +36562,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -780, y: 400}
+  m_AnchoredPosition: {x: 0, y: 400}
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &6869843179827685767
@@ -44817,7 +44817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5d75eda31dd2640bce36c0151bdcaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CAM: {fileID: 8991755954299252449}
+  cam: {fileID: 0}
 --- !u!224 &8359437258127280959
 RectTransform:
   m_ObjectHideFlags: 0

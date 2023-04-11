@@ -8,18 +8,26 @@ public class MoveBackgroundAsMouse : MonoBehaviour
 {
 
 
-    public Camera CAM;
+    public Camera cam;
 
     private float mouseX, mouseY;
     void Update()
     {
+        if (Input.GetAxis("Mouse ScrollWheel") != 0 && !IsPointerOverUIObject())
+        {
+            cam.orthographicSize += Input.GetAxis("Mouse ScrollWheel") * 2;
+            
+            if (cam.orthographicSize > 10) { cam.orthographicSize = 10; }
+            else ( cam.orthographicSize < 4) { cam.orthographicSize = 4; }
+        }
+
 
         if (Input.GetMouseButton(0) && !IsPointerOverUIObject())
         {
             mouseX = Input.GetAxis("Mouse X");
             mouseY = Input.GetAxis("Mouse Y");
 
-            CAM.transform.position += new Vector3(-mouseX * 0.9f,0,-mouseY * 0.9f);
+            cam.transform.position += new Vector3(-mouseX * 0.9f,0,-mouseY * 0.9f);
         }
     }
 
