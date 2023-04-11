@@ -91,7 +91,7 @@ public class BuildingNPCSet : MonoBehaviour
                 NPC.gameObject.tag = "WoodCutter";
                 NPC.gameObject.GetComponent<NPC>().NPCBUildTrigger = true;
 
-                animator.SetInteger("IsWearingClothes", 10);
+                animator.SetInteger("IsWearingClothes", 6);
                 break;
             case 10:
                 NPC.gameObject.tag = "Smith";
