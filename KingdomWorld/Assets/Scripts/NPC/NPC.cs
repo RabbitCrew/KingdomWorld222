@@ -7,6 +7,7 @@ public class NPC : NPCScrip
 {
     public bool work = false;//출근 체크 변수
     private bool reSetPathTrigger = false;//update마다 Astar가 작동하지 않게 해주는 bool값
+    public bool Sleep = false;
     //public GameObject Testbuilding;
     private void Start()
     {
@@ -63,12 +64,56 @@ public class NPC : NPCScrip
     {
         if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.WAREHOUSEKEEPER)
         {
-            var SearchedBuilding = GameObject.FindWithTag("Storage");
-            Debug.Log(SearchedBuilding);
-            if (SearchedBuilding.GetComponent<BuildingSetting>().npcCount == 0 && GameManager.instance.isDaytime && SearchedBuilding != null)
+            SearchMyBuilding("Storage");
+        }
+        else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.WOODCUTTER)
+        {
+            SearchMyBuilding("WoodCutter_house");
+        }else if (this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.CARPENTER)
+        {
+            SearchMyBuilding("Carpenter_house");
+        }else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.HUNTER)
+        {
+            SearchMyBuilding("Hunter_house");
+        }else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.FARMER)
+        {
+            SearchMyBuilding("Wheat");
+        }else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.PASTORALIST)
+        {
+            SearchMyBuilding("Farm_house");
+        }
+        else if (this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.IRONMINER)
+        {
+            SearchMyBuilding("Mine_house");
+        }
+        else if (this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.STONEMINER)
+        {
+            SearchMyBuilding("Mine_house");
+        }
+        else if (this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.HAMNPC)
+        {
+            SearchMyBuilding("Ham_house");
+        }
+        else if (this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.CHEESENPC)
+        {
+            SearchMyBuilding("Cheese_house");
+        }
+        else if (this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.CLOTHNPC)
+        {
+            SearchMyBuilding("Cloth_house");
+        }
+    }
+    void SearchMyBuilding(string Building)
+    {
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+        foreach (var collider in colliders)
+        {
+            if (collider.CompareTag(Building))
             {
-                BuildingNum = SearchedBuilding;
-                NPCBUildTrigger = true;
+                if (collider.GetComponent<BuildingSetting>().npcCount <= 3 && GameManager.instance.isDaytime)
+                {
+                    NPCBUildTrigger = true;
+                }
             }
         }
     }
