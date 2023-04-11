@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -5768849464931611439}
   - component: {fileID: 7644437399047548631}
   - component: {fileID: 7846658614816487041}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Smithy
   m_TagString: Smith_house
   m_Icon: {fileID: 0}
