@@ -80,6 +80,8 @@ public class AnExchange : MonoBehaviour
     private void Start()
     {
         PositionSet(); //포시션 값 받음
+
+        //isLerp = true;
     }
 
     private void Update()
@@ -256,7 +258,6 @@ public class AnExchange : MonoBehaviour
 
     void BtnLerp()
     {
-        float LerpTime = 4f;
         float DefaultLerpTime = 4f;
 
         if (isLerp == true)
@@ -290,13 +291,9 @@ public class AnExchange : MonoBehaviour
           Vector3.Lerp(UIImage.GetComponent<RectTransform>().anchoredPosition3D,
          AnExchangeUIPos, Time.deltaTime * DefaultLerpTime);
 
-            LerpTime -= Time.deltaTime;
-
-            if (LerpTime <= 0f)
+            if (UIImage.GetComponent<RectTransform>().anchoredPosition3D == AnExchangeUIPos)
             {
                 AnExchangeUI.SetActive(false);
-
-                LerpTime = DefaultLerpTime;
             }
         }
     }
