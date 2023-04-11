@@ -35,6 +35,7 @@ TagManager:
   - tree
   - NotWalkable
   - Animal
+  - Pastoralist
   layers:
   - Default
   - TransparentFX
