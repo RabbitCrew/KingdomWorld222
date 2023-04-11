@@ -107,7 +107,7 @@ public class NPC : NPCScrip
             SearchMyBuilding("Smith_house");
         }
     }
-    void SearchMyBuilding(string Building)
+    private void SearchMyBuilding(string Building)
     {
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
         foreach (var collider in colliders)
@@ -116,6 +116,7 @@ public class NPC : NPCScrip
             {
                 if (collider.GetComponent<BuildingSetting>().npcCount <= 3 && GameManager.instance.isDaytime)
                 {
+                    BuildingNum = collider.gameObject;
                     NPCBUildTrigger = true;
                     break;
                 }
@@ -173,7 +174,7 @@ public class NPC : NPCScrip
                 {
                     if (fullbuilding.GetComponent<BuildingSetting>().store == fullbuilding.GetComponent<BuildingSetting>().storeMax)
                     {
-                        isCargoWorkStart = true;
+                        isCargoWorkStart = true;//운반시작
                         ResetPath(this.transform, fullbuilding);
                         currentPathIndex = 0;
                         break;
@@ -181,9 +182,9 @@ public class NPC : NPCScrip
                 }
             }
         }
-        else if (GameManager.instance.isDaytime && (this.transform.position == fullbuilding.position) && isCargoWorkStart)
+        if (GameManager.instance.isDaytime && (this.transform.position == fullbuilding.position) && isCargoWorkStart)
         {
-
+            
             /*건물에서 무슨자원인지 알아야함 자원꺼내기*/
         }
         Move();
