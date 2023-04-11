@@ -53,10 +53,10 @@ public class Setgrid : MonoBehaviour
             {
                 Vector3 worldPosition = new Vector3(x, 0, z);
                 int weight = 1;
-                bool iswalkable = true;
+                bool iswalkable = false;
                 // 현재 위치가 거리인지 확인
                 RaycastHit hit;
-                if (Physics.Raycast(worldPosition + Vector3.up * 10, Vector3.down, out hit, Mathf.Infinity))
+                if (Physics.Raycast(worldPosition + Vector3.up * 20, Vector3.down, out hit, Mathf.Infinity))
                 {
                     // 오브젝트가 거리 레이어에 있다면 가중치를 1로 설정
                     if (hit.collider.CompareTag("Street"))
@@ -72,7 +72,12 @@ public class Setgrid : MonoBehaviour
                     }
                     else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
                     {
-
+                        weight = 100;
+                        iswalkable = false;
+                    }
+                    else if (hit.collider.CompareTag("tree"))
+                    {
+                        weight = 100;
                         iswalkable = false;
                     }
                     /*else if (((1 << hit.collider.gameObject.layer) & stoneLayer) != 0)
