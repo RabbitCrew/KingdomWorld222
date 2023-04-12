@@ -19,27 +19,27 @@ public class MouseRay : MonoBehaviour
             hits = Physics.RaycastAll(ray, distance);
 
             for (int i = 0; i < hits.Length; i++)
-			{
-                if (hits[i].transform.GetComponent<WaitingBuilding>() != null)
-				{
-                    uiManager.SetIsHpAndShieldBarUIObj(
-                        true, (int)(hits[i].transform.GetComponent<WaitingBuilding>().time * 100), hits[i].transform.GetComponent<WaitingBuilding>().shield,
-                        (int)(hits[i].transform.GetComponent<WaitingBuilding>().maxTime * 100), hits[i].transform.GetComponent<WaitingBuilding>().maxShield);
+            {
+                //if (hits[i].transform.GetComponent<WaitingBuilding>() != null)
+                //{
+                //    uiManager.SetIsHpAndShieldBarUIObj(
+                //        true, (int)(hits[i].transform.GetComponent<WaitingBuilding>().time * 100), hits[i].transform.GetComponent<WaitingBuilding>().shield,
+                //        (int)(hits[i].transform.GetComponent<WaitingBuilding>().maxTime * 100), hits[i].transform.GetComponent<WaitingBuilding>().maxShield);
 
-                    break;
-                }
-                else if (hits[i].transform.GetComponent<BuildingSetting>() != null)
-				{
+                //    break;
+                //}
+                if (hits[i].transform.GetComponent<BuildingSetting>() != null)
+                {
                     uiManager.SetIsHpAndShieldBarUIObj(
                         true, hits[i].transform.GetComponent<BuildingSetting>().BuildingHp, hits[i].transform.GetComponent<BuildingSetting>().buildingShield,
                         hits[i].transform.GetComponent<BuildingSetting>().MaxBuildingHp, hits[i].transform.GetComponent<BuildingSetting>().maxBuildingShield);
                     break;
                 }
                 else
-				{
+                {
                     uiManager.SetIsHpAndShieldBarUIObj(false, 1, 1, 1, 1);
-				}
-			}
+                }
+            }
         }
 
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
