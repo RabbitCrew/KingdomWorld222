@@ -25,6 +25,8 @@ public class BuildingNPCSet : MonoBehaviour
     private void FixedUpdate()
     {
         NPCAniSet();
+
+        NPCAnimationSet();
     }
 
     public void SetPAni(int AniNum)
@@ -37,6 +39,62 @@ public class BuildingNPCSet : MonoBehaviour
         NPCPos = NPC.transform.position;
     }
 
+    void NPCAnimationSet()
+    {
+        if(NPC.tag == "NPC")
+        {
+            animator.SetInteger("IsWearingClothes", -1);
+        }
+        else if (NPC.tag == "WoodCutter")
+        {
+            animator.SetInteger("IsWearingClothes", 6);
+        }
+        else if (NPC.tag == "CarpenterNPC")
+        {
+            animator.SetInteger("IsWearingClothes", 1);
+        }
+        else if (NPC.tag == "Smith")
+        {
+
+        }
+        else if (NPC.tag == "FabricNPC")
+        {
+
+        }
+        else if (NPC.tag == "CheeseNPC")
+        {
+
+        }
+        else if (NPC.tag == "HamNPC")
+        {
+
+        }
+        else if (NPC.tag == "StoneMineWorker")
+        {
+
+        }
+        else if (NPC.tag == "IronMineWorker")
+        {
+
+        }
+        else if (NPC.tag == "StorageNPC")
+        {
+            animator.SetInteger("IsWearingClothes", 5);
+        }
+        else if (NPC.tag == "Pastoralist")
+        {
+            animator.SetInteger("IsWearingClothes", 4);
+        }
+        else if (NPC.tag == "FarmNPC")
+        {
+            animator.SetInteger("IsWearingClothes", 2);
+        }
+        else if (NPC.tag == "Hunter")
+        {
+            animator.SetInteger("IsWearingClothes", 3);
+        }
+    }
+
     public void SetBNPC(int BuildNum)
     {
         //Debug.Log(this.name);
@@ -46,52 +104,36 @@ public class BuildingNPCSet : MonoBehaviour
             case 0:
                 NPC.tag = "NPC";
                 NPC.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", -1);
                 break;
             // ³ª¹«²Û
             case 1:
                 NPC.tag = "WoodCutter";
                 NPC.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", 6);
-
                 break;
             // ¸ñ¼ö
             case 2:
                 NPC.tag = "CarpenterNPC";
                 NPC.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", 1);
-
                 break;
             // »ç³É²Û
             case 3:
                 NPC.tag = "Hunter";
                 NPC.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", 3);
                 break;
             // ³óºÎ
             case 4:
                 NPC.tag = "FarmNPC";
                 NPC.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", 2);
                 break;
             // ¸ñÃà¾÷ÀÚ
             case 5:
                 NPC.tag = "Pastoralist";
                 NPC.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", 4);
                 break;
             // Ã¢°íÁö±â
             case 6:
                 NPC.tag = "StorageNPC";
                 NPC.GetComponent<NPC>().NPCBUildTrigger = true;
-
-                animator.SetInteger("IsWearingClothes", 5);
                 break;
             // Ã¶ ±¤ºÎ
             case 7:
