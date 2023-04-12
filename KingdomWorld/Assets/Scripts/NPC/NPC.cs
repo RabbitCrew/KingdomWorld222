@@ -436,6 +436,25 @@ public class NPC : NPCScrip
             if (other.tag == BuildingNum.tag && !work)
             {
                 work = true;
+            }else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding"))
+            {
+                StartCoroutine(Build(1f, other));
+            }
+        }
+    }
+    IEnumerator Build(float delay, Collider building)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            building.GetComponent<WaitingBuilding>().building.GetComponent<BuildingSetting>().BuildingHp += 1;
+            if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
+            {
+                isBuilingStart = false;
+                ResetPath(this.transform, BuildingNum.transform);
+                currentPathIndex = 0;
+                Building = null;
+                break;
             }
         }
     }
