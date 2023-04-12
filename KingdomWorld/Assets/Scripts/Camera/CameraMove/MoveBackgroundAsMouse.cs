@@ -11,23 +11,42 @@ public class MoveBackgroundAsMouse : MonoBehaviour
     public Camera cam;
 
     private float mouseX, mouseY;
+    private float preMouseX, preMouseY;
+    private void Awake()
+    {
+        preMouseX = 0;
+        preMouseY = 0;
+    }
+
     void Update()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") != 0 && !IsPointerOverUIObject())
+
+        if (Input.mousePosition.x <= Screen.width && Input.mousePosition.x >= 0 &&
+            Input.mousePosition.y <= Screen.height && Input.mousePosition.y >= 0)
         {
-            cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * 2;
-            
-            if (cam.orthographicSize > 10) { cam.orthographicSize = 10; }
-            else if ( cam.orthographicSize < 4) { cam.orthographicSize = 4; }
-        }
+            if (Input.GetAxis("Mouse ScrollWheel") != 0 && !IsPointerOverUIObject())
+            {
+                cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * 2;
+
+                if (cam.orthographicSize > 10) { cam.orthographicSize = 10; }
+                else if (cam.orthographicSize < 4) { cam.orthographicSize = 4; }
+            }
 
 
-        if (Input.GetMouseButton(0) && !IsPointerOverUIObject())
-        {
-            mouseX = Input.GetAxis("Mouse X");
-            mouseY = Input.GetAxis("Mouse Y");
+            if (Input.GetMouseButton(0) && !IsPointerOverUIObject())
+            {
+                //Debug.Log(Input.GetAxis("Mouse X") + " " + Input.GetAxis("Mouse Y"));
+                mouseX = Input.GetAxis("Mouse X");
+                mouseY = Input.GetAxis("Mouse Y");
+                
+                if (Mathf.Abs(mouseX - preMouseX) > 5) { mouseX = 0; }
+                if (Mathf.Abs(mouseY - preMouseY) > 5) { mouseY = 0; }
 
-            cam.transform.position += new Vector3(-mouseX * 0.9f,0,-mouseY * 0.9f);
+                cam.transform.position += new Vector3(-mouseX * 0.9f, 0, -mouseY * 0.9f);
+                
+                preMouseX = mouseX;
+                preMouseY = mouseY;
+            }
         }
     }
 

@@ -19,27 +19,27 @@ public class MouseRay : MonoBehaviour
             hits = Physics.RaycastAll(ray, distance);
 
             for (int i = 0; i < hits.Length; i++)
-			{
-                if (hits[i].transform.GetComponent<WaitingBuilding>() != null)
-				{
-                    uiManager.SetIsHpAndShieldBarUIObj(
-                        true, (int)(hits[i].transform.GetComponent<WaitingBuilding>().time * 100), hits[i].transform.GetComponent<WaitingBuilding>().shield,
-                        (int)(hits[i].transform.GetComponent<WaitingBuilding>().maxTime * 100), hits[i].transform.GetComponent<WaitingBuilding>().maxShield);
+            {
+                //if (hits[i].transform.GetComponent<WaitingBuilding>() != null)
+                //{
+                //    uiManager.SetIsHpAndShieldBarUIObj(
+                //        true, (int)(hits[i].transform.GetComponent<WaitingBuilding>().time * 100), hits[i].transform.GetComponent<WaitingBuilding>().shield,
+                //        (int)(hits[i].transform.GetComponent<WaitingBuilding>().maxTime * 100), hits[i].transform.GetComponent<WaitingBuilding>().maxShield);
 
-                    break;
-                }
-                else if (hits[i].transform.GetComponent<BuildingSetting>() != null)
-				{
+                //    break;
+                //}
+                if (hits[i].transform.GetComponent<BuildingSetting>() != null)
+                {
                     uiManager.SetIsHpAndShieldBarUIObj(
                         true, hits[i].transform.GetComponent<BuildingSetting>().BuildingHp, hits[i].transform.GetComponent<BuildingSetting>().buildingShield,
                         hits[i].transform.GetComponent<BuildingSetting>().MaxBuildingHp, hits[i].transform.GetComponent<BuildingSetting>().maxBuildingShield);
                     break;
                 }
                 else
-				{
+                {
                     uiManager.SetIsHpAndShieldBarUIObj(false, 1, 1, 1, 1);
-				}
-			}
+                }
+            }
         }
 
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
@@ -81,18 +81,18 @@ public class MouseRay : MonoBehaviour
         }
     }
 
-    // ¸¶¿ì½º Æ÷ÀÎÅÍ°¡ UIÀ§¿¡ ÀÖÀ¸¸é true°ªÀ» ¾Æ´Ï¸é false¸¦ ¹ÝÈ¯ÇÑ´Ù.
+    // ï¿½ï¿½ï¿½ì½º ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ UIï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ trueï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¸ï¿½ falseï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
     private bool IsPointerOverUIObject()
     {
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
         eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        //RaycastResult : BaseRaycastModule¿¡¼­ÀÇ È÷Æ® °á°ú.
+        //RaycastResult : BaseRaycastModuleï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® ï¿½ï¿½ï¿½.
         List<RaycastResult> results = new List<RaycastResult>();
-        //EventSystem.currentÀº ÃÖ±Ù¿¡ ¹ß»ýÇÑ ÀÌº¥Æ® ½Ã½ºÅÛÀ» ¹ÝÈ¯ÇÑ´Ù.
-        //Ã¹¹øÂ° ÀÎÀÚ°ª : ÇöÀç Æ÷ÀÎÅÍ µ¥ÀÌÅÍ.
-        //µÎ¹øÂ° ÀÎÀÚ°ª : List of 'hits' to populate.
-        //RaycastAll : ¸ðµÎ ¼³Á¤µÈ BaseRaycaster¸¦ »ç¿ëÀ» ÅëÇÑ ÇØ´ç ¾ÀÀ¸·ÎÀÇ ·¹ÀÌ Ä³½ºÆÃ.
-        // -> °ãÃÄÀÖ´Â ¿ÀºêÁ§Æ®µéÀÌ ÀÖ´Ù¸é °ãÃÄÀÖ´Â ¼ö·Î resultsÀÇ Ä«¿îÆ®°¡ ¹Ù²ñ
+        //EventSystem.currentï¿½ï¿½ ï¿½Ö±Ù¿ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ï¿½Ñ´ï¿½.
+        //Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½Ú°ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+        //ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½Ú°ï¿½ : List of 'hits' to populate.
+        //RaycastAll : ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BaseRaycasterï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½.
+        // -> ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ resultsï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ù²ï¿½
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         //Debug.Log(results.Count);
         return results.Count > 0;

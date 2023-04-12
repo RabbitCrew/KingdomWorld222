@@ -36,6 +36,7 @@ TagManager:
   - NotWalkable
   - Animal
   - Pastoralist
+  - WaitingBuilding
   layers:
   - Default
   - TransparentFX
