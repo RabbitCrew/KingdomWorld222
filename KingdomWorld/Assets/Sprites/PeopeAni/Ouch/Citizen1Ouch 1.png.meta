@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6450a79a90b90ba49be7d955ad1862f5
+guid: 8dbd345e368c9154692df7d72a5bd667
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Citizen2Ouch_0
+      name: Citizen1Ouch 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbec4fcec08b5b845adf9cc7e19ca199
-      internalID: -1644157313
+      spriteID: 8630a6bd1e637424e984595d851636c8
+      internalID: 1536608983
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_1
+      name: Citizen1Ouch 1_1
       rect:
         serializedVersion: 2
         x: 11
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2543182bd2552f4a8346077a1dde51e
-      internalID: -471027335
+      spriteID: 4a0753b0ab19cbf4a95fb26e02f29b37
+      internalID: 1378408764
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_2
+      name: Citizen1Ouch 1_2
       rect:
         serializedVersion: 2
         x: 22
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d12e93e9fdba2a4db4e50f579532f2e
-      internalID: 462298335
+      spriteID: 9e512f690a8b07a4db1eba48c9e90aac
+      internalID: 1585088320
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_3
+      name: Citizen1Ouch 1_3
       rect:
         serializedVersion: 2
         x: 33
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f20fde31176759499fb8bd7949e8d18
-      internalID: -742900043
+      spriteID: 69f8599aa4cb9d744bb9d4b00ecc1187
+      internalID: 1830107472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_4
+      name: Citizen1Ouch 1_4
       rect:
         serializedVersion: 2
         x: 44
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b13584e5190ceac469c5a001d5da47a3
-      internalID: -1013406275
+      spriteID: 55bc10b5301b7e2499759f06bbc19aba
+      internalID: 166343340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_5
+      name: Citizen1Ouch 1_5
       rect:
         serializedVersion: 2
         x: 55
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f43fbfac67f4294eadeb75194980185
-      internalID: 838059591
+      spriteID: 22eea52115d611f4a8190a0ecf0b87a2
+      internalID: -60042787
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_6
+      name: Citizen1Ouch 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78aece106698af541a30f9afa8f5d862
-      internalID: 382751314
+      spriteID: d5b95e6c0daf42346aa15b1b3ac7d64e
+      internalID: -1443191692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_7
+      name: Citizen1Ouch 1_7
       rect:
         serializedVersion: 2
         x: 11
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2220d3b6b6b4362479707b024f4d3877
-      internalID: 659629302
+      spriteID: 46d03d8c4a37f134f9b97f6c8afe4f8f
+      internalID: 2004485003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_8
+      name: Citizen1Ouch 1_8
       rect:
         serializedVersion: 2
         x: 22
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73e67cd608c40d5458e231aadd8e5828
-      internalID: -1325549281
+      spriteID: 917cc45053250f2449705f68c6921f03
+      internalID: 1231639352
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_9
+      name: Citizen1Ouch 1_9
       rect:
         serializedVersion: 2
         x: 33
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 875762818ddbc994eb1348d5f19e0685
-      internalID: 673163385
+      spriteID: 65b317ec9a8b1914a9f692002f6210ad
+      internalID: -236006865
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_10
+      name: Citizen1Ouch 1_10
       rect:
         serializedVersion: 2
         x: 44
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f3ec731fa650064c8113fe6add220d3
-      internalID: -1473665475
+      spriteID: 53eb893fb3eafee4abbdb6c653f69b3e
+      internalID: 1289157613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_11
+      name: Citizen1Ouch 1_11
       rect:
         serializedVersion: 2
         x: 55
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4df82b740b39d274fbd9d49a32aae6dc
-      internalID: -408313540
+      spriteID: eace546c530c21e46bc8de921c4801b0
+      internalID: 1445254076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_12
+      name: Citizen1Ouch 1_12
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26809443e2efc044c9fb1d2e53142a34
-      internalID: -592139443
+      spriteID: e4cb4e464b054814d9a0fd4e3edcf151
+      internalID: 1334417784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_13
+      name: Citizen1Ouch 1_13
       rect:
         serializedVersion: 2
         x: 11
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 765df219b6a8916469c9829992c3aefd
-      internalID: 818146663
+      spriteID: 17904e4362d216b42b96f57303ab77c5
+      internalID: -622588359
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_14
+      name: Citizen1Ouch 1_14
       rect:
         serializedVersion: 2
         x: 22
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69e697cfc7dea3f49b4c8c4df4963d2d
-      internalID: -1334418904
+      spriteID: 630699fbec175b04897cc1b4166d0939
+      internalID: 391587945
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_15
+      name: Citizen1Ouch 1_15
       rect:
         serializedVersion: 2
         x: 33
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0efd04130c70f624d9e592da3d5a8da9
-      internalID: -852887094
+      spriteID: 8533714241a6d2947b8f6e0650b457e9
+      internalID: 408310218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_16
+      name: Citizen1Ouch 1_16
       rect:
         serializedVersion: 2
         x: 44
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a84b3142a0e399940bdade9fff75ac7a
-      internalID: -1056849913
+      spriteID: fb2541965736393489ec4ebcb7d4d02f
+      internalID: -1921560475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_17
+      name: Citizen1Ouch 1_17
       rect:
         serializedVersion: 2
         x: 55
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a4ef6055ae19e44d865ca449cf02362
-      internalID: -792922477
+      spriteID: fabf6fce93d78ce4692d310824433c7f
+      internalID: 1355186806
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_18
+      name: Citizen1Ouch 1_18
       rect:
         serializedVersion: 2
         x: 0
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 248da20199f45074bb2cb69627cbb0f5
-      internalID: 838678110
+      spriteID: bbdfdc065f39bc84e9f744211c5f0af7
+      internalID: -1425211475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_19
+      name: Citizen1Ouch 1_19
       rect:
         serializedVersion: 2
         x: 11
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dec054a1b60caa4e90ee072b8627a9a
-      internalID: 430169384
+      spriteID: 0cd138538faa64444a92c74ccc0f87e3
+      internalID: 1671076736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_20
+      name: Citizen1Ouch 1_20
       rect:
         serializedVersion: 2
         x: 22
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b67d9b2f87f50a4fa8b14e3450f995c
-      internalID: 1810859903
+      spriteID: 14bf371859bfe494cb9e925933fcb7c6
+      internalID: 1090997191
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_21
+      name: Citizen1Ouch 1_21
       rect:
         serializedVersion: 2
         x: 33
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 737a1f72f13c8544083803ce51bd4dc6
-      internalID: 630471393
+      spriteID: 5966eb00126013744b1a16107c9be9c3
+      internalID: -1696025037
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_22
+      name: Citizen1Ouch 1_22
       rect:
         serializedVersion: 2
         x: 44
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adc39605f0b202540a010d09dc282a1b
-      internalID: -1845120568
+      spriteID: 059a0e98bb067094eb53d74ffee5e0b8
+      internalID: 2121394482
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Citizen2Ouch_23
+      name: Citizen1Ouch 1_23
       rect:
         serializedVersion: 2
         x: 55
@@ -616,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb12b63086aa02849ad0b1b45cc3ab2e
-      internalID: -1815881636
+      spriteID: 8191a887db9ad3d4891f54d4aac6468f
+      internalID: 1033021487
       vertices: []
       indices: 
       edges: []
@@ -625,7 +625,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a155cd7ab7bb6c84d82fe796ecea0f0d
+    spriteID: c7d8ae553ed815c4491dc9b8539d3e63
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +633,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Citizen2Ouch_0: -1644157313
-      Citizen2Ouch_1: -471027335
-      Citizen2Ouch_10: -1473665475
-      Citizen2Ouch_11: -408313540
-      Citizen2Ouch_12: -592139443
-      Citizen2Ouch_13: 818146663
-      Citizen2Ouch_14: -1334418904
-      Citizen2Ouch_15: -852887094
-      Citizen2Ouch_16: -1056849913
-      Citizen2Ouch_17: -792922477
-      Citizen2Ouch_18: 838678110
-      Citizen2Ouch_19: 430169384
-      Citizen2Ouch_2: 462298335
-      Citizen2Ouch_20: 1810859903
-      Citizen2Ouch_21: 630471393
-      Citizen2Ouch_22: -1845120568
-      Citizen2Ouch_23: -1815881636
-      Citizen2Ouch_3: -742900043
-      Citizen2Ouch_4: -1013406275
-      Citizen2Ouch_5: 838059591
-      Citizen2Ouch_6: 382751314
-      Citizen2Ouch_7: 659629302
-      Citizen2Ouch_8: -1325549281
-      Citizen2Ouch_9: 673163385
+      Citizen1Ouch 1_0: 1536608983
+      Citizen1Ouch 1_1: 1378408764
+      Citizen1Ouch 1_10: 1289157613
+      Citizen1Ouch 1_11: 1445254076
+      Citizen1Ouch 1_12: 1334417784
+      Citizen1Ouch 1_13: -622588359
+      Citizen1Ouch 1_14: 391587945
+      Citizen1Ouch 1_15: 408310218
+      Citizen1Ouch 1_16: -1921560475
+      Citizen1Ouch 1_17: 1355186806
+      Citizen1Ouch 1_18: -1425211475
+      Citizen1Ouch 1_19: 1671076736
+      Citizen1Ouch 1_2: 1585088320
+      Citizen1Ouch 1_20: 1090997191
+      Citizen1Ouch 1_21: -1696025037
+      Citizen1Ouch 1_22: 2121394482
+      Citizen1Ouch 1_23: 1033021487
+      Citizen1Ouch 1_3: 1830107472
+      Citizen1Ouch 1_4: 166343340
+      Citizen1Ouch 1_5: -60042787
+      Citizen1Ouch 1_6: -1443191692
+      Citizen1Ouch 1_7: 2004485003
+      Citizen1Ouch 1_8: 1231639352
+      Citizen1Ouch 1_9: -236006865
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

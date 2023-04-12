@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 64d0f69c0a1168149ba35c452fa1f083
+guid: bdfdb78e245a5034e8bc3e567f019548
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_0
+      name: CarpenterOuch 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd8df407b597a654fb0b17fad1829bfd
-      internalID: 506487993
+      spriteID: e9a56c6545147974da82f96246691fd8
+      internalID: 227943487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_1
+      name: CarpenterOuch 1_1
       rect:
         serializedVersion: 2
         x: 11
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dcedba4cfe710ef48abdb939658404f8
-      internalID: -1182496008
+      spriteID: 1f842fbe95af25f4eae939e51f0fe146
+      internalID: 301499139
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_2
+      name: CarpenterOuch 1_2
       rect:
         serializedVersion: 2
         x: 22
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 847e6cf3d48dbfb42b945eb3c3bda43d
-      internalID: 1604398283
+      spriteID: ea35199ad3e9b3443ad7d9c54c8b1515
+      internalID: 32365464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_3
+      name: CarpenterOuch 1_3
       rect:
         serializedVersion: 2
         x: 33
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75ee4f29735b8c14f85f9e1005d692d0
-      internalID: -806853993
+      spriteID: 473e20869e3f5e1499a7d4c0601ad536
+      internalID: -824670474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_4
+      name: CarpenterOuch 1_4
       rect:
         serializedVersion: 2
         x: 44
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b21d59aa5da19dd47bacde3d6b8a94bd
-      internalID: 2069830391
+      spriteID: 3a0fe0f86c9932942a3d07e88609833a
+      internalID: -704764533
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_5
+      name: CarpenterOuch 1_5
       rect:
         serializedVersion: 2
         x: 55
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73b806989cb881e489d94d82b7c1f6af
-      internalID: -366912415
+      spriteID: baec87fb51a02bb468d198fd9161035c
+      internalID: -471594755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_6
+      name: CarpenterOuch 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6a599c210ce28d4297ac73019b4380d
-      internalID: 100429534
+      spriteID: 326aa9136515e574fb6ac938b1dc818f
+      internalID: -1414559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_7
+      name: CarpenterOuch 1_7
       rect:
         serializedVersion: 2
         x: 11
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb8d72b3d6efc4a48b969baa4f994071
-      internalID: 1718661214
+      spriteID: 4100ceaaf2f35b64f95d997e9870f1bc
+      internalID: -1814588679
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_8
+      name: CarpenterOuch 1_8
       rect:
         serializedVersion: 2
         x: 22
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dac6bfd2c3e9d8b47b6d8690565656a7
-      internalID: -1872653973
+      spriteID: da94ed8e6f193a74d83b18566c5f3c6d
+      internalID: -182796192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_9
+      name: CarpenterOuch 1_9
       rect:
         serializedVersion: 2
         x: 33
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93b8b0a70d9ff5045b29376d7999ba6c
-      internalID: -1452917853
+      spriteID: 94a902e328017a6438cc8b47fd54fab5
+      internalID: 1736749175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_10
+      name: CarpenterOuch 1_10
       rect:
         serializedVersion: 2
         x: 44
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27d0ac428552b6048a23ed643d5d04b9
-      internalID: -694563575
+      spriteID: d7057b35508fed04a814de5ebc82dca4
+      internalID: 1704925349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_11
+      name: CarpenterOuch 1_11
       rect:
         serializedVersion: 2
         x: 55
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad0cb2183c249f440902723eaf363335
-      internalID: -1232544429
+      spriteID: 85d562651f410b046b1eaa3f3f764bc5
+      internalID: 966018452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_12
+      name: CarpenterOuch 1_12
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46bac38274259a44983a39fbbc0a2377
-      internalID: -1385357331
+      spriteID: 74121a4f28639e24c970007b34e00224
+      internalID: 1447510982
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_13
+      name: CarpenterOuch 1_13
       rect:
         serializedVersion: 2
         x: 11
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 099abe329ce20874dbf5477654dae1e5
-      internalID: 861539805
+      spriteID: 357d0bf464b2ca546a7544cfeebbbd7d
+      internalID: 2075105329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_14
+      name: CarpenterOuch 1_14
       rect:
         serializedVersion: 2
         x: 22
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9cd8e0c9c89fa1479d599a55e5c7541
-      internalID: -207638451
+      spriteID: c509d91cb1cbc3b4497a8a975ac4709e
+      internalID: -170733066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_15
+      name: CarpenterOuch 1_15
       rect:
         serializedVersion: 2
         x: 33
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d589a5eeeb0c65a40ac1649b75cd9d54
-      internalID: 1654897256
+      spriteID: 66e52cd4d1b11d5428d8a07b5efc28ab
+      internalID: 59188724
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_16
+      name: CarpenterOuch 1_16
       rect:
         serializedVersion: 2
         x: 44
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fccfc3513eaf3604c834b2c0555df623
-      internalID: -1456137303
+      spriteID: aacceb3901e89fb4abfea4050d693eea
+      internalID: -612742112
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_17
+      name: CarpenterOuch 1_17
       rect:
         serializedVersion: 2
         x: 55
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4500c7712b63fa349aa1fb5705e3da48
-      internalID: -504466885
+      spriteID: 4133a76ee2568dd4ebd016e7b235bb73
+      internalID: -2035568185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_18
+      name: CarpenterOuch 1_18
       rect:
         serializedVersion: 2
         x: 0
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c34c8848e6f5404a8ac264d287aa32e
-      internalID: -1708026324
+      spriteID: 40f96f79d6952e4499c56ba547286b0e
+      internalID: 725585304
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_19
+      name: CarpenterOuch 1_19
       rect:
         serializedVersion: 2
         x: 11
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dabe3e10ef8e4c40997bb70f4530667
-      internalID: 243725115
+      spriteID: 0a86ca8e5bc414b4f9751a3845b65edf
+      internalID: 1010944866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_20
+      name: CarpenterOuch 1_20
       rect:
         serializedVersion: 2
         x: 22
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 51becac2654e95644abd008ff5fa115f
-      internalID: 688215788
+      spriteID: fcf30d0be03de18419592bcd42903351
+      internalID: 924345980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_21
+      name: CarpenterOuch 1_21
       rect:
         serializedVersion: 2
         x: 33
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27b578e129cee4f468b72b454e3258d5
-      internalID: 1907592706
+      spriteID: 6311f5c4c1f550b4889b32f5daff71a4
+      internalID: -891129689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_22
+      name: CarpenterOuch 1_22
       rect:
         serializedVersion: 2
         x: 44
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7786e2059ce865d43bf4ea2bc65fa4d4
-      internalID: -1677830855
+      spriteID: 5bfd914fae422e54097c7d7fa2b8d399
+      internalID: -1244838935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch_23
+      name: CarpenterOuch 1_23
       rect:
         serializedVersion: 2
         x: 55
@@ -616,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3e07260f5f150448af4a28ffde378c2
-      internalID: -1071719988
+      spriteID: c9ee9e6f5b8a2504bbf89025c1eee228
+      internalID: 2013318842
       vertices: []
       indices: 
       edges: []
@@ -625,7 +625,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 32e481b3cabf6fb4b919432f1c7a38f1
+    spriteID: e214b38b1cb3b47469da76c3fa2d3e92
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +633,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WareHouseKeeperOuch_0: 506487993
-      WareHouseKeeperOuch_1: -1182496008
-      WareHouseKeeperOuch_10: -694563575
-      WareHouseKeeperOuch_11: -1232544429
-      WareHouseKeeperOuch_12: -1385357331
-      WareHouseKeeperOuch_13: 861539805
-      WareHouseKeeperOuch_14: -207638451
-      WareHouseKeeperOuch_15: 1654897256
-      WareHouseKeeperOuch_16: -1456137303
-      WareHouseKeeperOuch_17: -504466885
-      WareHouseKeeperOuch_18: -1708026324
-      WareHouseKeeperOuch_19: 243725115
-      WareHouseKeeperOuch_2: 1604398283
-      WareHouseKeeperOuch_20: 688215788
-      WareHouseKeeperOuch_21: 1907592706
-      WareHouseKeeperOuch_22: -1677830855
-      WareHouseKeeperOuch_23: -1071719988
-      WareHouseKeeperOuch_3: -806853993
-      WareHouseKeeperOuch_4: 2069830391
-      WareHouseKeeperOuch_5: -366912415
-      WareHouseKeeperOuch_6: 100429534
-      WareHouseKeeperOuch_7: 1718661214
-      WareHouseKeeperOuch_8: -1872653973
-      WareHouseKeeperOuch_9: -1452917853
+      CarpenterOuch 1_0: 227943487
+      CarpenterOuch 1_1: 301499139
+      CarpenterOuch 1_10: 1704925349
+      CarpenterOuch 1_11: 966018452
+      CarpenterOuch 1_12: 1447510982
+      CarpenterOuch 1_13: 2075105329
+      CarpenterOuch 1_14: -170733066
+      CarpenterOuch 1_15: 59188724
+      CarpenterOuch 1_16: -612742112
+      CarpenterOuch 1_17: -2035568185
+      CarpenterOuch 1_18: 725585304
+      CarpenterOuch 1_19: 1010944866
+      CarpenterOuch 1_2: 32365464
+      CarpenterOuch 1_20: 924345980
+      CarpenterOuch 1_21: -891129689
+      CarpenterOuch 1_22: -1244838935
+      CarpenterOuch 1_23: 2013318842
+      CarpenterOuch 1_3: -824670474
+      CarpenterOuch 1_4: -704764533
+      CarpenterOuch 1_5: -471594755
+      CarpenterOuch 1_6: -1414559
+      CarpenterOuch 1_7: -1814588679
+      CarpenterOuch 1_8: -182796192
+      CarpenterOuch 1_9: 1736749175
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

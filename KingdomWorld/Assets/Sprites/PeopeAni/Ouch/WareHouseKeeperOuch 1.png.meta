@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: df60bef1f411bad4b9d0da2e0ce0c492
+guid: 3f8229de296b5394ab17dd4e5a792223
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HunterOuch_0
+      name: WareHouseKeeperOuch 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f22054c190f9ca64f8b9733ec10303c1
-      internalID: 658968853
+      spriteID: 8bf4201d3ef470e448777342c7a568dd
+      internalID: 2038304707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_1
+      name: WareHouseKeeperOuch 1_1
       rect:
         serializedVersion: 2
         x: 11
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dee1224c9627f2840a77b3df3e10e6c8
-      internalID: -425363677
+      spriteID: e4e6b1407d4610f40b26f19e1ac2e02d
+      internalID: -1548365096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_2
+      name: WareHouseKeeperOuch 1_2
       rect:
         serializedVersion: 2
         x: 22
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84282d1acfa4e3c4fbe371ba99963846
-      internalID: -324920922
+      spriteID: 1ce244459c21f7c42974b348e89c3448
+      internalID: -499177632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_3
+      name: WareHouseKeeperOuch 1_3
       rect:
         serializedVersion: 2
         x: 33
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1fef0725f0915a04eb655f8ae83444d4
-      internalID: 457944234
+      spriteID: 14301467e2c75fd42b9657ddb076ca83
+      internalID: -2042899014
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_4
+      name: WareHouseKeeperOuch 1_4
       rect:
         serializedVersion: 2
         x: 44
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45b6de5f85d274e4d892b408646752fa
-      internalID: -2044644181
+      spriteID: ce8bf7671ddfaf04ab3cc3f1021fcbb4
+      internalID: 1941309815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_5
+      name: WareHouseKeeperOuch 1_5
       rect:
         serializedVersion: 2
         x: 55
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58ab4e5b364f3d247ab077996f342df1
-      internalID: 819503119
+      spriteID: e100ae00a9888b945944f6121c54100f
+      internalID: 572882660
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_6
+      name: WareHouseKeeperOuch 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc603882e6c5250428ead7526e57924e
-      internalID: -732968443
+      spriteID: 6b65e84aec362cb4789842cdb0451c00
+      internalID: -523929152
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_7
+      name: WareHouseKeeperOuch 1_7
       rect:
         serializedVersion: 2
         x: 11
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08332389af492414f9b462a3699f94fa
-      internalID: -338425633
+      spriteID: 035a46b1167ff69418e6fd9d9dd9bf4e
+      internalID: -688537355
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_8
+      name: WareHouseKeeperOuch 1_8
       rect:
         serializedVersion: 2
         x: 22
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a19436a4ba498994083d0d157fcc7907
-      internalID: 645947158
+      spriteID: 974ea55af8d08764da17d1ba109cb1fe
+      internalID: -773491006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_9
+      name: WareHouseKeeperOuch 1_9
       rect:
         serializedVersion: 2
         x: 33
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 240e2fa1c5439ed46a55fba19451244a
-      internalID: 843358337
+      spriteID: f58b3262a2ee34341a5d688fc4e8a809
+      internalID: -498231944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_10
+      name: WareHouseKeeperOuch 1_10
       rect:
         serializedVersion: 2
         x: 44
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d05e1a792db41349a32e7f44e8e0248
-      internalID: -2058569792
+      spriteID: 5bcb69e6eafd74b4ab1d031499c53e72
+      internalID: 2139582604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_11
+      name: WareHouseKeeperOuch 1_11
       rect:
         serializedVersion: 2
         x: 55
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f45284333b025e448b2cb29c010ae4c
-      internalID: -203321378
+      spriteID: 896d849307b34b74aa62b619b8495dd0
+      internalID: -1762876655
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_12
+      name: WareHouseKeeperOuch 1_12
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bd68e19d7c78bbb4b92ceb33d29dbf35
-      internalID: 1103289642
+      spriteID: 3d25fefd4af1ae64a9928f28769e4c28
+      internalID: -588230546
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_13
+      name: WareHouseKeeperOuch 1_13
       rect:
         serializedVersion: 2
         x: 11
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 261fc20dbe75b5448915cdac403a01c2
-      internalID: -953081211
+      spriteID: 8d53b827cfe61a14486107fadcb550db
+      internalID: -671688131
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_14
+      name: WareHouseKeeperOuch 1_14
       rect:
         serializedVersion: 2
         x: 22
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61b24c48c45ad494a87cf52d1aa852d5
-      internalID: 169789057
+      spriteID: 19364a7d3737ce84588efa438b1a52c2
+      internalID: 817234959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_15
+      name: WareHouseKeeperOuch 1_15
       rect:
         serializedVersion: 2
         x: 33
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48204ef08c9071f4897768a69993e1bf
-      internalID: -1701874339
+      spriteID: 6a6f64bcb42bcee48b9df0a342c61abe
+      internalID: -1128078431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_16
+      name: WareHouseKeeperOuch 1_16
       rect:
         serializedVersion: 2
         x: 44
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6dcf4e9d2a50f5e4884886515ed8f4a6
-      internalID: 1735919633
+      spriteID: 66c94e5caabe6de4cbbdc437fb3918df
+      internalID: 1447826903
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_17
+      name: WareHouseKeeperOuch 1_17
       rect:
         serializedVersion: 2
         x: 55
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0486228ffc420e4ca8b7d5d9b4c82aa
-      internalID: -1508357547
+      spriteID: 9835fc5f817780047b35309e1d6bae9d
+      internalID: -1195990409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_18
+      name: WareHouseKeeperOuch 1_18
       rect:
         serializedVersion: 2
         x: 0
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0d3e535af43794c498096ca77220d50b
-      internalID: 188557493
+      spriteID: b855439fe9fbda04caa7b5b9e800aa76
+      internalID: 1786161203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_19
+      name: WareHouseKeeperOuch 1_19
       rect:
         serializedVersion: 2
         x: 11
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c57b5f5b2bb056248a2facc4f7ffeb3a
-      internalID: 294524457
+      spriteID: c954b1e36fae6194682ecc1c1ebf2476
+      internalID: -259974875
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_20
+      name: WareHouseKeeperOuch 1_20
       rect:
         serializedVersion: 2
         x: 22
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 023ce8938b6d15347a2d21af8362008a
-      internalID: -678392405
+      spriteID: 294862a9683c60446b32045e4e385222
+      internalID: -1453922266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_21
+      name: WareHouseKeeperOuch 1_21
       rect:
         serializedVersion: 2
         x: 33
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5187633cf911e5488cf2eaf5dd9ea31
-      internalID: 1646874400
+      spriteID: 057a61655cbdb2b44b99d9e40b1cbeea
+      internalID: 612710289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_22
+      name: WareHouseKeeperOuch 1_22
       rect:
         serializedVersion: 2
         x: 44
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce986ba4f987f404bb5d4b15989455f7
-      internalID: 811551365
+      spriteID: 2b06b29d564d73d4ca4739f51be150a1
+      internalID: -22238350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HunterOuch_23
+      name: WareHouseKeeperOuch 1_23
       rect:
         serializedVersion: 2
         x: 55
@@ -616,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 634a6b99f1f95dd45a90fe510578665a
-      internalID: 1095795512
+      spriteID: 0ea4efb8c22b0e04ea8a39f8cb1e79d1
+      internalID: 739213686
       vertices: []
       indices: 
       edges: []
@@ -625,7 +625,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9e16f55ddf5f17d43a8fa9dcbe96e299
+    spriteID: 17811b2d58045a7428e8afac82d77e7e
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +633,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HunterOuch_0: 658968853
-      HunterOuch_1: -425363677
-      HunterOuch_10: -2058569792
-      HunterOuch_11: -203321378
-      HunterOuch_12: 1103289642
-      HunterOuch_13: -953081211
-      HunterOuch_14: 169789057
-      HunterOuch_15: -1701874339
-      HunterOuch_16: 1735919633
-      HunterOuch_17: -1508357547
-      HunterOuch_18: 188557493
-      HunterOuch_19: 294524457
-      HunterOuch_2: -324920922
-      HunterOuch_20: -678392405
-      HunterOuch_21: 1646874400
-      HunterOuch_22: 811551365
-      HunterOuch_23: 1095795512
-      HunterOuch_3: 457944234
-      HunterOuch_4: -2044644181
-      HunterOuch_5: 819503119
-      HunterOuch_6: -732968443
-      HunterOuch_7: -338425633
-      HunterOuch_8: 645947158
-      HunterOuch_9: 843358337
+      WareHouseKeeperOuch 1_0: 2038304707
+      WareHouseKeeperOuch 1_1: -1548365096
+      WareHouseKeeperOuch 1_10: 2139582604
+      WareHouseKeeperOuch 1_11: -1762876655
+      WareHouseKeeperOuch 1_12: -588230546
+      WareHouseKeeperOuch 1_13: -671688131
+      WareHouseKeeperOuch 1_14: 817234959
+      WareHouseKeeperOuch 1_15: -1128078431
+      WareHouseKeeperOuch 1_16: 1447826903
+      WareHouseKeeperOuch 1_17: -1195990409
+      WareHouseKeeperOuch 1_18: 1786161203
+      WareHouseKeeperOuch 1_19: -259974875
+      WareHouseKeeperOuch 1_2: -499177632
+      WareHouseKeeperOuch 1_20: -1453922266
+      WareHouseKeeperOuch 1_21: 612710289
+      WareHouseKeeperOuch 1_22: -22238350
+      WareHouseKeeperOuch 1_23: 739213686
+      WareHouseKeeperOuch 1_3: -2042899014
+      WareHouseKeeperOuch 1_4: 1941309815
+      WareHouseKeeperOuch 1_5: 572882660
+      WareHouseKeeperOuch 1_6: -523929152
+      WareHouseKeeperOuch 1_7: -688537355
+      WareHouseKeeperOuch 1_8: -773491006
+      WareHouseKeeperOuch 1_9: -498231944
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

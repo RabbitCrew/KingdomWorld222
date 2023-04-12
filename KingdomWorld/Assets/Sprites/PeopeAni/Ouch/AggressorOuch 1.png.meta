@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c43ee05a6266d884babf9d7bcc916ec7
+guid: 28159a8abd7d0a14bb106834a6b625c1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AggressorOuch_0
+      name: AggressorOuch 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8e371754afb8624d8246723f3191bc9
-      internalID: 561720939
+      spriteID: cfd984bffdc176f4eb955e25eec158ce
+      internalID: 225447003
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_1
+      name: AggressorOuch 1_1
       rect:
         serializedVersion: 2
         x: 11
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5bd0d369555ead4fb3556b837ff5dbf
-      internalID: -202089238
+      spriteID: 5b32a45c6d5bffc43a0a5465a479f09b
+      internalID: -856636046
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_2
+      name: AggressorOuch 1_2
       rect:
         serializedVersion: 2
         x: 22
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f891473f20d56b49ac88c68cd7ce271
-      internalID: 1520768942
+      spriteID: f4ccb5b0211137c48970ae99d6e90077
+      internalID: -1205130900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_3
+      name: AggressorOuch 1_3
       rect:
         serializedVersion: 2
         x: 33
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 172c3c91f04cdbf4da9053178157d799
-      internalID: -688907677
+      spriteID: 3d30063cb8084c545a1b6496c1d31912
+      internalID: -998008183
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_4
+      name: AggressorOuch 1_4
       rect:
         serializedVersion: 2
         x: 44
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8c4ca3584d0a364e9f9c68146aa7484
-      internalID: -1388993883
+      spriteID: 44d4c9b9e956309489423aa752173308
+      internalID: -590189801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_5
+      name: AggressorOuch 1_5
       rect:
         serializedVersion: 2
         x: 55
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2c8e467b2beb5f46b8ac5005d6784cc
-      internalID: 2102069292
+      spriteID: 1ff5035440da5e043ae6fac046cecee7
+      internalID: 1430873578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_6
+      name: AggressorOuch 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5ba7f78436720e4fbf034e7c6928854
-      internalID: -1538027844
+      spriteID: 95d1d4c3c871d3b40a80c906b1f73f81
+      internalID: -436132534
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_7
+      name: AggressorOuch 1_7
       rect:
         serializedVersion: 2
         x: 11
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a78544f1cab28084280d8fe90c55f84b
-      internalID: 1116647028
+      spriteID: bd750a3ca7c064043ac0fef303801318
+      internalID: 1457372842
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_8
+      name: AggressorOuch 1_8
       rect:
         serializedVersion: 2
         x: 22
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e57834a7349e96a4b80a2be36b3ff237
-      internalID: -1084559372
+      spriteID: 9887794e247c27947bbd2b9bb4dc1b7b
+      internalID: -986278777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_9
+      name: AggressorOuch 1_9
       rect:
         serializedVersion: 2
         x: 33
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 881915b1bf2432d418ddb8852dd2ccf6
-      internalID: -204795476
+      spriteID: 64c729f68cf5069488ed96d7e2f46905
+      internalID: 924770656
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_10
+      name: AggressorOuch 1_10
       rect:
         serializedVersion: 2
         x: 44
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 30c5a0fab968083409cb568e61f1aae4
-      internalID: 1778054138
+      spriteID: 64c3a9b1c515dd942a69409645820e28
+      internalID: 1498136636
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_11
+      name: AggressorOuch 1_11
       rect:
         serializedVersion: 2
         x: 55
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 16d2b1692a4952741bab8fedd7919810
-      internalID: -2089439369
+      spriteID: 5b7ea3eed39ab83488af49e60235861d
+      internalID: -2058718812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_12
+      name: AggressorOuch 1_12
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c0b64b40de6541646b7fdec1cbb7807f
-      internalID: 1547803443
+      spriteID: 3c30ff83c6def7a499222a16e79f1845
+      internalID: 1723027168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_13
+      name: AggressorOuch 1_13
       rect:
         serializedVersion: 2
         x: 11
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0824eb3bfcf24864caf6a9ee47235bf5
-      internalID: -489242473
+      spriteID: 7a8ab2e5ad5af7e46b57d53b87b9c51d
+      internalID: 1573383207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_14
+      name: AggressorOuch 1_14
       rect:
         serializedVersion: 2
         x: 22
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc31bc695458e11438cffc79d94fd178
-      internalID: -2048306130
+      spriteID: 320ecbe63f539954b927ad370b8f2abc
+      internalID: 1481776259
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_15
+      name: AggressorOuch 1_15
       rect:
         serializedVersion: 2
         x: 33
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a505fefc0d5aaf243afbbb06bf991261
-      internalID: 56819934
+      spriteID: aa3a5367cc2e2b149bc432e73e12b22d
+      internalID: 2018888448
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_16
+      name: AggressorOuch 1_16
       rect:
         serializedVersion: 2
         x: 44
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea96a62fd2affa84e87507b59a919a9e
-      internalID: -898961964
+      spriteID: 5073d08e2fdba7f4dbd348988c853623
+      internalID: -224439702
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_17
+      name: AggressorOuch 1_17
       rect:
         serializedVersion: 2
         x: 55
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58ba7ed5ac163b94e90eda9c33baa54a
-      internalID: -786642322
+      spriteID: 789de0a125460b245bdd95c7679099f8
+      internalID: -1076286410
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_18
+      name: AggressorOuch 1_18
       rect:
         serializedVersion: 2
         x: 0
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f84a8796ce97d694b9a73f89662bd7ce
-      internalID: 2122124926
+      spriteID: 49ddd902acea4c24294c9eb3dfa27280
+      internalID: 421068265
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_19
+      name: AggressorOuch 1_19
       rect:
         serializedVersion: 2
         x: 11
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3308f14b2bcdbbe44bc33db07e950acc
-      internalID: -454943690
+      spriteID: 1baec68c44022e44bb46d4e1abd4f66d
+      internalID: -1279705604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_20
+      name: AggressorOuch 1_20
       rect:
         serializedVersion: 2
         x: 22
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cad509affe71df344ad3a93d656c00a4
-      internalID: 1231455265
+      spriteID: 35a49e211a38e174cb77b2afe33fe8be
+      internalID: -2006007804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_21
+      name: AggressorOuch 1_21
       rect:
         serializedVersion: 2
         x: 33
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00bb139e299cd2a4dac38ee735d0d336
-      internalID: -1037619768
+      spriteID: 57882b980dfb1744386ffd37fcca0369
+      internalID: 1374807193
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_22
+      name: AggressorOuch 1_22
       rect:
         serializedVersion: 2
         x: 44
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d703d15796f21934da241b18fc0d7f45
-      internalID: -1280211722
+      spriteID: c7644e02e6d163e4cacc0bad1fc040cd
+      internalID: -234909201
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AggressorOuch_23
+      name: AggressorOuch 1_23
       rect:
         serializedVersion: 2
         x: 55
@@ -616,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eaf8ba6eacf1984ea8dbd4a8e76d4cf
-      internalID: -1902208962
+      spriteID: c0f0359ad8bbed249864213bab60a0e6
+      internalID: 1365590142
       vertices: []
       indices: 
       edges: []
@@ -625,7 +625,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: dc61497d7a57cfc4e9f8050def5e33e1
+    spriteID: 7324f11157f52be458b3cf4c4c49d9e0
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +633,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AggressorOuch_0: 561720939
-      AggressorOuch_1: -202089238
-      AggressorOuch_10: 1778054138
-      AggressorOuch_11: -2089439369
-      AggressorOuch_12: 1547803443
-      AggressorOuch_13: -489242473
-      AggressorOuch_14: -2048306130
-      AggressorOuch_15: 56819934
-      AggressorOuch_16: -898961964
-      AggressorOuch_17: -786642322
-      AggressorOuch_18: 2122124926
-      AggressorOuch_19: -454943690
-      AggressorOuch_2: 1520768942
-      AggressorOuch_20: 1231455265
-      AggressorOuch_21: -1037619768
-      AggressorOuch_22: -1280211722
-      AggressorOuch_23: -1902208962
-      AggressorOuch_3: -688907677
-      AggressorOuch_4: -1388993883
-      AggressorOuch_5: 2102069292
-      AggressorOuch_6: -1538027844
-      AggressorOuch_7: 1116647028
-      AggressorOuch_8: -1084559372
-      AggressorOuch_9: -204795476
+      AggressorOuch 1_0: 225447003
+      AggressorOuch 1_1: -856636046
+      AggressorOuch 1_10: 1498136636
+      AggressorOuch 1_11: -2058718812
+      AggressorOuch 1_12: 1723027168
+      AggressorOuch 1_13: 1573383207
+      AggressorOuch 1_14: 1481776259
+      AggressorOuch 1_15: 2018888448
+      AggressorOuch 1_16: -224439702
+      AggressorOuch 1_17: -1076286410
+      AggressorOuch 1_18: 421068265
+      AggressorOuch 1_19: -1279705604
+      AggressorOuch 1_2: -1205130900
+      AggressorOuch 1_20: -2006007804
+      AggressorOuch 1_21: 1374807193
+      AggressorOuch 1_22: -234909201
+      AggressorOuch 1_23: 1365590142
+      AggressorOuch 1_3: -998008183
+      AggressorOuch 1_4: -590189801
+      AggressorOuch 1_5: 1430873578
+      AggressorOuch 1_6: -436132534
+      AggressorOuch 1_7: 1457372842
+      AggressorOuch 1_8: -986278777
+      AggressorOuch 1_9: 924770656
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6ac289afbdae03642ac981de124ba439
+guid: 4e84220d7b53c314bbd22c58f6d068ee
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FarmerOuch_0
+      name: FarmerOuch 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4304ddcb324acb4b84dc95a0814d1d5
-      internalID: -1669679433
+      spriteID: aee655d050933c44f8f2d9a5f1de3da4
+      internalID: -1936767429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_1
+      name: FarmerOuch 1_1
       rect:
         serializedVersion: 2
         x: 11
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 818bd0d1864bd584f9a74c16b22d2024
-      internalID: 2108620520
+      spriteID: 99ab099252c6a1741a5363f7d6f2b121
+      internalID: -2109323872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_2
+      name: FarmerOuch 1_2
       rect:
         serializedVersion: 2
         x: 22
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0bad2ff5b34ada44a9463f6955eaa8c
-      internalID: 1115568203
+      spriteID: eb3ab70c72b6e2741b01f97cf86d062f
+      internalID: -1093589245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_3
+      name: FarmerOuch 1_3
       rect:
         serializedVersion: 2
         x: 33
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44a0fb156d2cec14d8dd9f675a179e00
-      internalID: 1068561774
+      spriteID: 9c6fcd48a7cf7e746b5a538dadf06c48
+      internalID: -828882837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_4
+      name: FarmerOuch 1_4
       rect:
         serializedVersion: 2
         x: 44
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b053bfdc61b8534085a4e86c29f8388
-      internalID: 1689483002
+      spriteID: 213e6877767d3d348bcdb0f05fdee3d0
+      internalID: 1113008296
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_5
+      name: FarmerOuch 1_5
       rect:
         serializedVersion: 2
         x: 55
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa947bc6ce22b164abf50afdf12fad4a
-      internalID: -1466888774
+      spriteID: 46d4e45155981cc4f9f4fa37f0c1d56b
+      internalID: -601963227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_6
+      name: FarmerOuch 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e54d0445504f3de499aadb95816d8a4d
-      internalID: 117772542
+      spriteID: 45a9a1e41be61f5408c45706ae9f8640
+      internalID: -1020189225
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_7
+      name: FarmerOuch 1_7
       rect:
         serializedVersion: 2
         x: 11
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b96ba9bef6f761a4b8d8ec47ac5183cf
-      internalID: -162008331
+      spriteID: ecf52aeba9949f2448728be468809c83
+      internalID: -1531813474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_8
+      name: FarmerOuch 1_8
       rect:
         serializedVersion: 2
         x: 22
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c80def810088474599ec5a0fd578ae7
-      internalID: -1129267107
+      spriteID: aae3b792338c62749a25f74811e49f6a
+      internalID: 1502815477
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_9
+      name: FarmerOuch 1_9
       rect:
         serializedVersion: 2
         x: 33
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ce5bc3a6962c204092de32e2e1052d1
-      internalID: 639644764
+      spriteID: 336e6b712a3e6694b91a7758bdba5ea5
+      internalID: -633315335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_10
+      name: FarmerOuch 1_10
       rect:
         serializedVersion: 2
         x: 44
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 56fdae03cfc94d04d88e83dd0e9d9e4d
-      internalID: 1885995972
+      spriteID: 2f64bd5267d90f94598940c7da6e8aa1
+      internalID: -536842008
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_11
+      name: FarmerOuch 1_11
       rect:
         serializedVersion: 2
         x: 55
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc626693d33fa6e4d85f51581209a651
-      internalID: 328613390
+      spriteID: 1cb95a1322fa5b94ebf03db568c9556f
+      internalID: 78090751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_12
+      name: FarmerOuch 1_12
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6be4794ac45602d44978e41b6e76cf39
-      internalID: 807049248
+      spriteID: d3163da1e7ce69f42b5f91f2690f2464
+      internalID: -1721620253
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_13
+      name: FarmerOuch 1_13
       rect:
         serializedVersion: 2
         x: 11
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee7590029f2f3804184a9b9d2da286b8
-      internalID: -1759372696
+      spriteID: bf37c5126160d1d48954494eae84bc2f
+      internalID: -465809213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_14
+      name: FarmerOuch 1_14
       rect:
         serializedVersion: 2
         x: 22
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b783ad644b1ddec418f8a8bbe3e52c94
-      internalID: -968360696
+      spriteID: aad2bc563430bc34c8c5de69c7c960af
+      internalID: 919471377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_15
+      name: FarmerOuch 1_15
       rect:
         serializedVersion: 2
         x: 33
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 611f1c621cc6e2143b04f5e3ab48d9af
-      internalID: -1830354854
+      spriteID: 7b969983c9a1931459a3a32452d04754
+      internalID: 1459478595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_16
+      name: FarmerOuch 1_16
       rect:
         serializedVersion: 2
         x: 44
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa7e382136b0de14281644fcd642629b
-      internalID: 1179165175
+      spriteID: a987e1d6ec617a0468f139db2389cb44
+      internalID: -1768986928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_17
+      name: FarmerOuch 1_17
       rect:
         serializedVersion: 2
         x: 55
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d73a7c660aab0e469515139f4532fba
-      internalID: -885450535
+      spriteID: 0bdc266d50ea456439927538f12694e4
+      internalID: 561740005
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_18
+      name: FarmerOuch 1_18
       rect:
         serializedVersion: 2
         x: 0
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2aa5b958fef15a1438e4774653e9fca8
-      internalID: -225089121
+      spriteID: 2fd786a398c22824291a785fba805ba2
+      internalID: -1956179366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_19
+      name: FarmerOuch 1_19
       rect:
         serializedVersion: 2
         x: 11
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b9c0fa83a181a84e82b2b805f67cda8
-      internalID: 1940318462
+      spriteID: 73f95d7496c8f1e419e2f908798903a2
+      internalID: 478865464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_20
+      name: FarmerOuch 1_20
       rect:
         serializedVersion: 2
         x: 22
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a88dbde4e83be814abf3954275f3f342
-      internalID: 572888377
+      spriteID: 272095836215aaf4dbc1f5842e4b69f0
+      internalID: 1370505263
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_21
+      name: FarmerOuch 1_21
       rect:
         serializedVersion: 2
         x: 33
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3fee268c7da7acb47a209352ae59923b
-      internalID: -1030380271
+      spriteID: 1a60895579103204ba97d082e267117d
+      internalID: -953620949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_22
+      name: FarmerOuch 1_22
       rect:
         serializedVersion: 2
         x: 44
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06e1190c0783554448c2bd9fd21f00f3
-      internalID: -1224341271
+      spriteID: 3e25427e9d50a7c49b09ef9dbe23d603
+      internalID: -976934760
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FarmerOuch_23
+      name: FarmerOuch 1_23
       rect:
         serializedVersion: 2
         x: 55
@@ -616,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e89d11005ec2d77489d9bd66ca53fc1c
-      internalID: 82177487
+      spriteID: f1d84548350215a419e300638c415b16
+      internalID: -295069995
       vertices: []
       indices: 
       edges: []
@@ -625,7 +625,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 8168115b8975ed2438bff9cb8395ab6a
+    spriteID: 70208d9185c296b448f04d41f9aaa74e
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +633,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FarmerOuch_0: -1669679433
-      FarmerOuch_1: 2108620520
-      FarmerOuch_10: 1885995972
-      FarmerOuch_11: 328613390
-      FarmerOuch_12: 807049248
-      FarmerOuch_13: -1759372696
-      FarmerOuch_14: -968360696
-      FarmerOuch_15: -1830354854
-      FarmerOuch_16: 1179165175
-      FarmerOuch_17: -885450535
-      FarmerOuch_18: -225089121
-      FarmerOuch_19: 1940318462
-      FarmerOuch_2: 1115568203
-      FarmerOuch_20: 572888377
-      FarmerOuch_21: -1030380271
-      FarmerOuch_22: -1224341271
-      FarmerOuch_23: 82177487
-      FarmerOuch_3: 1068561774
-      FarmerOuch_4: 1689483002
-      FarmerOuch_5: -1466888774
-      FarmerOuch_6: 117772542
-      FarmerOuch_7: -162008331
-      FarmerOuch_8: -1129267107
-      FarmerOuch_9: 639644764
+      FarmerOuch 1_0: -1936767429
+      FarmerOuch 1_1: -2109323872
+      FarmerOuch 1_10: -536842008
+      FarmerOuch 1_11: 78090751
+      FarmerOuch 1_12: -1721620253
+      FarmerOuch 1_13: -465809213
+      FarmerOuch 1_14: 919471377
+      FarmerOuch 1_15: 1459478595
+      FarmerOuch 1_16: -1768986928
+      FarmerOuch 1_17: 561740005
+      FarmerOuch 1_18: -1956179366
+      FarmerOuch 1_19: 478865464
+      FarmerOuch 1_2: -1093589245
+      FarmerOuch 1_20: 1370505263
+      FarmerOuch 1_21: -953620949
+      FarmerOuch 1_22: -976934760
+      FarmerOuch 1_23: -295069995
+      FarmerOuch 1_3: -828882837
+      FarmerOuch 1_4: 1113008296
+      FarmerOuch 1_5: -601963227
+      FarmerOuch 1_6: -1020189225
+      FarmerOuch 1_7: -1531813474
+      FarmerOuch 1_8: 1502815477
+      FarmerOuch 1_9: -633315335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 78a8669fcb655524398b5683efba7246
+guid: 8bb4103113244b1439a1286a32058f28
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WoodCutterOuch_0
+      name: Citizen4Ouch 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 995d2c1392de77046a778dfacbaf2340
-      internalID: -1020355154
+      spriteID: 4ba91ea7c3ba99141bc4762d6a35049b
+      internalID: -1374701357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_1
+      name: Citizen4Ouch 1_1
       rect:
         serializedVersion: 2
         x: 11
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98194cd7d6077a843a4f4b82c37672fd
-      internalID: 482007395
+      spriteID: 402e9e6c76dfcb040b857f3864419539
+      internalID: 1561494429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_2
+      name: Citizen4Ouch 1_2
       rect:
         serializedVersion: 2
         x: 22
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58d8e7ef6708b884fbe82fefb285422a
-      internalID: -1330788273
+      spriteID: b4dc5c20e1cca784aa01019ecd621000
+      internalID: 1950101911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_3
+      name: Citizen4Ouch 1_3
       rect:
         serializedVersion: 2
         x: 33
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ad7ae6bc01ce1c4f8ca0e1475374dcc
-      internalID: 1925820953
+      spriteID: 8b407e0134458064da11172fe1d93830
+      internalID: -1386319148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_4
+      name: Citizen4Ouch 1_4
       rect:
         serializedVersion: 2
         x: 44
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 098b52024de30ad4ca9df9c21404d7cd
-      internalID: -1745478279
+      spriteID: c0a4d8ac145f0394fabb2e6bdf1a74d0
+      internalID: 2091146211
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_5
+      name: Citizen4Ouch 1_5
       rect:
         serializedVersion: 2
         x: 55
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b361c66aeb5b4804387aa120297f4869
-      internalID: -372823836
+      spriteID: da5783304016cd547a4e2a1ece7c3579
+      internalID: -2059084390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_6
+      name: Citizen4Ouch 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17efae87b7f49cf41832da07ccccf612
-      internalID: 888773775
+      spriteID: f2748db2cd044bd479acb4635935535e
+      internalID: 250765889
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_7
+      name: Citizen4Ouch 1_7
       rect:
         serializedVersion: 2
         x: 11
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd5148b001c9da149953f822ad14b32a
-      internalID: -884994244
+      spriteID: 93adc6ac0385cc34eadff3b85125f5ca
+      internalID: -754931994
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_8
+      name: Citizen4Ouch 1_8
       rect:
         serializedVersion: 2
         x: 22
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93ae9d5b604923647af61276a37436e6
-      internalID: 735475354
+      spriteID: 19b82b0efcd55f9419241ce363dd1715
+      internalID: -1564859255
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_9
+      name: Citizen4Ouch 1_9
       rect:
         serializedVersion: 2
         x: 33
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e537cacc2d3318549b8e265dc0a21328
-      internalID: -63198955
+      spriteID: 679d39b91fd8c2b4ca8043543ca1437e
+      internalID: 500674912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_10
+      name: Citizen4Ouch 1_10
       rect:
         serializedVersion: 2
         x: 44
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39e4883cc97570f4ba9c95957035d6db
-      internalID: 146669683
+      spriteID: fd408a6187a2d6a4b9706990b9ce087f
+      internalID: -900902209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_11
+      name: Citizen4Ouch 1_11
       rect:
         serializedVersion: 2
         x: 55
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c050a8df37ff26a4892a607e7d3efaa4
-      internalID: 657659048
+      spriteID: a1057fafde5605a4b9e88c0c2713de8a
+      internalID: 117085946
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_12
+      name: Citizen4Ouch 1_12
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66c25ee6eca6c2e4eac4af9b9f87d973
-      internalID: -289906033
+      spriteID: f92dc0c15d01a7c47b03b47e2d241109
+      internalID: -833579337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_13
+      name: Citizen4Ouch 1_13
       rect:
         serializedVersion: 2
         x: 11
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49f27f4e185a476488d27dc2a6ab9f40
-      internalID: -593711009
+      spriteID: 4af6007755515a04f86051497167b7b8
+      internalID: 457096205
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_14
+      name: Citizen4Ouch 1_14
       rect:
         serializedVersion: 2
         x: 22
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2e7f7795eac5fa46938e7c9156f084a
-      internalID: 897635093
+      spriteID: c9d78c5fa3c7d0d43b18aff924e163f8
+      internalID: -402714805
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_15
+      name: Citizen4Ouch 1_15
       rect:
         serializedVersion: 2
         x: 33
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c30f4ec9b8b1d748aac8da0b4e4cfef
-      internalID: 1041507020
+      spriteID: 0b7fccfd1ec11954d845190fa940ea7e
+      internalID: 1356524298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_16
+      name: Citizen4Ouch 1_16
       rect:
         serializedVersion: 2
         x: 44
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b73268c14d215fa45b9770fca4bc2d18
-      internalID: 405138392
+      spriteID: 24eb84ff08fb58e46accd004ec9009c8
+      internalID: -1709477398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_17
+      name: Citizen4Ouch 1_17
       rect:
         serializedVersion: 2
         x: 55
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d552ba35804f23418a7a502296a9069
-      internalID: 1866746446
+      spriteID: aa52eecbe83655348a38c8c0fd16f270
+      internalID: 1193677915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_18
+      name: Citizen4Ouch 1_18
       rect:
         serializedVersion: 2
         x: 0
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a5babf62b45ae34fa768fadbe3651fd
-      internalID: 352312889
+      spriteID: 9558141de7506ef4d975d5cc8a09bd93
+      internalID: 1943415570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_19
+      name: Citizen4Ouch 1_19
       rect:
         serializedVersion: 2
         x: 11
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 63abdf7bf9422c444945997959344a17
-      internalID: 932331888
+      spriteID: fb8ada1cae9c8a24fa0cd545e7a5a709
+      internalID: -1696126884
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_20
+      name: Citizen4Ouch 1_20
       rect:
         serializedVersion: 2
         x: 22
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4433eaf494a4a9143991a5d965bff809
-      internalID: -1202516012
+      spriteID: 6c20c2d52cd5c2e47934b4fb98639ed0
+      internalID: -371356858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_21
+      name: Citizen4Ouch 1_21
       rect:
         serializedVersion: 2
         x: 33
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a031109628b1ea844b1ff3e7382aaca4
-      internalID: 935419303
+      spriteID: 11558fbb8d5fa3b488cb077acb2c611f
+      internalID: -676184823
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_22
+      name: Citizen4Ouch 1_22
       rect:
         serializedVersion: 2
         x: 44
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb882aaff6c5f3247ab23a5cfff2fc38
-      internalID: 1733097439
+      spriteID: 4d38a03de05e2d24d8d2649cb36b2e83
+      internalID: 948365624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch_23
+      name: Citizen4Ouch 1_23
       rect:
         serializedVersion: 2
         x: 55
@@ -616,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e6632268fd85cf49b1362cbd995fb62
-      internalID: -1874085409
+      spriteID: 7bca14eaf087ce348b2bbc370bc93d1f
+      internalID: -420050580
       vertices: []
       indices: 
       edges: []
@@ -625,7 +625,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 098fb263f1cf85f4bb4cfaf88a46766e
+    spriteID: b5c791282c51fcb4b9906fdbba61c10d
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +633,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WoodCutterOuch_0: -1020355154
-      WoodCutterOuch_1: 482007395
-      WoodCutterOuch_10: 146669683
-      WoodCutterOuch_11: 657659048
-      WoodCutterOuch_12: -289906033
-      WoodCutterOuch_13: -593711009
-      WoodCutterOuch_14: 897635093
-      WoodCutterOuch_15: 1041507020
-      WoodCutterOuch_16: 405138392
-      WoodCutterOuch_17: 1866746446
-      WoodCutterOuch_18: 352312889
-      WoodCutterOuch_19: 932331888
-      WoodCutterOuch_2: -1330788273
-      WoodCutterOuch_20: -1202516012
-      WoodCutterOuch_21: 935419303
-      WoodCutterOuch_22: 1733097439
-      WoodCutterOuch_23: -1874085409
-      WoodCutterOuch_3: 1925820953
-      WoodCutterOuch_4: -1745478279
-      WoodCutterOuch_5: -372823836
-      WoodCutterOuch_6: 888773775
-      WoodCutterOuch_7: -884994244
-      WoodCutterOuch_8: 735475354
-      WoodCutterOuch_9: -63198955
+      Citizen4Ouch 1_0: -1374701357
+      Citizen4Ouch 1_1: 1561494429
+      Citizen4Ouch 1_10: -900902209
+      Citizen4Ouch 1_11: 117085946
+      Citizen4Ouch 1_12: -833579337
+      Citizen4Ouch 1_13: 457096205
+      Citizen4Ouch 1_14: -402714805
+      Citizen4Ouch 1_15: 1356524298
+      Citizen4Ouch 1_16: -1709477398
+      Citizen4Ouch 1_17: 1193677915
+      Citizen4Ouch 1_18: 1943415570
+      Citizen4Ouch 1_19: -1696126884
+      Citizen4Ouch 1_2: 1950101911
+      Citizen4Ouch 1_20: -371356858
+      Citizen4Ouch 1_21: -676184823
+      Citizen4Ouch 1_22: 948365624
+      Citizen4Ouch 1_23: -420050580
+      Citizen4Ouch 1_3: -1386319148
+      Citizen4Ouch 1_4: 2091146211
+      Citizen4Ouch 1_5: -2059084390
+      Citizen4Ouch 1_6: 250765889
+      Citizen4Ouch 1_7: -754931994
+      Citizen4Ouch 1_8: -1564859255
+      Citizen4Ouch 1_9: 500674912
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

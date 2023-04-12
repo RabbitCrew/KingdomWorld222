@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a560712d4d658934a895d01cd841ead6
+guid: 3308578b70172ab4dbe51b381fd12613
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -39,7 +39,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PastoralistOuch_0
+      name: HunterOuch 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ac6eeee7a5604545a6008acb85ea65e
-      internalID: 1021060336
+      spriteID: 10c2b7cc2148ff24bbbe2e35788962a0
+      internalID: -350669169
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_1
+      name: HunterOuch 1_1
       rect:
         serializedVersion: 2
         x: 11
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44f7ee048ba58c042994a493b99a6597
-      internalID: 1000869869
+      spriteID: 347bd7b75d166484e83688a21cf00cbc
+      internalID: 120573685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_2
+      name: HunterOuch 1_2
       rect:
         serializedVersion: 2
         x: 22
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8525e5df8c00f44f89ba5c5b37439f9
-      internalID: 1137199500
+      spriteID: 0c9b3af02d9c617419c0dda85abe578b
+      internalID: 1546181402
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_3
+      name: HunterOuch 1_3
       rect:
         serializedVersion: 2
         x: 33
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a564ea607158d114895022a3e40765cf
-      internalID: -1867648053
+      spriteID: 1d3e4e4f8e7f113438c8c4543496af65
+      internalID: 2083739273
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_4
+      name: HunterOuch 1_4
       rect:
         serializedVersion: 2
         x: 44
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e57f400329bad64e92daaed074520c9
-      internalID: 950617796
+      spriteID: 88498156807fb244495bcc15280299d2
+      internalID: 639611878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_5
+      name: HunterOuch 1_5
       rect:
         serializedVersion: 2
         x: 55
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2925053d34192ff44b6d09d4a6a4e8ee
-      internalID: -1190296761
+      spriteID: 43904e18a40045c4284b2a7a94e67c6f
+      internalID: 907845069
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_6
+      name: HunterOuch 1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 170ede4003b0d0540b6e409e0b3a7888
-      internalID: -606641931
+      spriteID: 1cf659073fcd51f40a98574f4ab37cda
+      internalID: -1339623958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_7
+      name: HunterOuch 1_7
       rect:
         serializedVersion: 2
         x: 11
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de00a4a58be6d4d459dd4cfcc6bc7b08
-      internalID: 1047046436
+      spriteID: 51f7f615df072724591b46092a71a724
+      internalID: -517608457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_8
+      name: HunterOuch 1_8
       rect:
         serializedVersion: 2
         x: 22
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd73db28d9a82a44dbd6df5bf72c5448
-      internalID: -492570320
+      spriteID: 953d60e6b3fe3a942bdba4b6580f164d
+      internalID: -2131426303
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_9
+      name: HunterOuch 1_9
       rect:
         serializedVersion: 2
         x: 33
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 20577d7b4475e7a478f8f0c21a96c6c2
-      internalID: -1590548884
+      spriteID: 32880bbd5629d3843ae35c4201a7a7f3
+      internalID: 883345109
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_10
+      name: HunterOuch 1_10
       rect:
         serializedVersion: 2
         x: 44
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e8527073fff6fb4d9ec4e250a6519d8
-      internalID: -1606362662
+      spriteID: 4a2224bab17340b4fb8db76a8af384d5
+      internalID: 650723748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_11
+      name: HunterOuch 1_11
       rect:
         serializedVersion: 2
         x: 55
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d73eb4d8cee71724d89c4f48c7212ae1
-      internalID: -307414288
+      spriteID: 90ee91b9274c16a4bbeb40d6148137a4
+      internalID: -1207927519
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_12
+      name: HunterOuch 1_12
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2eddf47cc2e20454da7af4be8b539083
-      internalID: 1696191599
+      spriteID: 7f28da93e947d7f479c44dfe41281b55
+      internalID: 1786239450
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_13
+      name: HunterOuch 1_13
       rect:
         serializedVersion: 2
         x: 11
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 49b00525ae1830f4db0c1eb58c68c50d
-      internalID: 795633511
+      spriteID: ed5a868c3282b344397e5ed80ff1a08c
+      internalID: 951176314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_14
+      name: HunterOuch 1_14
       rect:
         serializedVersion: 2
         x: 22
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3c301168d17589419c5d1afd653bc87
-      internalID: 188073231
+      spriteID: 042d55e25eb897d48996efb15c0ffe6b
+      internalID: -1604780192
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_15
+      name: HunterOuch 1_15
       rect:
         serializedVersion: 2
         x: 33
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c31a21709ae8ff40beb850a1770c91e
-      internalID: 904965711
+      spriteID: 206d7c2bea15ac84ebefadca2657878f
+      internalID: -880843088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_16
+      name: HunterOuch 1_16
       rect:
         serializedVersion: 2
         x: 44
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2832b4917f9ac8942b149169d2677677
-      internalID: 201151186
+      spriteID: cef61ae136661ad4db1cb3e8d9515fc3
+      internalID: -2129400373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_17
+      name: HunterOuch 1_17
       rect:
         serializedVersion: 2
         x: 55
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4bee71a5a1fffb4494f2403a239109f
-      internalID: 327171586
+      spriteID: 41a1a46bef7d9064ebd21e7e04e7238b
+      internalID: -114343716
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_18
+      name: HunterOuch 1_18
       rect:
         serializedVersion: 2
         x: 0
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75fbf135b7511e9459143f5337cbb216
-      internalID: -1035796494
+      spriteID: 8ac70245d9d713c4abf8b3c18083e617
+      internalID: 73025703
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_19
+      name: HunterOuch 1_19
       rect:
         serializedVersion: 2
         x: 11
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76cbae8e06e32bf45bf1cda299fd4fed
-      internalID: 1681809339
+      spriteID: 1c8021c7bb0f2f6468bd9b34c34f3825
+      internalID: 822060964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_20
+      name: HunterOuch 1_20
       rect:
         serializedVersion: 2
         x: 22
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 880a358cf47caf04c86205d68a4b8c15
-      internalID: -1982989021
+      spriteID: de599fcc986c5a34493841369afd36ce
+      internalID: -1105800915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_21
+      name: HunterOuch 1_21
       rect:
         serializedVersion: 2
         x: 33
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e722c03463add4c4cb070fabd8503620
-      internalID: -142745551
+      spriteID: a481457e764289946b8379486dd11159
+      internalID: 1328329277
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_22
+      name: HunterOuch 1_22
       rect:
         serializedVersion: 2
         x: 44
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b85971c28f50c5c4dbad73a419b2e516
-      internalID: 1649645871
+      spriteID: d5424f72b437e8649b809d36379480c7
+      internalID: -1578885084
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PastoralistOuch_23
+      name: HunterOuch 1_23
       rect:
         serializedVersion: 2
         x: 55
@@ -616,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57f663613f169a441bb7757ddc21ace9
-      internalID: -1448246942
+      spriteID: 73b21c76270017440bb82bb87b171cdd
+      internalID: -2145889050
       vertices: []
       indices: 
       edges: []
@@ -625,7 +625,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6fdee84d70a076b4688d9327c7ba2f22
+    spriteID: 0f8bd7e3641c8e748b617da871b42251
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +633,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PastoralistOuch_0: 1021060336
-      PastoralistOuch_1: 1000869869
-      PastoralistOuch_10: -1606362662
-      PastoralistOuch_11: -307414288
-      PastoralistOuch_12: 1696191599
-      PastoralistOuch_13: 795633511
-      PastoralistOuch_14: 188073231
-      PastoralistOuch_15: 904965711
-      PastoralistOuch_16: 201151186
-      PastoralistOuch_17: 327171586
-      PastoralistOuch_18: -1035796494
-      PastoralistOuch_19: 1681809339
-      PastoralistOuch_2: 1137199500
-      PastoralistOuch_20: -1982989021
-      PastoralistOuch_21: -142745551
-      PastoralistOuch_22: 1649645871
-      PastoralistOuch_23: -1448246942
-      PastoralistOuch_3: -1867648053
-      PastoralistOuch_4: 950617796
-      PastoralistOuch_5: -1190296761
-      PastoralistOuch_6: -606641931
-      PastoralistOuch_7: 1047046436
-      PastoralistOuch_8: -492570320
-      PastoralistOuch_9: -1590548884
+      HunterOuch 1_0: -350669169
+      HunterOuch 1_1: 120573685
+      HunterOuch 1_10: 650723748
+      HunterOuch 1_11: -1207927519
+      HunterOuch 1_12: 1786239450
+      HunterOuch 1_13: 951176314
+      HunterOuch 1_14: -1604780192
+      HunterOuch 1_15: -880843088
+      HunterOuch 1_16: -2129400373
+      HunterOuch 1_17: -114343716
+      HunterOuch 1_18: 73025703
+      HunterOuch 1_19: 822060964
+      HunterOuch 1_2: 1546181402
+      HunterOuch 1_20: -1105800915
+      HunterOuch 1_21: 1328329277
+      HunterOuch 1_22: -1578885084
+      HunterOuch 1_23: -2145889050
+      HunterOuch 1_3: 2083739273
+      HunterOuch 1_4: 639611878
+      HunterOuch 1_5: 907845069
+      HunterOuch 1_6: -1339623958
+      HunterOuch 1_7: -517608457
+      HunterOuch 1_8: -2131426303
+      HunterOuch 1_9: 883345109
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
