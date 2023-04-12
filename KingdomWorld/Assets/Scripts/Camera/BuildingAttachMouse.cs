@@ -97,7 +97,7 @@ public class BuildingAttachMouse : MonoBehaviour
             GameObject waitC = Instantiate(waitingClone);
             waitC.transform.parent = motherBuildingObject.transform;
             waitC.GetComponent<SpriteRenderer>().sprite = clone.GetComponent<SpriteRenderer>().sprite;
-            waitC.GetComponent<WaitingBuildingInfo>().SetBuilding(clone);
+            waitC.GetComponent<WaitingBuilding>().SetBuilding(clone);
             waitC.GetComponent<BuildingColider>().isSettingComplete = true;
             waitC.GetComponent<BoxCollider>().size
                 = new Vector3(waitC.GetComponent<SpriteRenderer>().sprite.rect.width/ 16 - 0.2f, waitC.GetComponent<SpriteRenderer>().sprite.rect.height/ 16 - 0.2f, 0.2f);
