@@ -14,14 +14,14 @@ public class WaitingBuilding : MonoBehaviour
     private Material material;
     private float fade;
     private float realFade;
-	private void Awake()
-	{
+    private void Awake()
+    {
         time = 0f;
         fade = 0f;
         realFade = 0f;
         shield = 0;
     }
-	void Start()
+    void Start()
     {
         buildingRange.SetActive(true);
         material = GetComponent<SpriteRenderer>().material;
@@ -34,7 +34,7 @@ public class WaitingBuilding : MonoBehaviour
         building = Instantiate(obj);
         building.transform.parent = this.transform.parent;
 
-        buildingRange.transform.localScale 
+        buildingRange.transform.localScale
             = new Vector3(building.GetComponent<SpriteRenderer>().sprite.rect.width / 16, building.GetComponent<SpriteRenderer>().sprite.rect.height / 16, 1);
 
         if (building.GetComponent<BuildingSetting>() != null)
@@ -43,19 +43,18 @@ public class WaitingBuilding : MonoBehaviour
             building.GetComponent<BuildingSetting>().BuildingHp = 1;
         }
         else
-		{
+        {
             maxTime = 10f;
-		}
+        }
         building.SetActive(false);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         time += Time.deltaTime;
 
-        fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
-        //fade = Mathf.InverseLerp(0, maxTime, time);
+        //fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
+        fade = Mathf.InverseLerp(0, maxTime, time); // 윗줄 코드와 전환
 
         fade *= 0.6f;
 
@@ -68,8 +67,8 @@ public class WaitingBuilding : MonoBehaviour
             realFade = fade + 0.2f;
         }
 
-        if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
-        //if (time >= maxTime)
+        //if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
+        if (time >= maxTime)    // 윗줄 코드와 전환
         {
             building.SetActive(true);
             building.GetComponent<BuildingColider>().isSettingComplete = true;
@@ -78,7 +77,8 @@ public class WaitingBuilding : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        material.SetFloat("_Fade", realFade);
+        //material.SetFloat("_Fade", realFade);
+        material.SetFloat("_Fade", fade + 0.2f); // 윗줄 코드와 전환
     }
 
     private void OnDisable()
