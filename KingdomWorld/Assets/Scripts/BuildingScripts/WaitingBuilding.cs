@@ -49,13 +49,12 @@ public class WaitingBuilding : MonoBehaviour
         building.SetActive(false);
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         time += Time.deltaTime;
 
         fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
-        //fade = Mathf.InverseLerp(0, maxTime, time);
+        //fade = Mathf.InverseLerp(0, maxTime, time); // 윗줄 코드와 전환
 
         fade *= 0.6f;
 
@@ -69,7 +68,7 @@ public class WaitingBuilding : MonoBehaviour
         }
 
         if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
-        //if (time >= maxTime)
+        //if (time >= maxTime)    // 윗줄 코드와 전환
         {
             building.SetActive(true);
             building.GetComponent<BuildingColider>().isSettingComplete = true;
@@ -79,6 +78,7 @@ public class WaitingBuilding : MonoBehaviour
         }
 
         material.SetFloat("_Fade", realFade);
+        //material.SetFloat("_Fade", fade + 0.2f); // 윗줄 코드와 전환
     }
 
     private void OnDisable()

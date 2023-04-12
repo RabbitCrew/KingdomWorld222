@@ -13,7 +13,7 @@ public class BuildingColider : MonoBehaviour
     public bool isSettingComplete { get; set; }
     public ulong objCode { get; set; }
     private List<Collider> colList = new List<Collider>();
-    private CallBuildingButtonToBuildingColiderEventDriven callBuildingButtonToBuildingColiderEventDriven = new CallBuildingButtonToBuildingColiderEventDriven();
+    private CallBuildingAttachMouseToBuildingColiderEventDriven callBuildingButtonToBuildingColiderEventDriven = new CallBuildingAttachMouseToBuildingColiderEventDriven();
     private CallSettingObjectToBuildingColiderEventDriven CallSettingObjectToBuildingColiderEventDriven = new CallSettingObjectToBuildingColiderEventDriven();
     public int GetObjTypeNum()
 	{
@@ -90,7 +90,7 @@ public class BuildingColider : MonoBehaviour
             for (int i = 0; i < colList.Count; i++)
             {
                 if (colList[i] == null) { colList.RemoveAt(i); i = 0; continue; }
-
+                if (colList[i].GetComponent<SpriteRenderer>() == null) { colList.RemoveAt(i); i = 0; continue; }
                 if (colList[i].GetComponent<SpriteRenderer>().color != Color.green)
                 {
                     return;
