@@ -135,6 +135,7 @@ public class NPC : NPCScrip
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
                 NPCBUildTrigger = false;
+                work = false;
             }
         
             //낮과밤이 바뀔때 한번만 경로수정
@@ -379,17 +380,20 @@ public class NPC : NPCScrip
                         ResetPath(this.transform, Building);
                         currentPathIndex = 0;
                         break;
-                    }else if(collider.GetComponent<BuildingSetting>().BuildingHp < collider.GetComponent<BuildingSetting>().MaxBuildingHp)
+                    }else if(collider.GetComponent<BuildingSetting>() != null)//손상된 건물 찾기
                     {
-                        isRepairStart = true;
-                        Building = collider.transform;
-                        ResetPath(this.transform, Building);
-                        currentPathIndex = 0;
-                        break;
+                        if (collider.GetComponent<BuildingSetting>().BuildingHp < collider.GetComponent<BuildingSetting>().MaxBuildingHp && !isRepairStart)
+                        {
+                            isRepairStart = true;
+                            Building = collider.transform;
+                            ResetPath(this.transform, Building);
+                            currentPathIndex = 0;
+                            break;
+                        }
                     }
                 }
             }
-            if(Building.position == transform.position && isBuilingStart && Building != null)
+            if(Building.position == transform.position && isBuilingStart && Building != null)//건설
             {
                 currentBuildingGauge += BuildingSpeed * Time.deltaTime;
                 if(currentBuildingGauge >= Building.GetComponent<BuildingSetting>().BuildingTime)
@@ -398,23 +402,26 @@ public class NPC : NPCScrip
                     isBuilingStart = false;
                     Building = null;
                 }
-            }else if(Building.position == transform.position && isRepairStart && Building != null)
+            }else if(Building.position == transform.position && isRepairStart && Building != null)//리페어
             {
-                StartCoroutine(Repair(3f, Building));
+                StartCoroutine(Repair(1f, Building));
             }
-            //2. 손상된 건물 찾기
         }
         Move();
     }
     private IEnumerator Repair(float delay, Transform building)
     {
-        yield return new WaitForSeconds(delay);
-        building.GetComponent<BuildingSetting>().BuildingHp += 1;
-        if(building.GetComponent<BuildingSetting>().BuildingHp == building.GetComponent<BuildingSetting>().MaxBuildingHp)
+        while (true)
         {
-            isRepairStart = false;//수리 완료
+            yield return new WaitForSeconds(delay);
+            building.GetComponent<BuildingSetting>().BuildingHp += 1;
+            if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
+            {
+                Building = null;
+                isRepairStart = false;//수리 완료
+                break;
+            }
         }
-        
     }
     void fabric()//옷감장인
     {
@@ -429,8 +436,26 @@ public class NPC : NPCScrip
             if (other.tag == BuildingNum.tag && !work)
             {
                 work = true;
+            }else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding"))
+            {
+                StartCoroutine(Build(1f, other));
             }
         }
-        
+    }
+    IEnumerator Build(float delay, Collider building)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(delay);
+            building.GetComponent<WaitingBuilding>().building.GetComponent<BuildingSetting>().BuildingHp += 1;
+            if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
+            {
+                isBuilingStart = false;
+                ResetPath(this.transform, BuildingNum.transform);
+                currentPathIndex = 0;
+                Building = null;
+                break;
+            }
+        }
     }
 }
