@@ -5,10 +5,13 @@ using UnityEngine;
 public class NPCParameter : MonoBehaviour
 {
     private int hp;
+    [SerializeField]
     private GameObject buildingNum;
     private Transform houseTr;
     private float speed;
     private float buildingSpeed;
+    public int HavedWheat;
+
     public int HP
     {
         get { return hp; }

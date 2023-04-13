@@ -29,8 +29,8 @@ public class BuildingSetting : MonoBehaviour
     private void Awake()
     {
         BuildingTime = 10f;
-        MaxBuildingHp = 100;
-        BuildingHp = 100;
+        MaxBuildingHp = 10;
+        BuildingHp = 10;
         buildingShield = 0;
         maxBuildingShield = 100;
     }

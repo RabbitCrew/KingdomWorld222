@@ -24,7 +24,9 @@ public class Resource : Setgrid
     
     public int Wheat {
         get { return wheat; } 
-        set { if(value >= MaxResource)
+        set 
+        { 
+            if(value >= MaxResource)
             {
                 value = MaxResource;
             }

@@ -64,7 +64,7 @@ public class NPC : NPCScrip
         
         if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.WAREHOUSEKEEPER)
         {
-            Debug.Log("건물검색실행");
+            
             SearchMyBuilding("Storage");
         }
         else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.WOODCUTTER)
@@ -76,10 +76,11 @@ public class NPC : NPCScrip
         }else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.HUNTER)
         {
             SearchMyBuilding("Hunter_house");
-        }else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.FARMER)
+        }/*else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.FARMER)
         {
             SearchMyBuilding("Wheat");
-        }else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.PASTORALIST)
+        }*/
+        else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.PASTORALIST)
         {
             SearchMyBuilding("Farm_house");
         }
@@ -115,7 +116,15 @@ public class NPC : NPCScrip
         {
             if (collider.CompareTag(Building))
             {
-                if (collider.GetComponent<BuildingSetting>().npcCount <= 3 && GameManager.instance.isDaytime)
+                
+                /*if (this.CompareTag("FarmNPC") && GameManager.instance.isDaytime)//Wheat탐색
+                {
+                    BuildingNum = collider.transform.parent.gameObject;
+                    isWeatStart = true;
+                    NPCBUildTrigger = true;
+                    break;
+                }*/
+                if (collider.GetComponent<BuildingSetting>().npcCount <= 3 && GameManager.instance.isDaytime)//3명이하 건물탐색
                 {
                     BuildingNum = collider.gameObject;
                     NPCBUildTrigger = true;
@@ -128,7 +137,7 @@ public class NPC : NPCScrip
     {
         if (BuildingNum != null)
         {
-            //건물에 배정되었을때 경로수정
+            //NPCBUildTrigger가 true일시 경로수정
             if (NPCBUildTrigger && GameManager.instance.isDaytime)//중간에 NPC배정했을시
             {
                 Debug.Log("이동시작");
@@ -159,7 +168,6 @@ public class NPC : NPCScrip
     Transform fullbuilding = null;
     void CargoClass()
     {
-        dayTimeResetPath();
         if (GameManager.instance.isDaytime && !isCargoWorkStart)
         {
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
@@ -180,9 +188,10 @@ public class NPC : NPCScrip
         }
         if (GameManager.instance.isDaytime && (this.transform.position == fullbuilding.position) && isCargoWorkStart)
         {
-            
+
             /*건물에서 무슨자원인지 알아야함 자원꺼내기*/
         }
+        dayTimeResetPath();
         Move();
     }
         
@@ -191,8 +200,6 @@ public class NPC : NPCScrip
     Transform tree = null;
     void WoodCutter()
     {
-        dayTimeResetPath();
-        
         if (work)
         {
             if (!treeCuting)//나무탐색
@@ -217,8 +224,9 @@ public class NPC : NPCScrip
                     StartCoroutine(CuttingTree(3f, tree));
                 }
             }
-            
+
         }
+        dayTimeResetPath();
         Move();
     }
     private IEnumerator CuttingTree(float delay, Transform tree)
@@ -232,8 +240,7 @@ public class NPC : NPCScrip
     Transform animal = null;
     void Hunter()
     {
-        dayTimeResetPath();
-        if (!hunting)//나무탐색
+        if (!hunting)//동물탐색
         {
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
             foreach (Collider collider in colliders)
@@ -255,6 +262,7 @@ public class NPC : NPCScrip
                 StartCoroutine(HuntingAnimal(3f, animal));
             }
         }
+        dayTimeResetPath();
         Move();
     }
 
@@ -265,8 +273,32 @@ public class NPC : NPCScrip
         hunting = false;//동물 사냥 완료
     }
 
+    bool isWeatStart = false;
     void Farmer()
     {
+        if (HavedWheat < 4 && !isWeatStart)//밀탐색
+        {
+            if (GameManager.instance.WheatList.Count > 0)
+            {
+                BuildingNum = GameManager.instance.WheatList[0].transform.parent.gameObject;
+                GameManager.instance.WheatList.RemoveAt(0);
+                isWeatStart = true;
+                NPCBUildTrigger = true;
+            }
+        }
+        else if(HavedWheat >= 4 && !isWeatStart)
+        {
+            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+            foreach (var collider in colliders)
+            {
+                if (collider.CompareTag("Storage"))
+                {
+                    BuildingNum = collider.gameObject;
+                    NPCBUildTrigger = true;
+                    break;
+                }
+            }
+        }
         dayTimeResetPath();
         Move();
     }
@@ -275,7 +307,6 @@ public class NPC : NPCScrip
     Transform stone = null;
     void StoneMiner()
     {
-        dayTimeResetPath();
         if (!mining)//광물탐색
         {
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
@@ -298,6 +329,7 @@ public class NPC : NPCScrip
                 StartCoroutine(MiningStone(3f, stone));
             }
         }
+        dayTimeResetPath();
         Move();
     }
     private IEnumerator MiningStone(float delay, Transform stone)
@@ -309,7 +341,6 @@ public class NPC : NPCScrip
     Transform iron = null;
     void ironMiner()
     {
-        dayTimeResetPath();
         if (!mining)//광물탐색
         {
             Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
@@ -332,6 +363,7 @@ public class NPC : NPCScrip
                 StartCoroutine(MiningIron(3f, iron));
             }
         }
+        dayTimeResetPath();
         Move();
     }
     private IEnumerator MiningIron(float delay, Transform iron)
@@ -364,10 +396,9 @@ public class NPC : NPCScrip
     float currentBuildingGauge = 0f;
     void Carpenter()//목수
     {
-        dayTimeResetPath();
         if (work)
         {
-            if(!isBuilingStart && Building == null)
+            if (!isBuilingStart && Building == null)
             {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
                 //1. 건설대기 건물 찾기 
@@ -380,7 +411,8 @@ public class NPC : NPCScrip
                         ResetPath(this.transform, Building);
                         currentPathIndex = 0;
                         break;
-                    }else if(collider.GetComponent<BuildingSetting>() != null)//손상된 건물 찾기
+                    }
+                    else if (collider.GetComponent<BuildingSetting>() != null)//손상된 건물 찾기
                     {
                         if (collider.GetComponent<BuildingSetting>().BuildingHp < collider.GetComponent<BuildingSetting>().MaxBuildingHp && !isRepairStart)
                         {
@@ -393,20 +425,25 @@ public class NPC : NPCScrip
                     }
                 }
             }
-            if(Building.position == transform.position && isBuilingStart && Building != null)//건설
+            if(Building != null)
             {
-                currentBuildingGauge += BuildingSpeed * Time.deltaTime;
-                if(currentBuildingGauge >= Building.GetComponent<BuildingSetting>().BuildingTime)
+                if (Building.position == transform.position && isBuilingStart && Building != null)//건설
                 {
-                    //건설완료
-                    isBuilingStart = false;
-                    Building = null;
+                    currentBuildingGauge += BuildingSpeed * Time.deltaTime;
+                    if (currentBuildingGauge >= Building.GetComponent<BuildingSetting>().BuildingTime)
+                    {
+                        //건설완료
+                        isBuilingStart = false;
+                        Building = null;
+                    }
                 }
-            }else if(Building.position == transform.position && isRepairStart && Building != null)//리페어
-            {
-                StartCoroutine(Repair(1f, Building));
+                else if (Building.position == transform.position && isRepairStart && Building != null)//리페어
+                {
+                    StartCoroutine(Repair(1f, Building));
+                }
             }
         }
+        dayTimeResetPath();
         Move();
     }
     private IEnumerator Repair(float delay, Transform building)
@@ -436,11 +473,34 @@ public class NPC : NPCScrip
             if (other.tag == BuildingNum.tag && !work)
             {
                 work = true;
-            }else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding"))
+            }
+            if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding"))//목수NPC 건설
             {
                 StartCoroutine(Build(1f, other));
+            }else if (this.CompareTag("FarmNPC") && isWeatStart)//농부NPC 밀수확
+            {
+                if(other.transform == BuildingNum.transform)//wheat를찾아온거지 wheatfield를 찾아온게아님
+                {
+                    StartCoroutine(Wheat(3f, other));//3초뒤 밀수확
+                }
+            }else if(this.CompareTag("FarmNPC") && !isWeatStart)//농부NPC 창고가서 밀넣기
+            {
+                if (other.CompareTag("Storage"))
+                {
+                    GameManager.instance.Wheat += HavedWheat;
+                    HavedWheat = 0;
+                }
             }
         }
+    }
+    IEnumerator Wheat(float delay, Collider wheatfield)//밀수확 코루틴
+    {
+        yield return new WaitForSeconds(delay);
+        Debug.Log("밀파괴NPC코루틴");
+        Destroy(wheatfield.GetComponent<Cornfield>().clone.gameObject);
+        wheatfield.GetComponent<Cornfield>().cultureCheck = false;
+        HavedWheat += 1;
+        isWeatStart = false;
     }
     IEnumerator Build(float delay, Collider building)
     {
@@ -448,7 +508,8 @@ public class NPC : NPCScrip
         {
             yield return new WaitForSeconds(delay);
             building.GetComponent<WaitingBuilding>().building.GetComponent<BuildingSetting>().BuildingHp += 1;
-            if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
+            if (building.GetComponent<WaitingBuilding>().building.GetComponent<BuildingSetting>().BuildingHp
+                >= building.GetComponent<WaitingBuilding>().building.GetComponent<BuildingSetting>().MaxBuildingHp)
             {
                 isBuilingStart = false;
                 ResetPath(this.transform, BuildingNum.transform);

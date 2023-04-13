@@ -9,6 +9,8 @@ public class GameManager : Resource
     public float uiSizeX { get; private set; }
     public float uiSizeY { get; private set; }
     public List<GameObject> RestHuman = new List<GameObject>();
+    public List<GameObject> WheatList = new List<GameObject>();
+    public List<GameObject> WaitingBuildingList = new List<GameObject>();
 
     public static GameManager instance;
 
@@ -18,7 +20,7 @@ public class GameManager : Resource
         uiSizeY = 1080;
 
         instance = this;
-        InitializeGrid(100, 100);
+        InitializeGrid(500, 500);
     }
     void Start()
     {
@@ -29,7 +31,7 @@ public class GameManager : Resource
     void Update()
     {
         timeElapsed = Time.realtimeSinceStartup - startTime;
-        dayNightRatio = timeElapsed / 10f; // 180 seconds = 3 minutes
+        dayNightRatio = timeElapsed / 180f; // 180 seconds = 3 minutes
 
         if (dayNightRatio >= 1f)
         {

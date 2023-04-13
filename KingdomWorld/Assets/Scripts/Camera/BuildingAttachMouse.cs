@@ -142,7 +142,7 @@ public class BuildingAttachMouse : MonoBehaviour
         else { z = 0; }
         //
         settingObj.AddTilePoint2((int)(building.transform.localPosition.x + x), (int)(building.transform.localPosition.z + z), building.GetComponent<BuildingColider>().GetObjTypeNum(), building);
-        GameManager.instance.InitializeGrid(200, 200);
+        GameManager.instance.InitializeGrid(500, 500);
     }
 
     private void CreateStartBuilding(int chunkX, int chunkY, GameObject obj, int tileX, int tileY)
