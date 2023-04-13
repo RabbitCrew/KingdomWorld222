@@ -86,13 +86,13 @@ public class MouseRay : MonoBehaviour
     {
         PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
         eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        //RaycastResult : BaseRaycastModule������ ��Ʈ ���.
+        //RaycastResult : BaseRaycastModule에서의 히트 결과.
         List<RaycastResult> results = new List<RaycastResult>();
-        //EventSystem.current�� �ֱٿ� �߻��� �̺�Ʈ �ý����� ��ȯ�Ѵ�.
-        //ù��° ���ڰ� : ���� ������ ������.
-        //�ι�° ���ڰ� : List of 'hits' to populate.
-        //RaycastAll : ��� ������ BaseRaycaster�� ����� ���� �ش� �������� ���� ĳ����.
-        // -> �����ִ� ������Ʈ���� �ִٸ� �����ִ� ���� results�� ī��Ʈ�� �ٲ�
+        //EventSystem.current은 최근에 발생한 이벤트 시스템을 반환한다.
+        //첫번째 인자값 : 현재 포인터 데이터.
+        //두번째 인자값 : List of 'hits' to populate.
+        //RaycastAll : 모두 설정된 BaseRaycaster를 사용을 통한 해당 씬으로의 레이 캐스팅.
+        // -> 겹쳐있는 오브젝트들이 있다면 겹쳐있는 수로 results의 카운트가 바뀜
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         //Debug.Log(results.Count);
         return results.Count > 0;

@@ -29,7 +29,7 @@ public class GameManager : Resource
     void Update()
     {
         timeElapsed = Time.realtimeSinceStartup - startTime;
-        dayNightRatio = timeElapsed / 180f; // 180 seconds = 3 minutes
+        dayNightRatio = timeElapsed / 10f; // 180 seconds = 3 minutes
 
         if (dayNightRatio >= 1f)
         {

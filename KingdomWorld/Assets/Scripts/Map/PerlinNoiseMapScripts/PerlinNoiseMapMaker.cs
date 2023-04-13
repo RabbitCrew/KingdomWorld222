@@ -33,13 +33,19 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     private Transform cameraTrans;
     private List<point> pointList = new List<point>();
     private List<GameObject> falseChunksList = new List<GameObject>();
-
+    private int startChunkX;
+    private int startChunkZ;
+    private bool isStartBuilding;
     private void Awake()
     {
         // 캐싱~
         cameraTrans = Camera.main.transform;
         // 시드를 랜덤으로 구함. 시드 값에 따라 다른 노이즈가 생성
         seed = Random.Range(-10000, 10000);
+
+        startChunkX = Random.Range(-13, 14);
+        startChunkZ = Random.Range(-13, 14);
+        isStartBuilding = false;
     }
 
     void Start()
@@ -50,6 +56,10 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         DrawNoiseMap(fl, GenerateMap(worldSize, worldSize));
         GenerateTerrain();
         mother.transform.eulerAngles = new Vector3(90, 0, 0);
+
+        cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
+
+
     }
     private void Update()
     {
@@ -274,6 +284,27 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
             }
         }
+
+        if (!isStartBuilding)
+		{
+            for (int x = 0; x < chunkSize; x++)
+			{
+                for (int y = 0; y < chunkSize; y++)
+				{
+                    if (settingObject.CheckStartBuildingRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
+                        settingObject.CheckStartBuildingRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
+                        settingObject.CheckStartBuildingRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
+                    {
+                        settingObject.AddTilePoint3(chunkX, chunkY, (int)ObjectTypeNum.HOUSE, x-2, y);
+                        settingObject.AddTilePoint3(chunkX, chunkY, (int)ObjectTypeNum.CARPENTERHOUSE, x + 1, y);
+                        isStartBuilding = true;
+                        cameraTrans.position = new Vector3(pointX + x, 40, pointY + y);
+                        break;
+                    }
+                }
+                if (isStartBuilding) { break; }
+			}
+		}
 
         // 생성해야될 오브젝트의 좌표를 구하고 저장한다.
         // 해당 청크에서 오브젝트가 한번도 생성된 적이 없으면 생성시킴

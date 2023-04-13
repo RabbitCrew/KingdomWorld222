@@ -6,20 +6,31 @@ using UnityEngine.EventSystems;
 public class Building_NpcTag : MonoBehaviour
 {
     public SpawnCitizen npc;
-    
+
+    public NPC Citizen;
+
     private float distance = 50f;
     public GameObject NPcButton;
     public GameObject RemoveNPcButton;
     public GameObject NPcButtonOther;
     public GameObject RemoveNPcButtonOther;
 
+    public GameObject JobPanel;
+    public GameObject NPCPanel;
+
+    GameObject JobBuilding;
+
     string Job = null;
     string OtherJob = null;
+
+    bool IsOther = false;
 
     private void Update()
     {
         BuildingCheck();
     }
+
+    int count;
 
     void BuildingCheck()
     {
@@ -36,39 +47,41 @@ public class Building_NpcTag : MonoBehaviour
                 {
                     if (hits[i].collider.GetComponent<BuildingColider>().isSettingComplete)
                     {
+                        JobBuilding = hits[i].collider.gameObject;
+
+                        JobPanel.SetActive(true);
+
+                        IsOther = false;
+
+                        count = 0;
+
+                        for (int j = 0; j< npc.CitizenList.Count; j++)
+                        {
+                            if (npc.CitizenList[j].GetComponent<NPC>().BuildingNum == JobBuilding)
+                            {
+                                count++;
+                            }
+                        }
+
+                        for (int j = 0; j < count; j++)
+                        {
+
+                        }
+
                         if (hits[i].collider.gameObject.tag.Equals("Storage"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "StorageNPC";
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("WoodCutter_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "WoodCutter";
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Carpenter_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "CarpenterNPC";
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Hunter_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
 
                             Job = "Hunter";
                         }
@@ -76,58 +89,32 @@ public class Building_NpcTag : MonoBehaviour
                         {
                             Job = "FarmNPC";
 
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(true);
-                            RemoveNPcButtonOther.SetActive(true);
-
                             OtherJob = "Pastoralist";
+
+                            IsOther = true;
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Mine_house"))
                         {
                             Job = "StoneMineWorker";
 
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(true);
-                            RemoveNPcButtonOther.SetActive(true);
-
                             OtherJob = "IronMineWorker";
+
+                            IsOther = true;
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Ham_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "HamNPC";
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Cheese_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "CheeseNPC";
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Cloth_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "FabricNPC";
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Smith_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "Smith";
                         }
                     }
@@ -136,19 +123,43 @@ public class Building_NpcTag : MonoBehaviour
         }
     }
 
+    public void JobSetOn()
+    {
+        if(IsOther == true)
+        {
+            NPcButtonOther.SetActive(true);
+        }
+        NPcButton.SetActive(true);
+    }
+
     public void jobButton(bool value)
     {
-        for (int i = 0; i < npc.CitizenList.Count; i++)
+        if (count <= 3)
         {
-            if(npc.CitizenList[i].tag == "NPC")
+            for (int i = 0; i < npc.CitizenList.Count; i++)
             {
-                if (value == true)
+                if (npc.CitizenList[i].tag == "NPC")
                 {
-                    npc.CitizenList[i].tag = Job;
-                }
-                else if(value == false)
-                {
-                    npc.CitizenList[i].tag = OtherJob;
+                    Citizen = npc.CitizenList[i].GetComponent<NPC>();
+
+                    if (value == true)
+                    {
+                        npc.CitizenList[i].tag = Job;
+
+                        Citizen.BuildingNum = JobBuilding;
+                        Citizen.NPCBUildTrigger = true;
+
+                        break;
+                    }
+                    else if (value == false)
+                    {
+                        npc.CitizenList[i].tag = OtherJob;
+
+                        Citizen.BuildingNum = JobBuilding;
+                        Citizen.NPCBUildTrigger = true;
+
+                        break;
+                    }
                 }
             }
         }
@@ -163,6 +174,8 @@ public class Building_NpcTag : MonoBehaviour
                 if (npc.CitizenList[i].tag == Job)
                 {
                     npc.CitizenList[i].tag = "NPC";
+
+                    break;
                 }
             }
             else if(value == false)
@@ -170,6 +183,8 @@ public class Building_NpcTag : MonoBehaviour
                 if (npc.CitizenList[i].tag == OtherJob)
                 {
                     npc.CitizenList[i].tag = "NPC";
+
+                    break;
                 }
             }
            
@@ -194,6 +209,6 @@ public class Building_NpcTag : MonoBehaviour
 
     public void ExitButton()
     {
-        NPcButton.SetActive(false);
+        JobPanel.SetActive(false);
     }
 }

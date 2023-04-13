@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ObjectNS;
@@ -7,10 +7,10 @@ public class SettingObject : MonoBehaviour
 {
     struct ChunkPoint
     {
-        public int chunkX { get; }  // ÀĞ±â Àü¿ë. »ı¼ºÀÚ¿¡¼­¸¸ °ªÀ» ¹ŞÀ» ¼ö ÀÖÀ½.
-        public int chunkY { get; }  // ÀĞ±â Àü¿ë. »ı¼ºÀÚ¿¡¼­¸¸ °ªÀ» ¹ŞÀ» ¼ö ÀÖÀ½.
+        public int chunkX { get; }  // ì½ê¸° ì „ìš©. ìƒì„±ìì—ì„œë§Œ ê°’ì„ ë°›ì„ ìˆ˜ ìˆìŒ.
+        public int chunkY { get; }  // ì½ê¸° ì „ìš©. ìƒì„±ìì—ì„œë§Œ ê°’ì„ ë°›ì„ ìˆ˜ ìˆìŒ.
 
-        // »ı¼ºÀÚ
+        // ìƒì„±ì
         public ChunkPoint(int chunkX , int chunkY)
         {
             this.chunkX = chunkX;
@@ -19,11 +19,11 @@ public class SettingObject : MonoBehaviour
     }
     struct TilePoint
     {
-        public int tileX { get; }   // ÀĞ±â Àü¿ë. ÇØ´ç Ã»Å© ³» Å¸ÀÏÀÇ XÃà ¹øÈ£ 
-        public int tileY { get; }   // ÀĞ±â Àü¿ë. ÇØ´ç Ã»Å© ³» Å¸ÀÏÀÇ YÃà ¹øÈ£
-        public int objectNum { get; }   // ÀĞ±âÀü¿ë. ¿ÀºêÁ§Æ® Á¾·ù¸¦ ºĞ·ùÇÏ´Â ¹øÈ£
-        public ulong objectCode { get; }    // ÀĞ±âÀü¿ë. ¿ÀºêÁ§Æ® ½Äº° ÄÚµå
-        public bool isRoot { get; } // ÀĞ±âÀü¿ë. ¿ÀºêÁ§Æ®ÀÇ Áß½ÉÀÌ µÇ´Â À§Ä¡ÀÎÁö ¿©ºÎ
+        public int tileX { get; }   // ì½ê¸° ì „ìš©. í•´ë‹¹ ì²­í¬ ë‚´ íƒ€ì¼ì˜ Xì¶• ë²ˆí˜¸ 
+        public int tileY { get; }   // ì½ê¸° ì „ìš©. í•´ë‹¹ ì²­í¬ ë‚´ íƒ€ì¼ì˜ Yì¶• ë²ˆí˜¸
+        public int objectNum { get; }   // ì½ê¸°ì „ìš©. ì˜¤ë¸Œì íŠ¸ ì¢…ë¥˜ë¥¼ ë¶„ë¥˜í•˜ëŠ” ë²ˆí˜¸
+        public ulong objectCode { get; }    // ì½ê¸°ì „ìš©. ì˜¤ë¸Œì íŠ¸ ì‹ë³„ ì½”ë“œ
+        public bool isRoot { get; } // ì½ê¸°ì „ìš©. ì˜¤ë¸Œì íŠ¸ì˜ ì¤‘ì‹¬ì´ ë˜ëŠ” ìœ„ì¹˜ì¸ì§€ ì—¬ë¶€
         public TilePoint(int tileX, int tileY, int objectNum, ulong objectCode, bool isRoot)
         {
             this.tileX = tileX;
@@ -36,181 +36,183 @@ public class SettingObject : MonoBehaviour
 
     [SerializeField] private GameObject[] objectArr;
     [SerializeField] private GameObject motehrObject;
+    [SerializeField] private GameObject motherBuildingObject;
     [SerializeField] private SettingObjectInfo settingObjInfo;
-    // Ã»Å© ÁÂÇ¥¿¡ µû¸¥ ¿ÀºêÁ§Æ® ÁÂÇ¥ ¸®½ºÆ®. Ã»Å© ÁÂÇ¥ º° Å¸ÀÏ ÁÂÇ¥¿¡ ÇöÀç ¾î¶² ¿ÀºêÁ§Æ®°¡ ¿Ã¶ó¿ÍÀÖ´ÂÁö ÀúÀåÇÏ±â À§ÇÔ.
+    private CallBuildingAttachMouseToSettingObjectEventDriven callBuildingAttachMouseToSettingObjectEventDriven = new CallBuildingAttachMouseToSettingObjectEventDriven();
+    // ì²­í¬ ì¢Œí‘œì— ë”°ë¥¸ ì˜¤ë¸Œì íŠ¸ ì¢Œí‘œ ë¦¬ìŠ¤íŠ¸. ì²­í¬ ì¢Œí‘œ ë³„ íƒ€ì¼ ì¢Œí‘œì— í˜„ì¬ ì–´ë–¤ ì˜¤ë¸Œì íŠ¸ê°€ ì˜¬ë¼ì™€ìˆëŠ”ì§€ ì €ì¥í•˜ê¸° ìœ„í•¨.
     private  Dictionary<ChunkPoint,List <TilePoint>> objectPointList = new Dictionary<ChunkPoint, List<TilePoint>>();
-    // Ã»Å© ÁÂÇ¥¿¡ µû¸¥ °ÔÀÓ¿ÀºêÁ§Æ® ¸®½ºÆ®. Ä«¸Ş¶ó ¹üÀ§ ¹Û Ã»Å© ÁÂÇ¥¿¡ ÀÖ´Â °ÔÀÓ ¿ÀºêÁ§Æ®ÀÇ ·»´õ·¯¸¦ ²ô±â À§ÇÔ.
+    // ì²­í¬ ì¢Œí‘œì— ë”°ë¥¸ ê²Œì„ì˜¤ë¸Œì íŠ¸ ë¦¬ìŠ¤íŠ¸. ì¹´ë©”ë¼ ë²”ìœ„ ë°– ì²­í¬ ì¢Œí‘œì— ìˆëŠ” ê²Œì„ ì˜¤ë¸Œì íŠ¸ì˜ ë Œë”ëŸ¬ë¥¼ ë„ê¸° ìœ„í•¨.
     private Dictionary<ChunkPoint, List<GameObject>> gameObjectChunkPointList = new Dictionary<ChunkPoint, List<GameObject>>();
-    // »ı¼ºµÈ ¿ÀºêÁ§Æ®¿¡ ºÙ¿©ÁÖ±â À§ÇÑ ½Äº°ÄÚµå. ¸¸¿¡ ÇÏ³ª ¿ÀºêÁ§Æ® °³¼ö ÃÊ°ú ´ëºñ¿Í 0°ú ¾çÀÇ Á¤¼ö°ª¸¸À» ÀúÀåÇÏ±â À§ÇØ ulongÇüÀ» »ç¿ë. 
+    // ìƒì„±ëœ ì˜¤ë¸Œì íŠ¸ì— ë¶™ì—¬ì£¼ê¸° ìœ„í•œ ì‹ë³„ì½”ë“œ. ë§Œì— í•˜ë‚˜ ì˜¤ë¸Œì íŠ¸ ê°œìˆ˜ ì´ˆê³¼ ëŒ€ë¹„ì™€ 0ê³¼ ì–‘ì˜ ì •ìˆ˜ê°’ë§Œì„ ì €ì¥í•˜ê¸° ìœ„í•´ ulongí˜•ì„ ì‚¬ìš©. 
     private ulong objCode = 0;
 
 	public void Awake()
 	{
-        // ÀÌº¥Æ® µå¸®ºì. Á¦¸ñÀº Call(È£ÃâµÇ¾î¾ßÇÒ Å¬·¡½º)To(È£ÃâÇÏ´ÂÅ¬·¡½º) Çü½ÄÀ¸·Î Áö¾úÀ½.
+        // ì´ë²¤íŠ¸ ë“œë¦¬ë¸. ì œëª©ì€ Call(í˜¸ì¶œë˜ì–´ì•¼í•  í´ë˜ìŠ¤)To(í˜¸ì¶œí•˜ëŠ”í´ë˜ìŠ¤) í˜•ì‹ìœ¼ë¡œ ì§€ì—ˆìŒ.
         CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent += RemoveObject;
         RemoveEventDriven.isRemoveEvent += RemoveEvent;
 
     }
-    // ´Ù¸¥ ¾ÀÀ¸·Î ³Ñ¾î°¥¶§ ÀÌº¥Æ®¿¡ Ãß°¡ÇÑ ÇÔ¼ö¸¦ ÀüºÎ ²ô°í ³Ñ¾î°¡±â À§ÇÔ.
-    // ¾È²ô°í ³Ñ¾î°¡¸é ´Ù¸¥ ¾ÀÀ¸·Î ³Ñ¾î°¡µµ Ãß°¡ÇÑ ÇÔ¼ö°¡ ³²¾ÆÀÖÀ¸³ª ½ºÅ©¸³Æ®°¡ ´ã±ä ¿ÀºêÁ§Æ®´Â »èÁ¦µÇ°í ´Ù½Ã »ı¼ºµÇ¾ú±â ¶§¹®¿¡ ¿¡·¯°¡ ³².
-    // static Çü½ÄÀÌ¶ó ±×·±µí?
+    // ë‹¤ë¥¸ ì”¬ìœ¼ë¡œ ë„˜ì–´ê°ˆë•Œ ì´ë²¤íŠ¸ì— ì¶”ê°€í•œ í•¨ìˆ˜ë¥¼ ì „ë¶€ ë„ê³  ë„˜ì–´ê°€ê¸° ìœ„í•¨.
+    // ì•ˆë„ê³  ë„˜ì–´ê°€ë©´ ë‹¤ë¥¸ ì”¬ìœ¼ë¡œ ë„˜ì–´ê°€ë„ ì¶”ê°€í•œ í•¨ìˆ˜ê°€ ë‚¨ì•„ìˆìœ¼ë‚˜ ìŠ¤í¬ë¦½íŠ¸ê°€ ë‹´ê¸´ ì˜¤ë¸Œì íŠ¸ëŠ” ì‚­ì œë˜ê³  ë‹¤ì‹œ ìƒì„±ë˜ì—ˆê¸° ë•Œë¬¸ì— ì—ëŸ¬ê°€ ë‚¨.
+    // static í˜•ì‹ì´ë¼ ê·¸ëŸ°ë“¯?
     private void RemoveEvent()
 	{
         CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent -= RemoveObject;
         RemoveEventDriven.isRemoveEvent -= RemoveEvent;
     }
 
-    // ÇØ´ç Ã»Å© ÁÂÇ¥ Á¤º¸¸¦ µñ¼Å³Ê¸®¿¡ Å°·Î ÀúÀåÇÏ°í ÀÖ´ÂÁö È®ÀÎ. ÀÖÀ¸¸é true ¸®ÅÏ ¾øÀ¸¸é false ¸®ÅÏ
+    // í•´ë‹¹ ì²­í¬ ì¢Œí‘œ ì •ë³´ë¥¼ ë”•ì…”ë„ˆë¦¬ì— í‚¤ë¡œ ì €ì¥í•˜ê³  ìˆëŠ”ì§€ í™•ì¸. ìˆìœ¼ë©´ true ë¦¬í„´ ì—†ìœ¼ë©´ false ë¦¬í„´
     public bool ActiveTrueObjectPointList(int chunkX, int chunkY)
     {
         if (objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
         {
-            // Ã»Å©ÁÂÇ¥°¡ ÀÖÀ¸¸é true ¸®ÅÏ
+            // ì²­í¬ì¢Œí‘œê°€ ìˆìœ¼ë©´ true ë¦¬í„´
             return true;
         }
-        // ¾øÀ¸¸é false ¸®ÅÏ
+        // ì—†ìœ¼ë©´ false ë¦¬í„´
         return false;
     }
 
-    // tileX, tileY´Â 0~19 »çÀÌ ¾îµò°¡. Check~~RangeÇÔ¼ö¿¡¼­ 0~19 »çÀÌ ¾îµò°¡·Î ¹üÀ§¸¦ Á¤ÇØÁÖ¾ú±â ¶§¹®.
-    // ´Ü, ÇÔ¼öÈ£ÃâÀº AddObjectPointList, Check~~Range µÑ´Ù PerlinNoiseMapMaker¿¡¼­ ÀÌ·ç¾îÁö°í ÀÖ´Ù´Â Á¡.
-    // Ã»Å© ÁÂÇ¥¿¡ ¿ÀºêÁ§Æ® Á¤º¸¸¦ ³Ö±â À§ÇÑ ÇÔ¼ö.
+    // tileX, tileYëŠ” 0~19 ì‚¬ì´ ì–´ë”˜ê°€. Check~~Rangeí•¨ìˆ˜ì—ì„œ 0~19 ì‚¬ì´ ì–´ë”˜ê°€ë¡œ ë²”ìœ„ë¥¼ ì •í•´ì£¼ì—ˆê¸° ë•Œë¬¸.
+    // ë‹¨, í•¨ìˆ˜í˜¸ì¶œì€ AddObjectPointList, Check~~Range ë‘˜ë‹¤ PerlinNoiseMapMakerì—ì„œ ì´ë£¨ì–´ì§€ê³  ìˆë‹¤ëŠ” ì .
+    // ì²­í¬ ì¢Œí‘œì— ì˜¤ë¸Œì íŠ¸ ì •ë³´ë¥¼ ë„£ê¸° ìœ„í•œ í•¨ìˆ˜.
     public void AddObjectPointList(int chunkX, int chunkY, int objectNum, int tileX, int tileY)
     {
-        // ÇØ´ç Ã»Å© ÁÂÇ¥ Á¤º¸¸¦ µñ¼Å³Ê¸® Å°·Î ÀúÀåÇÏ°í ÀÖ´ÂÁö È®ÀÎ
+        // í•´ë‹¹ ì²­í¬ ì¢Œí‘œ ì •ë³´ë¥¼ ë”•ì…”ë„ˆë¦¬ í‚¤ë¡œ ì €ì¥í•˜ê³  ìˆëŠ”ì§€ í™•ì¸
         if (!objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
         {
-            // Å°·Î ÀúÀåÇÏ°í ÀÖÁö ¾ÊÀ¸¸é Å°·Î ÀúÀå.
+            // í‚¤ë¡œ ì €ì¥í•˜ê³  ìˆì§€ ì•Šìœ¼ë©´ í‚¤ë¡œ ì €ì¥.
             List<TilePoint> tilePoint = new List<TilePoint>();
             objectPointList.Add(new ChunkPoint(chunkX, chunkY), tilePoint);
-            // Ã»Å© ÁÂÇ¥¿¡ ¿ÀºêÁ§Æ® Á¤º¸¸¦ ´ãÀ½.
+            // ì²­í¬ ì¢Œí‘œì— ì˜¤ë¸Œì íŠ¸ ì •ë³´ë¥¼ ë‹´ìŒ.
             AddTilePoint(chunkX, chunkY, objectNum, tileX, tileY);
         }
         else
         {
-            // Ã»Å© ÁÂÇ¥¿¡ ¿ÀºêÁ§Æ® Á¤º¸¸¦ ´ãÀ½.
+            // ì²­í¬ ì¢Œí‘œì— ì˜¤ë¸Œì íŠ¸ ì •ë³´ë¥¼ ë‹´ìŒ.
             AddTilePoint(chunkX, chunkY, objectNum, tileX, tileY);
         }
     }
-    // Ã»Å© ÁÂÇ¥¿¡ ÀÖ´Â Å¸ÀÏº°·Î ¿ÀºêÁ§Æ®ÀÇ Á¤º¸¸¦ ´ã±â À§ÇÑ ÇÔ¼ö. 
-    // ¸Ê°ú µ¿½Ã¿¡ ÀÚ¿¬ »ı¼ºµÇ¾î¾ß ÇÏ´Â ¿ÀºêÁ§Æ®¿¡ ÇÑÇØ¼­ ÀÌ ÇÔ¼ö¸¦ »ç¿ëÇÑ´Ù.
-    // chunkX, chunkY´Â Ã»Å© ÁÂÇ¥. objectNumÀº °Ç¹°Å¸ÀÔ ¹øÈ£. tileX, tileY´Â Ã»Å© ÁÂÇ¥ ³» Å¸ÀÏÀÇ ÁÂÇ¥ ¹øÈ£.
+    // ì²­í¬ ì¢Œí‘œì— ìˆëŠ” íƒ€ì¼ë³„ë¡œ ì˜¤ë¸Œì íŠ¸ì˜ ì •ë³´ë¥¼ ë‹´ê¸° ìœ„í•œ í•¨ìˆ˜. 
+    // ë§µê³¼ ë™ì‹œì— ìì—° ìƒì„±ë˜ì–´ì•¼ í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ì— í•œí•´ì„œ ì´ í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•œë‹¤.
+    // chunkX, chunkYëŠ” ì²­í¬ ì¢Œí‘œ. objectNumì€ ê±´ë¬¼íƒ€ì… ë²ˆí˜¸. tileX, tileYëŠ” ì²­í¬ ì¢Œí‘œ ë‚´ íƒ€ì¼ì˜ ì¢Œí‘œ ë²ˆí˜¸.
     private void AddTilePoint(int chunkX, int chunkY, int objectNum, int tileX, int tileY)
     {
-        // ÀúÀåÇØ¾ßµÉ ¿ÀºêÁ§Æ®ÀÇ °¡·Î ¼¼·Î »çÀÌÁî°¡ ÀúÀåµÈ ¸®½ºÆ®¿¡¼­ index °ªÀ» °¡Á®¿È.
+        // ì €ì¥í•´ì•¼ë  ì˜¤ë¸Œì íŠ¸ì˜ ê°€ë¡œ ì„¸ë¡œ ì‚¬ì´ì¦ˆê°€ ì €ì¥ëœ ë¦¬ìŠ¤íŠ¸ì—ì„œ index ê°’ì„ ê°€ì ¸ì˜´.
         int index = settingObjInfo.objSize.FindIndex(a => a.objNum == objectNum);
-        // »ı¼ºµÉ ¿ÀºêÁ§Æ® Áß¾ÓÀ» ±âÁØÀ¸·Î ¾î´À Å¸ÀÏ¿¡ ¿ÀºêÁ§Æ®°¡ ´ê°Ô µÇ´ÂÁö ¹üÀ§ °è»ê
+        // ìƒì„±ë  ì˜¤ë¸Œì íŠ¸ ì¤‘ì•™ì„ ê¸°ì¤€ìœ¼ë¡œ ì–´ëŠ íƒ€ì¼ì— ì˜¤ë¸Œì íŠ¸ê°€ ë‹¿ê²Œ ë˜ëŠ”ì§€ ë²”ìœ„ ê³„ì‚°
         int minX = tileX - (int)((float)settingObjInfo.objSize[index].sizeX / 2f) + ((settingObjInfo.objSize[index].sizeX + 1) % 2);
         int maxX = tileX + (int)((float)settingObjInfo.objSize[index].sizeX / 2f);
         int minY = tileY - (int)((float)settingObjInfo.objSize[index].sizeY / 2f) + ((settingObjInfo.objSize[index].sizeY + 1) % 2);
         int maxY = tileY + (int)((float)settingObjInfo.objSize[index].sizeY / 2f);
 
-        // ´Ù¸¥ ÁÂÇ¥¿¡ °°Àº ¿ÀºêÁ§Æ®°¡ °øÀ¯ÇÏ°í ÀÖ´Â ¿ÀºêÁ§Æ® ¹øÈ£. ulongÅ¸ÀÔ
+        // ë‹¤ë¥¸ ì¢Œí‘œì— ê°™ì€ ì˜¤ë¸Œì íŠ¸ê°€ ê³µìœ í•˜ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ ë²ˆí˜¸. ulongíƒ€ì…
         objCode++;
-        // ¹üÀ§ ³» ´ê°í ÀÖ´Â Å¸ÀÏÀÇ ÁÂÇ¥¸¦ ¿ÀºêÁ§Æ® ¹øÈ£¿Í ÇÔ²² ÀúÀå
-        // chunkX, chunkY °ªÀ» ±×´ë·Î °¡Á®¿Â ÀÌÀ¯´Â ¿ÀºêÁ§Æ®°¡ ´ê°í ÀÖ´Â Å¸ÀÏÀÇ ¹üÀ§°¡ 0~19 »çÀÌ¸¦ ³Ñ¾î°¡Áö ¾Ê°Ô Çß±â ¶§¹®
+        // ë²”ìœ„ ë‚´ ë‹¿ê³  ìˆëŠ” íƒ€ì¼ì˜ ì¢Œí‘œë¥¼ ì˜¤ë¸Œì íŠ¸ ë²ˆí˜¸ì™€ í•¨ê»˜ ì €ì¥
+        // chunkX, chunkY ê°’ì„ ê·¸ëŒ€ë¡œ ê°€ì ¸ì˜¨ ì´ìœ ëŠ” ì˜¤ë¸Œì íŠ¸ê°€ ë‹¿ê³  ìˆëŠ” íƒ€ì¼ì˜ ë²”ìœ„ê°€ 0~19 ì‚¬ì´ë¥¼ ë„˜ì–´ê°€ì§€ ì•Šê²Œ í–ˆê¸° ë•Œë¬¸
         for (int i = minX; i <= maxX; i++)
         {
             for (int j = minY; j <= maxY; j++)
             {
                 if (tileX == i && tileY == j)
                 {
-                    //°Ç¹°ÀÇ ±âÁØÀÌ µÇ´Â ÁÂÇ¥(°Ç¹°°ú ¸¶¿ì½ºÄ¿¼­°¡ ¸Â´ê°í ÀÖ´Â ÁÂÇ¥)´Â Æ¯º°È÷ TilePointÀÇ isRoot¸¦ true·Î ÇØÁØ´Ù.
-                    // isRoot°¡ trueÀÎ ÁÂÇ¥¿¡ ¿ÀºêÁ§Æ®¸¦ »ı¼º½ÃÅ°±â À§ÇÔÀÌ´Ù.
-                    //Ã»Å© ÁÂÇ¥ Å°¸¦ ÅëÇØ TilePoint¸®½ºÆ®¿¡ TilePoint ±¸Á¶Ã¼ Çü½ÄÀ» ÀúÀåÇÑ´Ù.
+                    //ê±´ë¬¼ì˜ ê¸°ì¤€ì´ ë˜ëŠ” ì¢Œí‘œ(ê±´ë¬¼ê³¼ ë§ˆìš°ìŠ¤ì»¤ì„œê°€ ë§ë‹¿ê³  ìˆëŠ” ì¢Œí‘œ)ëŠ” íŠ¹ë³„íˆ TilePointì˜ isRootë¥¼ trueë¡œ í•´ì¤€ë‹¤.
+                    // isRootê°€ trueì¸ ì¢Œí‘œì— ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±ì‹œí‚¤ê¸° ìœ„í•¨ì´ë‹¤.
+                    //ì²­í¬ ì¢Œí‘œ í‚¤ë¥¼ í†µí•´ TilePointë¦¬ìŠ¤íŠ¸ì— TilePoint êµ¬ì¡°ì²´ í˜•ì‹ì„ ì €ì¥í•œë‹¤.
                     objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(i, j, objectNum, objCode, true));
                 }
                 else
                 {
-                    //Ã»Å© ÁÂÇ¥ Å°¸¦ ÅëÇØ TilePoint¸®½ºÆ®¿¡  TilePoint ±¸Á¶Ã¼ Çü½ÄÀ» ÀúÀåÇÑ´Ù.
-                    //°Ç¹°ÀÇ ±âÁØÀÌ µÇ´Â ÁÂÇ¥°¡ ¾Æ´Ï¶ó¸é TilePointÀÇ isRoot¸¦ false·Î ÇØÁØ´Ù.
+                    //ì²­í¬ ì¢Œí‘œ í‚¤ë¥¼ í†µí•´ TilePointë¦¬ìŠ¤íŠ¸ì—  TilePoint êµ¬ì¡°ì²´ í˜•ì‹ì„ ì €ì¥í•œë‹¤.
+                    //ê±´ë¬¼ì˜ ê¸°ì¤€ì´ ë˜ëŠ” ì¢Œí‘œê°€ ì•„ë‹ˆë¼ë©´ TilePointì˜ isRootë¥¼ falseë¡œ í•´ì¤€ë‹¤.
                     objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(i, j, objectNum, objCode, false));
                 }
             }
         }
     }
-    // Ã»Å© ÁÂÇ¥¿¡ ÀÖ´Â Å¸ÀÏ º°·Î ¿ÀºêÁ§Æ®ÀÇ Á¤º¸¸¦ ´ã±â À§ÇÑ ÇÔ¼ö.
-    // ADdTilePointÇÔ¼ö¿Í ´Ù¸¥ Á¡Àº ÇÃ·¹ÀÌ¾î°¡ Á÷Á¢ »ı¼ºÇÑ ¿ÀºêÁ§Æ®¸¦ ´ã±â À§ÇÑ ÇÔ¼ö¶ó´Â °Í.
-    // µû¶ó¼­ »ı¼ºÇÑ ¿ÀºêÁ§Æ®ÀÇ ¹üÀ§°¡ µÎ Ã»Å©, ¸¹À¸¸é ³× Ã»Å© ÁÂÇ¥¿Í ¸Â´ê¾Æ ÀÖÀ» °æ¿ì°¡ ÀÖ±â ¶§¹®¿¡
-    // ÀÎÀÚ°ªÀ» ¿ÀºêÁ§Æ®ÀÇ ±âÁØÀÌ µÇ´Â ÁÂÇ¥ pointX, pointZÀ¸·Î¸¸ ¹Ş°í Ã»Å© ÁÂÇ¥¿Í Ã»Å© ³» Å¸ÀÏ ÁÂÇ¥´Â for¹® ³»¿¡¼­ °è¼Ó ´Ù½Ã °è»êÇØÁØ´Ù.
-    // objectNumÀº °Ç¹°Å¸ÀÔ ¹øÈ£, obj´Â »ı¼ºÇÒ °ÔÀÓ¿ÀºêÁ§Æ®ÀÌ´Ù.
+    // ì²­í¬ ì¢Œí‘œì— ìˆëŠ” íƒ€ì¼ ë³„ë¡œ ì˜¤ë¸Œì íŠ¸ì˜ ì •ë³´ë¥¼ ë‹´ê¸° ìœ„í•œ í•¨ìˆ˜.
+    // ADdTilePointí•¨ìˆ˜ì™€ ë‹¤ë¥¸ ì ì€ í”Œë ˆì´ì–´ê°€ ì§ì ‘ ìƒì„±í•œ ì˜¤ë¸Œì íŠ¸ë¥¼ ë‹´ê¸° ìœ„í•œ í•¨ìˆ˜ë¼ëŠ” ê²ƒ.
+    // ë”°ë¼ì„œ ìƒì„±í•œ ì˜¤ë¸Œì íŠ¸ì˜ ë²”ìœ„ê°€ ë‘ ì²­í¬, ë§ìœ¼ë©´ ë„¤ ì²­í¬ ì¢Œí‘œì™€ ë§ë‹¿ì•„ ìˆì„ ê²½ìš°ê°€ ìˆê¸° ë•Œë¬¸ì—
+    // ì¸ìê°’ì„ ì˜¤ë¸Œì íŠ¸ì˜ ê¸°ì¤€ì´ ë˜ëŠ” ì¢Œí‘œ pointX, pointZìœ¼ë¡œë§Œ ë°›ê³  ì²­í¬ ì¢Œí‘œì™€ ì²­í¬ ë‚´ íƒ€ì¼ ì¢Œí‘œëŠ” forë¬¸ ë‚´ì—ì„œ ê³„ì† ë‹¤ì‹œ ê³„ì‚°í•´ì¤€ë‹¤.
+    // objectNumì€ ê±´ë¬¼íƒ€ì… ë²ˆí˜¸, objëŠ” ìƒì„±í•  ê²Œì„ì˜¤ë¸Œì íŠ¸ì´ë‹¤.
     public void AddTilePoint2(int pointX, int pointZ, int objectNum, GameObject obj)
     {
-        // »ı¼ºµÉ ¿ÀºêÁ§Æ® Áß¾ÓÀ» ±âÁØÀ¸·Î ¾î´À Å¸ÀÏ¿¡ ¿ÀºêÁ§Æ®¿¡ ´ê°Ô µÇ´ÂÁö ¹üÀ§ °è»ê
+        // ìƒì„±ë  ì˜¤ë¸Œì íŠ¸ ì¤‘ì•™ì„ ê¸°ì¤€ìœ¼ë¡œ ì–´ëŠ íƒ€ì¼ì— ì˜¤ë¸Œì íŠ¸ì— ë‹¿ê²Œ ë˜ëŠ”ì§€ ë²”ìœ„ ê³„ì‚°
         int minX = pointX - (int)((float)settingObjInfo.objSize[objectNum].sizeX / 2f) + ((settingObjInfo.objSize[objectNum].sizeX + 1) % 2);
         int maxX = pointX + (int)((float)settingObjInfo.objSize[objectNum].sizeX / 2f);
         int minY = pointZ - (int)((float)settingObjInfo.objSize[objectNum].sizeY / 2f) + ((settingObjInfo.objSize[objectNum].sizeY + 1) % 2);
         int maxY = pointZ + (int)((float)settingObjInfo.objSize[objectNum].sizeY / 2f);
-        // ´Ù¸¥ ÁÂÇ¥¿¡ °°Àº ¿ÀºêÁ§Æ®°¡ °øÀ¯ÇÏ°í ÀÖ´Â ¿ÀºêÁ§Æ® ¹øÈ£. ulongÅ¸ÀÔ
+        // ë‹¤ë¥¸ ì¢Œí‘œì— ê°™ì€ ì˜¤ë¸Œì íŠ¸ê°€ ê³µìœ í•˜ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ ë²ˆí˜¸. ulongíƒ€ì…
         objCode++;
-        // obj¿¡ ´ã±ä BuildingColiderÅ¬·¡½º ³» objCode¸¦ °»½ÅÇÑ´Ù.
+        // objì— ë‹´ê¸´ BuildingColiderí´ë˜ìŠ¤ ë‚´ objCodeë¥¼ ê°±ì‹ í•œë‹¤.
         if (obj.GetComponent<BuildingColider>() != null)
 		{
             obj.GetComponent<BuildingColider>().objCode = objCode;
 		}
-        // ¹üÀ§ ³» ´ê°í ÀÖ´Â Å¸ÀÏÀÇ ÁÂÇ¥¸¦ ¿ÀºêÁ§Æ® ¹øÈ£¿Í ÇÔ²² ÀúÀåÇÑ´Ù.
-        // Ãß°¡·Î Ã»Å© ÁÂÇ¥¿Í Ã»Å© ÁÂÇ¥ ³» Å¸ÀÏ ÁÂÇ¥µµ ÇØ´ç for¹® ³»¿¡¼­ °è»êÇÑ´Ù.
+        // ë²”ìœ„ ë‚´ ë‹¿ê³  ìˆëŠ” íƒ€ì¼ì˜ ì¢Œí‘œë¥¼ ì˜¤ë¸Œì íŠ¸ ë²ˆí˜¸ì™€ í•¨ê»˜ ì €ì¥í•œë‹¤.
+        // ì¶”ê°€ë¡œ ì²­í¬ ì¢Œí‘œì™€ ì²­í¬ ì¢Œí‘œ ë‚´ íƒ€ì¼ ì¢Œí‘œë„ í•´ë‹¹ forë¬¸ ë‚´ì—ì„œ ê³„ì‚°í•œë‹¤.
         for (int i = minX; i <= maxX; i++)
         {
             for (int j = minY; j <= maxY; j++)
             {
-                // Â÷·Ê·Î Ã»Å© ÁÂÇ¥X,Y, Å¸ÀÏÁÂÇ¥ X,Y
+                // ì°¨ë¡€ë¡œ ì²­í¬ ì¢Œí‘œX,Y, íƒ€ì¼ì¢Œí‘œ X,Y
                 int chunkX, chunkY, tileX, tileY;
-                // ¹üÀ§°¡ 0º¸´Ù Å©¸é Ã»Å© XÁÂÇ¥´Â ³ª´©±â 20. À½¼ö°ªÀÌ¸é ³ª´©±â 20 °ª¿¡ -1À» ÇØÁØ´Ù.
-                // ¿¹ÄÁ´ë -15, 15 µÑ´Ù ³ª´©±â 20À» ÇÏ¸é 0ÀÌ ³ª¿À±â ¶§¹®¿¡ Ã»Å©ÁÂÇ¥ °è»ê¿¡ ¿ÀÂ÷°¡ »ı±â±â ¶§¹®ÀÌ´Ù. 
+                // ë²”ìœ„ê°€ 0ë³´ë‹¤ í¬ë©´ ì²­í¬ Xì¢Œí‘œëŠ” ë‚˜ëˆ„ê¸° 20. ìŒìˆ˜ê°’ì´ë©´ ë‚˜ëˆ„ê¸° 20 ê°’ì— -1ì„ í•´ì¤€ë‹¤.
+                // ì˜ˆì»¨ëŒ€ -15, 15 ë‘˜ë‹¤ ë‚˜ëˆ„ê¸° 20ì„ í•˜ë©´ 0ì´ ë‚˜ì˜¤ê¸° ë•Œë¬¸ì— ì²­í¬ì¢Œí‘œ ê³„ì‚°ì— ì˜¤ì°¨ê°€ ìƒê¸°ê¸° ë•Œë¬¸ì´ë‹¤. 
                 if (i >= 0) { chunkX = i / 20; }
                 else { chunkX = (i / 20) - 1; }
-                // ¹üÀ§°¡ 0º¸´Ù Å©¸é Ã»Å© YÁÂÇ¥´Â ³ª´©±â 20. À½¼ö°ªÀÌ¸é ³ª´©±â 20°ª¿¡ -1À» ÇØÁØ´Ù.
+                // ë²”ìœ„ê°€ 0ë³´ë‹¤ í¬ë©´ ì²­í¬ Yì¢Œí‘œëŠ” ë‚˜ëˆ„ê¸° 20. ìŒìˆ˜ê°’ì´ë©´ ë‚˜ëˆ„ê¸° 20ê°’ì— -1ì„ í•´ì¤€ë‹¤.
                 if (j >= 0) { chunkY = j / 20; }
                 else { chunkY = (j / 20) - 1; }
-                // ¹üÀ§°¡ 0º¸´Ù Å©¸é Å¸ÀÏ XÁÂÇ¥´Â ³ª´©±â 20ÀÇ ³ª¸ÓÁö.
+                // ë²”ìœ„ê°€ 0ë³´ë‹¤ í¬ë©´ íƒ€ì¼ Xì¢Œí‘œëŠ” ë‚˜ëˆ„ê¸° 20ì˜ ë‚˜ë¨¸ì§€.
                 if (i >= 0) { tileX = i % 20; }
                 else 
                 {
-                    // ¹üÀ§°¡ À½¼öÀÏ ½Ã, ³ª´©±â 20ÀÇ ³ª¸ÓÁö°¡ 0ÀÌ¸é Ã»Å© XÁÂÇ¥¸¦ ÇÑÄ­ ¶¯±ä´Ù. ±× ¿Ü¿£ Å¸ÀÏÁÂÇ¥¿¡ 20À» Ãß°¡ÇÑ´Ù.
+                    // ë²”ìœ„ê°€ ìŒìˆ˜ì¼ ì‹œ, ë‚˜ëˆ„ê¸° 20ì˜ ë‚˜ë¨¸ì§€ê°€ 0ì´ë©´ ì²­í¬ Xì¢Œí‘œë¥¼ í•œì¹¸ ë•¡ê¸´ë‹¤. ê·¸ ì™¸ì—” íƒ€ì¼ì¢Œí‘œì— 20ì„ ì¶”ê°€í•œë‹¤.
                     if (i % 20 == 0) { tileX = 0; chunkX++; }
                     else { tileX = (i % 20) + 20; } 
                 }
-               // ¹üÀ§°¡ 0º¸´Ù Å©¸é Å¸ÀÏ YÁÂÇ¥´Â ³ª´©±â 20ÀÇ ³ª¸ÓÁö.
+               // ë²”ìœ„ê°€ 0ë³´ë‹¤ í¬ë©´ íƒ€ì¼ Yì¢Œí‘œëŠ” ë‚˜ëˆ„ê¸° 20ì˜ ë‚˜ë¨¸ì§€.
                 if (j >= 0) { tileY = j % 20; }
                 else 
                 {
-                    // ¹üÀ§°¡ À½¼öÀÏ ½Ã, ³ª´©±â 20ÀÇ ³ª¸ÓÁö°¡ 0ÀÌ¸é Ã»Å© YÁÂÇ¥¸¦ ÇÑÄ­ ¶§±ä´Ù. ±× ¿Ü¿£ Å¸ÀÏÁÂÇ¥¿¡ 20À» Ãß°¡ÇÑ´Ù.
+                    // ë²”ìœ„ê°€ ìŒìˆ˜ì¼ ì‹œ, ë‚˜ëˆ„ê¸° 20ì˜ ë‚˜ë¨¸ì§€ê°€ 0ì´ë©´ ì²­í¬ Yì¢Œí‘œë¥¼ í•œì¹¸ ë•Œê¸´ë‹¤. ê·¸ ì™¸ì—” íƒ€ì¼ì¢Œí‘œì— 20ì„ ì¶”ê°€í•œë‹¤.
                     if (j % 20 == 0) { tileY = 0; chunkY++; }
                     else { tileY = (j % 20) + 20; } 
                 }
                 
-                // objectPointList¿¡ Ã»Å© ÁÂÇ¥ Å°°¡ ¾øÀ¸¸é Å°¸¦ Ãß°¡ÇÑ´Ù.
+                // objectPointListì— ì²­í¬ ì¢Œí‘œ í‚¤ê°€ ì—†ìœ¼ë©´ í‚¤ë¥¼ ì¶”ê°€í•œë‹¤.
                 if (!objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
                 {
                     List<TilePoint> tilePoint = new List<TilePoint>();
                     objectPointList.Add(new ChunkPoint(chunkX, chunkY), tilePoint);
                 }
 
-                // °Ç¹°ÀÇ ±âÁØÀÌ µÇ´Â ÁÂÇ¥´Â objectPointList¿¡ ÀúÀåÇÏ´Â °Í ¿Ü¿¡µµ
-                // gameObjectChunkPointList¿¡ ±× ÁÂÇ¥°¡ ÀÖ´Â Ã»Å© ÁÂÇ¥ °ªÀ» Å°·Î ÇÏ¿© °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ Ãß°¡ÇØÁØ´Ù. 
+                // ê±´ë¬¼ì˜ ê¸°ì¤€ì´ ë˜ëŠ” ì¢Œí‘œëŠ” objectPointListì— ì €ì¥í•˜ëŠ” ê²ƒ ì™¸ì—ë„
+                // gameObjectChunkPointListì— ê·¸ ì¢Œí‘œê°€ ìˆëŠ” ì²­í¬ ì¢Œí‘œ ê°’ì„ í‚¤ë¡œ í•˜ì—¬ ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì¶”ê°€í•´ì¤€ë‹¤. 
                 if (i == pointX && j == pointZ)
 				{
-                    //Ã»Å© ÁÂÇ¥ Å°¸¦ ÅëÇØ TilePoint¸®½ºÆ®¿¡ TilePoint ±¸Á¶Ã¼ Çü½ÄÀ» ÀúÀåÇÑ´Ù.
+                    //ì²­í¬ ì¢Œí‘œ í‚¤ë¥¼ í†µí•´ TilePointë¦¬ìŠ¤íŠ¸ì— TilePoint êµ¬ì¡°ì²´ í˜•ì‹ì„ ì €ì¥í•œë‹¤.
                     objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, obj.GetComponent<BuildingColider>().GetObjTypeNum(), objCode, true));
                 
-                    // ÇØ´ç Ã»Å© ÁÂÇ¥ Å°°¡ ¾øÀ¸¸é Ãß°¡ÇØÁÖ°í, ±× Ã»Å© ÁÂÇ¥ Å°¸¦ ÅëÇØ GameObject¸®½ºÆ®¿¡ GameObject¸¦ ³Ö¾îÁØ´Ù.
+                    // í•´ë‹¹ ì²­í¬ ì¢Œí‘œ í‚¤ê°€ ì—†ìœ¼ë©´ ì¶”ê°€í•´ì£¼ê³ , ê·¸ ì²­í¬ ì¢Œí‘œ í‚¤ë¥¼ í†µí•´ GameObjectë¦¬ìŠ¤íŠ¸ì— GameObjectë¥¼ ë„£ì–´ì¤€ë‹¤.
                     if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
 					{
                         List<GameObject> objList = new List<GameObject>();
                         gameObjectChunkPointList.Add(new ChunkPoint(chunkX,chunkY), objList);
-                        //Ã»Å© ÁÂÇ¥ Å°¸¦ ÅëÇØ GameObject¸®½ºÆ®¿¡ GameObject¸¦ ³Ö¾îÁØ´Ù.
+                        //ì²­í¬ ì¢Œí‘œ í‚¤ë¥¼ í†µí•´ GameObjectë¦¬ìŠ¤íŠ¸ì— GameObjectë¥¼ ë„£ì–´ì¤€ë‹¤.
                         gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
                     }
                     else
 					{
-                        //Ã»Å© ÁÂÇ¥ Å°¸¦ ÅëÇØ GameObject¸®½ºÆ®¿¡ GameObject¸¦ ³Ö¾îÁØ´Ù.
+                        //ì²­í¬ ì¢Œí‘œ í‚¤ë¥¼ í†µí•´ GameObjectë¦¬ìŠ¤íŠ¸ì— GameObjectë¥¼ ë„£ì–´ì¤€ë‹¤.
                         gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Add(obj);
                     }
                 }
                 else
 				{
-                    //Ã»Å© ÁÂÇ¥ Å°¸¦ ÅëÇØ TilePoint¸®½ºÆ®¿¡ TilePoint ±¸Á¶Ã¼ Çü½ÄÀ» ÀúÀåÇÑ´Ù.
+                    //ì²­í¬ ì¢Œí‘œ í‚¤ë¥¼ í†µí•´ TilePointë¦¬ìŠ¤íŠ¸ì— TilePoint êµ¬ì¡°ì²´ í˜•ì‹ì„ ì €ì¥í•œë‹¤.
                     objectPointList[new ChunkPoint(chunkX, chunkY)].Add(new TilePoint(tileX, tileY, obj.GetComponent<BuildingColider>().GetObjTypeNum(), objCode, false));
                 }
                 //Debug.Log("chunkX : " + chunkX + " chunkY : " + chunkY + " tileX : " + tileX + " tileY : " + tileY + " objectNum : " + objectNum + "  i : " + i + "  j : " + j + " pointX : " + pointX + "pointZ : " + pointZ);
@@ -219,150 +221,180 @@ public class SettingObject : MonoBehaviour
 
 
     }
+    public void AddTilePoint3(int chunkX, int chunkY, int objectNum, int tileX, int tileY)
+	{
+        callBuildingAttachMouseToSettingObjectEventDriven.RunSetObjectAndPointEvnet(chunkX, chunkY, objectArr[objectNum], tileX, tileY);
 
-
-    // ÁÂÇ¥¿¡ ¸Â°Ô ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇÑ´Ù. »ı¼ºÇÏ´Â ¿ÀºêÁ§Æ®´Â ¸Ê »ı¼º½Ã ÀÚ¿¬ »ı¼ºµÇ´Â ¿ÀºêÁ§Æ®¿¡ ÇÑÇØ¼­ÀÌ´Ù.
-    // ÀÎÀÚ°ª chunkX, chunkY´Â ÇØ´ç ¿ÀºêÁ§Æ®°¡ »ı¼ºµÇ´Â Ã»Å© °ªÀÌ´Ù.
+    }
+    // ì¢Œí‘œì— ë§ê²Œ ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•œë‹¤. ìƒì„±í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ëŠ” ë§µ ìƒì„±ì‹œ ìì—° ìƒì„±ë˜ëŠ” ì˜¤ë¸Œì íŠ¸ì— í•œí•´ì„œì´ë‹¤.
+    // ì¸ìê°’ chunkX, chunkYëŠ” í•´ë‹¹ ì˜¤ë¸Œì íŠ¸ê°€ ìƒì„±ë˜ëŠ” ì²­í¬ ê°’ì´ë‹¤.
     public void CreateObejct(int chunkX, int chunkY)
     {
-        // ÇØ´ç Ã»Å© ÁÂÇ¥ Á¤º¸¸¦ µñ¼Å³Ê¸®¿¡ Å°·Î ÀúÀåÇÏ°í ÀÖ´ÂÁö È®ÀÎ. ¾øÀ¸¸é ¸®ÅÏ
+        // í•´ë‹¹ ì²­í¬ ì¢Œí‘œ ì •ë³´ë¥¼ ë”•ì…”ë„ˆë¦¬ì— í‚¤ë¡œ ì €ì¥í•˜ê³  ìˆëŠ”ì§€ í™•ì¸. ì—†ìœ¼ë©´ ë¦¬í„´
         if (!ActiveTrueObjectPointList(chunkX, chunkY)) { return; }
-        // ÀÎÀÚ°ªÀ» Åä´ë·Î ChunkPoint Çü º¯¼ö¸¦ ÇÏ³ª »ı¼ºÇÑ´Ù.
+        // ì¸ìê°’ì„ í† ëŒ€ë¡œ ChunkPoint í˜• ë³€ìˆ˜ë¥¼ í•˜ë‚˜ ìƒì„±í•œë‹¤.
         ChunkPoint chunk = new ChunkPoint(chunkX, chunkY);
         for (int i = 0; i < objectPointList[chunk].Count; i++)
         {
-            if (objectPointList[chunk][i].isRoot)
-            {// ¿ÀºêÁ§Æ® »ı¼º°ú ºÎ¸ğ ¿ÀºêÁ§Æ® ¼³Á¤
+            if (objectPointList[chunk][i].isRoot && (objectPointList[chunk][i].objectNum == 0 || objectPointList[chunk][i].objectNum == 1))
+            {// ì˜¤ë¸Œì íŠ¸ ìƒì„±ê³¼ ë¶€ëª¨ ì˜¤ë¸Œì íŠ¸ ì„¤ì •
                 GameObject obj = Instantiate(objectArr[objectPointList[chunk][i].objectNum], motehrObject.transform);
-                // »ı¼ºµÉ ¿ÀºêÁ§Æ®ÀÇ ÁÂÇ¥
+                // ìƒì„±ë  ì˜¤ë¸Œì íŠ¸ì˜ ì¢Œí‘œ
                 obj.transform.position = new Vector3
                     ( chunkX * 20 + objectPointList[chunk][i].tileX, 0, chunkY * 20 + objectPointList[chunk][i].tileY);
-                // È­¸é¿¡ º¸ÀÌ°Ô °¢µµ ¼³Á¤
+                // í™”ë©´ì— ë³´ì´ê²Œ ê°ë„ ì„¤ì •
                 obj.transform.eulerAngles = new Vector3(90, 0, 0);
-                // ÇØ´ç Ã»Å© ÁÂÇ¥ Å°°¡ ÀÖ´ÂÁö È®ÀÎ
+                // í•´ë‹¹ ì²­í¬ ì¢Œí‘œ í‚¤ê°€ ìˆëŠ”ì§€ í™•ì¸
                 if (!gameObjectChunkPointList.ContainsKey(chunk))
                 {
-                    // Å°°¡ ¾øÀ¸¸é Å° »ı¼º ¹× ±× Ã»Å© ÁÂÇ¥¸¦ ÅëÇØ GameObject ¸®½ºÆ®¿¡ GameObject¸¦ Ãß°¡ÇÑ´Ù. 
+                    // í‚¤ê°€ ì—†ìœ¼ë©´ í‚¤ ìƒì„± ë° ê·¸ ì²­í¬ ì¢Œí‘œë¥¼ í†µí•´ GameObject ë¦¬ìŠ¤íŠ¸ì— GameObjectë¥¼ ì¶”ê°€í•œë‹¤. 
                     List<GameObject> objList = new List<GameObject>();
                     gameObjectChunkPointList.Add(chunk, objList);
                     gameObjectChunkPointList[chunk].Add(obj);
                 }
                 else
                 {
-                    // Ã»Å© ÁÂÇ¥¸¦ ÅëÇØ GameObject ¸®½ºÆ®¿¡ GameObject¸¦ Ãß°¡ÇÑ´Ù.
+                    // ì²­í¬ ì¢Œí‘œë¥¼ í†µí•´ GameObject ë¦¬ìŠ¤íŠ¸ì— GameObjectë¥¼ ì¶”ê°€í•œë‹¤.
                     gameObjectChunkPointList[chunk].Add(obj);
                 }
             }
         }
     }
 
-    // ¿ÀºêÁ§Æ®¸¦ »èÁ¦ÇØÁØ´Ù. »èÁ¦ÇÏ´Â ¿ÀºêÁ§Æ®´Â ÇÃ·¹ÀÌ¾î°¡ Á÷Á¢ »ı¼ºÇÑ ¿ÀºêÁ§Æ®¿¡ ÇÑÇÑ´Ù.
-    // ÇØ´ç ÇÔ¼ö´Â ÀÌº¥Æ® µå¸®ºìÀ» »ç¿ëÇÏ¿© BuildingColider Å¬·¡½º¿¡¼­ È£ÃâµÈ´Ù.
+    // ì˜¤ë¸Œì íŠ¸ë¥¼ ì‚­ì œí•´ì¤€ë‹¤. ì‚­ì œí•˜ëŠ” ì˜¤ë¸Œì íŠ¸ëŠ” í”Œë ˆì´ì–´ê°€ ì§ì ‘ ìƒì„±í•œ ì˜¤ë¸Œì íŠ¸ì— í•œí•œë‹¤.
+    // í•´ë‹¹ í•¨ìˆ˜ëŠ” ì´ë²¤íŠ¸ ë“œë¦¬ë¸ì„ ì‚¬ìš©í•˜ì—¬ BuildingColider í´ë˜ìŠ¤ì—ì„œ í˜¸ì¶œëœë‹¤.
     public void RemoveObject(ulong objCode, GameObject obj)
 	{
-        // Ã»Å©¿Í ÁÂÇ¥¸¦ Àû´çÈ÷ ±¸Çß´Ù. ºÎÁ¤È®ÇÒ È®·üÀÌ ¸Å¿ì ³ô´Ù.
+        // ì²­í¬ì™€ ì¢Œí‘œë¥¼ ì ë‹¹íˆ êµ¬í–ˆë‹¤. ë¶€ì •í™•í•  í™•ë¥ ì´ ë§¤ìš° ë†’ë‹¤.
         int inaccurateChunkX = (int)obj.transform.position.x / 20;
         int inaccurateChunkY = (int)obj.transform.position.z / 20;
-        // ºÎÁ¤È®ÇÏ°Ô ±¸ÇÑ Ã»Å©ÁÂÇ¥ÀÌ¹Ç·Î ÇØ´ç Ã»Å©ÁÂÇ¥¸¦ ±âÁØÀ¸·Î »óÇÏÁÂ¿ì·Î -2, +2¹üÀ§ ³»¿¡¼­ »èÁ¦ÇÒ ¿ÀºêÁ§Æ®¸¦ Ã£´Â´Ù.
+        // ë¶€ì •í™•í•˜ê²Œ êµ¬í•œ ì²­í¬ì¢Œí‘œì´ë¯€ë¡œ í•´ë‹¹ ì²­í¬ì¢Œí‘œë¥¼ ê¸°ì¤€ìœ¼ë¡œ ìƒí•˜ì¢Œìš°ë¡œ -2, +2ë²”ìœ„ ë‚´ì—ì„œ ì‚­ì œí•  ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ëŠ”ë‹¤.
         for (int x = inaccurateChunkX - 2; x < inaccurateChunkX + 2; x++)
 		{
             for (int y = inaccurateChunkY - 2; y < inaccurateChunkY + 2; y++)
 			{
-                // ¸ÕÀú gameObjectChunkPointList¿¡¼­ °ÔÀÓ¿ÀºêÁ§Æ®¸¦ »èÁ¦ÇÑ´Ù.
+                // ë¨¼ì € gameObjectChunkPointListì—ì„œ ê²Œì„ì˜¤ë¸Œì íŠ¸ë¥¼ ì‚­ì œí•œë‹¤.
                 if (gameObjectChunkPointList.ContainsKey(new ChunkPoint(x, y)))
 				{
-                    // Ã»Å© ÁÂÇ¥ ³»¿¡¼­ ¿ÀºêÁ§Æ® Á¤º¸¸¦ Ã£´Â´Ù.
+                    // ì²­í¬ ì¢Œí‘œ ë‚´ì—ì„œ ì˜¤ë¸Œì íŠ¸ ì •ë³´ë¥¼ ì°¾ëŠ”ë‹¤.
                     int index = gameObjectChunkPointList[new ChunkPoint(x, y)].FindIndex(a => a.Equals(obj));
-                    // ¿ÀºêÁ§Æ® Á¤º¸¸¦ Ã£¾ÒÀ» ½Ã °ÔÀÓ ¿ÀºêÁ§Æ®¸¦ »èÁ¦ÇØÁØ´Ù.
+                    // ì˜¤ë¸Œì íŠ¸ ì •ë³´ë¥¼ ì°¾ì•˜ì„ ì‹œ ê²Œì„ ì˜¤ë¸Œì íŠ¸ë¥¼ ì‚­ì œí•´ì¤€ë‹¤.
                     if (index != -1)
-					{
-                        // ÀÎµ¦½º ¹øÈ£·Î Áö¿öÁØ´Ù.
+                    {
+                        // ì¸ë±ìŠ¤ ë²ˆí˜¸ë¡œ ì§€ì›Œì¤€ë‹¤.
                         gameObjectChunkPointList[new ChunkPoint(x, y)].RemoveAt(index);
 					}
 				}
-                // ±× ´ÙÀ½À¸·Î ojbectPointList¿¡¼­ TilePoint ÁÂÇ¥ Á¤º¸¸¦ Áö¿öÁØ´Ù. ´Ù¾çÇÑ Ã»Å© ³»¿¡¼­ Á¶°¢Á¶°¢ Á¤º¸°¡ ´ã°ÜÀÖÀ» ¼ö ÀÖ´Ù.
-                // ÇÏÁö¸¸ ºÎÁ¤È®ÇÑ Ã»Å© ÁÂÇ¥¸¦ ±âÁØÀ¸·Î »óÇÏÁÂ¿ì·Î -2, +2 ¹üÀ§ ³»¿¡¼­ »èÁ¦ÇÏ¹Ç·Î ¹®Á¦ ¾ø´Ù.
+                // ê·¸ ë‹¤ìŒìœ¼ë¡œ ojbectPointListì—ì„œ TilePoint ì¢Œí‘œ ì •ë³´ë¥¼ ì§€ì›Œì¤€ë‹¤. ë‹¤ì–‘í•œ ì²­í¬ ë‚´ì—ì„œ ì¡°ê°ì¡°ê° ì •ë³´ê°€ ë‹´ê²¨ìˆì„ ìˆ˜ ìˆë‹¤.
+                // í•˜ì§€ë§Œ ë¶€ì •í™•í•œ ì²­í¬ ì¢Œí‘œë¥¼ ê¸°ì¤€ìœ¼ë¡œ ìƒí•˜ì¢Œìš°ë¡œ -2, +2 ë²”ìœ„ ë‚´ì—ì„œ ì‚­ì œí•˜ë¯€ë¡œ ë¬¸ì œ ì—†ë‹¤.
                 if (objectPointList.ContainsKey(new ChunkPoint(x, y)))
-				{
-                    // list¿¡ Ã»Å©ÁÂÇ¥ ³» ÇÊ¿äÇÑ TilePoint Á¤º¸¸¦ ¸ğµÎ ¹Ş¾Æ¿Â´Ù.
+                {
+                    // listì— ì²­í¬ì¢Œí‘œ ë‚´ í•„ìš”í•œ TilePoint ì •ë³´ë¥¼ ëª¨ë‘ ë°›ì•„ì˜¨ë‹¤.
                     List<TilePoint> list = objectPointList[new ChunkPoint(x, y)].FindAll(a => a.objectCode == objCode);
-
-                    // ÀúÀåÇÑ Á¤º¸µéÀ» Ã»Å© ÁÂÇ¥ ³» List<TilePoint>¿¡¼­ ÀüºÎ Áö¿öÁØ´Ù.
+                    //Debug.Log(objCode);
+                    // ì €ì¥í•œ ì •ë³´ë“¤ì„ ì²­í¬ ì¢Œí‘œ ë‚´ List<TilePoint>ì—ì„œ ì „ë¶€ ì§€ì›Œì¤€ë‹¤.
                     for (int i = 0; i < list.Count; i++)
 					{
-                        // TilePointÇü½ÄÀ¸·Î Áö¿öÁØ´Ù.
+                        // TilePointí˜•ì‹ìœ¼ë¡œ ì§€ì›Œì¤€ë‹¤.
                         objectPointList[new ChunkPoint(x, y)].Remove(list[i]);
 					}
-                    // È¤½Ã¸ğ¸£´Ï list´Â clear~
+                    // í˜¹ì‹œëª¨ë¥´ë‹ˆ listëŠ” clear~
                     list.Clear();
 				}
 			}
 		}
 	}
-
-    // ÁöÁ¤µÈ ¹üÀ§ ³»¿¡ µ¿±¼À» »ı¼ºÇÒ Á¶°ÇÀ» ¸¸Á·ÇÏ´ÂÁö ¿©ºÎ¸¦ ÆÇ´Ü.
-    // ÀÎÀÚ°ª chunkX, chnukY´Â Ã»Å© ÁÂÇ¥. chunk´Â ÇØ´ç °ÔÀÓ¿ÀºêÁ§Æ®ÀÇ ÀÚ½Ä ¿ÀºêÁ§Æ®ÀÎ tile ¿ÀºêÁ§Æ®¸¦ Ã£±â À§ÇÔ.
-    // x,y´Â Ã»Å© ÁÂÇ¥ ³» Å¸ÀÏ ÁÂÇ¥, tileÀº ºñ±³ÇÒ Å¸ÀÏ, chunkSize´Â Ã»Å© ÇÏ³ªÀÇ °¡·Î¼¼·Î »çÀÌÁî
-    public bool CheckMineRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
-    {
-        // µ¿±¼ÀÇ ¹üÀ§´Â °¡·Î 3(*16ÇÈ¼¿),¼¼·Î 3(*16ÇÈ¼¿)ÀÓ. µû¶ó¼­ »óÇÏÁÂ¿ì·Î ÇÑÄ­ ¹üÀ§¸¦ Ã»Å© »çÀÌÁî ³»¿¡¼­ È®º¸ÇØ¾ßµÊ
-        if (x - 1 <= 0 || x + 1 >= chunkSize || y - 1 <= 0 || y + 1 >= chunkSize) { return false; }
-        // ¹üÀ§ È®º¸ ÈÄ, ÇØ´ç ÁÂÇ¥ ³» ÀÌ¹Ì ¿ÀºêÁ§Æ®°¡ »ı¼ºµÇ¾î ÀÖ´ÂÁö, È¤Àº »ı¼ºÀ» ºÒ°¡´ÉÄÉÇÏ´Â Å¸ÀÏÀÌ ÀÖ´ÂÁö È®ÀÎÇÔ
-        for (int i = x - 1; i <= x + 1; i++)
-        {
-            for (int j = y - 1; j <= y + 1; j++)
-            {
-                // Ã»Å©ÁÂÇ¥ Å°°¡ ÀÖ´ÂÁö È®ÀÎ
+    public bool CheckStartBuildingRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
+	{
+        if (x - 2 <= 0 || x + 2 >= chunkSize || y + 1 >= chunkSize) { return false; }
+        for (int i = x - 2; i <= x + 2; i++)
+		{
+            for (int j = y; j <= y + 1; j++)
+			{
+                // ì²­í¬ì¢Œí‘œ í‚¤ê°€ ìˆëŠ”ì§€ í™•ì¸
                 if (objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
                 {
-                    // Ã»Å© ÁÂÇ¥ ³» List<TilePoint>¿¡¼­ Å¸ÀÏ ÁÂÇ¥°¡ ÀÌ¹Ì ÀúÀåµÇ¾î ÀÖ´ÂÁö È®ÀÎ.
+                    // ì²­í¬ ì¢Œí‘œ ë‚´ List<TilePoint>ì—ì„œ íƒ€ì¼ ì¢Œí‘œê°€ ì´ë¯¸ ì €ì¥ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸.
                     int index = objectPointList[new ChunkPoint(chunkX, chunkY)].FindIndex(a => a.tileX == i && a.tileY == j);
-                    // ÀÌ¹Ì ÀúÀåµÇ¾î ÀÖÀ¸¸é µ¿±¼À» »ı¼ºÇÒ ¼ö ¾øÀ½À» (false) ¹İÈ¯
+                    // ì´ë¯¸ ì €ì¥ë˜ì–´ ìˆìœ¼ë©´ ì‹œì‘ê±´ë¬¼ì„ ìƒì„±í•  ìˆ˜ ì—†ìŒì„ (false) ë°˜í™˜
                     if (index != -1)
                     {
                         return false;
                     }
                 }
-                // Ã»Å© ¿ÀºêÁ§Æ® ³» ÀÚ½Ä ¿ÀºêÁ§Æ®ÀÎ Å¸ÀÏ ¿ÀºêÁ§Æ®ÀÇ ½ºÇÁ¶óÀÌÆ®°¡ tileÀÌ¶ó¸é µ¿±¼À» »ı¼ºÇÒ ¼ö ¾øÀ½(false)À» ¹İÈ¯
+                // ì²­í¬ ì˜¤ë¸Œì íŠ¸ ë‚´ ìì‹ ì˜¤ë¸Œì íŠ¸ì¸ íƒ€ì¼ ì˜¤ë¸Œì íŠ¸ì˜ ìŠ¤í”„ë¼ì´íŠ¸ê°€ tileì´ë¼ë©´ ì‹œì‘ê±´ë¬¼ì„ ìƒì„±í•  ìˆ˜ ì—†ìŒ(false)ì„ ë°˜í™˜
+                if (chunk.transform.GetChild(i * chunkSize + j).GetComponent<SpriteRenderer>().sprite == tile)
+                {
+                    return false;
+                }
+            }
+		}
+
+        return true;
+	}
+    // ì§€ì •ëœ ë²”ìœ„ ë‚´ì— ë™êµ´ì„ ìƒì„±í•  ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ íŒë‹¨.
+    // ì¸ìê°’ chunkX, chnukYëŠ” ì²­í¬ ì¢Œí‘œ. chunkëŠ” í•´ë‹¹ ê²Œì„ì˜¤ë¸Œì íŠ¸ì˜ ìì‹ ì˜¤ë¸Œì íŠ¸ì¸ tile ì˜¤ë¸Œì íŠ¸ë¥¼ ì°¾ê¸° ìœ„í•¨.
+    // x,yëŠ” ì²­í¬ ì¢Œí‘œ ë‚´ íƒ€ì¼ ì¢Œí‘œ, tileì€ ë¹„êµí•  íƒ€ì¼, chunkSizeëŠ” ì²­í¬ í•˜ë‚˜ì˜ ê°€ë¡œì„¸ë¡œ ì‚¬ì´ì¦ˆ
+    public bool CheckMineRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
+    {
+        // ë™êµ´ì˜ ë²”ìœ„ëŠ” ê°€ë¡œ 3(*16í”½ì…€),ì„¸ë¡œ 3(*16í”½ì…€)ì„. ë”°ë¼ì„œ ìƒí•˜ì¢Œìš°ë¡œ í•œì¹¸ ë²”ìœ„ë¥¼ ì²­í¬ ì‚¬ì´ì¦ˆ ë‚´ì—ì„œ í™•ë³´í•´ì•¼ë¨
+        if (x - 1 <= 0 || x + 1 >= chunkSize || y - 1 <= 0 || y + 1 >= chunkSize) { return false; }
+        // ë²”ìœ„ í™•ë³´ í›„, í•´ë‹¹ ì¢Œí‘œ ë‚´ ì´ë¯¸ ì˜¤ë¸Œì íŠ¸ê°€ ìƒì„±ë˜ì–´ ìˆëŠ”ì§€, í˜¹ì€ ìƒì„±ì„ ë¶ˆê°€ëŠ¥ì¼€í•˜ëŠ” íƒ€ì¼ì´ ìˆëŠ”ì§€ í™•ì¸í•¨
+        for (int i = x - 1; i <= x + 1; i++)
+        {
+            for (int j = y - 1; j <= y + 1; j++)
+            {
+                // ì²­í¬ì¢Œí‘œ í‚¤ê°€ ìˆëŠ”ì§€ í™•ì¸
+                if (objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
+                {
+                    // ì²­í¬ ì¢Œí‘œ ë‚´ List<TilePoint>ì—ì„œ íƒ€ì¼ ì¢Œí‘œê°€ ì´ë¯¸ ì €ì¥ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸.
+                    int index = objectPointList[new ChunkPoint(chunkX, chunkY)].FindIndex(a => a.tileX == i && a.tileY == j);
+                    // ì´ë¯¸ ì €ì¥ë˜ì–´ ìˆìœ¼ë©´ ë™êµ´ì„ ìƒì„±í•  ìˆ˜ ì—†ìŒì„ (false) ë°˜í™˜
+                    if (index != -1)
+                    {
+                        return false;
+                    }
+                }
+                // ì²­í¬ ì˜¤ë¸Œì íŠ¸ ë‚´ ìì‹ ì˜¤ë¸Œì íŠ¸ì¸ íƒ€ì¼ ì˜¤ë¸Œì íŠ¸ì˜ ìŠ¤í”„ë¼ì´íŠ¸ê°€ tileì´ë¼ë©´ ë™êµ´ì„ ìƒì„±í•  ìˆ˜ ì—†ìŒ(false)ì„ ë°˜í™˜
                 if (chunk.transform.GetChild(i * chunkSize + j).GetComponent<SpriteRenderer>().sprite == tile)
                 {
                     return false;
                 }
             }
         }
-        // ¿¹¿Ü»óÈ²ÀÌ ¾ø´Ù¸é µ¿±¼À» »ı¼ºÇÒ ¼ö ÀÖÀ½(true)À» ¹İÈ¯
+        // ì˜ˆì™¸ìƒí™©ì´ ì—†ë‹¤ë©´ ë™êµ´ì„ ìƒì„±í•  ìˆ˜ ìˆìŒ(true)ì„ ë°˜í™˜
         return true;
     }
 
-    // ÁöÁ¤µÈ ¹üÀ§ ³»¿¡ ³ª¹«¸¦ »ı¼ºÇÒ Á¶°ÇÀ» ¸¸Á·ÇÏ´ÂÁö ¿©ºÎ¸¦ ÆÇ´Ü
+    // ì§€ì •ëœ ë²”ìœ„ ë‚´ì— ë‚˜ë¬´ë¥¼ ìƒì„±í•  ì¡°ê±´ì„ ë§Œì¡±í•˜ëŠ”ì§€ ì—¬ë¶€ë¥¼ íŒë‹¨
     public bool CheckTreeRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
     {
-        // ³ª¹«ÀÇ ¹üÀ§´Â °¡·Î 1(*16ÇÈ¼¿), ¼¼·Î 2(*16)ÇÈ¼¿ÀÓ. À§·Î ÇÑÄ­ ¹üÀ§±îÁö¸¸ Ã»Å© »çÀÌÁî ³»¿¡¼­ È®º¸ÇØ¾ßµÊ
+        // ë‚˜ë¬´ì˜ ë²”ìœ„ëŠ” ê°€ë¡œ 1(*16í”½ì…€), ì„¸ë¡œ 2(*16)í”½ì…€ì„. ìœ„ë¡œ í•œì¹¸ ë²”ìœ„ê¹Œì§€ë§Œ ì²­í¬ ì‚¬ì´ì¦ˆ ë‚´ì—ì„œ í™•ë³´í•´ì•¼ë¨
         if (y + 1 >= chunkSize) { return false; }
-        // ¹üÀ§ È®º¸ ÈÄ, ÇØ´ç ÁÂÇ¥ ³» ÀÌ¹Ì ¿ÀºêÁ§Æ®°¡ »ı¼ºµÇ¾î ÀÖ´ÂÁö, È¤Àº »ı¼ºÀ» ºÒ°¡´ÉÄÉÇÏ´Â Å¸ÀÏÀÌ ÀÖ´ÂÁö È®ÀÎÇÔ.
+        // ë²”ìœ„ í™•ë³´ í›„, í•´ë‹¹ ì¢Œí‘œ ë‚´ ì´ë¯¸ ì˜¤ë¸Œì íŠ¸ê°€ ìƒì„±ë˜ì–´ ìˆëŠ”ì§€, í˜¹ì€ ìƒì„±ì„ ë¶ˆê°€ëŠ¥ì¼€í•˜ëŠ” íƒ€ì¼ì´ ìˆëŠ”ì§€ í™•ì¸í•¨.
         for (int i = y; i <= y + 1; i++)
         {
-            //Ã»Å©ÁÂÇ¥ Å°°¡ ÀÖ´ÂÁö È®ÀÎ
+            //ì²­í¬ì¢Œí‘œ í‚¤ê°€ ìˆëŠ”ì§€ í™•ì¸
             if (objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
             {
-                // Ã»Å© ÁÂÇ¥ ³» List<TilePoint>¿¡¼­ Å¸ÀÏ ÁÂÇ¥°¡ ÀÌ¹Ì ÀúÀåµÇ¾î ÀÖ´ÂÁö È®ÀÎ.
+                // ì²­í¬ ì¢Œí‘œ ë‚´ List<TilePoint>ì—ì„œ íƒ€ì¼ ì¢Œí‘œê°€ ì´ë¯¸ ì €ì¥ë˜ì–´ ìˆëŠ”ì§€ í™•ì¸.
                 int index = objectPointList[new ChunkPoint(chunkX, chunkY)].FindIndex(a => a.tileX == x && a.tileY == i);
-                // ÀÌ¹Ì ÀúÀåµÇ¾î ÀÖÀ¸¸é ³ª¹«¸¦ »ı¼ºÇÒ ¼ö ¾øÀ½À» (false) ¹İÈ¯
+                // ì´ë¯¸ ì €ì¥ë˜ì–´ ìˆìœ¼ë©´ ë‚˜ë¬´ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŒì„ (false) ë°˜í™˜
                 if (index != -1)
                 {
                     return false;
                 }
             }
-            // Ã»Å© ¿ÀºêÁ§Æ® ³» ÀÚ½Ä ¿ÀºêÁ§Æ®ÀÎ Å¸ÀÏ ¿ÀºêÁ§Æ®ÀÇ ½ºÇÁ¶óÀÌÆ®°¡ tileÀÌ¶ó¸é ³ª¹«¸¦ »ı¼ºÇÒ ¼ö ¾øÀ½(false)À» ¹İÈ¯ 
+            // ì²­í¬ ì˜¤ë¸Œì íŠ¸ ë‚´ ìì‹ ì˜¤ë¸Œì íŠ¸ì¸ íƒ€ì¼ ì˜¤ë¸Œì íŠ¸ì˜ ìŠ¤í”„ë¼ì´íŠ¸ê°€ tileì´ë¼ë©´ ë‚˜ë¬´ë¥¼ ìƒì„±í•  ìˆ˜ ì—†ìŒ(false)ì„ ë°˜í™˜ 
             if (chunk.transform.GetChild(x * chunkSize + i).GetComponent<SpriteRenderer>().sprite == tile)
             {
                 return false;
             }
         }
-        // ¿¹¿Ü»óÈ²ÀÌ ¾ø´Ù¸é ³ª¹«¸¦ »ı¼ºÇÒ ¼ö ÀÖÀ½(true)À» ¹İÈ¯.
+        // ì˜ˆì™¸ìƒí™©ì´ ì—†ë‹¤ë©´ ë‚˜ë¬´ë¥¼ ìƒì„±í•  ìˆ˜ ìˆìŒ(true)ì„ ë°˜í™˜.
         return true;
     }
-    // È°¼ºÈ­µÈ Ã»Å© À§Ä¡ ÀÖ´Â ¿ÀºêÁ§Æ®ÀÇ ½ºÇÁ¶óÀÌÆ® ·»´õ·¯¸¦ ÄÑÁØ´Ù.
+    // í™œì„±í™”ëœ ì²­í¬ ìœ„ì¹˜ ìˆëŠ” ì˜¤ë¸Œì íŠ¸ì˜ ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬ë¥¼ ì¼œì¤€ë‹¤.
     public void EnableSpriteRenderer(int chunkX, int chunkY)
     {
         if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
@@ -373,7 +405,7 @@ public class SettingObject : MonoBehaviour
         }
     }
 
-    // ºñÈ°¼ºÈ­µÈ Ã»Å© À§Ä¡ ÀÖ´Â ¿ÀºêÁ§Æ®ÀÇ ½ºÇÁ¶óÀÌÆ® ·»´õ·¯¸¦ ²¨ÁØ´Ù.
+    // ë¹„í™œì„±í™”ëœ ì²­í¬ ìœ„ì¹˜ ìˆëŠ” ì˜¤ë¸Œì íŠ¸ì˜ ìŠ¤í”„ë¼ì´íŠ¸ ë Œë”ëŸ¬ë¥¼ êº¼ì¤€ë‹¤.
     public void DisableSpriteRenderer(int chunkX, int chunkY)
     {
         if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
@@ -384,29 +416,29 @@ public class SettingObject : MonoBehaviour
         }
     }
 
-    // ÇØ´ç ÁÂÇ¥¿¡ ºôµùÀ» »ı¼ºÇÒ ¼ö ÀÖ´ÂÁö¸¦ È®ÀÎÇÏ´Â ÇÔ¼öÀÌ´Ù.
+    // í•´ë‹¹ ì¢Œí‘œì— ë¹Œë”©ì„ ìƒì„±í•  ìˆ˜ ìˆëŠ”ì§€ë¥¼ í™•ì¸í•˜ëŠ” í•¨ìˆ˜ì´ë‹¤.
     public bool CheckPossibleSettingBuilding(int objTypeNum, int chunkX, int chunkY, int tileX, int tileY)
 	{
-        // Ã»Å© ÁÂÇ¥ Å°°¡ ÀÖÀ» °æ¿ì
+        // ì²­í¬ ì¢Œí‘œ í‚¤ê°€ ìˆì„ ê²½ìš°
         if (objectPointList.ContainsKey(new ChunkPoint(chunkX, chunkY)))
 		{
-            // Å¸ÀÏ ÁÂÇ¥¸¦ ÅëÇØ TilePoint ¸®½ºÆ®ÀÇ ÀÎµ¦½º °ªÀ» °¡Á®¿Â´Ù. 
+            // íƒ€ì¼ ì¢Œí‘œë¥¼ í†µí•´ TilePoint ë¦¬ìŠ¤íŠ¸ì˜ ì¸ë±ìŠ¤ ê°’ì„ ê°€ì ¸ì˜¨ë‹¤. 
             int index = objectPointList[new ChunkPoint(chunkX, chunkY)].FindIndex(a => a.tileX == tileX && a.tileY == tileY);
-            // °Ç¹° Å¸ÀÔ ¹øÈ£¸¦ ÅëÇØ »ı¼ºÇÏ·Á´Â °Ç¹°ÀÇ Á¤º¸°¡ ´ã±ä ¸®½ºÆ®ÀÇ ÀÎµ¦½º °ªÀ» °¡Á®¿Â´Ù.
+            // ê±´ë¬¼ íƒ€ì… ë²ˆí˜¸ë¥¼ í†µí•´ ìƒì„±í•˜ë ¤ëŠ” ê±´ë¬¼ì˜ ì •ë³´ê°€ ë‹´ê¸´ ë¦¬ìŠ¤íŠ¸ì˜ ì¸ë±ìŠ¤ ê°’ì„ ê°€ì ¸ì˜¨ë‹¤.
             int index2 = settingObjInfo.objSize.FindIndex(a => a.objNum == objTypeNum);
-            // °¡Á®¿Â ÀÎµ¦½º °ªÀÌ ½ÇÁ¦·Î Á¸ÀçÇÏ´Â °æ¿ì
+            // ê°€ì ¸ì˜¨ ì¸ë±ìŠ¤ ê°’ì´ ì‹¤ì œë¡œ ì¡´ì¬í•˜ëŠ” ê²½ìš°
             if (index != -1)
 			{
-                // ºôµùÀ» »ı¼ºÇÒ ¼ö ¾øÀ½(false)À» ¹İÈ¯ÇÑ´Ù.
+                // ë¹Œë”©ì„ ìƒì„±í•  ìˆ˜ ì—†ìŒ(false)ì„ ë°˜í™˜í•œë‹¤.
                 return false;
 			}
             else if (index2 != 1)
 			{
-                // ÇØ´ç ÁÂÇ¥¿¡ ºôµùÀ» »ı¼ºÇÒ ¼ö ÀÕ´ÂÁö È®ÀÎÇÑ´Ù.
+                // í•´ë‹¹ ì¢Œí‘œì— ë¹Œë”©ì„ ìƒì„±í•  ìˆ˜ ì‡ëŠ”ì§€ í™•ì¸í•œë‹¤.
                 if (this.GetComponent<PerlinNoiseMapMaker>().CheckPossibleSettingBuilding(
                     settingObjInfo.objSize[index2].possibleTileArr, chunkX, chunkY, tileX, tileY))
 				{
-                    // ºôµùÀ» »ı¼ºÇÒ ¼ö ÀÖÀ½(true)À» ¹İÈ¯ÇÑ´Ù.
+                    // ë¹Œë”©ì„ ìƒì„±í•  ìˆ˜ ìˆìŒ(true)ì„ ë°˜í™˜í•œë‹¤.
                     return true;
 				}
 			}
