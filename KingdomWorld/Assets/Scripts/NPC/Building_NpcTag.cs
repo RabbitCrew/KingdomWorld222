@@ -237,6 +237,10 @@ public class Building_NpcTag : MonoBehaviour
         IsSettedNPC[count].tag = "NPC";
 
         count--;
+
+        Citizen = IsSettedNPC[count].GetComponent<NPC>();
+
+        Citizen.NPCBUildTrigger = false;
     }
 
     private bool IsPointerOverUIObject()
