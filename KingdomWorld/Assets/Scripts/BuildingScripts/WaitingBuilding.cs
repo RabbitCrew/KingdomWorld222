@@ -55,7 +55,7 @@ public class WaitingBuilding : MonoBehaviour
 
         //fade = Mathf.InverseLerp(0, maxTime, time);
         fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
-        //fade = Mathf.InverseLerp(0, maxTime, time); // À­ÁÙ ÄÚµå¿Í ÀüÈ¯
+        //fade = Mathf.InverseLerp(0, maxTime, time); // ìœ—ì¤„ ì½”ë“œì™€ ì „í™˜
 
         fade *= 0.6f;
 
@@ -69,7 +69,7 @@ public class WaitingBuilding : MonoBehaviour
         }
 
         if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
-        //if (time >= maxTime)    // À­ÁÙ ÄÚµå¿Í ÀüÈ¯
+        //if (time >= maxTime)    // ìœ—ì¤„ ì½”ë“œì™€ ì „í™˜
         {
             building.SetActive(true);
 using System.Collections;
@@ -94,6 +94,7 @@ public class WaitingBuilding : MonoBehaviour
         fade = 0f;
         realFade = 0f;
         shield = 0;
+        GameManager.instance.WaitingBuildingList.Add(this.gameObject);
     }
     void Start()
     {
@@ -129,7 +130,7 @@ public class WaitingBuilding : MonoBehaviour
 
         //fade = Mathf.InverseLerp(0, maxTime, time);
         //fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
-        fade = Mathf.InverseLerp(0, maxTime, time); // À­ÁÙ ÄÚµå¿Í ÀüÈ¯
+        fade = Mathf.InverseLerp(0, maxTime, time); // ìœ—ì¤„ ì½”ë“œì™€ ì „í™˜
 
         fade *= 0.6f;
 
@@ -143,7 +144,7 @@ public class WaitingBuilding : MonoBehaviour
         }
 
         //if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
-        if (time >= maxTime)    // À­ÁÙ ÄÚµå¿Í ÀüÈ¯
+        if (time >= maxTime)    // ìœ—ì¤„ ì½”ë“œì™€ ì „í™˜
         {
             building.SetActive(true);
             building.GetComponent<BuildingColider>().isSettingComplete = true;
@@ -152,9 +153,36 @@ public class WaitingBuilding : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
+        //fade = Mathf.InverseLerp(0, maxTime, time); // ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½È¯
+
+        fade *= 0.6f;
+
+        if (building.GetComponent<BuildingSetting>().BuildingHp == 1)
+        {
+            realFade = 0f;
+        }
+        else
+        {
+            realFade = fade + 0.2f;
+        }
+
+        if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
+        //if (time >= maxTime)    // ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½È¯
+        {
+            building.SetActive(true);
+            building.GetComponent<BuildingColider>().isSettingComplete = true;
+            callBuildingAttachMouseToWaitingBuildingEventDriven.RunGetObjectEvent(building);
+            buildingRange.SetActive(false);
+            Destroy(this.gameObject);
+        }
+
+        material.SetFloat("_Fade", realFade);
+        material.SetFloat("_Fade", realFade);
+        //material.SetFloat("_Fade", fade + 0.2f); // ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½È¯
         //material.SetFloat("_Fade", realFade);
-        material.SetFloat("_Fade", fade + 0.2f); // À­ÁÙ ÄÚµå¿Í ÀüÈ¯
-        //material.SetFloat("_Fade", fade + 0.2f); // À­ÁÙ ÄÚµå¿Í ÀüÈ¯
+        material.SetFloat("_Fade", fade + 0.2f); // ìœ—ì¤„ ì½”ë“œì™€ ì „í™˜
+        //material.SetFloat("_Fade", fade + 0.2f); // ìœ—ì¤„ ì½”ë“œì™€ ì „í™˜
     }
 
     private void OnDisable()

@@ -7,9 +7,9 @@ public class Cornfield : MonoBehaviour
     // . . . NPC 수확 ㅡ 수확하면 clone제거 해야됨
 
     public GameObject wheatPrefab;
-    private GameObject clone;
+    public GameObject clone;//instantiate 오브젝트 clone제거 스크립트 NPC에존재.
     public int wheat = 0;
-    private bool cultureCheck = false;
+    public bool cultureCheck = false;
 
     private float increaseInterval = 5f;
     private float timer = 0f;
@@ -18,7 +18,6 @@ public class Cornfield : MonoBehaviour
     private float decreaseRatio = 0.1f;
     private float increaseProbability = 0.2f;
     private float increaseRatio = 0.2f;
-
 
     BuildingSetting buildingSetting;
 
@@ -29,10 +28,10 @@ public class Cornfield : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
 
         if (cultureCheck == false)
         {
+            timer += Time.deltaTime;
             WheatProduction();
         }
 
@@ -86,5 +85,6 @@ public class Cornfield : MonoBehaviour
         clone.transform.position = fieldPosition;
         clone = Instantiate(wheatPrefab);
         clone.transform.SetParent(this.transform);
+        GameManager.instance.WheatList.Add(clone);//NPCDictionary에 밀추가
     }
 }

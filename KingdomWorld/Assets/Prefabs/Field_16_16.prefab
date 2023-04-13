@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 6557722479477510463}
   - component: {fileID: 4410208977433720544}
   - component: {fileID: 4362283137157442411}
+  - component: {fileID: -3355933186093149745}
   m_Layer: 0
   m_Name: Field_16_16
-  m_TagString: Untagged
+  m_TagString: Wheatfield
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,4 +163,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheatPrefab: {fileID: 8273954612526169901, guid: 79e60c6a7156d794a98d75bf82692deb, type: 3}
+  clone: {fileID: 0}
   wheat: 0
+  cultureCheck: 0
+--- !u!114 &-3355933186093149745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9032011434293636105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 0}
+  BuildingNum: 0
+  carpenternCheck: 0
+  npcCount: 0
+  npcs: []
+  storeMax: 50
+  store: 0
