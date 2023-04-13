@@ -2,23 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Building_NpcTag : MonoBehaviour
 {
     public SpawnCitizen npc;
-    
+    public NPC Citizen;
+
     private float distance = 50f;
     public GameObject NPcButton;
     public GameObject RemoveNPcButton;
     public GameObject NPcButtonOther;
-    public GameObject RemoveNPcButtonOther;
+    public GameObject JobPanel;
+    public GameObject[] NPCPanel;
+    public GameObject SMassage;
+    GameObject JobBuilding;
+    GameObject[] IsSettedNPC;
+
+    [SerializeField] string[] InputJobText;
 
     string Job = null;
     string OtherJob = null;
 
+    bool IsOther = false;
+
+    [SerializeField] TextMeshProUGUI JobText;
+    [SerializeField] TextMeshProUGUI OtherJobText;
+
     private void Update()
     {
         BuildingCheck();
+
+        NPCFound();
+    }
+
+    int count;
+    int NPCCount;
+
+    void NPCFound()
+    {
+        for (int j = 0; j < npc.CitizenList.Count; j++)
+        {
+            if (npc.CitizenList[j].GetComponent<NPC>().BuildingNum == JobBuilding)
+            {
+                NPCPanel[count].SetActive(true);
+
+                NPCPanel[count].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
+                    npc.CitizenList[j].GetComponent<NPC>().BuildingNum.name;
+
+                IsSettedNPC[count] = npc.CitizenList[j].GetComponent<NPC>().BuildingNum;
+
+                count++;
+            }
+        }
     }
 
     void BuildingCheck()
@@ -36,99 +72,107 @@ public class Building_NpcTag : MonoBehaviour
                 {
                     if (hits[i].collider.GetComponent<BuildingColider>().isSettingComplete)
                     {
+                        JobBuilding = hits[i].collider.gameObject;
+
+                        JobPanel.SetActive(true);
+
+                        IsOther = false;
+
+                        count = 0;
+                        NPCCount = 0;
+
                         if (hits[i].collider.gameObject.tag.Equals("Storage"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "StorageNPC";
+
+                            NPCCount = 0;
+
+                            JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("WoodCutter_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "WoodCutter";
+
+                            NPCCount = 1;
+
+                            JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Carpenter_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "CarpenterNPC";
+
+                            NPCCount = 2;
+
+                            JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Hunter_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "Hunter";
+
+                            NPCCount = 3;
+
+                            JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Farm_house"))
                         {
+                            Job = "Pastoralist";
+
+                            NPCCount = 4;
+
+                            JobText.text = InputJobText[NPCCount];
+                        }
+                        else if (hits[i].collider.gameObject.tag.Equals("WheatField"))
+                        {
                             Job = "FarmNPC";
 
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(true);
-                            RemoveNPcButtonOther.SetActive(true);
+                            NPCCount = 5;
 
-                            OtherJob = "Pastoralist";
+                            JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Mine_house"))
                         {
                             Job = "StoneMineWorker";
 
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(true);
-                            RemoveNPcButtonOther.SetActive(true);
-
                             OtherJob = "IronMineWorker";
+
+                            NPCCount = 6;
+
+                            JobText.text = InputJobText[NPCCount];
+                            OtherJobText.text = InputJobText[NPCCount];
+
+                            IsOther = true;
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Ham_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "HamNPC";
+
+                            NPCCount = 8;
+
+                            JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Cheese_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "CheeseNPC";
+
+                            NPCCount = 9;
+
+                            JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Cloth_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "FabricNPC";
+
+                            NPCCount = 10;
+
+                            JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Smith_house"))
                         {
-                            NPcButton.SetActive(true);
-                            RemoveNPcButton.SetActive(true);
-                            NPcButtonOther.SetActive(false);
-                            RemoveNPcButtonOther.SetActive(false);
-
                             Job = "Smith";
+
+                            NPCCount = 11;
+
+                            JobText.text = InputJobText[NPCCount];
                         }
                     }
                 }
@@ -136,44 +180,67 @@ public class Building_NpcTag : MonoBehaviour
         }
     }
 
+    public void JobSetOn()
+    {
+        JobPanel.SetActive(true);
+
+        if(IsOther == true)
+        {
+            NPcButtonOther.SetActive(true);
+        }
+        NPcButton.SetActive(true);
+    }
+
     public void jobButton(bool value)
     {
-        for (int i = 0; i < npc.CitizenList.Count; i++)
+        if (count < 3)
         {
-            if(npc.CitizenList[i].tag == "NPC")
+            for (int i = 0; i < npc.CitizenList.Count; i++)
             {
-                if (value == true)
+                if (npc.CitizenList[i].tag == "NPC")
                 {
-                    npc.CitizenList[i].tag = Job;
-                }
-                else if(value == false)
-                {
-                    npc.CitizenList[i].tag = OtherJob;
+                    Citizen = npc.CitizenList[i].GetComponent<NPC>();
+
+                    if (value == true)
+                    {
+                        npc.CitizenList[i].tag = Job;
+
+                        Citizen.BuildingNum = JobBuilding;
+                        Citizen.NPCBUildTrigger = true;
+
+                        count++;
+
+                        break;
+                    }
+                    else if (value == false)
+                    {
+                        npc.CitizenList[i].tag = OtherJob;
+
+                        Citizen.BuildingNum = JobBuilding;
+                        Citizen.NPCBUildTrigger = true;
+
+                        count++;
+
+                        break;
+                    }
                 }
             }
+        }
+        else if(count >= 3)
+        {
+            SMassage.SendMessage("MessageQ", "이미 인부의 수가 한계에 도달했습니다.");
         }
     }
 
-    public void RemoveJobButton(bool value)
+    public void RemoveJobButton()
     {
-        for (int i = 0; i < npc.CitizenList.Count; i++)
-        {
-            if(value == true)
-            {
-                if (npc.CitizenList[i].tag == Job)
-                {
-                    npc.CitizenList[i].tag = "NPC";
-                }
-            }
-            else if(value == false)
-            {
-                if (npc.CitizenList[i].tag == OtherJob)
-                {
-                    npc.CitizenList[i].tag = "NPC";
-                }
-            }
-           
-        }
+        IsSettedNPC[count].tag = "NPC";
+
+        count--;
+
+        Citizen = IsSettedNPC[count].GetComponent<NPC>();
+
+        Citizen.NPCBUildTrigger = false;
     }
 
     private bool IsPointerOverUIObject()
@@ -194,6 +261,11 @@ public class Building_NpcTag : MonoBehaviour
 
     public void ExitButton()
     {
-        NPcButton.SetActive(false);
+        JobPanel.SetActive(false);
+
+        for (int j = count - 1; j >= 0; j++)
+        {
+            NPCPanel[j].SetActive(false);
+        }
     }
 }
