@@ -5,7 +5,7 @@ using UnityEngine;
 delegate void VoidVoidEvent();
 delegate void VoidUlongGameObjectEvent(ulong n, GameObject obj);
 delegate void VoidGameObjectEvent(GameObject obj);
-
+delegate void VoidIntIntGameObjectIntIntEvent(int n, int n2, GameObject obj, int n3, int n4);
 class RemoveEventDriven
 {
 	public static event VoidVoidEvent isRemoveEvent;
@@ -18,7 +18,7 @@ class RemoveEventDriven
 	}
 }
 
-class CallBuildingButtonToBuildingColiderEventDriven
+class CallBuildingAttachMouseToBuildingColiderEventDriven
 {
 	public static event VoidVoidEvent isClickFalseEvent;
 
@@ -55,6 +55,19 @@ class CallBuildingAttachMouseToWaitingBuildingEventDriven
 			getObjectEvent(obj);
         }
     }
+}
+
+class CallBuildingAttachMouseToSettingObjectEventDriven
+{
+	public static event VoidIntIntGameObjectIntIntEvent SetObjectAndPointEvent;
+
+	public void RunSetObjectAndPointEvnet(int n, int n2, GameObject obj, int n3, int n4)
+	{
+		if (SetObjectAndPointEvent != null)
+		{
+			SetObjectAndPointEvent(n, n2, obj, n3, n4);
+		}
+	}
 }
 
 

@@ -53,8 +53,8 @@ public class WaitingBuilding : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        //fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
-        fade = Mathf.InverseLerp(0, maxTime, time); // À­ÁÙ ÄÚµå¿Í ÀüÈ¯
+        fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
+        //fade = Mathf.InverseLerp(0, maxTime, time); // ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½È¯
 
         fade *= 0.6f;
 
@@ -67,8 +67,8 @@ public class WaitingBuilding : MonoBehaviour
             realFade = fade + 0.2f;
         }
 
-        //if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
-        if (time >= maxTime)    // À­ÁÙ ÄÚµå¿Í ÀüÈ¯
+        if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
+        //if (time >= maxTime)    // ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½È¯
         {
             building.SetActive(true);
             building.GetComponent<BuildingColider>().isSettingComplete = true;
@@ -77,8 +77,8 @@ public class WaitingBuilding : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        //material.SetFloat("_Fade", realFade);
-        material.SetFloat("_Fade", fade + 0.2f); // À­ÁÙ ÄÚµå¿Í ÀüÈ¯
+        material.SetFloat("_Fade", realFade);
+        //material.SetFloat("_Fade", fade + 0.2f); // ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½È¯
     }
 
     private void OnDisable()

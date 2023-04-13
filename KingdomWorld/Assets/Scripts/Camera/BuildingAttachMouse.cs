@@ -19,7 +19,8 @@ public class BuildingAttachMouse : MonoBehaviour
     {
         //이벤트 드리븐
         CallBuildingAttachMouseToWaitingBuildingEventDriven.getObjectEvent += CreateBuilding;
-        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent += DetachWatingClone;
+        CallBuildingAttachMouseToBuildingColiderEventDriven.isClickFalseEvent += DetachWatingClone;
+        CallBuildingAttachMouseToSettingObjectEventDriven.SetObjectAndPointEvent += CreateStartBuilding;
         RemoveEventDriven.isRemoveEvent += RemoveEvent;
 
         isClick = false;
@@ -29,7 +30,8 @@ public class BuildingAttachMouse : MonoBehaviour
     private void RemoveEvent()
     {
         CallBuildingAttachMouseToWaitingBuildingEventDriven.getObjectEvent -= CreateBuilding;
-        CallBuildingButtonToBuildingColiderEventDriven.isClickFalseEvent -= DetachWatingClone;
+        CallBuildingAttachMouseToBuildingColiderEventDriven.isClickFalseEvent -= DetachWatingClone;
+        CallBuildingAttachMouseToSettingObjectEventDriven.SetObjectAndPointEvent -= CreateStartBuilding;
         RemoveEventDriven.isRemoveEvent -= RemoveEvent;
     }
     // ��� ������ư�� Ŭ���� BuildingButton���� ȣ���ϴ� �Լ��̴�.
@@ -67,7 +69,7 @@ public class BuildingAttachMouse : MonoBehaviour
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             float plusX = 0;
             float plusZ = 0;
-            // Ÿ�� ������ ������ �������� �̵��ϱ� ���� �߰��� x,z�࿡ ������ ��ġ�̴�.
+            // 
             if ((clone.transform.GetComponent<SpriteRenderer>().sprite.rect.width / 16) % 2 == 1) { plusX = 0f;}
             else { plusX = 0.5f;}
 
@@ -90,35 +92,37 @@ public class BuildingAttachMouse : MonoBehaviour
     // ������ �������� ���콺���� ���������� ���ش�.
     private void DetachWatingClone()
     {
-        if (clone.GetComponent<BuildingColider>() != null)
+        if (clone != null)
         {
-            float x, z;
-            // �ǹ�(������)�� �ϳ� �����´�.
-            GameObject waitC = Instantiate(waitingClone);
-            waitC.transform.parent = motherBuildingObject.transform;
-            waitC.GetComponent<SpriteRenderer>().sprite = clone.GetComponent<SpriteRenderer>().sprite;
-            waitC.GetComponent<WaitingBuilding>().SetBuilding(clone);
-            waitC.GetComponent<BuildingColider>().isSettingComplete = true;
-            waitC.GetComponent<BoxCollider>().size
-                = new Vector3(waitC.GetComponent<SpriteRenderer>().sprite.rect.width/ 16 - 0.2f, waitC.GetComponent<SpriteRenderer>().sprite.rect.height/ 16 - 0.2f, 0.2f);
-            waitC.transform.localPosition = clone.transform.localPosition;
+            if (clone.GetComponent<BuildingColider>() != null)
+            {
+                float x, z;
+                // �ǹ�(������)�� �ϳ� �����´�.
+                GameObject waitC = Instantiate(waitingClone);
+                waitC.transform.parent = motherBuildingObject.transform;
+                waitC.GetComponent<SpriteRenderer>().sprite = clone.GetComponent<SpriteRenderer>().sprite;
+                waitC.GetComponent<WaitingBuilding>().SetBuilding(clone);
+                waitC.GetComponent<BuildingColider>().isSettingComplete = true;
+                waitC.GetComponent<BoxCollider>().size
+                    = new Vector3(waitC.GetComponent<SpriteRenderer>().sprite.rect.width / 16 - 0.2f, waitC.GetComponent<SpriteRenderer>().sprite.rect.height / 16 - 0.2f, 0.2f);
+                waitC.transform.localPosition = clone.transform.localPosition;
 
-            // �������� �θ� ������Ʈ�� �̸� �����ص� ������Ʈ�� �����Ѵ�.
-            clone.transform.parent = motherBuildingObject.transform;
-            // Ÿ�� ������ �����̱� ���� ������ plusX, plusZ�� ���������Ƿ� ���� �����ǿ��� �� ���̰���ŭ�� �ٽ� ����ϰ� ���ش�.
-            // �� ���� �Ʒ� AddTilePoint2�� ���ڰ����� ���� ���� ���ȴ�. 
-            if (clone.transform.localPosition.x % 1 != 0) { x = -0.5f; }
-            else { x = 0; }
+                // �������� �θ� ������Ʈ�� �̸� �����ص� ������Ʈ�� �����Ѵ�.
+                clone.transform.parent = motherBuildingObject.transform;
+                // Ÿ�� ������ �����̱� ���� ������ plusX, plusZ�� ���������Ƿ� ���� �����ǿ��� �� ���̰���ŭ�� �ٽ� ����ϰ� ���ش�.
+                // �� ���� �Ʒ� AddTilePoint2�� ���ڰ����� ���� ���� ���ȴ�. 
+                if (clone.transform.localPosition.x % 1 != 0) { x = -0.5f; }
+                else { x = 0; }
 
-            if (clone.transform.localPosition.z % 1 != 0) { z = -0.5f; }
-            else { z = 0; }
+                if (clone.transform.localPosition.z % 1 != 0) { z = -0.5f; }
+                else { z = 0; }
 
-            // AddTilePoint2�Լ��� ���� ûũ ��ǥ�� �ִ� Ÿ�Ϻ��� �ǹ�(������)�� ������ ��´�.
-            settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), waitC);
-            //settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), clone);
+                // AddTilePoint2�Լ��� ���� ûũ ��ǥ�� �ִ� Ÿ�Ϻ��� �ǹ�(������)�� ������ ��´�.
+                settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), waitC);
+                //settingObj.AddTilePoint2((int)(clone.transform.localPosition.x + x), (int)(clone.transform.localPosition.z + z), clone.GetComponent<BuildingColider>().GetObjTypeNum(), clone);
+            }
+            Destroy(clone.gameObject);
         }
-        Destroy(clone.gameObject);
-
         // �������� null�� �ʱ�ȭ�Ѵ�.
         //clone = null;
         // ���콺 Ŭ�� ���θ� false�� �صξ����� ���� ���콺���� ��������.
@@ -136,8 +140,35 @@ public class BuildingAttachMouse : MonoBehaviour
 
         if (building.transform.localPosition.z % 1 != 0) { z = -0.5f; }
         else { z = 0; }
-        // AddTilePoint2�Լ��� ���� ûũ ��ǥ�� �ִ� Ÿ�Ϻ��� �ش� �������� ������ ��´�.
+        //
         settingObj.AddTilePoint2((int)(building.transform.localPosition.x + x), (int)(building.transform.localPosition.z + z), building.GetComponent<BuildingColider>().GetObjTypeNum(), building);
         GameManager.instance.InitializeGrid(200, 200);
+    }
+
+    private void CreateStartBuilding(int chunkX, int chunkY, GameObject obj, int tileX, int tileY)
+	{
+        float plusX = 0;
+        float plusZ = 0;
+        float x, z;
+        GameObject clone2 = Instantiate(obj);
+
+        if ((clone2.transform.GetComponent<SpriteRenderer>().sprite.rect.width / 16) % 2 == 1) { plusX = 0f; }
+        else { plusX = 0.5f; }
+
+        if ((clone2.transform.GetComponent<SpriteRenderer>().sprite.rect.height / 16) % 2 == 1) { plusZ = 0f; }
+        else { plusZ = 0.5f; }
+
+        clone2.transform.parent = motherBuildingObject.transform;
+        clone2.transform.position = new Vector3(chunkX * 20 + tileX + plusX, 0, chunkY * 20 + tileY + plusZ);
+        clone2.transform.eulerAngles = new Vector3(90, 0, 0);
+        clone2.GetComponent<BuildingColider>().isSettingComplete = true;
+
+        if (clone2.transform.localPosition.x % 1 != 0) { x = -0.5f; }
+        else { x = 0; }
+
+        if (clone2.transform.localPosition.z % 1 != 0) { z = -0.5f; }
+        else { z = 0; }
+        //
+        settingObj.AddTilePoint2((int)(clone2.transform.localPosition.x + x), (int)(clone2.transform.localPosition.z + z), clone2.GetComponent<BuildingColider>().GetObjTypeNum(), clone2);
     }
 }
