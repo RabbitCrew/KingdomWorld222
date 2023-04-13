@@ -8,17 +8,18 @@ public class GameManager : Resource
     public bool isDaytime { get; private set; }//true 낮, false 밤
     public float uiSizeX { get; private set; }
     public float uiSizeY { get; private set; }
+    public float timeSpeed { get; set; }
+
     public List<GameObject> RestHuman = new List<GameObject>();
     public List<GameObject> WheatList = new List<GameObject>();
     public List<GameObject> WaitingBuildingList = new List<GameObject>();
     public List<GameObject> StorageList = new List<GameObject>();
     public static GameManager instance;
-
     private void Awake()
     {
         uiSizeX = 1920;
         uiSizeY = 1080;
-
+        timeSpeed = 180;
         instance = this;
         InitializeGrid(500, 500);
     }
@@ -31,7 +32,7 @@ public class GameManager : Resource
     void Update()
     {
         timeElapsed = Time.realtimeSinceStartup - startTime;
-        dayNightRatio = timeElapsed / 180f; // 180 seconds = 3 minutes
+        dayNightRatio = timeElapsed / timeSpeed; // 180 seconds = 3 minutes
 
         if (dayNightRatio >= 1f)
         {

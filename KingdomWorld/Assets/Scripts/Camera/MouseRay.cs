@@ -15,6 +15,19 @@ public class MouseRay : MonoBehaviour
     {
         if (Time.timeScale == 0) { return; }
 
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (GameManager.instance.timeSpeed == 180f)
+            {
+                GameManager.instance.timeSpeed = 10f;
+            }
+            else
+			{
+                GameManager.instance.timeSpeed = 180f;
+			}
+        }
+
+
         if (!IsPointerOverUIObject())
 		{
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
