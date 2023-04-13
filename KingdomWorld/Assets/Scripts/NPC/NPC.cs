@@ -276,29 +276,31 @@ public class NPC : NPCScrip
     bool isWeatStart = false;
     void Farmer()
     {
-        if (HavedWheat < 4 && !isWeatStart)//밀탐색
+        if (!isWeatStart)//밀탐색
         {
-            if (GameManager.instance.WheatList.Count > 0)
+            if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)
             {
                 BuildingNum = GameManager.instance.WheatList[0].transform.parent.gameObject;
                 GameManager.instance.WheatList.RemoveAt(0);
                 isWeatStart = true;
                 NPCBUildTrigger = true;
             }
-        }
-        else if(HavedWheat >= 4 && !isWeatStart)
-        {
-            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-            foreach (var collider in colliders)
+            else if(GameManager.instance.StorageList.Count > 0)
             {
-                if (collider.CompareTag("Storage"))
+                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+                foreach (var collider in colliders)
                 {
-                    BuildingNum = collider.gameObject;
-                    NPCBUildTrigger = true;
-                    break;
+                    if (collider.CompareTag("Storage"))
+                    {
+                        BuildingNum = collider.gameObject;
+                        NPCBUildTrigger = true;
+                        break;
+                    }
                 }
             }
+
         }
+        
         dayTimeResetPath();
         Move();
     }
@@ -392,15 +394,23 @@ public class NPC : NPCScrip
     }
     bool isBuilingStart = false;
     bool isRepairStart = false;
-    Transform Building = null;
+    GameObject Building = null;
     float currentBuildingGauge = 0f;
     void Carpenter()//목수
     {
         if (work)
         {
-            if (!isBuilingStart && Building == null)
+            if (!isBuilingStart)
             {
-                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+                if (GameManager.instance.WaitingBuildingList.Count > 0)
+                {
+                    Building = GameManager.instance.WaitingBuildingList[0];
+                    GameManager.instance.WaitingBuildingList.RemoveAt(0);
+                    isBuilingStart = true;
+                    ResetPath(this.transform, Building.transform);
+                    currentPathIndex = 0;
+                }
+                /*Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
                 //1. 건설대기 건물 찾기 
                 foreach (Collider collider in colliders)
                 {
@@ -423,8 +433,8 @@ public class NPC : NPCScrip
                             break;
                         }
                     }
-                }
-            }
+                }*/
+            /*}
             if(Building != null)
             {
                 if (Building.position == transform.position && isBuilingStart && Building != null)//건설
@@ -440,7 +450,7 @@ public class NPC : NPCScrip
                 else if (Building.position == transform.position && isRepairStart && Building != null)//리페어
                 {
                     StartCoroutine(Repair(1f, Building));
-                }
+                }*/
             }
         }
         dayTimeResetPath();
@@ -476,7 +486,7 @@ public class NPC : NPCScrip
             }
             if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding"))//목수NPC 건설
             {
-                StartCoroutine(Build(1f, other));
+                StartCoroutine(Build(0.1f, other));
             }else if (this.CompareTag("FarmNPC") && isWeatStart)//농부NPC 밀수확
             {
                 if(other.transform == BuildingNum.transform)//wheat를찾아온거지 wheatfield를 찾아온게아님
@@ -485,7 +495,7 @@ public class NPC : NPCScrip
                 }
             }else if(this.CompareTag("FarmNPC") && !isWeatStart)//농부NPC 창고가서 밀넣기
             {
-                if (other.CompareTag("Storage"))
+                if (other.CompareTag("Storage") && other.transform == BuildingNum.transform)
                 {
                     GameManager.instance.Wheat += HavedWheat;
                     HavedWheat = 0;

@@ -79,6 +79,10 @@ public class Setgrid : MonoBehaviour
                     {
                         weight = 100;
                         iswalkable = false;
+                    }else if (hit.collider.CompareTag("NotWalkable"))
+                    {
+                        weight = 100;
+                        iswalkable = false;
                     }
                 }
                 _grid[x + _gridWidth, z + _gridHeight] = new Node(x, z, worldPosition, weight, iswalkable);

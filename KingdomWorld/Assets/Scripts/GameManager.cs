@@ -11,7 +11,7 @@ public class GameManager : Resource
     public List<GameObject> RestHuman = new List<GameObject>();
     public List<GameObject> WheatList = new List<GameObject>();
     public List<GameObject> WaitingBuildingList = new List<GameObject>();
-
+    public List<GameObject> StorageList = new List<GameObject>();
     public static GameManager instance;
 
     private void Awake()

@@ -20,6 +20,7 @@ public class WaitingBuilding : MonoBehaviour
         fade = 0f;
         realFade = 0f;
         shield = 0;
+        GameManager.instance.WaitingBuildingList.Add(this.gameObject);
     }
     void Start()
     {
