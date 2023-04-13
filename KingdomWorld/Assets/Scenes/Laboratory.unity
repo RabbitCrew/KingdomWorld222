@@ -842,8 +842,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 48, y: 196}
+  m_SizeDelta: {x: 700, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &846033393
 MonoBehaviour:
@@ -865,7 +865,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: ea056467678c4e84da8d12d19200e6bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1316,10 +1316,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 846033392}
   - {fileID: 159755751}
   - {fileID: 1514187419}
   - {fileID: 999802881}
-  - {fileID: 846033392}
   m_Father: {fileID: 811709125}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3861,6 +3861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f149b1faea9adf841995521f9f00e1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingNum: {fileID: 0}
+  HavedWheat: 0
   npcState: {fileID: 0}
   AnExchangeUI: {fileID: 1039818447416293521}
   ArtifactNums: 5
@@ -31102,6 +31104,7 @@ MonoBehaviour:
   - {fileID: 5463561290101031232, guid: 48904e2da00f6b945b23654cca7e7290, type: 3}
   - {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
   motehrObject: {fileID: 6758055273815413137}
+  motherBuildingObject: {fileID: 0}
   settingObjInfo: {fileID: 6207961308962764901}
 --- !u!224 &5568735685926750229
 RectTransform:
@@ -44230,6 +44233,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxResource: 50
   RestHuman: []
+  WheatList: []
+  WaitingBuildingList: []
+  StorageList: []
 --- !u!114 &7706136522709199158
 MonoBehaviour:
   m_ObjectHideFlags: 0
