@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7847511512603182224}
   - component: {fileID: -2054272779357680567}
   - component: {fileID: 4155325346510432260}
+  - component: {fileID: -4163905034494295409}
   m_Layer: 6
   m_Name: Universitas
   m_TagString: Untagged
@@ -148,3 +149,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4163905034494295409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5463561290101031232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: a4c02f659639e4641b679135144e6f81, type: 3}
+  - {fileID: 21300000, guid: 6ae76b6c42010a14ca82e9ea54493375, type: 3}

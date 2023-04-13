@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2175327000222202050}
   - component: {fileID: 572162901210503324}
   - component: {fileID: 5137101579848262872}
+  - component: {fileID: -6791243754594292931}
   m_Layer: 6
   m_Name: HamHouse
   m_TagString: Ham_house
@@ -148,3 +149,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6791243754594292931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704300178716685400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: 241478b8d50185c4a90d57042b27f3e0, type: 3}
+  - {fileID: 21300000, guid: 34e327dae777cf649a41195b438cd3d6, type: 3}

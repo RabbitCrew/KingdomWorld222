@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -5768849464931611439}
   - component: {fileID: 7644437399047548631}
   - component: {fileID: 7846658614816487041}
+  - component: {fileID: -2965799359105939327}
   m_Layer: 6
   m_Name: Smithy
   m_TagString: Smith_house
@@ -183,3 +184,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itronstone: 10
   castIron: 0
+--- !u!114 &-2965799359105939327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8374223845103722785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: 7fbedb5e796ada343826303b70fd6c35, type: 3}
+  - {fileID: 21300000, guid: aece43d35cf588b4c9b11d79282900c7, type: 3}

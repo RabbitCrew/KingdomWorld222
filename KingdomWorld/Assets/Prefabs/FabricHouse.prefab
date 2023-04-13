@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -7238578245156439836}
   - component: {fileID: 8489713658704657409}
   - component: {fileID: 821866293744613281}
+  - component: {fileID: 3787451274827604539}
   m_Layer: 6
   m_Name: FabricHouse
   m_TagString: Cloth_house
@@ -148,3 +149,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3787451274827604539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007518261052910153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: 4dcb914d6f9764348ad863ff266a9820, type: 3}
+  - {fileID: 21300000, guid: 14e2476f768552b409cee32a6efaec46, type: 3}

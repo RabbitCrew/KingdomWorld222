@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8752280454011058906}
   - component: {fileID: -2538979524183147578}
   - component: {fileID: -1032215776031185551}
+  - component: {fileID: -6441371018507435946}
   m_Layer: 6
   m_Name: An exchange
   m_TagString: AnExchange
@@ -149,6 +150,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-6441371018507435946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459160076541427711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: 56934e00f88bd9f4980feae33dd52477, type: 3}
+  - {fileID: 21300000, guid: e4b4e156c3f5bc446898cab13f474f21, type: 3}
 --- !u!1 &7022967873587549887
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8651781458077199414}
   - component: {fileID: 6815368435585192989}
   - component: {fileID: -8722687033631352920}
+  - component: {fileID: -7038153560697592045}
   m_Layer: 6
   m_Name: Farm
   m_TagString: Farm_house
@@ -184,3 +185,18 @@ MonoBehaviour:
   cow: 2
   sheep: 2
   animalstore: 0
+--- !u!114 &-7038153560697592045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205513146831110588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: 217d1e42016453c47b7f976129a3c315, type: 3}
+  - {fileID: 21300000, guid: c0dba743cd697c848b59dad03f58052c, type: 3}

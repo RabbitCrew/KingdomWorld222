@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7187346799613798572}
   - component: {fileID: -9215272626472457928}
   - component: {fileID: 7592597449236887131}
+  - component: {fileID: -6966296340945570955}
   m_Layer: 6
   m_Name: WoodcutterHouse
   m_TagString: WoodCutter_house
@@ -168,3 +169,18 @@ MonoBehaviour:
   npcs: []
   storeMax: 50
   store: 0
+--- !u!114 &-6966296340945570955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818869694617374017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: 67556e3c3a6f33b40a9f36bea57df54d, type: 3}
+  - {fileID: 21300000, guid: 422b599d2f43922499058ed873170a6d, type: 3}

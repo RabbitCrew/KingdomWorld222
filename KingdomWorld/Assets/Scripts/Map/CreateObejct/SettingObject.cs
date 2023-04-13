@@ -35,6 +35,7 @@ public class SettingObject : MonoBehaviour
     }
 
     [SerializeField] private GameObject[] objectArr;
+    [SerializeField] private GameObject[] snowObjectArr;
     [SerializeField] private GameObject motehrObject;
     [SerializeField] private GameObject motherBuildingObject;
     [SerializeField] private SettingObjectInfo settingObjInfo;
@@ -45,13 +46,13 @@ public class SettingObject : MonoBehaviour
     private Dictionary<ChunkPoint, List<GameObject>> gameObjectChunkPointList = new Dictionary<ChunkPoint, List<GameObject>>();
     // 생성된 오브젝트에 붙여주기 위한 식별코드. 만에 하나 오브젝트 개수 초과 대비와 0과 양의 정수값만을 저장하기 위해 ulong형을 사용. 
     private ulong objCode = 0;
-
+    private bool isSnow;
 	public void Awake()
 	{
         // 이벤트 드리븐. 제목은 Call(호출되어야할 클래스)To(호출하는클래스) 형식으로 지었음.
         CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent += RemoveObject;
         RemoveEventDriven.isRemoveEvent += RemoveEvent;
-
+        isSnow = false;
     }
     // 다른 씬으로 넘어갈때 이벤트에 추가한 함수를 전부 끄고 넘어가기 위함.
     // 안끄고 넘어가면 다른 씬으로 넘어가도 추가한 함수가 남아있으나 스크립트가 담긴 오브젝트는 삭제되고 다시 생성되었기 때문에 에러가 남.
@@ -61,6 +62,11 @@ public class SettingObject : MonoBehaviour
         CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent -= RemoveObject;
         RemoveEventDriven.isRemoveEvent -= RemoveEvent;
     }
+
+    public void ChangeSnowBuildingSprite(bool bo)
+	{
+        isSnow = bo;
+	}
 
     // 해당 청크 좌표 정보를 딕셔너리에 키로 저장하고 있는지 확인. 있으면 true 리턴 없으면 false 리턴
     public bool ActiveTrueObjectPointList(int chunkX, int chunkY)
@@ -150,6 +156,16 @@ public class SettingObject : MonoBehaviour
 		{
             obj.GetComponent<BuildingColider>().objCode = objCode;
 		}
+
+        if (isSnow)
+        {
+            obj.GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(1);
+        }
+        else
+        {
+            obj.GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(0);
+        }
+
         // 범위 내 닿고 있는 타일의 좌표를 오브젝트 번호와 함께 저장한다.
         // 추가로 청크 좌표와 청크 좌표 내 타일 좌표도 해당 for문 내에서 계산한다.
         for (int i = minX; i <= maxX; i++)
@@ -244,6 +260,14 @@ public class SettingObject : MonoBehaviour
                     ( chunkX * 20 + objectPointList[chunk][i].tileX, 0, chunkY * 20 + objectPointList[chunk][i].tileY);
                 // 화면에 보이게 각도 설정
                 obj.transform.eulerAngles = new Vector3(90, 0, 0);
+                if (isSnow)
+                {
+                    obj.GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(1);
+                }
+                else
+				{
+                    obj.GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(0);
+				}
                 // 해당 청크 좌표 키가 있는지 확인
                 if (!gameObjectChunkPointList.ContainsKey(chunk))
                 {
@@ -413,6 +437,15 @@ public class SettingObject : MonoBehaviour
         for (int i = 0; i < gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
         {
             gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = false;
+
+            if (isSnow)
+			{
+                gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(1);
+            }
+            else
+			{
+                gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(0);
+            }
         }
     }
 

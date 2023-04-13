@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4410208977433720544}
   - component: {fileID: 4362283137157442411}
   - component: {fileID: -3355933186093149745}
+  - component: {fileID: -432946936514903964}
   m_Layer: 0
   m_Name: Field_16_16
   m_TagString: Wheatfield
@@ -185,3 +186,18 @@ MonoBehaviour:
   npcs: []
   storeMax: 50
   store: 0
+--- !u!114 &-432946936514903964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9032011434293636105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: f120a2d9b535c2f4abe0e902a1ed7adf, type: 3}
+  - {fileID: 21300000, guid: eee2d95768080e54ebf01974ebafbd4e, type: 3}

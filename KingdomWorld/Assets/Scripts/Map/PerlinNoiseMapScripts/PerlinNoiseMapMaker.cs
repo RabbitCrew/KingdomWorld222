@@ -6,6 +6,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 {
     [SerializeField] private Texture2D gradientTex;
     [SerializeField] private Sprite[] tile;
+    [SerializeField] private Sprite[] snowTile;
 
     [SerializeField] private int chunkSize = 20;    // 청크 사이즈는 20 * 20
     [SerializeField] private int gradientSize = 1000;
@@ -36,6 +37,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     private int startChunkX;
     private int startChunkZ;
     private bool isStartBuilding;
+    private bool isSnow;
     private void Awake()
     {
         // 캐싱~
@@ -46,6 +48,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         startChunkX = Random.Range(-13, 14);
         startChunkZ = Random.Range(-13, 14);
         isStartBuilding = false;
+        isSnow = false;
     }
 
     void Start()
@@ -59,6 +62,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
         cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
 
+        RefreshChunks();
 
     }
     private void Update()
@@ -82,7 +86,17 @@ public class PerlinNoiseMapMaker : MonoBehaviour
             }
         }
     }
+    public void SnowRefreshChunk(WinterIsComing winter)
+	{
+        isSnow = true;
+        settingObject.ChangeSnowBuildingSprite(true);
+        Camera.main.transform.position += new Vector3(0, 0, 100f);
+        RefreshChunks();
+        Camera.main.transform.position -= new Vector3(0, 0, 100f);
+        //RefreshChunks();
+        winter.isChangedSprite = true;
 
+    }
     // 오클루전 컬링을 위한 함수
     void RefreshChunks()
     {
@@ -253,32 +267,74 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 // color 배열의 그레이스케일에 따라 타일의 스프라이트를 다시 설정한다.
                 if (color[x, y].grayscale < 0.2)
                 {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.OCEAN];
+                    if (!isSnow)
+                    {
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.OCEAN];
+                    }
+					else
+					{
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.OCEAN];
+                    }
                     chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
                 }
                 else if (color[x, y].grayscale < 0.375)
                 {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.RIVER];
+                    if (!isSnow)
+                    {
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.RIVER];
+                    }
+                    else
+                    {
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.RIVER];
+                    }
                     chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
                 }
                 else if (color[x, y].grayscale < 0.475)
                 {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.GLASS];
+                    if (!isSnow)
+                    {
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.GLASS];
+                    }
+                    else
+					{
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.GLASS];
+                    }
                     chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
                 }
                 else if (color[x, y].grayscale < 0.6)
                 {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.BUMPYTILE];
+                    if (!isSnow)
+                    {
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.BUMPYTILE];
+                    }
+                    else
+					{
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.BUMPYTILE];
+                    }
                     chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
                 }
                 else if (color[x, y].grayscale < 0.785)
                 {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.FLATTILE];
+                    if (!isSnow)
+                    {
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.FLATTILE];
+                    }
+                    else
+					{
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.FLATTILE];
+                    }
                     chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
                 }
                 else
                 {
-                    chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.STONE];
+                    if (!isSnow)
+                    {
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.STONE];
+                    }
+                    else
+                    {
+                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.STONE];
+                    }
                     chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
                 }
 

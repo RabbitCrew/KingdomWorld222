@@ -13,6 +13,8 @@ public class MouseRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0) { return; }
+
         if (!IsPointerOverUIObject())
 		{
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);

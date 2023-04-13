@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -1622952435707187746}
   - component: {fileID: 3666426271718097715}
   - component: {fileID: 5165641087673085271}
+  - component: {fileID: 9135478576901851922}
   m_Layer: 6
   m_Name: HunterHouse
   m_TagString: Hunter_house
@@ -168,3 +169,18 @@ MonoBehaviour:
   npcs: []
   storeMax: 50
   store: 0
+--- !u!114 &9135478576901851922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85906778023787547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: 8cad088c6bc6a184cb300ecd6ea18ac2, type: 3}
+  - {fileID: 21300000, guid: 8fdf4f24b5cdf404798d1020e31f2e6c, type: 3}

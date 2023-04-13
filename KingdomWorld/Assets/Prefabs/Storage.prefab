@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -1963380477289513433}
   - component: {fileID: -7000544258104759562}
   - component: {fileID: 1963439050909237368}
+  - component: {fileID: -2687066950101322281}
   m_Layer: 0
   m_Name: Storage
   m_TagString: Storage
@@ -183,3 +184,18 @@ MonoBehaviour:
   npcs: []
   storeMax: 50
   store: 0
+--- !u!114 &-2687066950101322281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8611218813536486430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: 64a663a172d1e44418b8415a7c8eefa4, type: 3}
+  - {fileID: 21300000, guid: b4759681d7a645549af2e89e74c4105b, type: 3}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1198625801439479435}
   - component: {fileID: 1585703499352990856}
   - component: {fileID: -125596591813637330}
+  - component: {fileID: 8109235433382172758}
   m_Layer: 6
   m_Name: CheeseHouse
   m_TagString: Cheese_house
@@ -148,3 +149,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &8109235433382172758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3746874954108442024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8ae55beb355de34198da392ce556362, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprArr:
+  - {fileID: 21300000, guid: 8ea2583cece459248baac8a249d742d7, type: 3}
+  - {fileID: 21300000, guid: 0e74d258b13e0f8439788c068f399c0b, type: 3}
