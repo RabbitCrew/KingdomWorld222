@@ -282,12 +282,12 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                     if (!isSnow)
                     {
                         chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.RIVER];
-                        chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
+                        chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
                     }
                     else
                     {
                         chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.RIVER];
-                        chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
+                        chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
                     }
                 }
                 else if (color[x, y].grayscale < 0.475)
