@@ -17,7 +17,6 @@ public class Building_NpcTag : MonoBehaviour
     public GameObject[] NPCPanel;
     public GameObject SMassage;
     GameObject JobBuilding;
-    public GameObject[] IsSettedNPC;
 
     [SerializeField] string[] InputJobText;
 
@@ -51,8 +50,6 @@ public class Building_NpcTag : MonoBehaviour
 
                 NPCPanel[value].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
                     npc.CitizenList[j].GetComponent<NPC>().name;
-
-                IsSettedNPC[value] = npc.CitizenList[j];
                 
                 value++;
             }
@@ -262,15 +259,30 @@ public class Building_NpcTag : MonoBehaviour
         }
     }
 
-    public void RemoveJobButton()
+    public void RemoveJobButton(int value)
     {
-        IsSettedNPC[count - 1].tag = "NPC";
+        int counts = 0;
 
-        Citizen = IsSettedNPC[count - 1].GetComponent<NPC>();
+        for (int i = 0; i < npc.transform.childCount; i++)
+        {
+            if(npc.transform.GetChild(i).GetComponent<NPC>().BuildingNum == JobBuilding)
+            {
+                if(counts == value)
+                {
+                    npc.transform.GetChild(i).GetComponent<NPC>().tag = "NPC";
 
-        Citizen.NPCBUildTrigger = false;
+                    Citizen = npc.transform.GetChild(i).GetComponent<NPC>();
 
-        count--;
+                    Citizen.NPCBUildTrigger = false;
+
+                    count--;
+                }
+                else
+                {
+                    counts++;
+                }
+            }
+        }
     }
 
     private bool IsPointerOverUIObject()

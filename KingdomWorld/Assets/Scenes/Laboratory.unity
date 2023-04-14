@@ -1235,7 +1235,7 @@ MonoBehaviour:
   - {fileID: 488206961}
   - {fileID: 789467341}
   SMassage: {fileID: 2744508829642258907}
-  IsSettedNPC: []
+  IsSettedNPCs: []
   InputJobText:
   - "\uCC3D\uACE0\uC9C0\uAE30"
   - "\uB098\uBB34\uAFBC"
@@ -1685,11 +1685,11 @@ MonoBehaviour:
       - m_Target: {fileID: 811709128}
         m_TargetAssemblyTypeName: Building_NpcTag, Assembly-CSharp
         m_MethodName: RemoveJobButton
-        m_Mode: 6
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -1819,11 +1819,11 @@ MonoBehaviour:
       - m_Target: {fileID: 811709128}
         m_TargetAssemblyTypeName: Building_NpcTag, Assembly-CSharp
         m_MethodName: RemoveJobButton
-        m_Mode: 6
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -2358,7 +2358,7 @@ MonoBehaviour:
       - m_Target: {fileID: 811709128}
         m_TargetAssemblyTypeName: Building_NpcTag, Assembly-CSharp
         m_MethodName: RemoveJobButton
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -52763,8 +52763,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 708539413983815383}
   m_HandleRect: {fileID: 7091817622124144321}
   m_Direction: 2
-  m_Value: 0.9999998
-  m_Size: 0.25000012
+  m_Value: 1
+  m_Size: 0.4999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
