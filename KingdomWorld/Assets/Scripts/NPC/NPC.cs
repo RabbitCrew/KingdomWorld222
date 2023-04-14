@@ -466,7 +466,7 @@ public class NPC : NPCScrip
             {
                 Building = null;
                 isRepairStart = false;//수리 완료
-                break;
+                yield break;
             }
         }
     }

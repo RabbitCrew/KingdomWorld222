@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: c2465d353bf25dd4c8ebc939dc00cab2, type: 2}
---- !u!1001 &555385691
+--- !u!1001 &1901876077
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -292,10 +292,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2018224752277479045, guid: 504022c3b8de6084889c503a00fb1f4f, type: 3}
-      propertyPath: shader
-      value: 
-      objectReference: {fileID: 2100000, guid: 61bf23bc97491e94cadb03bdb4eef233, type: 2}
-    - target: {fileID: 2018224752277479045, guid: 504022c3b8de6084889c503a00fb1f4f, type: 3}
       propertyPath: material
       value: 
       objectReference: {fileID: 2100000, guid: 61bf23bc97491e94cadb03bdb4eef233, type: 2}
@@ -345,15 +341,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2860657933521498229, guid: 504022c3b8de6084889c503a00fb1f4f, type: 3}
       propertyPath: m_Size
-      value: 0.25000018
+      value: 0.25000006
       objectReference: {fileID: 0}
     - target: {fileID: 2860657933521498229, guid: 504022c3b8de6084889c503a00fb1f4f, type: 3}
       propertyPath: m_Value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3399318435544886766, guid: 504022c3b8de6084889c503a00fb1f4f, type: 3}
-      propertyPath: m_LightOrder
-      value: 1000
+      value: 1.0000004
       objectReference: {fileID: 0}
     - target: {fileID: 4621962264949186879, guid: 504022c3b8de6084889c503a00fb1f4f, type: 3}
       propertyPath: m_AnchorMax.y

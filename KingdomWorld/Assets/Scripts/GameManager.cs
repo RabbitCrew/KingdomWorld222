@@ -21,14 +21,14 @@ public class GameManager : Resource
         uiSizeX = 1920;
         uiSizeY = 1080;
         timeSpeed = 1;
-        instance = this;
+        
     }
     void Start()
     {
         //InitializeGrid(500, 500);
         perlinNoise.InitStart();
         InitializeGrid(500, 500);
-
+        instance = this;
         //startTime = Time.realtimeSinceStartup;
         isDaytime = true;
     }

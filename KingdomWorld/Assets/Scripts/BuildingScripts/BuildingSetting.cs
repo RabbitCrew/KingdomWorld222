@@ -33,6 +33,7 @@ public class BuildingSetting : MonoBehaviour
         BuildingHp = 10;
         buildingShield = 0;
         maxBuildingShield = 100;
+        GameManager.instance.InitializeGrid(500, 500);
     }
     void Start()
     {
