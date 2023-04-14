@@ -50,21 +50,6 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         isStartBuilding = false;
         isSnow = false;
     }
-
-    //public void Start()
-    //{
-    //    float[,] fl = GenerateNoiseTexture();
-    //    // 청크를 생성하는 함수
-    //    CreateChunks();
-    //    DrawNoiseMap(fl, GenerateMap(worldSize, worldSize));
-    //    GenerateTerrain();
-    //    mother.transform.eulerAngles = new Vector3(90, 0, 0);
-
-    //    cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
-
-    //    RefreshChunks();
-    //}
-
     public void InitStart()
     {
         float[,] fl = GenerateNoiseTexture();
@@ -297,12 +282,13 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                     if (!isSnow)
                     {
                         chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.RIVER];
+                        chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
                     }
                     else
                     {
                         chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.RIVER];
+                        chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
                     }
-                    chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
                 }
                 else if (color[x, y].grayscale < 0.475)
                 {
