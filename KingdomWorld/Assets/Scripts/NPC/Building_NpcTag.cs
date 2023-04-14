@@ -17,7 +17,7 @@ public class Building_NpcTag : MonoBehaviour
     public GameObject[] NPCPanel;
     public GameObject SMassage;
     GameObject JobBuilding;
-    GameObject[] IsSettedNPC;
+    public GameObject[] IsSettedNPC;
 
     [SerializeField] string[] InputJobText;
 
@@ -41,18 +41,20 @@ public class Building_NpcTag : MonoBehaviour
 
     void NPCFound()
     {
+        int value = 0;
+
         for (int j = 0; j < npc.CitizenList.Count; j++)
         {
             if (npc.CitizenList[j].GetComponent<NPC>().BuildingNum == JobBuilding)
             {
-                NPCPanel[count].SetActive(true);
+                NPCPanel[value].SetActive(true);
 
-                NPCPanel[count].transform.GetChild(2).GetComponent<TextMeshProUGUI>().text =
-                    npc.CitizenList[j].GetComponent<NPC>().BuildingNum.name;
+                NPCPanel[value].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+                    npc.CitizenList[j].GetComponent<NPC>().name;
 
-                IsSettedNPC[count] = npc.CitizenList[j].GetComponent<NPC>().BuildingNum;
-
-                count++;
+                IsSettedNPC[value] = npc.CitizenList[j];
+                
+                value++;
             }
         }
     }
@@ -76,6 +78,11 @@ public class Building_NpcTag : MonoBehaviour
 
                         JobPanel.SetActive(true);
 
+                        for (int j = 2; j > count - 1; j--)
+                        {
+                            NPCPanel[j].SetActive(false);
+                        }
+
                         IsOther = false;
 
                         count = 0;
@@ -85,6 +92,8 @@ public class Building_NpcTag : MonoBehaviour
                         {
                             Job = "StorageNPC";
 
+                            IsOther = false;
+
                             NPCCount = 0;
 
                             JobText.text = InputJobText[NPCCount];
@@ -92,6 +101,8 @@ public class Building_NpcTag : MonoBehaviour
                         else if (hits[i].collider.gameObject.tag.Equals("WoodCutter_house"))
                         {
                             Job = "WoodCutter";
+
+                            IsOther = false;
 
                             NPCCount = 1;
 
@@ -103,6 +114,8 @@ public class Building_NpcTag : MonoBehaviour
 
                             NPCCount = 2;
 
+                            IsOther = false;
+
                             JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Hunter_house"))
@@ -111,11 +124,15 @@ public class Building_NpcTag : MonoBehaviour
 
                             NPCCount = 3;
 
+                            IsOther = false;
+
                             JobText.text = InputJobText[NPCCount];
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Farm_house"))
                         {
                             Job = "Pastoralist";
+
+                            IsOther = false;
 
                             NPCCount = 4;
 
@@ -126,6 +143,8 @@ public class Building_NpcTag : MonoBehaviour
                             Job = "FarmNPC";
 
                             NPCCount = 5;
+
+                            IsOther = false;
 
                             JobText.text = InputJobText[NPCCount];
                         }
@@ -149,6 +168,8 @@ public class Building_NpcTag : MonoBehaviour
                             NPCCount = 8;
 
                             JobText.text = InputJobText[NPCCount];
+
+                            IsOther = false;
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Cheese_house"))
                         {
@@ -157,6 +178,8 @@ public class Building_NpcTag : MonoBehaviour
                             NPCCount = 9;
 
                             JobText.text = InputJobText[NPCCount];
+
+                            IsOther = false;
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Cloth_house"))
                         {
@@ -165,6 +188,8 @@ public class Building_NpcTag : MonoBehaviour
                             NPCCount = 10;
 
                             JobText.text = InputJobText[NPCCount];
+
+                            IsOther = false;
                         }
                         else if (hits[i].collider.gameObject.tag.Equals("Smith_house"))
                         {
@@ -173,6 +198,12 @@ public class Building_NpcTag : MonoBehaviour
                             NPCCount = 11;
 
                             JobText.text = InputJobText[NPCCount];
+
+                            IsOther = false;
+                        }
+                        else
+                        {
+                            JobPanel.SetActive(false);
                         }
                     }
                 }
@@ -182,13 +213,12 @@ public class Building_NpcTag : MonoBehaviour
 
     public void JobSetOn()
     {
-        JobPanel.SetActive(true);
+        NPcButton.SetActive(true);
 
         if(IsOther == true)
         {
             NPcButtonOther.SetActive(true);
         }
-        NPcButton.SetActive(true);
     }
 
     public void jobButton(bool value)
@@ -201,9 +231,9 @@ public class Building_NpcTag : MonoBehaviour
                 {
                     Citizen = npc.CitizenList[i].GetComponent<NPC>();
 
-                    if (value == true)
+                    if (value == false)
                     {
-                        npc.CitizenList[i].tag = Job;
+                        npc.CitizenList[i].gameObject.tag = Job;
 
                         Citizen.BuildingNum = JobBuilding;
                         Citizen.NPCBUildTrigger = true;
@@ -212,9 +242,9 @@ public class Building_NpcTag : MonoBehaviour
 
                         break;
                     }
-                    else if (value == false)
+                    else if (value == true)
                     {
-                        npc.CitizenList[i].tag = OtherJob;
+                        npc.CitizenList[i].gameObject.tag = OtherJob;
 
                         Citizen.BuildingNum = JobBuilding;
                         Citizen.NPCBUildTrigger = true;
@@ -234,13 +264,13 @@ public class Building_NpcTag : MonoBehaviour
 
     public void RemoveJobButton()
     {
-        IsSettedNPC[count].tag = "NPC";
+        IsSettedNPC[count - 1].tag = "NPC";
 
-        count--;
-
-        Citizen = IsSettedNPC[count].GetComponent<NPC>();
+        Citizen = IsSettedNPC[count - 1].GetComponent<NPC>();
 
         Citizen.NPCBUildTrigger = false;
+
+        count--;
     }
 
     private bool IsPointerOverUIObject()
@@ -263,7 +293,7 @@ public class Building_NpcTag : MonoBehaviour
     {
         JobPanel.SetActive(false);
 
-        for (int j = count - 1; j >= 0; j++)
+        for (int j = 2; j > count - 1; j--)
         {
             NPCPanel[j].SetActive(false);
         }
