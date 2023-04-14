@@ -17,13 +17,13 @@ public class MouseRay : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if (GameManager.instance.timeSpeed == 180f)
+            if (GameManager.instance.timeSpeed == 1f)
             {
                 GameManager.instance.timeSpeed = 10f;
             }
             else
 			{
-                GameManager.instance.timeSpeed = 180f;
+                GameManager.instance.timeSpeed = 1f;
 			}
         }
 

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 public class GameManager : Resource
 {
+    [SerializeField] private PerlinNoiseMapMaker perlinNoise;
     private float startTime;
     private float timeElapsed;
     public float dayNightRatio { get; private set; }
@@ -19,24 +20,27 @@ public class GameManager : Resource
     {
         uiSizeX = 1920;
         uiSizeY = 1080;
-        timeSpeed = 180;
+        timeSpeed = 1;
         instance = this;
-        InitializeGrid(500, 500);
     }
     void Start()
     {
-        startTime = Time.realtimeSinceStartup;
+        //InitializeGrid(500, 500);
+        perlinNoise.InitStart();
+        InitializeGrid(500, 500);
+
+        //startTime = Time.realtimeSinceStartup;
         isDaytime = true;
     }
 
     void Update()
     {
-        timeElapsed = Time.realtimeSinceStartup - startTime;
-        dayNightRatio = timeElapsed / timeSpeed; // 180 seconds = 3 minutes
+        //timeElapsed = Time.realtimeSinceStartup - startTime;
+        dayNightRatio += (Time.deltaTime / 180) * timeSpeed; // 180 seconds = 3 minutes
 
         if (dayNightRatio >= 1f)
         {
-            startTime = Time.realtimeSinceStartup;
+            //startTime = Time.realtimeSinceStartup;
             dayNightRatio = 0f;
             isDaytime = true;
         }

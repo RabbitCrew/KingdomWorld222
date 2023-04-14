@@ -157,15 +157,17 @@ public class SettingObject : MonoBehaviour
             obj.GetComponent<BuildingColider>().objCode = objCode;
 		}
 
-        if (isSnow)
+        if (obj.GetComponent<ChangeSnowBuildingSprite>() != null)
         {
-            obj.GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(1);
+            if (isSnow)
+            {
+                obj.GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(1);
+            }
+            else
+            {
+                obj.GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(0);
+            }
         }
-        else
-        {
-            obj.GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(0);
-        }
-
         // 범위 내 닿고 있는 타일의 좌표를 오브젝트 번호와 함께 저장한다.
         // 추가로 청크 좌표와 청크 좌표 내 타일 좌표도 해당 for문 내에서 계산한다.
         for (int i = minX; i <= maxX; i++)

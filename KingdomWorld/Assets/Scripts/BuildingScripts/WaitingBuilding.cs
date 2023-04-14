@@ -23,6 +23,7 @@ public class WaitingBuilding : MonoBehaviour
     }
     void Start()
     {
+        GameManager.instance.WaitingBuildingList.Add(this.gameObject);
         buildingRange.SetActive(true);
         material = GetComponent<SpriteRenderer>().material;
         material.SetFloat("_Fade", realFade);
@@ -53,8 +54,8 @@ public class WaitingBuilding : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        //fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
-        fade = Mathf.InverseLerp(0, maxTime, time); // 윗줄 코드와 전환
+        fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
+        //fade = Mathf.InverseLerp(0, maxTime, time); // 윗줄 코드와 전환
 
         fade *= 0.6f;
 
@@ -67,8 +68,8 @@ public class WaitingBuilding : MonoBehaviour
             realFade = fade + 0.2f;
         }
 
-        //if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
-        if (time >= maxTime)    // 윗줄 코드와 전환
+        if (building.GetComponent<BuildingSetting>().BuildingHp >= building.GetComponent<BuildingSetting>().MaxBuildingHp)
+        //if (time >= maxTime)    // 윗줄 코드와 전환
         {
             building.SetActive(true);
             building.GetComponent<BuildingColider>().isSettingComplete = true;
@@ -77,8 +78,8 @@ public class WaitingBuilding : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        //material.SetFloat("_Fade", realFade);
-        material.SetFloat("_Fade", fade + 0.2f); // 윗줄 코드와 전환
+        material.SetFloat("_Fade", realFade);
+        //material.SetFloat("_Fade", fade + 0.2f); // 윗줄 코드와 전환
     }
 
     private void OnDisable()

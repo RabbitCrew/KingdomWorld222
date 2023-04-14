@@ -7,7 +7,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     [SerializeField] private Texture2D gradientTex;
     [SerializeField] private Sprite[] tile;
     [SerializeField] private Sprite[] snowTile;
-
+    [SerializeField] private Material material;
     [SerializeField] private int chunkSize = 20;    // 청크 사이즈는 20 * 20
     [SerializeField] private int gradientSize = 1000;
     [SerializeField] private int worldSize = 80;
@@ -51,7 +51,21 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         isSnow = false;
     }
 
-    void Start()
+    //public void Start()
+    //{
+    //    float[,] fl = GenerateNoiseTexture();
+    //    // 청크를 생성하는 함수
+    //    CreateChunks();
+    //    DrawNoiseMap(fl, GenerateMap(worldSize, worldSize));
+    //    GenerateTerrain();
+    //    mother.transform.eulerAngles = new Vector3(90, 0, 0);
+
+    //    cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
+
+    //    RefreshChunks();
+    //}
+
+    public void InitStart()
     {
         float[,] fl = GenerateNoiseTexture();
         // 청크를 생성하는 함수
@@ -191,6 +205,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 newTile.AddComponent<BoxCollider>();
                 newTile.AddComponent<TileColorChange>();
                 newTile.AddComponent<TileInfo>();
+                newTile.GetComponent<SpriteRenderer>().material = material;
                 // 후에 타일 오브젝트 내에서 SettingObject 클래스의 함수를 호출하기 위함.
                 newTile.GetComponent<TileInfo>().InitSettingObject(settingObject);
                 newTile.GetComponent<BoxCollider>().isTrigger = true;

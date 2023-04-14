@@ -484,9 +484,10 @@ public class NPC : NPCScrip
             {
                 work = true;
             }
-            if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding"))//목수NPC 건설
+            else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding"))//목수NPC 건설
             {
                 StartCoroutine(Build(0.1f, other));
+                Debug.Log("여기는 몇번 찍힙니까?");
             }else if (this.CompareTag("FarmNPC") && isWeatStart)//농부NPC 밀수확
             {
                 if(other.transform == BuildingNum.transform)//wheat를찾아온거지 wheatfield를 찾아온게아님
@@ -517,7 +518,19 @@ public class NPC : NPCScrip
         while (true)
         {
             yield return new WaitForSeconds(delay);
+
+            if (building == null)
+            {
+                // 3중 나생문
+                yield return null;
+                StopCoroutine("Build");
+                StopCoroutine("Build");
+                StopCoroutine("Build");
+                yield break;
+            }
+
             building.GetComponent<WaitingBuilding>().building.GetComponent<BuildingSetting>().BuildingHp += 1;
+            //Debug.Log("무한으로 즐겨요");
             if (building.GetComponent<WaitingBuilding>().building.GetComponent<BuildingSetting>().BuildingHp
                 >= building.GetComponent<WaitingBuilding>().building.GetComponent<BuildingSetting>().MaxBuildingHp)
             {
@@ -525,7 +538,8 @@ public class NPC : NPCScrip
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
                 Building = null;
-                break;
+                //StopCoroutine("Build");
+                yield break;
             }
         }
     }
