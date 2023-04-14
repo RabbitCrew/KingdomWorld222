@@ -66,6 +66,7 @@ public class Storage : MonoBehaviour
         }
         else if(col.tag == "FarmNPC")
         {
+            if(ResourceN == 0)
             GameManager.instance.Wheat += ResourceStack;
         }
     }

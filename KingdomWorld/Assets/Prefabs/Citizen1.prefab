@@ -166,6 +166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b77cfe292588d4d92b6be5fd1e80b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingNum: {fileID: 0}
+  HavedWheat: 0
   Grid: {fileID: 0}
   NPCBUildTrigger: 1
   StartPos: {fileID: 0}
