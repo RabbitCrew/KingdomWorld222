@@ -17,11 +17,12 @@ public class Resource : Setgrid
     private int cow;
     private int sheep;
     private int cheese;
+    private int ham;
     private int fleece;
     private int cloth;
     public int MaxResource; //자원 최대치
+    public List<GameObject> AllHuman = new List<GameObject>();
 
-    
     public int Wheat {
         get { return wheat; } 
         set 
@@ -40,9 +41,39 @@ public class Resource : Setgrid
         {
             if (value >= MaxResource)
             {
-                value = MaxResource;
+                food = MaxResource;
             }
-            food = value;
+            if(value < 0)
+            {
+                while(value > 0)//food가 0이하로 떨어질시 시민 사망
+                {
+                    if(Meat > 0)
+                    {
+                        Meat -= 1;
+                        value += 10;
+                    }else if(Ham > 0)
+                    {
+                        Ham -= 1;
+                        value += 5;
+                    }else if(Cheese > 0)
+                    {
+                        Cheese -= 1;
+                        value += 5;
+                    }
+                    else
+                    {
+                        if (value < 0)
+                            value = 1;
+                        for(int i=0; i < value / 10; i++)
+                        {
+                            Destroy(AllHuman[0]);
+                        }
+                        value = 0;
+                        break;
+                    }
+                }
+                food = value;
+            }
         }
     }
     public int Wood
@@ -144,6 +175,19 @@ public class Resource : Setgrid
             cheese = value;
         }
     }
+    public int Ham
+    {
+        get { return ham; }
+        set
+        {
+            if (value >= MaxResource)
+            {
+                value = MaxResource;
+                ham = value;
+            }
+        }
+    }
+
     public int Fleece
     {
         get { return fleece; }
