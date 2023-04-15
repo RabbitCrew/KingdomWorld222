@@ -34804,7 +34804,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8988204966701072020}
   m_Direction: 2
   m_Value: 0.9999998
-  m_Size: 0.25000015
+  m_Size: 0.4999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -36529,6 +36529,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fe4b3fca3218c23449508213d6e51639, type: 3}
   - {fileID: 21300000, guid: 42930815baaa4d4488760176b69ccc5e, type: 3}
   - {fileID: 21300000, guid: 635c7a12094b35a49bd1f51f8c339fdc, type: 3}
+  - {fileID: 21300000, guid: 004ab5075f110cc46805420eb40fc707, type: 3}
+  - {fileID: 21300000, guid: 251a2b53b71839f439d6294b98d22641, type: 3}
+  - {fileID: 21300000, guid: ecf9106837f151344af511a980f750fc, type: 3}
+  - {fileID: 21300000, guid: c98979cedb33f8d468fe39c2bfd3ed5b, type: 3}
+  - {fileID: 21300000, guid: 5106c5b08235e4443a91e285d6d4a363, type: 3}
+  - {fileID: 21300000, guid: f8e5fcb6620590d4da54bfa3120dfe11, type: 3}
 --- !u!114 &6552564940254625659
 MonoBehaviour:
   m_ObjectHideFlags: 0
