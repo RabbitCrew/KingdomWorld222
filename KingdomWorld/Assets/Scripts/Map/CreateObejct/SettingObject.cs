@@ -137,6 +137,7 @@ public class SettingObject : MonoBehaviour
             }
         }
     }
+    private bool bo1;
     // 청크 좌표에 있는 타일 별로 오브젝트의 정보를 담기 위한 함수.
     // ADdTilePoint함수와 다른 점은 플레이어가 직접 생성한 오브젝트를 담기 위한 함수라는 것.
     // 따라서 생성한 오브젝트의 범위가 두 청크, 많으면 네 청크 좌표와 맞닿아 있을 경우가 있기 때문에
@@ -144,6 +145,12 @@ public class SettingObject : MonoBehaviour
     // objectNum은 건물타입 번호, obj는 생성할 게임오브젝트이다.
     public void AddTilePoint2(int pointX, int pointZ, int objectNum, GameObject obj)
     {
+        //if (!bo1)
+        //{
+        //    GameManager.instance.InitializeGrid(500, 500);
+        //    bo1 = true;
+        //}
+
         // 생성될 오브젝트 중앙을 기준으로 어느 타일에 오브젝트에 닿게 되는지 범위 계산
         int minX = pointX - (int)((float)settingObjInfo.objSize[objectNum].sizeX / 2f) + ((settingObjInfo.objSize[objectNum].sizeX + 1) % 2);
         int maxX = pointX + (int)((float)settingObjInfo.objSize[objectNum].sizeX / 2f);

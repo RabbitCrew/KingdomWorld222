@@ -36,6 +36,10 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     private List<GameObject> falseChunksList = new List<GameObject>();
     private int startChunkX;
     private int startChunkZ;
+    private int preCameraXMax;
+    private int preCameraXMin;
+    private int preCameraZMax;
+    private int preCameraZMin;
     private bool isStartBuilding;
     private bool isSnow;
     private void Awake()
@@ -45,10 +49,15 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         // 시드를 랜덤으로 구함. 시드 값에 따라 다른 노이즈가 생성
         seed = Random.Range(-10000, 10000);
 
-        startChunkX = Random.Range(-13, 14);
-        startChunkZ = Random.Range(-13, 14);
+        startChunkX = Random.Range(-12, 13);
+        startChunkZ = Random.Range(-12, 13);
         isStartBuilding = false;
         isSnow = false;
+
+        preCameraXMax = 99999;
+        preCameraXMin = -99999;
+        preCameraZMax = 99999;
+        preCameraZMin = -99999;
     }
     public void InitStart()
     {
@@ -96,6 +105,9 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         winter.isChangedSprite = true;
 
     }
+
+
+
     // 오클루전 컬링을 위한 함수
     void RefreshChunks()
     {
@@ -107,6 +119,11 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         int cameraZMax = Mathf.RoundToInt(cameraZ + 1.8f);
         int cameraZMin = Mathf.RoundToInt(cameraZ - 1.8f);
 
+        if (cameraXMax == preCameraXMax
+            && cameraXMin == preCameraXMin 
+            && cameraZMax == preCameraZMax
+            && cameraZMin == preCameraZMin)
+        { return; }
 
         // 메인 카메라 범위 밖에 있는 맵은 오브젝트를 꺼준다. 
         for (int x = 0; x < worldChunks.GetLength(0); x++)
@@ -165,6 +182,11 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 }
             }
         }
+
+        preCameraXMax = cameraXMax;
+        preCameraXMin = cameraXMin;
+        preCameraZMax = cameraZMax;
+        preCameraZMin = cameraZMin;
 
     }
     // 타일을 생성해서 청크로 묶는다.
