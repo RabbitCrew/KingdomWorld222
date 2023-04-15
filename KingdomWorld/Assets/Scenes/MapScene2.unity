@@ -34803,8 +34803,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7327506700320761531}
   m_HandleRect: {fileID: 8988204966701072020}
   m_Direction: 2
-  m_Value: 0.9999998
-  m_Size: 0.4999999
+  m_Value: 1
+  m_Size: 0.25000015
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -37810,6 +37810,8 @@ MonoBehaviour:
   - {fileID: 249833567, guid: ffdb731fb93558849a325e75a47942da, type: 3}
   - {fileID: -1104551943, guid: ffdb731fb93558849a325e75a47942da, type: 3}
   - {fileID: -541674754, guid: ffdb731fb93558849a325e75a47942da, type: 3}
+  - {fileID: -1235257861, guid: ffdb731fb93558849a325e75a47942da, type: 3}
+  - {fileID: -1464959579, guid: ffdb731fb93558849a325e75a47942da, type: 3}
   SpawnTime: 10
   CitizenNum: 3
   HouseNum: 0
@@ -38470,7 +38472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 149.99997}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99994}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6976820432232209876
