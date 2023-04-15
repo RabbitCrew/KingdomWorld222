@@ -486,12 +486,23 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         // 생성이 가능한 타일인지 확인한다.
         for (int i = 0; i < objTypeNumArr.Length; i++)
         {
-            // 생성 가능한 타일의 종류와 하나씩 비교해간다.
-            if (chunk.transform.GetChild(tileX * chunkSize + tileY).GetComponent<SpriteRenderer>().sprite == tile[objTypeNumArr[i]])
-			{           
-                // 생성가능한 타일과 일치하면 cnt에 1을 더한다.
-                cnt++;
-			}
+            if (!isSnow)
+            {// 생성 가능한 타일의 종류와 하나씩 비교해간다.
+                if (chunk.transform.GetChild(tileX * chunkSize + tileY).GetComponent<SpriteRenderer>().sprite == tile[objTypeNumArr[i]])
+                {
+                    // 생성가능한 타일과 일치하면 cnt에 1을 더한다.
+                    cnt++;
+                }
+            }
+            else
+			{
+                if (chunk.transform.GetChild(tileX * chunkSize + tileY).GetComponent<SpriteRenderer>().sprite == snowTile[objTypeNumArr[i]])
+                {
+                    // 생성가능한 타일과 일치하면 cnt에 1을 더한다.
+                    cnt++;
+                }
+            }
+
         }
         // 생성가능한 타일과 일치하면 cnt는 1이 되고, 생성가능함(true)을 반환한다.
         if (cnt > 0) { return true; }
