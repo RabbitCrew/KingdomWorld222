@@ -665,7 +665,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Job
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fdef7948a75c7384a8999b9c08c1e219, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
   m_sharedMaterial: {fileID: -7897185509842292026, guid: fdef7948a75c7384a8999b9c08c1e219, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -729,7 +729,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &424318209
@@ -836,7 +836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &523910095
 RectTransform:
   m_ObjectHideFlags: 0
@@ -912,7 +912,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &523910098
 MonoBehaviour:
@@ -1226,15 +1226,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npc: {fileID: 629041617947832816}
   Citizen: {fileID: 0}
-  NPcButton: {fileID: 1863810897}
+  NPcButton: {fileID: 2103935411}
   RemoveNPcButton: {fileID: 1514187418}
   NPcButtonOther: {fileID: 523910094}
-  JobPanel: {fileID: 159755750}
+  JobPanel: {fileID: 1863810897}
   NPCPanel:
   - {fileID: 846033391}
   - {fileID: 488206961}
   - {fileID: 789467341}
   SMassage: {fileID: 2744508829642258907}
+  IsSettedNPCs: []
   InputJobText:
   - "\uCC3D\uACE0\uC9C0\uAE30"
   - "\uB098\uBB34\uAFBC"
@@ -1684,11 +1685,11 @@ MonoBehaviour:
       - m_Target: {fileID: 811709128}
         m_TargetAssemblyTypeName: Building_NpcTag, Assembly-CSharp
         m_MethodName: RemoveJobButton
-        m_Mode: 6
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -1818,11 +1819,11 @@ MonoBehaviour:
       - m_Target: {fileID: 811709128}
         m_TargetAssemblyTypeName: Building_NpcTag, Assembly-CSharp
         m_MethodName: RemoveJobButton
-        m_Mode: 6
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -2357,7 +2358,7 @@ MonoBehaviour:
       - m_Target: {fileID: 811709128}
         m_TargetAssemblyTypeName: Building_NpcTag, Assembly-CSharp
         m_MethodName: RemoveJobButton
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2774,7 +2775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2103935412
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2850,7 +2851,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2103935415
 MonoBehaviour:
@@ -5140,6 +5141,8 @@ MonoBehaviour:
   - {fileID: 9893857, guid: 2e7e644358ab0c94993bb96a780712ed, type: 3}
   - {fileID: 241744918, guid: 2e7e644358ab0c94993bb96a780712ed, type: 3}
   - {fileID: -417427517, guid: 2e7e644358ab0c94993bb96a780712ed, type: 3}
+  snowTile: []
+  material: {fileID: 2100000, guid: 61bf23bc97491e94cadb03bdb4eef233, type: 2}
   chunkSize: 20
   gradientSize: 1000
   worldSize: 80
@@ -32493,8 +32496,9 @@ MonoBehaviour:
   - {fileID: 8611218813536486430, guid: 700aa2d17f0051e4ba63da7d0a3c956a, type: 3}
   - {fileID: 5463561290101031232, guid: 48904e2da00f6b945b23654cca7e7290, type: 3}
   - {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
+  snowObjectArr: []
   motehrObject: {fileID: 6758055273815413137}
-  motherBuildingObject: {fileID: 0}
+  motherBuildingObject: {fileID: 962746208438951359}
   settingObjInfo: {fileID: 6207961308962764901}
 --- !u!224 &5568735685926750229
 RectTransform:
@@ -45622,6 +45626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxResource: 50
+  perlinNoise: {fileID: 468777081064770225}
   RestHuman: []
   WheatList: []
   WaitingBuildingList: []
