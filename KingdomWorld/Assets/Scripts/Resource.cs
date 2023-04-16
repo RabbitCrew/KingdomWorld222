@@ -62,11 +62,15 @@ public class Resource : Setgrid
                     }
                     else
                     {
-                        if (value < 0)
-                            value = 1;
+                        if (value < 10)
+                            value = 10;
                         for(int i=0; i < value / 10; i++)
                         {
-                            Destroy(AllHuman[0]);
+                            if(AllHuman.Count >= 1)
+                            {
+                                Destroy(AllHuman[0]);
+                                AllHuman.RemoveAt(0);
+                            }
                         }
                         value = 0;
                         break;
