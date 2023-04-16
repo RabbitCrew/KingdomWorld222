@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3eeb94177d41fe744988acb96d98ea61
+guid: 12fb762944f3dc54c957e6645a651e0e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WoodCutterOuch 1_0
+      name: WoodCutterOuch_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6df51a01ad24a344580697d7c1136129
-      internalID: -1432416927
+      spriteID: 314bd7cedf191b042bbf2d7fd6e38102
+      internalID: 215398301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_1
+      name: WoodCutterOuch_1
       rect:
         serializedVersion: 2
         x: 11
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea3c6799770cef2439f8b674d4eb7242
-      internalID: 1620145259
+      spriteID: 5a37c893f55f0f844b8ffabba0953b23
+      internalID: -41880096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_2
+      name: WoodCutterOuch_2
       rect:
         serializedVersion: 2
         x: 22
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b8ca4f6493d42845abb5344737b5b67
-      internalID: -412663223
+      spriteID: 4e4bcc0f339060943bd57e4a61cddc61
+      internalID: -2088596802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_3
+      name: WoodCutterOuch_3
       rect:
         serializedVersion: 2
         x: 33
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fded52c83f0ce8438a3e9bcc625a06a
-      internalID: -540652913
+      spriteID: 0af643595c01bde4ab2e0a8c24b2d921
+      internalID: 949578525
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_4
+      name: WoodCutterOuch_4
       rect:
         serializedVersion: 2
         x: 44
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e699129fdee529e4b84eeadd2e4479dd
-      internalID: -1849923770
+      spriteID: ee3c3774cdae57b4daa684eb446bcdbe
+      internalID: 902574567
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_5
+      name: WoodCutterOuch_5
       rect:
         serializedVersion: 2
         x: 55
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7937c09d36603994884243e5bcf62e78
-      internalID: -855218069
+      spriteID: e81334de39efd8a4fa5366b593a05c05
+      internalID: 1686041039
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_6
+      name: WoodCutterOuch_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca1f62c1458b3c346ac6c5e599557709
-      internalID: -1078313713
+      spriteID: 54f67c30e20578747b42e377973cd513
+      internalID: -1515460803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_7
+      name: WoodCutterOuch_7
       rect:
         serializedVersion: 2
         x: 11
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0a54507220813540abbbd3ade880995
-      internalID: -1707537522
+      spriteID: 16d5dec8e0336f0488f4d85c8a7f1fd4
+      internalID: -640823573
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_8
+      name: WoodCutterOuch_8
       rect:
         serializedVersion: 2
         x: 22
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0ae321ea2a6ce346a7ecccbd55c700c
-      internalID: 1434271243
+      spriteID: 6d3f65857fb442249bc1059035852ece
+      internalID: 1599992943
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_9
+      name: WoodCutterOuch_9
       rect:
         serializedVersion: 2
         x: 33
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb66e6f52dce4a646ac7d2daf7218e47
-      internalID: 2001817180
+      spriteID: 832b348a9b0f07440b094ef3e19211ab
+      internalID: -2018804313
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_10
+      name: WoodCutterOuch_10
       rect:
         serializedVersion: 2
         x: 44
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 579f491ee4a2fa24eac9e1e2631a6c32
-      internalID: 1526330575
+      spriteID: 44efc1021bdd00142a20088dfc9d95e5
+      internalID: -1903975800
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_11
+      name: WoodCutterOuch_11
       rect:
         serializedVersion: 2
         x: 55
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19b9dd5c5a8bb85489dc93f418c57cc9
-      internalID: -1483021823
+      spriteID: bdd14717b028418429264fe3189ef142
+      internalID: -23761249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_12
+      name: WoodCutterOuch_12
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45e9bc9e78949334889e2641a5e004b6
-      internalID: 1079956217
+      spriteID: 46f5b70262e6b6845b5e8f0e0be81e42
+      internalID: -7018749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_13
+      name: WoodCutterOuch_13
       rect:
         serializedVersion: 2
         x: 11
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9167d42ce9e7ce84a899f46b93f7bedf
-      internalID: 639683112
+      spriteID: 03a2ea02a979c8c4bbab3f4ceb017a8b
+      internalID: 1033572795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_14
+      name: WoodCutterOuch_14
       rect:
         serializedVersion: 2
         x: 22
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be1458b05e2d8554fa7abcdd8fba3cd5
-      internalID: -724750927
+      spriteID: 151c5ce9fa4f17641bb0e748311945df
+      internalID: -131997076
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_15
+      name: WoodCutterOuch_15
       rect:
         serializedVersion: 2
         x: 33
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ee0ca8072f9d7a4b821c1ff45c71ef9
-      internalID: 2081429682
+      spriteID: 47d813eac2a565045bbe4ef8f2559db3
+      internalID: 1071137622
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_16
+      name: WoodCutterOuch_16
       rect:
         serializedVersion: 2
         x: 44
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1d0e93070885814c8f3b1f2eef15a89
-      internalID: -2039626537
+      spriteID: 05a37a3a2d325804a8cb1b17914a1e63
+      internalID: -171657975
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_17
+      name: WoodCutterOuch_17
       rect:
         serializedVersion: 2
         x: 55
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28fe4e7a64346684d836b685b83b6cf1
-      internalID: 1316793126
+      spriteID: 26fdbe77f5514bc46a8115aea8013947
+      internalID: -1426243439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_18
+      name: WoodCutterOuch_18
       rect:
         serializedVersion: 2
         x: 0
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c3f2857a84653a4caae2b8b82c23841
-      internalID: 643369662
+      spriteID: 16f0bebcc6ced944e866d7222be30dad
+      internalID: -208767467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_19
+      name: WoodCutterOuch_19
       rect:
         serializedVersion: 2
         x: 11
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a88c0fc8d30f994ea50c693c70daa71
-      internalID: 707056684
+      spriteID: 8c6968fc7b6501f4cb2fad4bb1a8d669
+      internalID: -641283848
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_20
+      name: WoodCutterOuch_20
       rect:
         serializedVersion: 2
         x: 22
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dba298bb34b69fe4badae971c8b50273
-      internalID: 685302249
+      spriteID: 1ed53a6a27760794c9a2cfa1e9e861af
+      internalID: 1038546909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_21
+      name: WoodCutterOuch_21
       rect:
         serializedVersion: 2
         x: 33
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac1436e36c5c5aa4b9714c50da6823d2
-      internalID: 480090702
+      spriteID: 4c57417785d56be47983eb78aaf651ef
+      internalID: 771296773
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_22
+      name: WoodCutterOuch_22
       rect:
         serializedVersion: 2
         x: 44
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b69b654169ff3042afa72ab0e9de3ea
-      internalID: 161203710
+      spriteID: 70d34cf5b413451469ef5f37f63911d0
+      internalID: 1359048033
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_23
+      name: WoodCutterOuch_23
       rect:
         serializedVersion: 2
         x: 55
@@ -616,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 092f5d0208c045c42b216c331cd34466
-      internalID: 164072571
+      spriteID: 94624a4b7d0174e4b9855fe29f7fd202
+      internalID: 1381217812
       vertices: []
       indices: 
       edges: []
@@ -625,7 +625,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: fbcdb3fd75cdbc244b33d94d5c2ce618
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +633,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WoodCutterOuch 1_0: -1432416927
-      WoodCutterOuch 1_1: 1620145259
-      WoodCutterOuch 1_10: 1526330575
-      WoodCutterOuch 1_11: -1483021823
-      WoodCutterOuch 1_12: 1079956217
-      WoodCutterOuch 1_13: 639683112
-      WoodCutterOuch 1_14: -724750927
-      WoodCutterOuch 1_15: 2081429682
-      WoodCutterOuch 1_16: -2039626537
-      WoodCutterOuch 1_17: 1316793126
-      WoodCutterOuch 1_18: 643369662
-      WoodCutterOuch 1_19: 707056684
-      WoodCutterOuch 1_2: -412663223
-      WoodCutterOuch 1_20: 685302249
-      WoodCutterOuch 1_21: 480090702
-      WoodCutterOuch 1_22: 161203710
-      WoodCutterOuch 1_23: 164072571
-      WoodCutterOuch 1_3: -540652913
-      WoodCutterOuch 1_4: -1849923770
-      WoodCutterOuch 1_5: -855218069
-      WoodCutterOuch 1_6: -1078313713
-      WoodCutterOuch 1_7: -1707537522
-      WoodCutterOuch 1_8: 1434271243
-      WoodCutterOuch 1_9: 2001817180
+      WoodCutterOuch_0: 215398301
+      WoodCutterOuch_1: -41880096
+      WoodCutterOuch_10: -1903975800
+      WoodCutterOuch_11: -23761249
+      WoodCutterOuch_12: -7018749
+      WoodCutterOuch_13: 1033572795
+      WoodCutterOuch_14: -131997076
+      WoodCutterOuch_15: 1071137622
+      WoodCutterOuch_16: -171657975
+      WoodCutterOuch_17: -1426243439
+      WoodCutterOuch_18: -208767467
+      WoodCutterOuch_19: -641283848
+      WoodCutterOuch_2: -2088596802
+      WoodCutterOuch_20: 1038546909
+      WoodCutterOuch_21: 771296773
+      WoodCutterOuch_22: 1359048033
+      WoodCutterOuch_23: 1381217812
+      WoodCutterOuch_3: 949578525
+      WoodCutterOuch_4: 902574567
+      WoodCutterOuch_5: 1686041039
+      WoodCutterOuch_6: -1515460803
+      WoodCutterOuch_7: -640823573
+      WoodCutterOuch_8: 1599992943
+      WoodCutterOuch_9: -2018804313
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
