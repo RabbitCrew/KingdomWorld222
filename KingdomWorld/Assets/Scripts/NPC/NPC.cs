@@ -234,6 +234,7 @@ public class NPC : NPCScrip
         yield return new WaitForSeconds(delay);
         Destroy(tree);
         treeCuting = false;//나무자르기 완료
+        yield break;
     }
 
     private bool hunting = false;
@@ -274,18 +275,19 @@ public class NPC : NPCScrip
     }
 
     bool isWeatStart = false;
+    bool isWeatCarry = false;
     void Farmer()
     {
-        if (!isWeatStart)//밀탐색
+        if (!isWeatStart && GameManager.instance.isDaytime)//밀탐색
         {
-            if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)
+            if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)//밀이 있고 밀을 갖고있지않으면
             {
                 BuildingNum = GameManager.instance.WheatList[0].transform.parent.gameObject;
                 GameManager.instance.WheatList.RemoveAt(0);
                 isWeatStart = true;
                 NPCBUildTrigger = true;
             }
-            else if(GameManager.instance.StorageList.Count > 0)
+            else if(GameManager.instance.StorageList.Count > 0 && !isWeatCarry && HavedWheat > 0)//창고가 있고 밀을 가지고 있으면
             {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
                 foreach (var collider in colliders)
@@ -294,11 +296,11 @@ public class NPC : NPCScrip
                     {
                         BuildingNum = collider.gameObject;
                         NPCBUildTrigger = true;
+                        isWeatCarry = true;
                         break;
                     }
                 }
             }
-
         }
         
         dayTimeResetPath();
@@ -494,12 +496,13 @@ public class NPC : NPCScrip
                 {
                     StartCoroutine(Wheat(3f, other));//3초뒤 밀수확
                 }
-            }else if(this.CompareTag("FarmNPC") && !isWeatStart)//농부NPC 창고가서 밀넣기
+            }else if(this.CompareTag("FarmNPC") && !isWeatStart && isWeatCarry && HavedWheat > 0)//농부NPC 창고가서 밀넣기
             {
-                if (other.CompareTag("Storage") && other.transform == BuildingNum.transform)
+                if (other.CompareTag("Storage") /*&& other.transform == BuildingNum.transform*/)
                 {
                     GameManager.instance.Wheat += HavedWheat;
                     HavedWheat = 0;
+                    isWeatCarry = false;
                 }
             }
         }
@@ -538,7 +541,6 @@ public class NPC : NPCScrip
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
                 Building = null;
-                //StopCoroutine("Build");
                 yield break;
             }
         }
