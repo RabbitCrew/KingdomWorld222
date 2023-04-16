@@ -45624,7 +45624,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce81ff74c8bd9674c8c4612a059d0f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridWidth: 0
+  _gridHeight: 0
   MaxResource: 50
+  AllHuman: []
   perlinNoise: {fileID: 468777081064770225}
   RestHuman: []
   WheatList: []
@@ -48208,7 +48211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a42608748a86c479ac86d89fd91ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridWidth: 0
+  _gridHeight: 0
   MaxResource: 50
+  AllHuman: []
 --- !u!222 &8198376147171755520
 CanvasRenderer:
   m_ObjectHideFlags: 0
