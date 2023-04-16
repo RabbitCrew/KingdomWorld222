@@ -89,6 +89,7 @@ public class BuildingAttachMouse : MonoBehaviour
             isClick = false;
         }
     }
+    private bool bo1;
     // ������ �������� ���콺���� ���������� ���ش�.
     private void DetachWatingClone()
     {
@@ -106,7 +107,11 @@ public class BuildingAttachMouse : MonoBehaviour
                 waitC.GetComponent<BoxCollider>().size
                     = new Vector3(waitC.GetComponent<SpriteRenderer>().sprite.rect.width / 16 - 0.2f, waitC.GetComponent<SpriteRenderer>().sprite.rect.height / 16 - 0.2f, 0.2f);
                 waitC.transform.localPosition = clone.transform.localPosition;
-
+                //if (!bo1)
+                //{
+                //    GameManager.instance.InitializeGrid(500, 500);
+                //    bo1 = true;
+                //}
                 // �������� �θ� ������Ʈ�� �̸� �����ص� ������Ʈ�� �����Ѵ�.
                 clone.transform.parent = motherBuildingObject.transform;
                 // Ÿ�� ������ �����̱� ���� ������ plusX, plusZ�� ���������Ƿ� ���� �����ǿ��� �� ���̰���ŭ�� �ٽ� ����ϰ� ���ش�.

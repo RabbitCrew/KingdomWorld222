@@ -34803,7 +34803,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7327506700320761531}
   m_HandleRect: {fileID: 8988204966701072020}
   m_Direction: 2
-  m_Value: 0.9999998
+  m_Value: 1
   m_Size: 0.25000015
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -36529,6 +36529,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fe4b3fca3218c23449508213d6e51639, type: 3}
   - {fileID: 21300000, guid: 42930815baaa4d4488760176b69ccc5e, type: 3}
   - {fileID: 21300000, guid: 635c7a12094b35a49bd1f51f8c339fdc, type: 3}
+  - {fileID: 21300000, guid: 004ab5075f110cc46805420eb40fc707, type: 3}
+  - {fileID: 21300000, guid: 251a2b53b71839f439d6294b98d22641, type: 3}
+  - {fileID: 21300000, guid: ecf9106837f151344af511a980f750fc, type: 3}
+  - {fileID: 21300000, guid: c98979cedb33f8d468fe39c2bfd3ed5b, type: 3}
+  - {fileID: 21300000, guid: 5106c5b08235e4443a91e285d6d4a363, type: 3}
+  - {fileID: 21300000, guid: f8e5fcb6620590d4da54bfa3120dfe11, type: 3}
 --- !u!114 &6552564940254625659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37804,6 +37810,8 @@ MonoBehaviour:
   - {fileID: 249833567, guid: ffdb731fb93558849a325e75a47942da, type: 3}
   - {fileID: -1104551943, guid: ffdb731fb93558849a325e75a47942da, type: 3}
   - {fileID: -541674754, guid: ffdb731fb93558849a325e75a47942da, type: 3}
+  - {fileID: -1235257861, guid: ffdb731fb93558849a325e75a47942da, type: 3}
+  - {fileID: -1464959579, guid: ffdb731fb93558849a325e75a47942da, type: 3}
   SpawnTime: 10
   CitizenNum: 3
   HouseNum: 0
@@ -38464,7 +38472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 149.99997}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99994}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6976820432232209876

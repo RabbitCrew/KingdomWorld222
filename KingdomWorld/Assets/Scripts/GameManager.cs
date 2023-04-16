@@ -28,9 +28,15 @@ public class GameManager : Resource
     {
         //InitializeGrid(500, 500);
         perlinNoise.InitStart();
-        InitializeGrid(500, 500);
+        Invoke("InitGrid", Time.deltaTime * 3f);
         //startTime = Time.realtimeSinceStartup;
         isDaytime = true;
+    }
+
+    private void InitGrid()
+    {
+        InitializeGrid(500, 500);
+
     }
 
     void Update()

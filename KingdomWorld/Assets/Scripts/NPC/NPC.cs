@@ -487,7 +487,7 @@ public class NPC : NPCScrip
             else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding"))//목수NPC 건설
             {
                 StartCoroutine(Build(0.1f, other));
-                Debug.Log("여기는 몇번 찍힙니까?");
+                //Debug.Log("여기는 몇번 찍힙니까?");
             }else if (this.CompareTag("FarmNPC") && isWeatStart)//농부NPC 밀수확
             {
                 if(other.transform == BuildingNum.transform)//wheat를찾아온거지 wheatfield를 찾아온게아님
