@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2538979524183147578}
   - component: {fileID: -1032215776031185551}
   - component: {fileID: -6441371018507435946}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: An exchange
   m_TagString: AnExchange
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2896196271594747249}
   - component: {fileID: 5031797786253815814}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

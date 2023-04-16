@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8489713658704657409}
   - component: {fileID: 821866293744613281}
   - component: {fileID: 3787451274827604539}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: FabricHouse
   m_TagString: Cloth_house
   m_Icon: {fileID: 0}

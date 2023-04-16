@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8884330963357774745}
   - component: {fileID: 7316316529344106404}
   - component: {fileID: -588798930648443055}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: MineworkerHouse
   m_TagString: Mine_house
   m_Icon: {fileID: 0}
