@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &4595960793686025675
 SpriteRenderer:
@@ -120,8 +120,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.8, y: 2.8, z: 0.20000005}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.8, y: 2.8, z: 1.0575534}
+  m_Center: {x: 0, y: -1.0121425e-15, z: -0.42877668}
 --- !u!54 &4155325346510432260
 Rigidbody:
   m_ObjectHideFlags: 0

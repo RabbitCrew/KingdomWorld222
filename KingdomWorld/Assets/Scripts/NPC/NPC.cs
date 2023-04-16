@@ -234,6 +234,7 @@ public class NPC : NPCScrip
         yield return new WaitForSeconds(delay);
         Destroy(tree);
         treeCuting = false;//나무자르기 완료
+        yield break;
     }
 
     private bool hunting = false;
@@ -497,7 +498,7 @@ public class NPC : NPCScrip
                 }
             }else if(this.CompareTag("FarmNPC") && !isWeatStart && isWeatCarry && HavedWheat > 0)//농부NPC 창고가서 밀넣기
             {
-                if (other.CompareTag("Storage") && other.transform == BuildingNum.transform)
+                if (other.CompareTag("Storage") /*&& other.transform == BuildingNum.transform*/)
                 {
                     GameManager.instance.Wheat += HavedWheat;
                     HavedWheat = 0;
