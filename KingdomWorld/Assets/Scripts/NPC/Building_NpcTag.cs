@@ -35,32 +35,43 @@ public class Building_NpcTag : MonoBehaviour
         NPCFound();
     }
 
-    int count;
+    int IsSetcount;
     int NPCCount;
+
+    int NpcValue = 0;
+
+    Vector3 JobAddBPos;
+
+    private void Start()
+    {
+        JobAddBPos = JobAddB.transform.localPosition;
+    }
 
     void NPCFound()
     {
-        int value = 0;
+        NpcValue = 0;
 
         for (int j = 0; j < GameManager.instance.AllHuman.Count; j++)
         {
             if (GameManager.instance.AllHuman[j].GetComponent<NPC>().BuildingNum == JobBuilding)
             {
-                NPCPanel[value].SetActive(true);
+                NPCPanel[NpcValue].SetActive(true);
 
-                NPCPanel[value].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+                NPCPanel[NpcValue].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
                     GameManager.instance.AllHuman[j].gameObject.name + "\n" + GameManager.instance.AllHuman[j].gameObject.tag;
 
-                JobAddB.transform.GetComponent<RectTransform>().anchoredPosition3D =
-                    JobAddB.transform.GetComponent<RectTransform>().anchoredPosition3D - new Vector3(0, 100, 0);
-                
-                value++;
+                JobAddB.transform.localPosition =
+                    JobAddBPos - new Vector3(0, 100 * (NpcValue + 1), 0);
+
+                NpcValue++;
             }
             else
             {
                 return;
             }
         }
+
+        NpcValue = 0;
     }
 
     void BuildingCheck()
@@ -82,14 +93,9 @@ public class Building_NpcTag : MonoBehaviour
 
                         JobPanel.SetActive(true);
 
-                        for (int j = 2; j > count - 1; j--)
-                        {
-                            NPCPanel[j].SetActive(false);
-                        }
-
                         IsOther = false;
 
-                        count = 0;
+                        IsSetcount = 0;
                         NPCCount = 0;
 
                         if (hits[i].collider.gameObject.tag.Equals("Storage"))
@@ -245,7 +251,7 @@ public class Building_NpcTag : MonoBehaviour
         }
         else if (NPCCount > 0)
         {
-            if (count < 3 && count >= 0)
+            if (IsSetcount < 3 && IsSetcount >= 0)
             {
                 for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
                 {
@@ -260,7 +266,7 @@ public class Building_NpcTag : MonoBehaviour
                             Citizen.BuildingNum = JobBuilding;
                             Citizen.NPCBUildTrigger = true;
 
-                            count++;
+                            IsSetcount++;
 
                             break; 
                         }
@@ -271,7 +277,7 @@ public class Building_NpcTag : MonoBehaviour
                             Citizen.BuildingNum = JobBuilding;
                             Citizen.NPCBUildTrigger = true;
 
-                            count++;
+                            IsSetcount++;
 
                             break;
                         }
@@ -280,15 +286,49 @@ public class Building_NpcTag : MonoBehaviour
             }
         }
 
-        if (count == 3)
+        if (IsSetcount == 3)
         {
             SMassage.SendMessage("MessageQ", "이미 인부의 수가 한계에 도달했습니다.");
         }
     }
 
+    public GameObject MotherBuilding;
+
     public void RemoveJobButton(int value)
     {
         int counts = 0;
+
+        GameObject TargetPos = null;
+
+        for (int i = 0; i < MotherBuilding.transform.childCount; i++)
+        {
+            if(MotherBuilding.transform.GetChild(i).tag == "House")
+            {
+                for (int j = 0; j < GameManager.instance.AllHuman.Count; j++)
+                {
+                    if(GameManager.instance.AllHuman[j].GetComponent<NPC>().BuildingNum == MotherBuilding.transform.GetChild(i))
+                    {
+                        if(counts < 3)
+                        {
+                            counts++;
+                        }
+                        else if(counts == 3)
+                        {
+                            continue;
+                        }
+                    }
+                }
+
+                if(counts < 3)
+                {
+                    TargetPos = MotherBuilding.transform.GetChild(i).gameObject;
+
+                    break;
+                }
+            }
+        }
+
+        counts = 0;
 
         for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
         {
@@ -296,11 +336,18 @@ public class Building_NpcTag : MonoBehaviour
             {
                 if(counts == value)
                 {
-                    GameManager.instance.AllHuman[i].GetComponent<NPC>().tag = "NPC";
+                    GameManager.instance.AllHuman[i].tag = "NPC";
+
+                    GameManager.instance.AllHuman[i].GetComponent<NPC>().BuildingNum = TargetPos;
+
+                    GameManager.instance.AllHuman[i].GetComponent<NPC>().NPCBUildTrigger = true;
 
                     NPCPanel[value].SetActive(false);
 
-                    count--;
+                    JobAddB.transform.localPosition =
+                   JobAddBPos + new Vector3(0, 100 * (NpcValue), 0);
+
+                    IsSetcount--;
                 }
                 else
                 {

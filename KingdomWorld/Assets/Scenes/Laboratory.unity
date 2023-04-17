@@ -1292,6 +1292,7 @@ MonoBehaviour:
   - "\uB300\uC7A5\uC7A5\uC774"
   JobText: {fileID: 424318208}
   OtherJobText: {fileID: 268482883}
+  MotherBuilding: {fileID: 962746208438951359}
 --- !u!1 &846033391
 GameObject:
   m_ObjectHideFlags: 0
@@ -52839,7 +52840,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7091817622124144321}
   m_Direction: 2
   m_Value: 0.9999998
-  m_Size: 0.49999985
+  m_Size: 0.25000012
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
