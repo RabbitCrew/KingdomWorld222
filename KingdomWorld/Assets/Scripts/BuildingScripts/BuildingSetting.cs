@@ -45,6 +45,10 @@ public class BuildingSetting : MonoBehaviour
     void Update()
     {
         npcs = new GameObject[npcCount];
+        if(store == storeMax)
+        {
+            GameManager.instance.FullResourceBuildingList.Add(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
