@@ -116,14 +116,6 @@ public class NPC : NPCScrip
         {
             if (collider.CompareTag(Building))
             {
-                
-                /*if (this.CompareTag("FarmNPC") && GameManager.instance.isDaytime)//Wheat탐색
-                {
-                    BuildingNum = collider.transform.parent.gameObject;
-                    isWeatStart = true;
-                    NPCBUildTrigger = true;
-                    break;
-                }*/
                 if (collider.GetComponent<BuildingSetting>().npcCount <= 3 && GameManager.instance.isDaytime)//3명이하 건물탐색
                 {
                     BuildingNum = collider.gameObject;
@@ -190,21 +182,63 @@ public class NPC : NPCScrip
 
     private bool treeCuting = false;
     Transform Tree = null;
+    private bool isCarryTree = false;
     void WoodCutter()
     {
         if (work)
         {
             if (!treeCuting)//나무탐색
             {
+                if (!isCarryTree && HavedWood == 0)
+                {
+                    Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+                    foreach (Collider collider in colliders)
+                    {
+                        if (collider.CompareTag("tree"))
+                        {
+                            Tree = collider.transform;
+                            ResetPath(this.transform, Tree);
+                            currentPathIndex = 0;
+                            treeCuting = true;
+                            break;
+                        }
+                    }
+                }else if (!isCarryTree && HavedWood > 0)
+                {
+                    ResetPath(this.transform, BuildingNum.transform);
+                    currentPathIndex = 0;
+                    isCarryTree = true;
+                }
+            }
+        }
+        dayTimeResetPath();
+        Move();
+    }
+
+
+    private bool hunting = false;
+    Transform Animal = null;
+    private bool isAnimalCarry = false;
+    void Hunter()
+    {
+        if (!hunting)//동물탐색
+        {
+            if (!isAnimalCarry && HavedAnimal > 0)
+            {
+                ResetPath(this.transform, BuildingNum.transform);
+                currentPathIndex = 0;
+                isAnimalCarry = true;
+            }else if(!isAnimalCarry && HavedAnimal == 0)
+            {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
                 foreach (Collider collider in colliders)
                 {
-                    if (collider.CompareTag("tree"))
+                    if (collider.CompareTag("Animal"))
                     {
-                        Tree = collider.transform;
-                        ResetPath(this.transform, Tree);
+                        Animal = collider.transform;
+                        ResetPath(this.transform, Animal);
                         currentPathIndex = 0;
-                        treeCuting = true;
+                        hunting = true;
                         break;
                     }
                 }
@@ -213,51 +247,8 @@ public class NPC : NPCScrip
         dayTimeResetPath();
         Move();
     }
-    private IEnumerator CuttingTree(float delay, Transform tree)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(tree);
-        Tree = null;
-        treeCuting = false;//나무자르기 완료
-        yield break;
-    }
 
-    private bool hunting = false;
-    Transform animal = null;
-    void Hunter()
-    {
-        if (!hunting)//동물탐색
-        {
-            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-            foreach (Collider collider in colliders)
-            {
-                if (collider.CompareTag("Animal"))
-                {
-                    animal = collider.transform;
-                    ResetPath(this.transform, animal);
-                    currentPathIndex = 0;
-                    hunting = true;
-                    break;
-                }
-            }
-        }
-        else
-        {
-            if (this.transform.position == animal.position)
-            {
-                StartCoroutine(HuntingAnimal(3f, animal));
-            }
-        }
-        dayTimeResetPath();
-        Move();
-    }
 
-    private IEnumerator HuntingAnimal(float delay, Transform animal)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(animal);
-        hunting = false;//동물 사냥 완료
-    }
 
     bool isWeatStart = false;
     bool isWeatCarry = false;
@@ -494,9 +485,23 @@ public class NPC : NPCScrip
             }else if (this.CompareTag("WoodCutter") && other.CompareTag("tree") && other.transform == Tree)//나무꾼
             {
                 StartCoroutine(CuttingTree(3, Tree.transform));
-            }else if (this.CompareTag("StorageNPC") && other.CompareTag(fullbuilding.tag))
+            }else if (this.CompareTag("WoodCutter") && other.CompareTag("WoodCutter_house") && isCarryTree)//나무꾼 나무꾼건물에 나무넣기
+            {
+                GameManager.instance.Wood += HavedWood;
+                HavedWood = 0;
+                isCarryTree = false;
+            }
+            else if (this.CompareTag("StorageNPC") && other.CompareTag(fullbuilding.tag))
             {
                 //fullbuilding자원 꺼내기
+            }else if(this.CompareTag("Hunter") && Animal.transform == other.transform && hunting)
+            {
+                StartCoroutine(HuntingAnimal(3f, Animal));
+            }else if(this.CompareTag("Hunter") && HavedAnimal > 0 && isAnimalCarry && other.transform == BuildingNum.transform)
+            {
+                GameManager.instance.Meat += HavedAnimal;
+                HavedAnimal = 0;
+                isAnimalCarry = false;
             }
         }
     }
@@ -538,5 +543,20 @@ public class NPC : NPCScrip
                 yield break;
             }
         }
+    }
+    private IEnumerator CuttingTree(float delay, Transform tree)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(tree);
+        Tree = null;
+        treeCuting = false;//나무자르기 완료
+        yield break;
+    }
+    private IEnumerator HuntingAnimal(float delay, Transform animal)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(animal);
+        Animal = null;
+        hunting = false;//동물 사냥 완료
     }
 }
