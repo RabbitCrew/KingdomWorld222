@@ -55,27 +55,27 @@ public class BuildingNPCSet : MonoBehaviour
         }
         else if (NPC.tag == "Smith")
         {
-
+            animator.SetInteger("IsWearingClothes", 11);
         }
         else if (NPC.tag == "FabricNPC")
         {
-
+            animator.SetInteger("IsWearingClothes", 8);
         }
         else if (NPC.tag == "CheeseNPC")
         {
-
+            animator.SetInteger("IsWearingClothes", 7);
         }
         else if (NPC.tag == "HamNPC")
         {
-
+            animator.SetInteger("IsWearingClothes", 9);
         }
         else if (NPC.tag == "StoneMineWorker")
         {
-
+            animator.SetInteger("IsWearingClothes", 12);
         }
         else if (NPC.tag == "IronMineWorker")
         {
-
+            animator.SetInteger("IsWearingClothes", 10);
         }
         else if (NPC.tag == "StorageNPC")
         {

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Setgrid : MonoBehaviour
 {
     // 그리드 크기
-    private int _gridWidth;
-    private int _gridHeight;
+    public int _gridWidth;
+    public int _gridHeight;
 
     // 그리드 노드들
     //월드 그리드를 위한 노드 배열
@@ -73,7 +73,7 @@ public class Setgrid : MonoBehaviour
                     else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
                     {
                         weight = 100;
-                        iswalkable = true;
+                        iswalkable = false;
                     }
                     else if (hit.collider.CompareTag("tree"))
                     {
@@ -89,6 +89,53 @@ public class Setgrid : MonoBehaviour
             }
         }
     }
+    //건물 생성시 맵전체를 초기화하면 렉일리니 간소화 함수
+    public void SlimInitializeGrid(int width, int height, Transform transform)
+    {
+        for (int x = Mathf.RoundToInt(transform.position.x) - width; x < Mathf.RoundToInt(transform.position.x) + width; x++)
+        {
+            for (int z = Mathf.RoundToInt(transform.position.z) - height; z < Mathf.RoundToInt(transform.position.z) + height; z++)
+            {
+                Vector3 worldPosition = new Vector3(x, 0, z);
+                int weight = 1;
+                bool iswalkable = true;
+                // 현재 위치가 거리인지 확인
+                RaycastHit hit;
+                if (Physics.Raycast(worldPosition + Vector3.up * 20, Vector3.down, out hit, Mathf.Infinity))
+                {
+                    // 오브젝트가 거리 레이어에 있다면 가중치를 1로 설정
+                    if (hit.collider.CompareTag("Street"))
+                    {
+                        weight = 1;
+                        iswalkable = true;
+                    }
+                    // 오브젝트가 walkable 레이어에 있다면 가중치를 10로 설정
+                    else if (hit.collider.CompareTag("Walkable"))
+                    {
+                        weight = 10;
+                        iswalkable = true;
+                    }
+                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
+                    {
+                        weight = 100;
+                        iswalkable = true;
+                    }
+                    else if (hit.collider.CompareTag("tree"))
+                    {
+                        weight = 100;
+                        iswalkable = false;
+                    }
+                    else if (hit.collider.CompareTag("NotWalkable"))
+                    {
+                        weight = 100;
+                        iswalkable = false;
+                    }
+                }
+                _grid[x + _gridWidth, z + _gridHeight] = new Node(x, z, worldPosition, weight, iswalkable);
+            }
+        }
+    }
+
     public List<Node> FindPath(Vector3 startPos, Vector3 endPos)//startPos에는 플레이어위치, endPos에는 목표위치
     {
         Node startNode = _grid[Mathf.RoundToInt(startPos.x) + _gridWidth, Mathf.RoundToInt(startPos.z) + _gridHeight];

@@ -11,10 +11,12 @@ public class GameManager : Resource
     public float uiSizeY { get; private set; }
     public float timeSpeed { get; set; }
 
+
     public List<GameObject> RestHuman = new List<GameObject>();
     public List<GameObject> WheatList = new List<GameObject>();
     public List<GameObject> WaitingBuildingList = new List<GameObject>();
     public List<GameObject> StorageList = new List<GameObject>();
+    public List<GameObject> FullResourceBuildingList = new List<GameObject>();
     public static GameManager instance;
     private void Awake()
     {
@@ -33,10 +35,13 @@ public class GameManager : Resource
         isDaytime = true;
     }
 
+    private void expensed()
+    {
+        Food -= AllHuman.Count / 10;
+    }
     private void InitGrid()
     {
         InitializeGrid(500, 500);
-
     }
 
     void Update()
@@ -48,6 +53,7 @@ public class GameManager : Resource
         {
             //startTime = Time.realtimeSinceStartup;
             dayNightRatio = 0f;
+            expensed();
             isDaytime = true;
         }
         else if (dayNightRatio >= 2f / 3f)

@@ -170,25 +170,17 @@ public class NPC : NPCScrip
     {
         if (GameManager.instance.isDaytime && !isCargoWorkStart)
         {
-            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-            foreach (Collider collider in colliders)
+            if(GameManager.instance.FullResourceBuildingList.Count > 0)
             {
-                fullbuilding = collider.transform;
-                if (fullbuilding.GetComponent<BuildingSetting>() != null)
-                {
-                    if (fullbuilding.GetComponent<BuildingSetting>().store == fullbuilding.GetComponent<BuildingSetting>().storeMax)
-                    {
-                        isCargoWorkStart = true;//운반시작
-                        ResetPath(this.transform, fullbuilding);
-                        currentPathIndex = 0;
-                        break;
-                    }
-                }
+                isCargoWorkStart = true;
+                fullbuilding = GameManager.instance.FullResourceBuildingList[0].transform;
+                GameManager.instance.FullResourceBuildingList.RemoveAt(0);
+                ResetPath(this.transform, fullbuilding);
+                currentPathIndex = 0;
             }
         }
         if (GameManager.instance.isDaytime && (this.transform.position == fullbuilding.position) && isCargoWorkStart)
         {
-
             /*건물에서 무슨자원인지 알아야함 자원꺼내기*/
         }
         dayTimeResetPath();
@@ -197,7 +189,7 @@ public class NPC : NPCScrip
         
 
     private bool treeCuting = false;
-    Transform tree = null;
+    Transform Tree = null;
     void WoodCutter()
     {
         if (work)
@@ -209,22 +201,14 @@ public class NPC : NPCScrip
                 {
                     if (collider.CompareTag("tree"))
                     {
-                        tree = collider.transform;
-                        ResetPath(this.transform, tree);
+                        Tree = collider.transform;
+                        ResetPath(this.transform, Tree);
                         currentPathIndex = 0;
                         treeCuting = true;
                         break;
                     }
                 }
             }
-            else
-            {
-                if (this.transform.position == tree.position)
-                {
-                    StartCoroutine(CuttingTree(3f, tree));
-                }
-            }
-
         }
         dayTimeResetPath();
         Move();
@@ -233,7 +217,9 @@ public class NPC : NPCScrip
     {
         yield return new WaitForSeconds(delay);
         Destroy(tree);
+        Tree = null;
         treeCuting = false;//나무자르기 완료
+        yield break;
     }
 
     private bool hunting = false;
@@ -274,33 +260,36 @@ public class NPC : NPCScrip
     }
 
     bool isWeatStart = false;
+    bool isWeatCarry = false;
+    public GameObject WheatfieldGameObject = null;
     void Farmer()
     {
-        if (!isWeatStart)//밀탐색
+        BuildingNum = HouseTr.gameObject;
+        if (!isWeatStart && GameManager.instance.isDaytime)//밀탐색
         {
-            if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)
+            if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)//밀이 있고 밀을 갖고있지않으면
             {
-                BuildingNum = GameManager.instance.WheatList[0].transform.parent.gameObject;
-                GameManager.instance.WheatList.RemoveAt(0);
                 isWeatStart = true;
-                NPCBUildTrigger = true;
+                WheatfieldGameObject = GameManager.instance.WheatList[0].transform.parent.gameObject;//wheatfield저장
+                GameManager.instance.WheatList.RemoveAt(0);
+                ResetPath(this.transform, WheatfieldGameObject.transform);
+                currentPathIndex = 0;
             }
-            else if(GameManager.instance.StorageList.Count > 0)
+            else if(GameManager.instance.StorageList.Count > 0 && !isWeatCarry && HavedWheat > 0)//창고가 있고 밀을 가지고 있으면
             {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
                 foreach (var collider in colliders)
                 {
                     if (collider.CompareTag("Storage"))
                     {
-                        BuildingNum = collider.gameObject;
-                        NPCBUildTrigger = true;
+                        ResetPath(this.transform, collider.transform);
+                        currentPathIndex = 0;
+                        isWeatCarry = true;
                         break;
                     }
                 }
             }
-
         }
-        
         dayTimeResetPath();
         Move();
     }
@@ -490,21 +479,28 @@ public class NPC : NPCScrip
                 //Debug.Log("여기는 몇번 찍힙니까?");
             }else if (this.CompareTag("FarmNPC") && isWeatStart)//농부NPC 밀수확
             {
-                if(other.transform == BuildingNum.transform)//wheat를찾아온거지 wheatfield를 찾아온게아님
+                if(other.transform == WheatfieldGameObject.transform)
                 {
-                    StartCoroutine(Wheat(3f, other));//3초뒤 밀수확
+                    StartCoroutine(Wheat(3f, WheatfieldGameObject));//3초뒤 밀수확
                 }
-            }else if(this.CompareTag("FarmNPC") && !isWeatStart)//농부NPC 창고가서 밀넣기
+            }else if(this.CompareTag("FarmNPC") && !isWeatStart && isWeatCarry && HavedWheat > 0)//농부NPC 창고가서 밀넣기
             {
-                if (other.CompareTag("Storage") && other.transform == BuildingNum.transform)
+                if (other.CompareTag("Storage") /*&& other.transform == BuildingNum.transform*/)
                 {
                     GameManager.instance.Wheat += HavedWheat;
                     HavedWheat = 0;
+                    isWeatCarry = false;
                 }
+            }else if (this.CompareTag("WoodCutter") && other.CompareTag("tree") && other.transform == Tree)//나무꾼
+            {
+                StartCoroutine(CuttingTree(3, Tree.transform));
+            }else if (this.CompareTag("StorageNPC") && other.CompareTag(fullbuilding.tag))
+            {
+                //fullbuilding자원 꺼내기
             }
         }
     }
-    IEnumerator Wheat(float delay, Collider wheatfield)//밀수확 코루틴
+    IEnumerator Wheat(float delay, GameObject wheatfield)//밀수확 코루틴
     {
         yield return new WaitForSeconds(delay);
         Debug.Log("밀파괴NPC코루틴");
@@ -512,6 +508,7 @@ public class NPC : NPCScrip
         wheatfield.GetComponent<Cornfield>().cultureCheck = false;
         HavedWheat += 1;
         isWeatStart = false;
+        WheatfieldGameObject = null;
     }
     IEnumerator Build(float delay, Collider building)
     {
@@ -538,7 +535,6 @@ public class NPC : NPCScrip
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
                 Building = null;
-                //StopCoroutine("Build");
                 yield break;
             }
         }

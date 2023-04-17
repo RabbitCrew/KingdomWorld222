@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8572090392927511788}
   - component: {fileID: -7036082813108424652}
   - component: {fileID: -5628356651492552661}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: wheat
   m_TagString: Wheat
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8273954612526169901}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -53, y: 0, z: -292.6}
+  m_LocalPosition: {x: 131, y: 0, z: 75.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3666426271718097715}
   - component: {fileID: 5165641087673085271}
   - component: {fileID: 9135478576901851922}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: HunterHouse
   m_TagString: Hunter_house
   m_Icon: {fileID: 0}
@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!212 &4136884036804432648
 SpriteRenderer:
@@ -121,8 +121,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8, y: 1.8, z: 0.20000005}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.8, y: 1.8, z: 0.9150771}
+  m_Center: {x: 0, y: 1.5282177e-15, z: -0.3575387}
 --- !u!54 &3666426271718097715
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -33,6 +33,7 @@ public class BuildingSetting : MonoBehaviour
         BuildingHp = 10;
         buildingShield = 0;
         maxBuildingShield = 100;
+        
         //GameManager.instance.InitializeGrid(500, 500);
     }
     void Start()
@@ -44,6 +45,10 @@ public class BuildingSetting : MonoBehaviour
     void Update()
     {
         npcs = new GameObject[npcCount];
+        if(store == storeMax)
+        {
+            GameManager.instance.FullResourceBuildingList.Add(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

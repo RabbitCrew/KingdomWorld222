@@ -27,6 +27,7 @@ public class WaitingBuilding : MonoBehaviour
         buildingRange.SetActive(true);
         material = GetComponent<SpriteRenderer>().material;
         material.SetFloat("_Fade", realFade);
+        GameManager.instance.SlimInitializeGrid(10, 10, this.transform);
 
     }
 
