@@ -197,7 +197,7 @@ public class NPC : NPCScrip
         
 
     private bool treeCuting = false;
-    Transform tree = null;
+    Transform Tree = null;
     void WoodCutter()
     {
         if (work)
@@ -209,22 +209,14 @@ public class NPC : NPCScrip
                 {
                     if (collider.CompareTag("tree"))
                     {
-                        tree = collider.transform;
-                        ResetPath(this.transform, tree);
+                        Tree = collider.transform;
+                        ResetPath(this.transform, Tree);
                         currentPathIndex = 0;
                         treeCuting = true;
                         break;
                     }
                 }
             }
-            else
-            {
-                if (this.transform.position == tree.position)
-                {
-                    StartCoroutine(CuttingTree(3f, tree));
-                }
-            }
-
         }
         dayTimeResetPath();
         Move();
@@ -233,6 +225,7 @@ public class NPC : NPCScrip
     {
         yield return new WaitForSeconds(delay);
         Destroy(tree);
+        Tree = null;
         treeCuting = false;//나무자르기 완료
         yield break;
     }
@@ -504,6 +497,9 @@ public class NPC : NPCScrip
                     HavedWheat = 0;
                     isWeatCarry = false;
                 }
+            }else if (this.CompareTag("WoodCutter") && other.CompareTag("tree") && other.transform == Tree)
+            {
+                StartCoroutine(CuttingTree(3, Tree.transform));
             }
         }
     }
