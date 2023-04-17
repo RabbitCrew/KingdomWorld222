@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3f8229de296b5394ab17dd4e5a792223
+guid: c882a76fc82bbbd41b813448d52a3b9c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,12 +119,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_0
+      name: IronMiner_0
       rect:
         serializedVersion: 2
         x: 0
         y: 51
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -133,19 +133,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bf4201d3ef470e448777342c7a568dd
-      internalID: 2038304707
+      spriteID: 1221100a070fc7a4c9273916c9c37395
+      internalID: -941108611
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_1
+      name: IronMiner_1
       rect:
         serializedVersion: 2
-        x: 11
+        x: 10
         y: 51
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -154,19 +154,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4e6b1407d4610f40b26f19e1ac2e02d
-      internalID: -1548365096
+      spriteID: 29489762b83a1d949ade84f24dee422f
+      internalID: -593778784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_2
+      name: IronMiner_2
       rect:
         serializedVersion: 2
-        x: 22
+        x: 20
         y: 51
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -175,19 +175,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ce244459c21f7c42974b348e89c3448
-      internalID: -499177632
+      spriteID: 9d0f3aff48d783e4cbe7dcbc0399a3c6
+      internalID: -2142271795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_3
+      name: IronMiner_3
       rect:
         serializedVersion: 2
-        x: 33
+        x: 30
         y: 51
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -196,19 +196,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14301467e2c75fd42b9657ddb076ca83
-      internalID: -2042899014
+      spriteID: a62cd557e8887b040b8b38151b09d76d
+      internalID: 1304738925
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_4
+      name: IronMiner_4
       rect:
         serializedVersion: 2
-        x: 44
+        x: 40
         y: 51
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -217,40 +217,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce8bf7671ddfaf04ab3cc3f1021fcbb4
-      internalID: 1941309815
+      spriteID: 1bc55d4480a31d740b06310247e9d894
+      internalID: -1541816775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_5
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 51
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e100ae00a9888b945944f6121c54100f
-      internalID: 572882660
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_6
+      name: IronMiner_5
       rect:
         serializedVersion: 2
         x: 0
         y: 34
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -259,19 +238,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6b65e84aec362cb4789842cdb0451c00
-      internalID: -523929152
+      spriteID: 9e28dc55857cfad4bbdad0591ea90678
+      internalID: 1400527243
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_7
+      name: IronMiner_6
       rect:
         serializedVersion: 2
-        x: 11
+        x: 10
         y: 34
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -280,19 +259,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 035a46b1167ff69418e6fd9d9dd9bf4e
-      internalID: -688537355
+      spriteID: ff809eeb1c5a17b44998cba65ed24164
+      internalID: -481879581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_8
+      name: IronMiner_7
       rect:
         serializedVersion: 2
-        x: 22
+        x: 20
         y: 34
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -301,19 +280,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 974ea55af8d08764da17d1ba109cb1fe
-      internalID: -773491006
+      spriteID: 16d47c523b3faf04abb83579d644f94e
+      internalID: -1724826207
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_9
+      name: IronMiner_8
       rect:
         serializedVersion: 2
-        x: 33
+        x: 30
         y: 34
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -322,19 +301,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f58b3262a2ee34341a5d688fc4e8a809
-      internalID: -498231944
+      spriteID: 27fd49ce760959f4ab6fc3b1a87feaa2
+      internalID: -956490147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_10
+      name: IronMiner_9
       rect:
         serializedVersion: 2
-        x: 44
+        x: 40
         y: 34
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -343,40 +322,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5bcb69e6eafd74b4ab1d031499c53e72
-      internalID: 2139582604
+      spriteID: 807dbba830f461e4f92dc09140e38f87
+      internalID: -1815531852
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_11
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 34
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 896d849307b34b74aa62b619b8495dd0
-      internalID: -1762876655
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_12
+      name: IronMiner_10
       rect:
         serializedVersion: 2
         x: 0
         y: 17
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -385,19 +343,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d25fefd4af1ae64a9928f28769e4c28
-      internalID: -588230546
+      spriteID: fca3b145072fbe84b953cb91a5232f85
+      internalID: -982758394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_13
+      name: IronMiner_11
       rect:
         serializedVersion: 2
-        x: 11
+        x: 10
         y: 17
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -406,19 +364,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d53b827cfe61a14486107fadcb550db
-      internalID: -671688131
+      spriteID: 980e016a7f2283e43b18b969381e456e
+      internalID: -1025274858
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_14
+      name: IronMiner_12
       rect:
         serializedVersion: 2
-        x: 22
+        x: 20
         y: 17
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -427,19 +385,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19364a7d3737ce84588efa438b1a52c2
-      internalID: 817234959
+      spriteID: c810fc889438be24d94ec651bd8fe914
+      internalID: 1164594439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_15
+      name: IronMiner_13
       rect:
         serializedVersion: 2
-        x: 33
+        x: 30
         y: 17
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -448,19 +406,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a6f64bcb42bcee48b9df0a342c61abe
-      internalID: -1128078431
+      spriteID: e930fa97809b0d94f818354ae75b42bc
+      internalID: 327013915
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_16
+      name: IronMiner_14
       rect:
         serializedVersion: 2
-        x: 44
+        x: 40
         y: 17
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -469,40 +427,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 66c94e5caabe6de4cbbdc437fb3918df
-      internalID: 1447826903
+      spriteID: ecec1ff1e5841d54c8658da990e480d4
+      internalID: -426747971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_17
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 17
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9835fc5f817780047b35309e1d6bae9d
-      internalID: -1195990409
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_18
+      name: IronMiner_15
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -511,19 +448,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b855439fe9fbda04caa7b5b9e800aa76
-      internalID: 1786161203
+      spriteID: 47369ed20459da24a99bea85b1ee181b
+      internalID: 96852333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_19
+      name: IronMiner_16
       rect:
         serializedVersion: 2
-        x: 11
+        x: 10
         y: 0
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -532,19 +469,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c954b1e36fae6194682ecc1c1ebf2476
-      internalID: -259974875
+      spriteID: 7530fceeba6a4c945a22de9f5764d945
+      internalID: 521450836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_20
+      name: IronMiner_17
       rect:
         serializedVersion: 2
-        x: 22
+        x: 20
         y: 0
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -553,19 +490,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 294862a9683c60446b32045e4e385222
-      internalID: -1453922266
+      spriteID: a1edddc834c71d44e9a9898850033608
+      internalID: 1191773282
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_21
+      name: IronMiner_18
       rect:
         serializedVersion: 2
-        x: 33
+        x: 30
         y: 0
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -574,19 +511,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 057a61655cbdb2b44b99d9e40b1cbeea
-      internalID: 612710289
+      spriteID: 0f08ead9fd87ea04baa52073d86da90e
+      internalID: -746256667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_22
+      name: IronMiner_19
       rect:
         serializedVersion: 2
-        x: 44
+        x: 40
         y: 0
-        width: 11
+        width: 10
         height: 17
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -595,29 +532,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b06b29d564d73d4ca4739f51be150a1
-      internalID: -22238350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WareHouseKeeperOuch 1_23
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 0
-        width: 11
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0ea4efb8c22b0e04ea8a39f8cb1e79d1
-      internalID: 739213686
+      spriteID: 91097bc0830ed724587d76ac83d5664b
+      internalID: 627527444
       vertices: []
       indices: 
       edges: []
@@ -625,7 +541,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 17811b2d58045a7428e8afac82d77e7e
+    spriteID: 5d14ba0acdb47874da4eaf5159ea0dd2
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +549,26 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WareHouseKeeperOuch 1_0: 2038304707
-      WareHouseKeeperOuch 1_1: -1548365096
-      WareHouseKeeperOuch 1_10: 2139582604
-      WareHouseKeeperOuch 1_11: -1762876655
-      WareHouseKeeperOuch 1_12: -588230546
-      WareHouseKeeperOuch 1_13: -671688131
-      WareHouseKeeperOuch 1_14: 817234959
-      WareHouseKeeperOuch 1_15: -1128078431
-      WareHouseKeeperOuch 1_16: 1447826903
-      WareHouseKeeperOuch 1_17: -1195990409
-      WareHouseKeeperOuch 1_18: 1786161203
-      WareHouseKeeperOuch 1_19: -259974875
-      WareHouseKeeperOuch 1_2: -499177632
-      WareHouseKeeperOuch 1_20: -1453922266
-      WareHouseKeeperOuch 1_21: 612710289
-      WareHouseKeeperOuch 1_22: -22238350
-      WareHouseKeeperOuch 1_23: 739213686
-      WareHouseKeeperOuch 1_3: -2042899014
-      WareHouseKeeperOuch 1_4: 1941309815
-      WareHouseKeeperOuch 1_5: 572882660
-      WareHouseKeeperOuch 1_6: -523929152
-      WareHouseKeeperOuch 1_7: -688537355
-      WareHouseKeeperOuch 1_8: -773491006
-      WareHouseKeeperOuch 1_9: -498231944
+      IronMiner_0: -941108611
+      IronMiner_1: -593778784
+      IronMiner_10: -982758394
+      IronMiner_11: -1025274858
+      IronMiner_12: 1164594439
+      IronMiner_13: 327013915
+      IronMiner_14: -426747971
+      IronMiner_15: 96852333
+      IronMiner_16: 521450836
+      IronMiner_17: 1191773282
+      IronMiner_18: -746256667
+      IronMiner_19: 627527444
+      IronMiner_2: -2142271795
+      IronMiner_3: 1304738925
+      IronMiner_4: -1541816775
+      IronMiner_5: 1400527243
+      IronMiner_6: -481879581
+      IronMiner_7: -1724826207
+      IronMiner_8: -956490147
+      IronMiner_9: -1815531852
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

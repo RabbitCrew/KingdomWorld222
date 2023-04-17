@@ -62,6 +62,7 @@ public class SpawnCitizen : MonoBehaviour
                 CSpawn.GetComponent<SpriteRenderer>().sprite = CtSpriteList[RandomSprite()];
 
                 CitizenList.Add(CSpawn); //시민 생성 후 리스트에 넣음.
+                GameManager.instance.AllHuman.Add(CSpawn);
 
                 CSpawn.SendMessage("SetPAni", Count);
 

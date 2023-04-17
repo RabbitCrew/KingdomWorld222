@@ -6,7 +6,6 @@ using TMPro;
 
 public class Building_NpcTag : MonoBehaviour
 {
-    public SpawnCitizen npc;
     public NPC Citizen;
 
     private float distance = 50f;
@@ -17,6 +16,7 @@ public class Building_NpcTag : MonoBehaviour
     public GameObject[] NPCPanel;
     public GameObject SMassage;
     GameObject JobBuilding;
+    public GameObject JobAddB;
 
     [SerializeField] string[] InputJobText;
 
@@ -42,16 +42,23 @@ public class Building_NpcTag : MonoBehaviour
     {
         int value = 0;
 
-        for (int j = 0; j < npc.CitizenList.Count; j++)
+        for (int j = 0; j < GameManager.instance.AllHuman.Count; j++)
         {
-            if (npc.CitizenList[j].GetComponent<NPC>().BuildingNum == JobBuilding)
+            if (GameManager.instance.AllHuman[j].GetComponent<NPC>().BuildingNum == JobBuilding)
             {
                 NPCPanel[value].SetActive(true);
 
                 NPCPanel[value].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-                    npc.CitizenList[j].GetComponent<NPC>().name;
+                    GameManager.instance.AllHuman[j].gameObject.name + "\n" + GameManager.instance.AllHuman[j].gameObject.tag;
+
+                JobAddB.transform.GetComponent<RectTransform>().anchoredPosition3D =
+                    JobAddB.transform.GetComponent<RectTransform>().anchoredPosition3D - new Vector3(0, 100, 0);
                 
                 value++;
+            }
+            else
+            {
+                return;
             }
         }
     }
@@ -212,7 +219,7 @@ public class Building_NpcTag : MonoBehaviour
     {
         NPcButton.SetActive(true);
 
-        if(IsOther == true)
+        if (IsOther == true)
         {
             NPcButtonOther.SetActive(true);
         }
@@ -220,40 +227,60 @@ public class Building_NpcTag : MonoBehaviour
 
     public void jobButton(bool value)
     {
-        if (count < 3)
+        int NPCCount = 0;
+
+        for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
         {
-            for (int i = 0; i < npc.CitizenList.Count; i++)
+            if (GameManager.instance.AllHuman[i].tag == "NPC")
             {
-                if (npc.CitizenList[i].tag == "NPC")
+                GameManager.instance.RestHuman[NPCCount] = GameManager.instance.AllHuman[i];
+
+                NPCCount++;
+            }
+        }
+
+        if (NPCCount == 0)
+        {
+            SMassage.SendMessage("MessageQ", "현재 배당 가능한 시민이 없습니다.");
+        }
+        else if (NPCCount > 0)
+        {
+            if (count < 3 && count >= 0)
+            {
+                for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
                 {
-                    Citizen = npc.CitizenList[i].GetComponent<NPC>();
-
-                    if (value == false)
+                    if (GameManager.instance.AllHuman[i].tag == "NPC")
                     {
-                        npc.CitizenList[i].gameObject.tag = Job;
+                        Citizen = GameManager.instance.AllHuman[i].gameObject.GetComponent<NPC>();
 
-                        Citizen.BuildingNum = JobBuilding;
-                        Citizen.NPCBUildTrigger = true;
+                        if (value == false)
+                        {
+                            GameManager.instance.AllHuman[i].gameObject.tag = Job;
 
-                        count++;
+                            Citizen.BuildingNum = JobBuilding;
+                            Citizen.NPCBUildTrigger = true;
 
-                        break;
-                    }
-                    else if (value == true)
-                    {
-                        npc.CitizenList[i].gameObject.tag = OtherJob;
+                            count++;
 
-                        Citizen.BuildingNum = JobBuilding;
-                        Citizen.NPCBUildTrigger = true;
+                            break; 
+                        }
+                        else if (value == true)
+                        {
+                            GameManager.instance.AllHuman[i].gameObject.tag = OtherJob;
 
-                        count++;
+                            Citizen.BuildingNum = JobBuilding;
+                            Citizen.NPCBUildTrigger = true;
 
-                        break;
+                            count++;
+
+                            break;
+                        }
                     }
                 }
             }
         }
-        else if(count >= 3)
+
+        if (count == 3)
         {
             SMassage.SendMessage("MessageQ", "이미 인부의 수가 한계에 도달했습니다.");
         }
@@ -263,17 +290,15 @@ public class Building_NpcTag : MonoBehaviour
     {
         int counts = 0;
 
-        for (int i = 0; i < npc.transform.childCount; i++)
+        for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
         {
-            if(npc.transform.GetChild(i).GetComponent<NPC>().BuildingNum == JobBuilding)
+            if(GameManager.instance.AllHuman[i].GetComponent<NPC>().BuildingNum == JobBuilding)
             {
                 if(counts == value)
                 {
-                    npc.transform.GetChild(i).GetComponent<NPC>().tag = "NPC";
+                    GameManager.instance.AllHuman[i].GetComponent<NPC>().tag = "NPC";
 
-                    Citizen = npc.transform.GetChild(i).GetComponent<NPC>();
-
-                    Citizen.NPCBUildTrigger = false;
+                    NPCPanel[value].SetActive(false);
 
                     count--;
                 }
@@ -304,10 +329,5 @@ public class Building_NpcTag : MonoBehaviour
     public void ExitButton()
     {
         JobPanel.SetActive(false);
-
-        for (int j = 2; j > count - 1; j--)
-        {
-            NPCPanel[j].SetActive(false);
-        }
     }
 }

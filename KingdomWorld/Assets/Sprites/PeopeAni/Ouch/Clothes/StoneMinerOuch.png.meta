@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3eeb94177d41fe744988acb96d98ea61
+guid: a42fe96099693f8448687b505cd856af
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: WoodCutterOuch 1_0
+      name: StoneMinerOuch_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +133,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6df51a01ad24a344580697d7c1136129
-      internalID: -1432416927
+      spriteID: 191f8c3552196744781c48073ffbd69b
+      internalID: -1750903072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_1
+      name: StoneMinerOuch_1
       rect:
         serializedVersion: 2
         x: 11
@@ -154,14 +154,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea3c6799770cef2439f8b674d4eb7242
-      internalID: 1620145259
+      spriteID: 86661179a52497749be0238b9b302ea7
+      internalID: 1663418638
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_2
+      name: StoneMinerOuch_2
       rect:
         serializedVersion: 2
         x: 22
@@ -175,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7b8ca4f6493d42845abb5344737b5b67
-      internalID: -412663223
+      spriteID: c7886de2c8ba2c544bbd0cd5165b5dca
+      internalID: 1294497669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_3
+      name: StoneMinerOuch_3
       rect:
         serializedVersion: 2
         x: 33
@@ -196,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fded52c83f0ce8438a3e9bcc625a06a
-      internalID: -540652913
+      spriteID: 68c84c0a8a2317b4dafefdb9332d4fe8
+      internalID: 849605908
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_4
+      name: StoneMinerOuch_4
       rect:
         serializedVersion: 2
         x: 44
@@ -217,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e699129fdee529e4b84eeadd2e4479dd
-      internalID: -1849923770
+      spriteID: 1dfd8c2f2fa411e42b054a948f1d0a79
+      internalID: -948402011
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_5
+      name: StoneMinerOuch_5
       rect:
         serializedVersion: 2
         x: 55
@@ -238,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7937c09d36603994884243e5bcf62e78
-      internalID: -855218069
+      spriteID: 729c5a849efaa5848b8b50fc0c7b1d65
+      internalID: 62825066
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_6
+      name: StoneMinerOuch_6
       rect:
         serializedVersion: 2
         x: 0
@@ -259,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca1f62c1458b3c346ac6c5e599557709
-      internalID: -1078313713
+      spriteID: 9832ba36a60d6d14b82aa498ba03863e
+      internalID: -535227373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_7
+      name: StoneMinerOuch_7
       rect:
         serializedVersion: 2
         x: 11
@@ -280,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0a54507220813540abbbd3ade880995
-      internalID: -1707537522
+      spriteID: 9b9e7af6957ee29439a980765b8849d7
+      internalID: -1486667354
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_8
+      name: StoneMinerOuch_8
       rect:
         serializedVersion: 2
         x: 22
@@ -301,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0ae321ea2a6ce346a7ecccbd55c700c
-      internalID: 1434271243
+      spriteID: a1814b8a98751cd40b7e5af98118fbc1
+      internalID: 2007330043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_9
+      name: StoneMinerOuch_9
       rect:
         serializedVersion: 2
         x: 33
@@ -322,14 +322,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bb66e6f52dce4a646ac7d2daf7218e47
-      internalID: 2001817180
+      spriteID: 69e0e4cd4ec22da4a85a665f214ebaa8
+      internalID: -670108854
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_10
+      name: StoneMinerOuch_10
       rect:
         serializedVersion: 2
         x: 44
@@ -343,14 +343,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 579f491ee4a2fa24eac9e1e2631a6c32
-      internalID: 1526330575
+      spriteID: 81ab6e0dd4268b8469ed12e455837190
+      internalID: 701318766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_11
+      name: StoneMinerOuch_11
       rect:
         serializedVersion: 2
         x: 55
@@ -364,14 +364,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19b9dd5c5a8bb85489dc93f418c57cc9
-      internalID: -1483021823
+      spriteID: c30ddf3d9f0444742804b504868bc40c
+      internalID: -746529217
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_12
+      name: StoneMinerOuch_12
       rect:
         serializedVersion: 2
         x: 0
@@ -385,14 +385,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45e9bc9e78949334889e2641a5e004b6
-      internalID: 1079956217
+      spriteID: 2bd712b4941b40140b7ae06d5990a11c
+      internalID: -144858242
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_13
+      name: StoneMinerOuch_13
       rect:
         serializedVersion: 2
         x: 11
@@ -406,14 +406,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9167d42ce9e7ce84a899f46b93f7bedf
-      internalID: 639683112
+      spriteID: 83bc58b192412984897d7fb2df9255af
+      internalID: 1892758428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_14
+      name: StoneMinerOuch_14
       rect:
         serializedVersion: 2
         x: 22
@@ -427,14 +427,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be1458b05e2d8554fa7abcdd8fba3cd5
-      internalID: -724750927
+      spriteID: 58b6cbfbc13b78445a5c595c76bb0647
+      internalID: 899064715
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_15
+      name: StoneMinerOuch_15
       rect:
         serializedVersion: 2
         x: 33
@@ -448,14 +448,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ee0ca8072f9d7a4b821c1ff45c71ef9
-      internalID: 2081429682
+      spriteID: a9b69992c36e4ae4daa6f49f696f7d21
+      internalID: -773323415
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_16
+      name: StoneMinerOuch_16
       rect:
         serializedVersion: 2
         x: 44
@@ -469,14 +469,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1d0e93070885814c8f3b1f2eef15a89
-      internalID: -2039626537
+      spriteID: 0afc00d9c6458b0448f2fb95cf6beeb3
+      internalID: 786441604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_17
+      name: StoneMinerOuch_17
       rect:
         serializedVersion: 2
         x: 55
@@ -490,14 +490,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28fe4e7a64346684d836b685b83b6cf1
-      internalID: 1316793126
+      spriteID: 51cb22ab93002524081df55bbc974e40
+      internalID: -1508699997
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_18
+      name: StoneMinerOuch_18
       rect:
         serializedVersion: 2
         x: 0
@@ -511,14 +511,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c3f2857a84653a4caae2b8b82c23841
-      internalID: 643369662
+      spriteID: 0130f0d267efb5044a28959c47734ca2
+      internalID: 1201349174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_19
+      name: StoneMinerOuch_19
       rect:
         serializedVersion: 2
         x: 11
@@ -532,14 +532,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a88c0fc8d30f994ea50c693c70daa71
-      internalID: 707056684
+      spriteID: 41e2c90f2b2103747aa63a03b638d8b3
+      internalID: 993043246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_20
+      name: StoneMinerOuch_20
       rect:
         serializedVersion: 2
         x: 22
@@ -553,14 +553,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dba298bb34b69fe4badae971c8b50273
-      internalID: 685302249
+      spriteID: c8c0787a259b6594c900ac30f6ec0e62
+      internalID: 225420813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_21
+      name: StoneMinerOuch_21
       rect:
         serializedVersion: 2
         x: 33
@@ -574,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac1436e36c5c5aa4b9714c50da6823d2
-      internalID: 480090702
+      spriteID: e368ec81878453e4a9154a82ea8e867e
+      internalID: 275139586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_22
+      name: StoneMinerOuch_22
       rect:
         serializedVersion: 2
         x: 44
@@ -595,14 +595,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9b69b654169ff3042afa72ab0e9de3ea
-      internalID: 161203710
+      spriteID: ba1712bb469369b4e947b08d56bdd1ee
+      internalID: -466853768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WoodCutterOuch 1_23
+      name: StoneMinerOuch_23
       rect:
         serializedVersion: 2
         x: 55
@@ -616,8 +616,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 092f5d0208c045c42b216c331cd34466
-      internalID: 164072571
+      spriteID: 7026a23e28b28d44fac6a6169a857c1d
+      internalID: -1051669493
       vertices: []
       indices: 
       edges: []
@@ -625,7 +625,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: fbcdb3fd75cdbc244b33d94d5c2ce618
+    spriteID: 7f4becc7efd045c4bbd05f04edbf48b8
     internalID: 0
     vertices: []
     indices: 
@@ -633,30 +633,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      WoodCutterOuch 1_0: -1432416927
-      WoodCutterOuch 1_1: 1620145259
-      WoodCutterOuch 1_10: 1526330575
-      WoodCutterOuch 1_11: -1483021823
-      WoodCutterOuch 1_12: 1079956217
-      WoodCutterOuch 1_13: 639683112
-      WoodCutterOuch 1_14: -724750927
-      WoodCutterOuch 1_15: 2081429682
-      WoodCutterOuch 1_16: -2039626537
-      WoodCutterOuch 1_17: 1316793126
-      WoodCutterOuch 1_18: 643369662
-      WoodCutterOuch 1_19: 707056684
-      WoodCutterOuch 1_2: -412663223
-      WoodCutterOuch 1_20: 685302249
-      WoodCutterOuch 1_21: 480090702
-      WoodCutterOuch 1_22: 161203710
-      WoodCutterOuch 1_23: 164072571
-      WoodCutterOuch 1_3: -540652913
-      WoodCutterOuch 1_4: -1849923770
-      WoodCutterOuch 1_5: -855218069
-      WoodCutterOuch 1_6: -1078313713
-      WoodCutterOuch 1_7: -1707537522
-      WoodCutterOuch 1_8: 1434271243
-      WoodCutterOuch 1_9: 2001817180
+      StoneMinerOuch_0: -1750903072
+      StoneMinerOuch_1: 1663418638
+      StoneMinerOuch_10: 701318766
+      StoneMinerOuch_11: -746529217
+      StoneMinerOuch_12: -144858242
+      StoneMinerOuch_13: 1892758428
+      StoneMinerOuch_14: 899064715
+      StoneMinerOuch_15: -773323415
+      StoneMinerOuch_16: 786441604
+      StoneMinerOuch_17: -1508699997
+      StoneMinerOuch_18: 1201349174
+      StoneMinerOuch_19: 993043246
+      StoneMinerOuch_2: 1294497669
+      StoneMinerOuch_20: 225420813
+      StoneMinerOuch_21: 275139586
+      StoneMinerOuch_22: -466853768
+      StoneMinerOuch_23: -1051669493
+      StoneMinerOuch_3: 849605908
+      StoneMinerOuch_4: -948402011
+      StoneMinerOuch_5: 62825066
+      StoneMinerOuch_6: -535227373
+      StoneMinerOuch_7: -1486667354
+      StoneMinerOuch_8: 2007330043
+      StoneMinerOuch_9: -670108854
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
