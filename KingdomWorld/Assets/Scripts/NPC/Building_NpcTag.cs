@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -58,7 +57,7 @@ public class Building_NpcTag : MonoBehaviour
                 NPCPanel[NpcValue].SetActive(true);
 
                 NPCPanel[NpcValue].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-                    GameManager.instance.AllHuman[j].gameObject.name + "\n" + GameManager.instance.AllHuman[j].gameObject.tag;
+                    GameManager.instance.AllHuman[j].gameObject.name + "\n" + TagCheck(GameManager.instance.AllHuman[j].gameObject);
 
                 JobAddB.transform.localPosition =
                     JobAddBPos - new Vector3(0, 100 * (NpcValue + 1), 0);
@@ -97,6 +96,9 @@ public class Building_NpcTag : MonoBehaviour
 
                         IsSetcount = 0;
                         NPCCount = 0;
+
+                        NPcButton.SetActive(false);
+                        NPcButtonOther.SetActive(false);
 
                         if (hits[i].collider.gameObject.tag.Equals("Storage"))
                         {
@@ -228,6 +230,85 @@ public class Building_NpcTag : MonoBehaviour
         if (IsOther == true)
         {
             NPcButtonOther.SetActive(true);
+        }
+    }
+
+    string TagCheck(GameObject ToCheckNpc)
+    {
+        if (ToCheckNpc.tag.Equals("StorageNPC"))
+        {
+            NPCCount = 0;
+
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("WoodCutter"))
+        {
+            NPCCount = 1;
+
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("CarpenterNPC"))
+        {
+            NPCCount = 2;
+
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("Hunter"))
+        {
+            NPCCount = 3;
+
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("Pastoralist"))
+        {
+            NPCCount = 4;
+
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("Farmer"))
+        {
+            NPCCount = 5;
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("StoneMiner"))
+        {
+            NPCCount = 6;
+
+            return InputJobText[NPCCount];
+        }
+        else if(ToCheckNpc.tag.Equals("IronMiner"))
+        {
+            NPCCount = 7;
+
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("HamNPC"))
+        {
+            NPCCount = 8;
+
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("CheeseNPC"))
+        {
+            NPCCount = 9;
+
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("FabricNPC"))
+        {
+            NPCCount = 10;
+
+            return InputJobText[NPCCount];
+        }
+        else if (ToCheckNpc.tag.Equals("Smith"))
+        {
+            NPCCount = 11;
+
+            return InputJobText[NPCCount];
+        }
+        else
+        {
+            return "¹é¼ö";
         }
     }
 
