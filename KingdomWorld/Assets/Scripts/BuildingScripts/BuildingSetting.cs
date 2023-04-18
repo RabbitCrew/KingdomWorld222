@@ -132,7 +132,7 @@ public class BuildingSetting : MonoBehaviour
     {
         if (items.ContainsKey(itemName))
         {
-            for (int i = 0; i <= amount; i++)
+            for (int i = 0; i < amount; i++)
             {
                 if(store == storeMax)
                 {
@@ -154,6 +154,9 @@ public class BuildingSetting : MonoBehaviour
         items.Add(name, 1);
 
         name = "meat";
+        items.Add(name, 1);
+
+        name = "ham";
         items.Add(name, 1);
 
         name = "leather";

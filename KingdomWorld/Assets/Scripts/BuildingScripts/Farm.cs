@@ -7,6 +7,7 @@ public class Farm : MonoBehaviour
     // . . . 미완 ( 최대값 제한 X 
 
     private BuildingSetting buildingSetting;
+    BuildingColider buildingColider;
 
     // . . . 소 / 양
     public int cow = 2;
@@ -30,20 +31,27 @@ public class Farm : MonoBehaviour
     private void Start()
     {
         buildingSetting = GetComponent<BuildingSetting>();
+        buildingColider = GetComponent<BuildingColider>();
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
         timer_1 += Time.deltaTime;
-        
-        AddCowSheep();
-        if(harvesting == false)
-        {
-            Collection();
-        }
+
+        GameManager.instance.Cow = cow;
+        GameManager.instance.Sheep = sheep;
 
         animalstore = cow + sheep;
+
+        if(buildingColider.isSettingComplete == true)
+        {
+            AddCowSheep();
+            if (harvesting == false)
+            {
+                Collection();
+            }
+        }
     }
 
     public void AddCowSheep()
@@ -58,15 +66,15 @@ public class Farm : MonoBehaviour
 
     public void Collection()
     {
-        if(timer >= cooltime)
+        if (timer >= cooltime)
         {
             timer_1 = 0f;
-            for(int i=0; i < cow; i++)
+            for (int i = 0; i < cow; i++)
             {
                 milk++;
                 buildingSetting.AddItem("milk", 1);
             }
-            for(int j=0; j < sheep; j++)
+            for (int j = 0; j < sheep; j++)
             {
                 fleece++;
                 buildingSetting.AddItem("fleece", 1);
