@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using ObjectNS;
 public class GameManager : Resource
 {
     [SerializeField] private PerlinNoiseMapMaker perlinNoise;
@@ -10,7 +11,10 @@ public class GameManager : Resource
     public float uiSizeX { get; private set; }
     public float uiSizeY { get; private set; }
     public float timeSpeed { get; set; }
-
+    /// <summary>
+    /// 현재 건물 개수에 따른 할당 가능한 직업의 빈자리
+    /// </summary>
+    public Dictionary<JobNum, int> jobCountDic = new Dictionary<JobNum, int>();
 
     public List<GameObject> RestHuman = new List<GameObject>();
     public List<GameObject> WheatList = new List<GameObject>();
@@ -25,6 +29,14 @@ public class GameManager : Resource
         timeSpeed = 1;
         instance = this;
 
+        for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
+        {
+            if (i == 4) { jobCountDic.Add((JobNum)i, 10000); }
+            else
+            {
+                jobCountDic.Add((JobNum)i, 0);
+            }
+        }
     }
     void Start()
     {
@@ -47,7 +59,7 @@ public class GameManager : Resource
     void Update()
     {
         //timeElapsed = Time.realtimeSinceStartup - startTime;
-        dayNightRatio += (Time.deltaTime / 180) * timeSpeed; // 180 seconds = 3 minutes
+        dayNightRatio += (Time.deltaTime / 180f) * timeSpeed; // 180 seconds = 3 minutes
 
         if (dayNightRatio >= 1f)
         {

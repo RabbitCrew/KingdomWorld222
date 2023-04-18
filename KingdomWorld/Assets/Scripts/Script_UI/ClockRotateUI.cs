@@ -35,6 +35,7 @@ public class ClockRotateUI : MonoBehaviour
             {
                 rotate = Mathf.Lerp(-225, -315, timeLight2D.colorLerp);
             }
+            //Debug.Log(rotate + " " + timeLight2D.colorLerp + " " + GameManager.instance.dayNightRatio);
             clockImageRect.localEulerAngles = new Vector3(0, 0, rotate);
         }
     }

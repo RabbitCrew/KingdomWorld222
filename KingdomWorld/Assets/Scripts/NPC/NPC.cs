@@ -256,31 +256,36 @@ public class NPC : NPCScrip
     void Farmer()
     {
         BuildingNum = HouseTr.gameObject;
-        if (!isWeatStart && GameManager.instance.isDaytime)//밀탐색
+        if (work)
         {
-            if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)//밀이 있고 밀을 갖고있지않으면
+            if (!isWeatStart && GameManager.instance.isDaytime)//밀탐색
             {
-                isWeatStart = true;
-                WheatfieldGameObject = GameManager.instance.WheatList[0].transform.parent.gameObject;//wheatfield저장
-                GameManager.instance.WheatList.RemoveAt(0);
-                ResetPath(this.transform, WheatfieldGameObject.transform);
-                currentPathIndex = 0;
-            }
-            else if(GameManager.instance.StorageList.Count > 0 && !isWeatCarry && HavedWheat > 0)//창고가 있고 밀을 가지고 있으면
-            {
-                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-                foreach (var collider in colliders)
+                if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)//밀이 있고 밀을 갖고있지않으면
                 {
-                    if (collider.CompareTag("Storage"))
+                    isWeatStart = true;
+                    WheatfieldGameObject = GameManager.instance.WheatList[0].transform.parent.gameObject;//wheatfield저장
+                    GameManager.instance.WheatList.RemoveAt(0);
+                    ResetPath(this.transform, WheatfieldGameObject.transform);
+                    Debug.Log(this.transform.position + "   " + WheatfieldGameObject.transform.position);
+                    currentPathIndex = 0;
+                }
+                else if (GameManager.instance.StorageList.Count > 0 && !isWeatCarry && HavedWheat > 0)//창고가 있고 밀을 가지고 있으면
+                {
+                    Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+                    foreach (var collider in colliders)
                     {
-                        ResetPath(this.transform, collider.transform);
-                        currentPathIndex = 0;
-                        isWeatCarry = true;
-                        break;
+                        if (collider.CompareTag("Storage"))
+                        {
+                            ResetPath(this.transform, collider.transform);
+                            currentPathIndex = 0;
+                            isWeatCarry = true;
+                            break;
+                        }
                     }
                 }
             }
         }
+        
         dayTimeResetPath();
         Move();
     }

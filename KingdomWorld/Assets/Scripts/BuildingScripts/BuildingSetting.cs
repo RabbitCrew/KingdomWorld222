@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BuildingSetting : MonoBehaviour
 {
+    [SerializeField] private int npcNum = 0;
     // . . . 건물 제한 ( 거래소 / 연구소는 제한 1 / 나머지는 임의로 지정 
     public int buildingShield { get; set; }
     public int maxBuildingShield { get; set; }
@@ -12,7 +13,6 @@ public class BuildingSetting : MonoBehaviour
 
     public GameObject npc;
     public int BuildingNum = 0;
-    
     public float BuildingTime { get; set; }
     public bool carpenternCheck = false;
 
@@ -33,13 +33,25 @@ public class BuildingSetting : MonoBehaviour
         BuildingHp = 10;
         buildingShield = 0;
         maxBuildingShield = 100;
-        
+        Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum]);
         //GameManager.instance.InitializeGrid(500, 500);
     }
     void Start()
     {
         ItemSetting();
+
     }
+
+    public void AddNpcCount()
+    {
+        GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] += npcCount;
+    }
+
+    public void MinusNpcCount()
+    {
+        GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] -= npcCount;
+    }
+
 
     // Update is called once per frame
     void Update()
