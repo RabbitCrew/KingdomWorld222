@@ -70,16 +70,16 @@ public class Setgrid : MonoBehaviour
                         weight = 10;
                         iswalkable = true;
                     }
-                    else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
+                    /*else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
                     {
                         weight = 100;
-                        iswalkable = false;
-                    }
-                    else if (hit.collider.CompareTag("tree"))
+                        iswalkable = true;
+                    }*/
+                    /*else if (hit.collider.CompareTag("tree"))
                     {
                         weight = 100;
-                        iswalkable = false;
-                    }else if (hit.collider.CompareTag("NotWalkable"))
+                        iswalkable = true;
+                    }*/else if (hit.collider.CompareTag("NotWalkable"))
                     {
                         weight = 100;
                         iswalkable = false;
@@ -97,7 +97,7 @@ public class Setgrid : MonoBehaviour
             for (int z = Mathf.RoundToInt(transform.position.z) - height; z < Mathf.RoundToInt(transform.position.z) + height; z++)
             {
                 Vector3 worldPosition = new Vector3(x, 0, z);
-                int weight = 1;
+                int weight = 10;
                 bool iswalkable = true;
                 // 현재 위치가 거리인지 확인
                 RaycastHit hit;
@@ -115,16 +115,16 @@ public class Setgrid : MonoBehaviour
                         weight = 10;
                         iswalkable = true;
                     }
-                    else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
+                    /*else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
                     {
                         weight = 100;
                         iswalkable = true;
-                    }
-                    else if (hit.collider.CompareTag("tree"))
+                    }*/
+                    /*else if (hit.collider.CompareTag("tree"))
                     {
                         weight = 100;
-                        iswalkable = false;
-                    }
+                        iswalkable = true;
+                    }*/
                     else if (hit.collider.CompareTag("NotWalkable"))
                     {
                         weight = 100;

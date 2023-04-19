@@ -244,7 +244,10 @@ public class SettingObject : MonoBehaviour
             }
         }
 
-
+        if (obj.GetComponent<BuildingSetting>() != null)
+        {
+            obj.GetComponent<BuildingSetting>().AddNpcCount();
+        }
     }
     public void AddTilePoint3(int chunkX, int chunkY, int objectNum, int tileX, int tileY)
 	{
@@ -336,6 +339,12 @@ public class SettingObject : MonoBehaviour
 				}
 			}
 		}
+
+        if (obj.GetComponent<BuildingSetting>() != null)
+        {
+            obj.GetComponent<BuildingSetting>().MinusNpcCount();
+
+        }
 	}
     public bool CheckStartBuildingRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
 	{

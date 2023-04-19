@@ -20,17 +20,19 @@ public class Cornfield : MonoBehaviour
     private float increaseRatio = 0.2f;
 
     BuildingSetting buildingSetting;
-    WinterIsComing winterIsComing;
+    //WinterIsComing winterIsComing;
     BuildingColider buildingColider;
 
     void Start()
     {
+        buildingSetting = GetComponent<BuildingSetting>();
+        buildingColider = GetComponent<BuildingColider>();
+        //winterIsComing = GetComponent<WinterIsComing>();
     }
 
      void Update()
     {
-        buildingSetting = GetComponent<BuildingSetting>();
-        buildingColider = GetComponent<BuildingColider>();
+
 
         if (cultureCheck == false)
         {
@@ -51,13 +53,16 @@ public class Cornfield : MonoBehaviour
     {
         if(buildingColider.isSettingComplete == true)
         {
-            if (timer >= increaseInterval)
+            if(GameManager.instance.isWinterComing == false)
             {
-                timer = 0f;
-                wheat = 10;
-                RandomEvent();
-                cultureCheck = true;
-                AddPrefab();
+                if (timer >= increaseInterval)
+                {
+                    timer = 0f;
+                    wheat = 10;
+                    RandomEvent();
+                    cultureCheck = true;
+                    AddPrefab();
+                }
             }
         }
     }

@@ -92,10 +92,21 @@ public class JobListPanelScrollView : MonoBehaviour
         {
             if (jobListButnArr.Length > index && index > -1)
             {
-                Debug.Log(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1));
-                citizenInfoPanel.WareClothes(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1), jobListButnArr[index].butnNum);
-                citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
-                citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
+                //Debug.Log(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1));
+                if (GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] > 0)
+                {
+                    citizenInfoPanel.WareClothes(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1), jobListButnArr[index].butnNum);
+                    citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
+                    citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
+                    //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " ㅁㅁㅁ 전");
+
+                    GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]--;
+                    //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " ㅁㅁㅁ 후");
+                }
+                else
+                {
+                    Debug.Log((JobNum)(jobListButnArr[index].butnNum) + " 빈 자리가 없습니다.");
+                }
             }
         }
     }

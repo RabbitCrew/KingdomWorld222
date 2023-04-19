@@ -11,7 +11,8 @@ public class NPCParameter : MonoBehaviour
     private float speed;
     private float buildingSpeed;
     public int HavedWheat;
-
+    public int HavedWood;
+    public int HavedAnimal;
     public int HP
     {
         get { return hp; }

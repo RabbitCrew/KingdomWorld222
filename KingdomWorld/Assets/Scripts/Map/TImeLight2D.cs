@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 //시간대에 따라 Light2D의 색을 바꾸어 낮밤효과를 줌
 public class TImeLight2D : MonoBehaviour
 {
+    [SerializeField] private RectTransform clockImageRect;
     [SerializeField] private GameManager gameManager;
     [SerializeField] private Light2D light2D;
 
@@ -15,6 +16,7 @@ public class TImeLight2D : MonoBehaviour
     private Color colorEvening; // 저녁 시간
     private Color colorNight;   // 밤 시간
 
+    private float rotate;
     void Start()
     {
         colorLerp = 0;
@@ -23,6 +25,8 @@ public class TImeLight2D : MonoBehaviour
         colorEvening = new Color(221 / 255f, 149 / 255f, 66 / 255f);    // 저녁 조명 색깔
         colorNight = new Color(7 / 255f, 11 / 255f, 22 / 255f); // 밤 조명 색깔
         light2D.color = colorDawn;  // 시간은 0부터 시작하므로 시작 조명은 새벽
+        rotate = 45f;
+
     }
 
     // Update is called once per frame
@@ -33,10 +37,8 @@ public class TImeLight2D : MonoBehaviour
         // 새벽녘에서 아침(낮 시간대)
         if (gameManager.dayNightRatio >= 0 && gameManager.dayNightRatio < 0.2f)
         {
-            // 새벽시간대가 얼마나 지났는지 퍼센트를 의미(0f를 빼준건 계산식을 보기 편하게 하기 위함)
-            // 0f를 빼주어 dayNightRatio의 범위를 0에서 0.2 미만으로 바꿈.
-            // 새벽에서 아침 시간대 범위를 구하기 위해 0.2에 0을 빼줌. 보기좋게 각각의 값에 10 곱하고 dayNightRatio를 범위값으로 나눔
-            colorLerp = (gameManager.dayNightRatio * 10f - 0f) / (2f - 0f);
+            // 새벽시간대가 얼마나 지났는지 퍼센트를 의미
+            colorLerp = Mathf.InverseLerp(0f, 0.2f, gameManager.dayNightRatio);
             // 퍼센트에 따라 조명의 색을 서서히 바꿔줌.
             light2D.color = Color.Lerp(colorDawn, colorMorning, colorLerp);
         }
@@ -44,25 +46,44 @@ public class TImeLight2D : MonoBehaviour
         else if (gameManager.dayNightRatio >= 0.2f && gameManager.dayNightRatio < 0.4f)
         {
             // 아침시간대가 얼마나 지났는지 퍼센트를 의미
-            // 아침에서 저녁 시간대의 범위는 0.2 즉, 0.4 - 0.2. 보기 좋게 각각 10씩 곱해서 4 - 2로 계산
-            colorLerp = (gameManager.dayNightRatio * 10f - 2f) / (4f -2f);
+            colorLerp = Mathf.InverseLerp(0.2f, 0.4f, gameManager.dayNightRatio);
             light2D.color = Color.Lerp(colorMorning, colorEvening, colorLerp);
         }
         // 저녁에서 밤(낮 시간대)
         else if (gameManager.dayNightRatio >= 0.4f && gameManager.dayNightRatio < 2f / 3f)
         {
             // 위와 마찬가지로 계산. 저녁시간대가 얼마나 지났는지 퍼센트를 의미
-            colorLerp = (gameManager.dayNightRatio * 10f - 4f) / (20f / 3f - 4f);
+            colorLerp = Mathf.InverseLerp(0.4f, 2f/3f, gameManager.dayNightRatio);
             light2D.color = Color.Lerp(colorEvening, colorNight, colorLerp);
         }
         // 밤에서 새벽(저녁 시간대)
         else if (gameManager.dayNightRatio >= 2f / 3f && gameManager.dayNightRatio <= 1f)
         {
             // 밤시간대가 얼마나 지났는지 퍼센트를 의미
-            colorLerp = (gameManager.dayNightRatio * 10f - (20f / 3f)) / (10f - (20f / 3f));
+            colorLerp = Mathf.InverseLerp(2f / 3f, 1f, gameManager.dayNightRatio);
             light2D.color = Color.Lerp(colorNight, colorDawn, colorLerp);
 
         }
 
+        if (Time.timeScale != 0)
+        {
+            if (GameManager.instance.dayNightRatio >= 0f && GameManager.instance.dayNightRatio < 0.2f)
+            {
+                rotate = Mathf.Lerp(45, -45, colorLerp);
+            }
+            else if (GameManager.instance.dayNightRatio >= 0.2f && GameManager.instance.dayNightRatio < 0.4f)
+            {
+                rotate = Mathf.Lerp(-45, -135, colorLerp);
+            }
+            else if (GameManager.instance.dayNightRatio >= 0.4f && GameManager.instance.dayNightRatio < 2f / 3f)
+            {
+                rotate = Mathf.Lerp(-135, -225, colorLerp);
+            }
+            else if (GameManager.instance.dayNightRatio >= 2f / 3f && GameManager.instance.dayNightRatio <= 1f)
+            {
+                rotate = Mathf.Lerp(-225, -315, colorLerp);
+            }
+            clockImageRect.localEulerAngles = new Vector3(0, 0, rotate);
+        }
     }
 }
