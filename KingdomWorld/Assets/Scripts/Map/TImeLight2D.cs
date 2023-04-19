@@ -102,8 +102,8 @@ public class TImeLight2D : MonoBehaviour
         Color oneColor = new Color(1 / 255f, 1 / 255f, 1 / 255f);
         while (true)
         {
-            ran = Random.Range(1, 181);
-            length = Random.Range(1, 181);
+            ran = Random.Range(1, Inventory.instance.RainRate);
+            length = Random.Range(1, Inventory.instance.RainRate);
             Debug.Log(ran + " " + length);
             for (int i = 0; i < ran; i++)
             {

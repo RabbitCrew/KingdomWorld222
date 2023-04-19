@@ -8,6 +8,8 @@ public class Inventory : MonoBehaviour
     float DefaultLerpTime = 5f;
     public int MaxNegoText { get; set; }
     public int[] HasArtifact = new int[30];
+    public int Children;
+    public int RainRate;
 
     public Sprite[] ArtifactImage;
 
@@ -24,6 +26,8 @@ public class Inventory : MonoBehaviour
         MaxNegoText = 6;
 
         InvenPos = inven.GetComponent<RectTransform>().anchoredPosition3D;
+
+        RainRate = 361;
     }
 
     private void Update()
