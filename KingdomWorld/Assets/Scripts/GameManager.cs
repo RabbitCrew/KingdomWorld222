@@ -33,7 +33,7 @@ public class GameManager : Resource
         isWinterComing = false;
         for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
         {
-            if (i == 4) { jobCountDic.Add((JobNum)i, 10000); }
+            if (i == 4 || i == 0) { jobCountDic.Add((JobNum)i, 10000); }
             else
             {
                 jobCountDic.Add((JobNum)i, 0);
