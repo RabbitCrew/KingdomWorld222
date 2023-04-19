@@ -3010,8 +3010,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3415455245473662518}
   m_HandleRect: {fileID: 3353053016848429404}
   m_Direction: 2
-  m_Value: -0.0000016474112
-  m_Size: 0.6425085
+  m_Value: 1
+  m_Size: 0.6425088
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4469,8 +4469,8 @@ RectTransform:
   m_Father: {fileID: 7729158511353453138}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.64250857}
+  m_AnchorMin: {x: 0, y: 0.3574912}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17263,8 +17263,8 @@ RectTransform:
   m_Father: {fileID: 1382752918394882556}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.64250857}
+  m_AnchorMin: {x: 0, y: 0.3574912}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -23918,7 +23918,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5396024481787265858}
   m_HandleRect: {fileID: 2378740930752130450}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -24848,8 +24848,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8006849106325248580}
   m_HandleRect: {fileID: 8319467195238309342}
   m_Direction: 2
-  m_Value: 0.9999998
-  m_Size: 0.2500001
+  m_Value: 1
+  m_Size: 0.25
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -29582,7 +29582,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -42, y: 407.54068}
+  m_AnchoredPosition: {x: -42, y: 0.000061035156}
   m_SizeDelta: {x: 84, y: 407.53998}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &5582575744026122641
@@ -45449,7 +45449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -42, y: 407.54068}
+  m_AnchoredPosition: {x: -42, y: 0.000061035156}
   m_SizeDelta: {x: 84, y: 407.53998}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &7685714532676239946
@@ -46254,8 +46254,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1070453574601491711}
   m_HandleRect: {fileID: 869212025554453145}
   m_Direction: 2
-  m_Value: -0.0000016474112
-  m_Size: 0.6425085
+  m_Value: 1
+  m_Size: 0.6425088
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -50176,16 +50176,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f149b1faea9adf841995521f9f00e1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingNum: {fileID: 0}
-  HavedWheat: 0
-  HavedWood: 0
-  HavedAnimal: 0
   npcState: {fileID: 0}
   AnExchangeUI: {fileID: 4444809985768291705}
   ArtifactNums: 5
   TodayArtifact: 000000000000000000000000
   ArtifactPrice: 0a0000000a0000000a0000000a0000000a000000
-  HasArtifact: 0000000000000000000000000000000000000000
   ArtifactInfo:
   - "\uC2DC\uAC04\uC774 \uBE60\uB974\uAC8C \uD750\uB985\uB2C8\uB2E4."
   - "\uC74C\uC624\uC544\uC608"
@@ -50203,38 +50198,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   Smasege: {fileID: 2744508829642258907}
-  Inventory: {fileID: 0}
-  ArtifactImage:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   PriceText: {fileID: 7102969678172984470}
   InfoText: {fileID: 1314495612623175043}
   NameText:
@@ -52261,7 +52224,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2462681155580429535}
   m_HandleRect: {fileID: 3001361877382802324}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

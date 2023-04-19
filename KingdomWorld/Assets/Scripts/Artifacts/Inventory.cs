@@ -9,12 +9,14 @@ public class Inventory : MonoBehaviour
     public int MaxNegoText { get; set; }
     public int[] HasArtifact = new int[30];
 
-    public static Inventory instance;
+    public Sprite[] ArtifactImage;
 
     [SerializeField] GameObject inven;
-    [SerializeField] Sprite[] ArtifactImage;
-    Vector3 InvenPos;
+
+    private Vector3 InvenPos;
     private bool IsLerp = false;
+
+    public static Inventory instance;
 
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    void ArtifactEffect()
+    void ArtifactEffect()// 가진 유물을 인벤토리에 표기
     {
         int count = 0;
 
@@ -63,9 +65,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void InventoryOn() // 가진 유물을 인벤토리에 표기.
+    public void InventoryOn() 
     {
-        if (IsLerp == true)//인벤토리 오브젝트가 비어 있지 않을 때
+        if (IsLerp == true)
         {
             inven.GetComponent<RectTransform>().anchoredPosition3D =
            Vector3.Lerp(inven.GetComponent<RectTransform>().anchoredPosition3D, new Vector3(760, 100, 0), Time.deltaTime * DefaultLerpTime);

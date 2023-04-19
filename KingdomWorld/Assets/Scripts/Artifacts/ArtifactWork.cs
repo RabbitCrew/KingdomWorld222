@@ -12,6 +12,9 @@ public class ArtifactWork : MonoBehaviour
 
     int ArtifactNum;
 
+    float HPWaterTime = 180f;
+    float DefaultHPWaterTime = 180f;
+
     private void Update()
     {
         ArtifactEffect(ArtifactNum);
@@ -88,7 +91,35 @@ public class ArtifactWork : MonoBehaviour
                 }
                 break;
             case 4:
-                //
+                //hp 증가 유물 // 1회용 // 쿨타임 하루
+                if(ArtifactActiveState.isOn == true)
+                {
+                    for(int i = 0; i < GameManager.instance.AllHuman.Count; i++)
+                    {
+                        GameManager.instance.AllHuman[i].GetComponent<NPC>().HP *= 150 / 100;
+                    }
+
+                    Inventory.instance.HasArtifact[value] -= 1;
+
+                    HPWaterTime -= Time.deltaTime;
+
+                    ArtifactActiveState.interactable = false;
+
+                    if (HPWaterTime <= 0)
+                    {
+                        ArtifactActiveState.interactable = true;
+                       
+                        HPWaterTime = DefaultHPWaterTime;
+                        ArtifactActiveState.isOn = false;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
+                    {
+                        GameManager.instance.AllHuman[i].GetComponent<NPC>().HP *= 100 / 150;
+                    }
+                }
                 break;
             case 5:
                 break;
