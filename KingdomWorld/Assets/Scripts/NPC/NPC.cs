@@ -118,6 +118,7 @@ public class NPC : NPCScrip
             {
                 if (collider.GetComponent<BuildingSetting>().npcCount <= 3 && GameManager.instance.isDaytime)//3명이하 건물탐색
                 {
+
                     BuildingNum = collider.gameObject;
                     NPCBUildTrigger = true;
                     break;
