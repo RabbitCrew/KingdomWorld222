@@ -210,6 +210,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 // 컴포넌트들을 넣어준다.
                 newTile.AddComponent<SpriteRenderer>();
                 newTile.AddComponent<BoxCollider>();
+                newTile.GetComponent<BoxCollider>().size = new Vector3(0.99f, 0.99f, 1.0f);
                 newTile.AddComponent<TileColorChange>();
                 newTile.AddComponent<TileInfo>();
                 newTile.GetComponent<SpriteRenderer>().material = material;

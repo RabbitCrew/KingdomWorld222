@@ -57,6 +57,7 @@ public class UIManager : MonoBehaviour
         if (!bo)
         { 
             citizenButtonListPanel.isOpenJobListPanel = false;
+            citizenButtonListPanel.SetCitizenInfoPanel(null);
             citizenButtonListPanel.InitButnInfo();
         }
 

@@ -30,19 +30,13 @@ public class MouseRay : MonoBehaviour
 
         if (!IsPointerOverUIObject())
 		{
+
+
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
             hits = Physics.RaycastAll(ray, distance);
 
             for (int i = 0; i < hits.Length; i++)
             {
-                //if (hits[i].transform.GetComponent<WaitingBuilding>() != null)
-                //{
-                //    uiManager.SetIsHpAndShieldBarUIObj(
-                //        true, (int)(hits[i].transform.GetComponent<WaitingBuilding>().time * 100), hits[i].transform.GetComponent<WaitingBuilding>().shield,
-                //        (int)(hits[i].transform.GetComponent<WaitingBuilding>().maxTime * 100), hits[i].transform.GetComponent<WaitingBuilding>().maxShield);
-
-                //    break;
-                //}
                 if (hits[i].transform.GetComponent<BuildingSetting>() != null)
                 {
                     uiManager.SetIsHpAndShieldBarUIObj(
@@ -82,7 +76,7 @@ public class MouseRay : MonoBehaviour
 
         if (Input.GetMouseButtonDown(2) && !IsPointerOverUIObject())
         {
-            Debug.Log(1);
+            //Debug.Log(1);
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
             hits = Physics.RaycastAll(ray, distance);
             for (int i = 0; i < hits.Length; i++)
