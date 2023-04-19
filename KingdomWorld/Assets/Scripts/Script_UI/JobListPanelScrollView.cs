@@ -99,7 +99,7 @@ public class JobListPanelScrollView : MonoBehaviour
                     citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
                     citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
                     GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]--;
-                    Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]);
+                    //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]);
                 }
                 else
                 {
