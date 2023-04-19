@@ -56,6 +56,12 @@ public class NPC : NPCScrip
         else if (gameObject.CompareTag("FabricNPC"))
         {
             fabric();
+        }else if (this.CompareTag("NPC"))
+        {
+            ResetPath(this.transform, HouseTr);
+            currentPathIndex = 0;
+            work = false;
+            Move();
         }
     }
     //public bool SearchMyBuildingTrigger = false;
@@ -113,9 +119,9 @@ public class NPC : NPCScrip
         {
             if (collider.CompareTag(Building))
             {
-                if (collider.GetComponent<BuildingSetting>().npcCount <= 3 && GameManager.instance.isDaytime)//3명이하 건물탐색
+                if (collider.GetComponent<BuildingSetting>().npcs.Count < collider.GetComponent<BuildingSetting>().npcCount && GameManager.instance.isDaytime)//3명이하 건물탐색
                 {
-
+                    collider.GetComponent<BuildingSetting>().AddNPCs(this.gameObject);
                     BuildingNum = collider.gameObject;
                     NPCBUildTrigger = true;
                     break;
@@ -127,16 +133,6 @@ public class NPC : NPCScrip
     {
         if (BuildingNum != null)
         {
-            //NPCBUildTrigger가 true일시 경로수정
-            /*if (NPCBUildTrigger && GameManager.instance.isDaytime)//중간에 NPC배정했을시
-            {
-                Debug.Log("이동시작");
-                ResetPath(this.transform, BuildingNum.transform);
-                currentPathIndex = 0;
-                NPCBUildTrigger = false;
-                work = false;
-            }*/
-        
             //낮과밤이 바뀔때 한번만 경로수정
             if (GameManager.instance.isDaytime && !reSetPathTrigger && !work || NPCBUildTrigger && GameManager.instance.isDaytime)//출근시작
             {
@@ -149,7 +145,6 @@ public class NPC : NPCScrip
                 }
                 reSetPathTrigger = true;
                 NPCBUildTrigger = false;
-                
             }
             else if (!GameManager.instance.isDaytime && reSetPathTrigger && work)//퇴근
             {
