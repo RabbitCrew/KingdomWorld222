@@ -8,6 +8,7 @@ public class NatureObject : MonoBehaviour
 
     public ulong objCode { get; set; }
 
+    public bool Slave = false;
     // Start is called before the first frame update
     void OnDisable()
     {
