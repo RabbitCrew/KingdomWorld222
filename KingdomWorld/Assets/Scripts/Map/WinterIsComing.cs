@@ -15,8 +15,8 @@ public class WinterIsComing : MonoBehaviour
     private Color textProColor;
     private float intensity;
     public int winterCount { get; set; }
+    public bool isWinter { get; set; }
     public bool isOneDay { get; set; }
-    public bool isWinter = false;
     public bool isChangedSprite { get; set; }
     // Start is called before the first frame update
     void Start()
@@ -83,7 +83,7 @@ public class WinterIsComing : MonoBehaviour
                 textProMaterial.SetColor("_Glow", textProColor * intensity);
 			}
 
-            if (intensity >= 4.2f) { winterCount = -10; ChangeSprite(); }
+            if (intensity >= 4.2f) { winterCount = -10; ChangeSprite(); GameManager.instance.isWinterComing = true; }
         }
 
         if (isChangedSprite)

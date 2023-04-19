@@ -17,7 +17,7 @@ public class BuildingSetting : MonoBehaviour
     public bool carpenternCheck = false;
 
     public int npcCount = 0;
-    public GameObject[] npcs;
+    public List<GameObject> npcs; 
     private int arrayIndex = 0;
 
     public int storeMax = 50;
@@ -33,7 +33,8 @@ public class BuildingSetting : MonoBehaviour
         BuildingHp = 10;
         buildingShield = 0;
         maxBuildingShield = 100;
-        Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum]);
+        //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum]);
+        npcs = new List<GameObject>();
         //GameManager.instance.InitializeGrid(500, 500);
     }
     void Start()
@@ -44,40 +45,59 @@ public class BuildingSetting : MonoBehaviour
 
     public void AddNpcCount()
     {
+        //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 플러스 전");
+
         GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] += npcCount;
+        //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 플러스 후");
     }
 
     public void MinusNpcCount()
     {
-        GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] -= npcCount;
+        //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 마이너스 전");
+        GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] -= (npcCount - npcs.Count);
+        //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 마이너스 후");
+        for (int i = 0; i < npcs.Count; i++)
+        {
+            if (npcs[i] != null)
+            {
+                npcs[i].GetComponent<CitizenInfoPanel>().WareClothes(null, 0);
+                npcs[i].GetComponent<BuildingNPCSet>().SetBNPC(0);
+                npcs[i].GetComponent<NPC>().searchMyBuilding();
+            }
+        }
+        //GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] -= npcCount;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        npcs = new GameObject[npcCount];
         if(store == storeMax)
         {
             GameManager.instance.FullResourceBuildingList.Add(this.gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "carpenter")
-        {
-            carpenternCheck = true;
-        }
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    //if (other.tag == "carpenter")
+    //    //{
+    //    //    carpenternCheck = true;
+    //    //}
 
-        if (other.tag == "NPC")
-        {
-            if (arrayIndex < npcs.Length)
-            {
-                npcs[arrayIndex] = other.gameObject;
-                arrayIndex++;
-            }
-        }
+    //    //if (other.tag == "NPC")
+    //    //{
+    //    //    if (arrayIndex < npcs.Length)
+    //    //    {
+    //    //        npcs[arrayIndex] = other.gameObject;
+    //    //        arrayIndex++;
+    //    //    }
+    //    //}
+    //}
+
+    public void AddNPCs(GameObject npc)
+    {
+        npcs.Add(npc);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

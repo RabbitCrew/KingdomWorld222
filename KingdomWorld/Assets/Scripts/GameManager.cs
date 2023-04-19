@@ -7,10 +7,12 @@ public class GameManager : Resource
     private float startTime;
     private float timeElapsed;
     public float dayNightRatio { get; private set; }
+
     public bool isDaytime { get; private set; }//true 낮, false 밤
     public float uiSizeX { get; private set; }
     public float uiSizeY { get; private set; }
     public float timeSpeed { get; set; }
+    public bool isWinterComing { get; set; }
     public float DayTime { get; set; }
     /// <summary>
     /// 현재 건물 개수에 따른 할당 가능한 직업의 빈자리
@@ -29,6 +31,7 @@ public class GameManager : Resource
         uiSizeY = 1080;
         timeSpeed = 1;
         instance = this;
+        isWinterComing = false;
         DayTime = 2f / 3f;
 
         for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
