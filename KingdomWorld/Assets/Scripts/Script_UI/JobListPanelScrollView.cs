@@ -95,11 +95,16 @@ public class JobListPanelScrollView : MonoBehaviour
                 //Debug.Log(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1));
                 if (GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] > 0)
                 {
+                    GameManager.instance.jobCountDic[citizenInfoPanel.jobNumEnum]++;
                     citizenInfoPanel.WareClothes(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1), jobListButnArr[index].butnNum);
                     citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
+                    if (citizenInfoPanel.gameObject.GetComponent<NPC>().BuildingNum != null)
+                    {
+                        citizenInfoPanel.gameObject.GetComponent<NPC>().BuildingNum.GetComponent<BuildingSetting>().npcs.Remove(citizenInfoPanel.gameObject);
+                    }
+
                     citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
                     //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " けけけ 穿");
-
                     GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]--;
                     //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " けけけ 板");
                 }
