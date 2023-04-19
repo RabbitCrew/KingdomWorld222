@@ -10,7 +10,7 @@ public class GameManager : Resource
     public float uiSizeX { get; private set; }
     public float uiSizeY { get; private set; }
     public float timeSpeed { get; set; }
-
+    public float DayTime { get; set; }
 
     public List<GameObject> RestHuman = new List<GameObject>();
     public List<GameObject> WheatList = new List<GameObject>();
@@ -24,7 +24,7 @@ public class GameManager : Resource
         uiSizeY = 1080;
         timeSpeed = 1;
         instance = this;
-
+        DayTime = 2f / 3f;
     }
     void Start()
     {
@@ -56,7 +56,7 @@ public class GameManager : Resource
             expensed();
             isDaytime = true;
         }
-        else if (dayNightRatio >= 2f / 3f)
+        else if (dayNightRatio >= DayTime)
         {
                 //Debug.Log("��");
                 isDaytime = false;

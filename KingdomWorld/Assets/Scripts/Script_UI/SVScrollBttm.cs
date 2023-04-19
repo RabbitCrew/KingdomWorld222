@@ -20,11 +20,18 @@ public class SVScrollBttm : MonoBehaviour
     public List<Vector3> vecList = new List<Vector3>();
     int Rancount;
 
+    public int MaxNegoText { get; set; }
+
     public Button NegoButton;
 
     bool IsLerp;
 
     public ScrollRect ChatText = null;
+
+    private void Start()
+    {
+        MaxNegoText = NegoMent.Length;
+    }
 
     private void Update()
     {
@@ -63,7 +70,7 @@ public class SVScrollBttm : MonoBehaviour
         NegoT.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
         NegoT.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, -210, 0);
 
-        NegoT.GetComponent<TextMeshProUGUI>().text = NegoAnswer[RandomNum(NegoAnswer.Length)];
+        NegoT.GetComponent<TextMeshProUGUI>().text = NegoAnswer[RandomNum(MaxNegoText)];
         NegoT.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Right;
 
         NegoTexts.Add(NegoT);
@@ -83,7 +90,7 @@ public class SVScrollBttm : MonoBehaviour
 
         ExchangeUI.SendMessage("IsNegoOn", Rancount % 2);
 
-        if(Rancount % 2 == 0)
+        if(Rancount % 2 == 0 || Rancount >= MaxNegoText)
         {
             NegoT.GetComponent<TextMeshProUGUI>().text = Thanks[RandomEvenNum(Thanks.Length)];
         }
