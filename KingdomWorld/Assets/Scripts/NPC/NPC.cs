@@ -132,14 +132,13 @@ public class NPC : NPCScrip
     void dayTimeResetPath()
     {
         if (BuildingNum != null)
-        {
+        {//밀을 창고에 넣으려 가고있을때 퇴근을 하면 다음날 아침이 되면 길찾아주는 함수가 필요함
             //낮과밤이 바뀔때 한번만 경로수정
-            if ((GameManager.instance.isDaytime && !reSetPathTrigger && !work) || (NPCBUildTrigger && GameManager.instance.isDaytime))//출근시작
+            if ((GameManager.instance.isDaytime && !reSetPathTrigger) || (NPCBUildTrigger && GameManager.instance.isDaytime))//출근시작
             {
+                Debug.Log("출근");
                 if (this.CompareTag("FarmNPC"))
-                {
                     work = true;
-                }
                 else
                 {
                     ResetPath(this.transform, BuildingNum.transform);
@@ -148,8 +147,9 @@ public class NPC : NPCScrip
                 reSetPathTrigger = true;
                 NPCBUildTrigger = false;
             }
-            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work)//퇴근
+            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work && !Farmerwork)//퇴근
             {
+                Debug.Log("퇴근");
                 ResetPath(this.transform, HouseTr);
                 currentPathIndex = 0;
                 reSetPathTrigger = false;
@@ -255,6 +255,7 @@ public class NPC : NPCScrip
     public bool isWeatStart = false;
     public bool isWeatCarry = false;
     public GameObject WheatfieldGameObject = null;
+    bool Farmerwork = false;
     void Farmer()
     {
         BuildingNum = HouseTr.gameObject;
@@ -267,6 +268,7 @@ public class NPC : NPCScrip
                 if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)//밀이 있고 밀을 갖고있지않으면
                 {
                     isWeatStart = true;
+                    Farmerwork = true;
                     WheatfieldGameObject = GameManager.instance.WheatList[0].transform.parent.gameObject;//wheatfield저장
                     GameManager.instance.WheatList.RemoveAt(0);
                     ResetPath(this.transform, WheatfieldGameObject.transform);
@@ -282,11 +284,32 @@ public class NPC : NPCScrip
                             ResetPath(this.transform, collider.transform);
                             currentPathIndex = 0;
                             isWeatCarry = true;
+                            Farmerwork = true;
                             break;
                         }
                     }
                 }
+            }/*else if (Farmerwork && isWeatStart && GameManager.instance.isDaytime)
+            {
+                Farmerwork = false;
+                ResetPath(this.transform, WheatfieldGameObject.transform);
+                currentPathIndex = 0;
             }
+            else if(Farmerwork && isWeatCarry && GameManager.instance.isDaytime)
+            {
+                Farmerwork = false;
+                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+                foreach (var collider in colliders)
+                {
+                    if (collider.CompareTag("Storage"))
+                    {
+                        ResetPath(this.transform, collider.transform);
+                        currentPathIndex = 0;
+                        isWeatCarry = true;
+                        break;
+                    }
+                }
+            }*/
         }
         
         
@@ -427,7 +450,7 @@ public class NPC : NPCScrip
     {
         if(BuildingNum != null)
         {
-            if (other.tag == BuildingNum.tag && !work)
+            if (other.tag == BuildingNum.tag && !work && GameManager.instance.isDaytime)
             {
                 work = true;
             }
@@ -475,6 +498,7 @@ public class NPC : NPCScrip
         GameManager.instance.Wheat += HavedWheat;
         HavedWheat = 0;
         isWeatCarry = false;
+        Farmerwork = false;
     }
     IEnumerator Wheat(float delay, GameObject wheatfield)//밀수확 코루틴
     {
@@ -485,6 +509,7 @@ public class NPC : NPCScrip
         HavedWheat += 1;
         isWeatStart = false;
         WheatfieldGameObject = null;
+        Farmerwork = false;
     }
     IEnumerator Build(float delay, Collider building)
     {
