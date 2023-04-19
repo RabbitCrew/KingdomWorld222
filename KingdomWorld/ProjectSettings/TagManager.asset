@@ -38,6 +38,8 @@ TagManager:
   - Pastoralist
   - WaitingBuilding
   - Wheatfield
+  - Cow
+  - Sheep
   layers:
   - Default
   - TransparentFX
