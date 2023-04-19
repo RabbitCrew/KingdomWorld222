@@ -51,6 +51,7 @@ public class SettingObject : MonoBehaviour
 	{
         // 이벤트 드리븐. 제목은 Call(호출되어야할 클래스)To(호출하는클래스) 형식으로 지었음.
         CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent += RemoveObject;
+        CallSettingObjectToNatureObjectEventDriven.removeObjectInfoToTileEvent += RemoveObject;
         RemoveEventDriven.isRemoveEvent += RemoveEvent;
         isSnow = false;
     }
@@ -60,6 +61,7 @@ public class SettingObject : MonoBehaviour
     private void RemoveEvent()
 	{
         CallSettingObjectToBuildingColiderEventDriven.getObjectCodeEvent -= RemoveObject;
+        CallSettingObjectToNatureObjectEventDriven.removeObjectInfoToTileEvent -= RemoveObject;
         RemoveEventDriven.isRemoveEvent -= RemoveEvent;
     }
 
@@ -267,6 +269,10 @@ public class SettingObject : MonoBehaviour
             if (objectPointList[chunk][i].isRoot && (objectPointList[chunk][i].objectNum == 0 || objectPointList[chunk][i].objectNum == 1))
             {// 오브젝트 생성과 부모 오브젝트 설정
                 GameObject obj = Instantiate(objectArr[objectPointList[chunk][i].objectNum], motehrObject.transform);
+                if (obj.GetComponent<NatureObject>() != null)
+                {
+                    obj.GetComponent<NatureObject>().objCode = objectPointList[chunk][i].objectCode;
+                }
                 // 생성될 오브젝트의 좌표
                 obj.transform.position = new Vector3
                     ( chunkX * 20 + objectPointList[chunk][i].tileX, 0, chunkY * 20 + objectPointList[chunk][i].tileY);

@@ -70,4 +70,17 @@ class CallBuildingAttachMouseToSettingObjectEventDriven
 	}
 }
 
+class CallSettingObjectToNatureObjectEventDriven
+{
+	public static event VoidUlongGameObjectEvent removeObjectInfoToTileEvent;
+
+	public void RunRemoveObjectInfoToTileEvent(ulong code, GameObject obj)
+    {
+		if (removeObjectInfoToTileEvent != null)
+        {
+			removeObjectInfoToTileEvent(code, obj);
+        }
+    }
+}
+
 
