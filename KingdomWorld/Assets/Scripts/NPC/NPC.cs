@@ -134,10 +134,12 @@ public class NPC : NPCScrip
         if (BuildingNum != null)
         {
             //낮과밤이 바뀔때 한번만 경로수정
-            if (GameManager.instance.isDaytime && !reSetPathTrigger && !work || NPCBUildTrigger && GameManager.instance.isDaytime)//출근시작
+            if ((GameManager.instance.isDaytime && !reSetPathTrigger && !work) || (NPCBUildTrigger && GameManager.instance.isDaytime))//출근시작
             {
                 if (this.CompareTag("FarmNPC"))
+                {
                     work = true;
+                }
                 else
                 {
                     ResetPath(this.transform, BuildingNum.transform);
