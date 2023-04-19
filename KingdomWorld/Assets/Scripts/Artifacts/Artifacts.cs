@@ -15,17 +15,13 @@ public class Artifacts : MonoBehaviour
     int AtNum;
     public int[] TodayArtifact = new int[3];
     public int[] ArtifactPrice;
-    public int[] HasArtifact = new int[30];
-    int[] ArtifactNum = new int[30];
+
 
     public string[] ArtifactInfo; //유물 효과 설명
     public string[] ArtifactName;
 
     public GameObject[] TodayArtifactSet = new GameObject[3];
     public GameObject Smasege;
-    public GameObject Inventory;
-
-    public Sprite[] ArtifactImage;
 
     public TextMeshProUGUI PriceText;
     public TextMeshProUGUI InfoText;
@@ -46,7 +42,7 @@ public class Artifacts : MonoBehaviour
                 {
                     TodayArtifact[i] = Random.Range(0, ArtifactNums);// 유물 목록에서 랜덤으로 유물을 가져옴
 
-                    TodayArtifactSet[i].GetComponent<SpriteRenderer>().sprite = ArtifactImage[TodayArtifact[i]];
+                    TodayArtifactSet[i].GetComponent<SpriteRenderer>().sprite = Inventory.instance.ArtifactImage[TodayArtifact[i]];
                 }
             }
         }
@@ -71,36 +67,11 @@ public class Artifacts : MonoBehaviour
 
             TodayArtifactSet[AtNum].GetComponent<Button>().interactable = false;
 
-            HasArtifact[TodayArtifact[AtNum]] += 1;
+            Inventory.instance.HasArtifact[TodayArtifact[AtNum]] += 1;
         }
         else
         {
             Smasege.SendMessage("MessageQ", "금화가 부족합니다");
-        }
-    }
-
-    public void InventoryOn() // 가진 유물을 인벤토리에 표기.
-    {
-        int count = 0;
-
-        if (Inventory != null)//인벤토리 오브젝트가 비어 있지 않을 때
-        {
-            Inventory.SetActive(true);//버튼 클릭되면 인벤토리가 켜지게.
-
-            for (int i = 0; i < HasArtifact.Length; i++)
-            {
-                if (HasArtifact[i] >= 1)//해당 유물을 한개 이상 가지고 있다는 게 확인되면
-                {
-                    Inventory.transform.GetChild(count).gameObject.SetActive(true);//인벤토리 하위에 있는 오브젝트 켜주기.
-
-                    Inventory.transform.GetChild(count).gameObject.
-                        GetComponent<SpriteRenderer>().sprite = ArtifactImage[i];//이미지 맞는거 넣어주고
-
-                    Inventory.transform.GetChild(count).gameObject.SendMessage("ArtifactEffect", i);//기능 실행하도록 명령.
-
-                    count++; //인덱스 쁠쁠
-                }
-            }
         }
     }
 }

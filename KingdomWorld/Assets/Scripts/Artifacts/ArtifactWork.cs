@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ArtifactWork : MonoBehaviour
 {
     public Artifacts artifact;
-    public SVScrollBttm SVScrollBtn;
     public AnExchange anExchange;
+
     public Toggle ArtifactActiveState;
 
     int ArtifactNum;
@@ -30,11 +30,11 @@ public class ArtifactWork : MonoBehaviour
                 // 시계
                 if (ArtifactActiveState.isOn == true)
                 {
-                    if (artifact.HasArtifact[value] <= 2)
+                    if (Inventory.instance.HasArtifact[value] <= 2)
                     {
-                        GameManager.instance.timeSpeed = 2 * artifact.HasArtifact[value];
+                        GameManager.instance.timeSpeed = 2 * Inventory.instance.HasArtifact[value];
                     }
-                    else if (artifact.HasArtifact[value] > 2)
+                    else if (Inventory.instance.HasArtifact[value] > 2)
                     {
                         GameManager.instance.timeSpeed = 4;
                     }
@@ -50,7 +50,7 @@ public class ArtifactWork : MonoBehaviour
                 {
                     if (GameManager.instance.DayTime < 1f)
                     {
-                        GameManager.instance.DayTime *= (artifact.HasArtifact[value] * (5 / 100) + 1);
+                        GameManager.instance.DayTime *= (Inventory.instance.HasArtifact[value] * (5 / 100) + 1);
                     }
                     else if (GameManager.instance.DayTime >= 1f)
                     {
@@ -63,31 +63,32 @@ public class ArtifactWork : MonoBehaviour
                 }
                 break;
             case 2:
-                //네고 확률 증가
+                // 네고 확률 증가
                 if (anExchange.IsOpen == true)
                 {
                     if (ArtifactActiveState.isOn == true)
                     {
-                        SVScrollBtn.MaxNegoText = 6 + artifact.HasArtifact[value];
+                        Inventory.instance.MaxNegoText = 6 + Inventory.instance.HasArtifact[value];
                     }
                     else
                     {
-                        SVScrollBtn.MaxNegoText = 6;
+                        Inventory.instance.MaxNegoText = 6;
                     }
                 }
                 break;
             case 3:
-                //환율 증가
+                // 환율 증가
                 if(ArtifactActiveState.isOn == true)
                 {
-
+                    Inventory.instance.AddExchangeRate += (10 + (value - 1) * 5) / 100;
                 }
                 else
                 {
-
+                    Inventory.instance.AddExchangeRate = 0;
                 }
                 break;
             case 4:
+                //
                 break;
             case 5:
                 break;
