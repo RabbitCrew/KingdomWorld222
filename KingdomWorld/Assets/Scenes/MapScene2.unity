@@ -13063,12 +13063,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce81ff74c8bd9674c8c4612a059d0f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridWidth: 0
+  _gridHeight: 0
   MaxResource: 50
+  AllHuman: []
   perlinNoise: {fileID: 7916774415962174036}
   RestHuman: []
   WheatList: []
   WaitingBuildingList: []
   StorageList: []
+  FullResourceBuildingList: []
 --- !u!114 &2565835662495586630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27280,7 +27284,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a42608748a86c479ac86d89fd91ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridWidth: 0
+  _gridHeight: 0
   MaxResource: 50
+  AllHuman: []
 --- !u!1 &5012729186386913340
 GameObject:
   m_ObjectHideFlags: 0
@@ -34803,8 +34810,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7327506700320761531}
   m_HandleRect: {fileID: 8988204966701072020}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.25000015
+  m_Value: 0.9999998
+  m_Size: 0.4999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -38472,7 +38479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 149.99994}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99997}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6976820432232209876

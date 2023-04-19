@@ -35,8 +35,6 @@ public class Artifacts : NPCParameter
     private void Update()
     {
         SetTodayArtifact();
-
-        ArtifactEffect();
     }
 
     void SetTodayArtifact()
@@ -70,7 +68,7 @@ public class Artifacts : NPCParameter
         {
             GameManager.instance.Gold -= ArtifactPrice[TodayArtifact[AtNum]];
 
-            Smasege.SendMessage("MessageQ", "구매해주셔서 감사합니다!");
+            Smasege.SendMessage("MessageQ", "다음에 또 이용해주세요!");
 
             TodayArtifactSet[AtNum].GetComponent<Button>().interactable = false;
 
@@ -116,78 +114,6 @@ public class Artifacts : NPCParameter
         else
         {
             SetOnOffState[Num] = false;
-        }
-    }
-
-    void ArtifactEffect()
-    {
-        for (int i = 0; i < HasArtifact.Length; i++)
-        {
-            if (HasArtifact[i] >= 1)
-            {
-                switch (i)
-                {
-                    case 0:
-                        //시계
-                        if (SetOnOffState[i] == true)
-                        {
-                            if (HasArtifact[i] <= 2)
-                                Time.timeScale = 2 * HasArtifact[i];
-                            else if (HasArtifact[i] > 2)
-                                Time.timeScale = 4;
-                        }
-                        else
-                        {
-                            Time.timeScale = 1;
-                        }
-                        break;
-                    case 1:
-
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    case 6:
-                        break;
-                    case 7:
-                        break;
-                    case 8:
-                        break;
-                    case 9:
-                        break;
-                    case 10:
-                        break;
-                    case 11:
-                        break;
-                    case 12:
-                        break;
-                    case 13:
-                        break;
-                    case 14:
-                        break;
-                    case 15:
-                        break;
-                    case 16:
-                        break;
-                    case 17:
-                        break;
-                    case 18:
-                        break;
-                    case 19:
-                        break;
-                    case 20:
-                        break;
-                    case 21:
-                        break;
-                    default:
-                        break;
-                }
-            }
         }
     }
 }
