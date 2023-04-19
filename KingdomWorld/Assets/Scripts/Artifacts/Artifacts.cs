@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class Artifacts : NPCParameter
+public class Artifacts : MonoBehaviour
 {
     //유물 구매 스크립트
     public NPC npcState;
@@ -15,18 +15,13 @@ public class Artifacts : NPCParameter
     int AtNum;
     public int[] TodayArtifact = new int[3];
     public int[] ArtifactPrice;
-    public int[] HasArtifact = new int[30];
-    int[] ArtifactNum = new int[30];
-    bool[] SetOnOffState = new bool[30];
 
-    public string[] ArtifactInfo;
+
+    public string[] ArtifactInfo; //유물 효과 설명
     public string[] ArtifactName;
 
     public GameObject[] TodayArtifactSet = new GameObject[3];
     public GameObject Smasege;
-    public GameObject Inventory;
-
-    public Sprite[] ArtifactImage;
 
     public TextMeshProUGUI PriceText;
     public TextMeshProUGUI InfoText;
@@ -37,23 +32,23 @@ public class Artifacts : NPCParameter
         SetTodayArtifact();
     }
 
-    void SetTodayArtifact()
+    void SetTodayArtifact()//소지하고 있는 유물이 일정 갯수 이상ㅇ이면 안뜨게 수정해야됨. 아직 수정중이니까 건들면 문닷
     {
         if (GameManager.instance.dayNightRatio == 0f || GameManager.instance.dayNightRatio == 1f)
         {
-            if (AnExchangeUI.IsOpen == true)
+            if (AnExchangeUI.IsOpen == true)// 거래소 문을 열면 
             {
                 for (int i = 0; i < TodayArtifact.Length; i++)
                 {
-                    TodayArtifact[i] = Random.Range(0, ArtifactNums);
+                    TodayArtifact[i] = Random.Range(0, ArtifactNums);// 유물 목록에서 랜덤으로 유물을 가져옴
 
-                    TodayArtifactSet[i].GetComponent<SpriteRenderer>().sprite = ArtifactImage[TodayArtifact[i]];
+                    TodayArtifactSet[i].GetComponent<SpriteRenderer>().sprite = Inventory.instance.ArtifactImage[TodayArtifact[i]];
                 }
             }
         }
     }
 
-    public void ShowArtifactInfo(int ANum)
+    public void ShowArtifactInfo(int ANum) //거래소에서 유물 설명 표기
     {
         AtNum = ANum;
 
@@ -62,7 +57,7 @@ public class Artifacts : NPCParameter
         NameText[ANum].text = ArtifactName[TodayArtifact[ANum]];
     }
 
-    public void BuyArtifact()
+    public void BuyArtifact()//돈이 있으면 구매되고 아니면 거부되게.
     {
         if (ArtifactPrice[AtNum] * AnExchangeUI.ExchangeRate >= GameManager.instance.Gold)
         {
@@ -72,48 +67,11 @@ public class Artifacts : NPCParameter
 
             TodayArtifactSet[AtNum].GetComponent<Button>().interactable = false;
 
-            HasArtifact[TodayArtifact[AtNum]] += 1;
+            Inventory.instance.HasArtifact[TodayArtifact[AtNum]] += 1;
         }
         else
         {
             Smasege.SendMessage("MessageQ", "금화가 부족합니다");
-        }
-    }
-
-    public void InventoryOn()
-    {
-        int count = 0;
-
-        if (Inventory != null)
-        {
-            Inventory.SetActive(true);
-
-            for (int i = 0; i < HasArtifact.Length; i++)
-            {
-                if (HasArtifact[i] >= 1)
-                {
-                    Inventory.transform.GetChild(count).gameObject.SetActive(true);
-
-                    Inventory.transform.GetChild(count).gameObject.
-                        GetComponent<SpriteRenderer>().sprite = ArtifactImage[i];
-
-                    ArtifactNum[count] = i;
-
-                    count++;
-                }
-            }
-        }
-    }
-
-    public void TurnOnOff(int Num)
-    {
-        if (SetOnOffState[Num] == false)
-        {
-            SetOnOffState[Num] = true;
-        }
-        else
-        {
-            SetOnOffState[Num] = false;
         }
     }
 }

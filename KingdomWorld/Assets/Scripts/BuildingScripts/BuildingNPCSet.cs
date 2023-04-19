@@ -19,7 +19,7 @@ public class BuildingNPCSet : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("GetPos", 0.1f, 0.08f);
+        InvokeRepeating("GetPos", 0.1f, 0.1f);
     }
 
     private void FixedUpdate()
@@ -179,33 +179,33 @@ public class BuildingNPCSet : MonoBehaviour
         bool GoRight = false;
         bool GoFront = false;
 
-        if(NPC.transform.position.x > NPCPos.x)
+        if(NPC.transform.position.x > NPCPos.x) //처음 받은 값보다 현재 값이 오른쪽일때
         {
             Directionx = (NPC.transform.position.x - NPCPos.x);
 
             GoRight = true;
         }
-        else if(NPC.transform.position.x < NPCPos.x)
+        else if(NPC.transform.position.x < NPCPos.x)// 처음 받은 값보다 현재 값이 왼쪽일 때
         {
             Directionx = (NPCPos.x - NPC.transform.position.x);
 
             GoRight = false;
         }
 
-        if(NPC.transform.position.z > NPCPos.z)
+        if(NPC.transform.position.z > NPCPos.z)// 처음 받은 값보다 현재 값이 위쪽일때
         {
             Directionz = (NPC.transform.position.z - NPCPos.z);
 
             GoFront = false;
         }
-        else if(NPC.transform.position.z < NPCPos.z)
+        else if(NPC.transform.position.z < NPCPos.z)// 처음 받은 값보다 현재 값이 아래쪽일떄
         {
             Directionz = (NPCPos.z - NPC.transform.position.z);
 
             GoFront = true;
         }
         
-        if(NPC.transform.position == NPCPos)
+        if(NPC.transform.position == NPCPos)//처음 받은 값과 현재 값이 같을 때
         {
             GoFront = false;
             GoRight = false;
@@ -218,21 +218,21 @@ public class BuildingNPCSet : MonoBehaviour
         }
 
         //z가 위아래 x가 양옆
-        if(GoFront == true)
+        if(GoFront == true)//아래쪽으로 가고 있을 때
         {
-            animator.SetBool("IsFront", true);
             animator.SetBool("IsBack", false);
 
             if (Directionx > Directionz)
             {
                 animator.SetBool("IsFront", false);
-                animator.SetBool("IsBack", false);
 
                 animator.SetBool("IsRight", true);
                 animator.SetBool("IsLeft", false);
             }
             else if(Directionx < Directionz)
             {
+                animator.SetBool("IsFront", true);
+
                 animator.SetBool("IsRight", false);
                 animator.SetBool("IsLeft", false);
             }
@@ -240,11 +240,9 @@ public class BuildingNPCSet : MonoBehaviour
         else
         {
             animator.SetBool("IsFront", false);
-            animator.SetBool("IsBack", true);
 
             if (Directionx > Directionz)
             {
-                animator.SetBool("IsFront", false);
                 animator.SetBool("IsBack", false);
 
                 if (GoRight == true)
@@ -260,21 +258,11 @@ public class BuildingNPCSet : MonoBehaviour
             }
             else if (Directionx < Directionz)
             {
+                animator.SetBool("IsBack", true);
+
                 animator.SetBool("IsRight", false);
                 animator.SetBool("IsLeft", false);
-
-                animator.SetBool("IsFront", false);
-                animator.SetBool("IsBack", true);
             }
-        }
-
-        if(GoRight == false && GoFront == false)
-        {
-            animator.SetBool("IsRight", false);
-            animator.SetBool("IsLeft", false);
-
-            animator.SetBool("IsFront", false);
-            animator.SetBool("IsBack", false);
         }
     }
 }

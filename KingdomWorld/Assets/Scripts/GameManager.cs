@@ -15,6 +15,8 @@ public class GameManager : Resource
     public bool isWinterComing { get; set; }
     public bool isRain { get; set; }
     /// <summary>
+    public float DayTime { get; set; }
+    /// <summary>
     /// 현재 건물 개수에 따른 할당 가능한 직업의 빈자리
     /// </summary>
     public Dictionary<JobNum, int> jobCountDic = new Dictionary<JobNum, int>();
@@ -33,6 +35,9 @@ public class GameManager : Resource
         instance = this;
         isWinterComing = false;
         isRain = false;
+        for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
+        DayTime = 2f / 3f;
+
         for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
         {
             if (i == 4 || i == 0) { jobCountDic.Add((JobNum)i, 10000); }
@@ -72,7 +77,7 @@ public class GameManager : Resource
             expensed();
             isDaytime = true;
         }
-        else if (dayNightRatio >= 2f / 3f)
+        else if (dayNightRatio >= DayTime)
         {
                 //Debug.Log("��");
                 isDaytime = false;

@@ -63,7 +63,7 @@ public class SVScrollBttm : MonoBehaviour
         NegoT.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
         NegoT.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, -210, 0);
 
-        NegoT.GetComponent<TextMeshProUGUI>().text = NegoAnswer[RandomNum(NegoAnswer.Length)];
+        NegoT.GetComponent<TextMeshProUGUI>().text = NegoAnswer[RandomNum(Inventory.instance.MaxNegoText)];
         NegoT.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Right;
 
         NegoTexts.Add(NegoT);
@@ -83,7 +83,7 @@ public class SVScrollBttm : MonoBehaviour
 
         ExchangeUI.SendMessage("IsNegoOn", Rancount % 2);
 
-        if(Rancount % 2 == 0)
+        if(Rancount % 2 == 0 || Rancount >= Inventory.instance.MaxNegoText)
         {
             NegoT.GetComponent<TextMeshProUGUI>().text = Thanks[RandomEvenNum(Thanks.Length)];
         }

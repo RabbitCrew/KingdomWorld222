@@ -742,6 +742,8 @@ public class AnExchange : MonoBehaviour
     {
         ExchangeRate = Random.Range(0, 201);
 
+        ExchangeRate += Inventory.instance.AddExchangeRate;
+
         return ExchangeRate;
     }
 
