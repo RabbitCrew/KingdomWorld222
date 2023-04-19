@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,11 +11,14 @@ public class Inventory : MonoBehaviour
     public int RainRate;
 
     public Sprite[] ArtifactImage;
+    public Sprite[] CtSpriteList;
 
     [SerializeField] GameObject inven;
 
     private Vector3 InvenPos;
     private bool IsLerp = false;
+
+    public Dictionary<int, GameObject> houseDic = new Dictionary<int, GameObject>();
 
     public static Inventory instance;
 

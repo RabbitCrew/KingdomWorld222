@@ -196,14 +196,15 @@ public class Recource_UI : MonoBehaviour
 
     public void FoodChange(int value)//매개변수로 값을 받아서 값에 따라 밀, 고기, 치즈를 식량으로 바꿔줌. 수가 부족할 시 경고창 띄움
     {
-        //MReciver.SendMessage("MessageQ", "You should change some food");
         switch (value)
         {
             case 0:
                 if (GameManager.instance.Wheat >= 1)
                 {
-                    GameManager.instance.Food += 1;
+                    GameManager.instance.Food++;
                     GameManager.instance.Wheat--;
+
+                    Debug.Log(GameManager.instance.Food + "Tlqkf");
                 }
                 else
                 {
