@@ -20,21 +20,22 @@ public class Cornfield : MonoBehaviour
     private float increaseRatio = 0.2f;
 
     BuildingSetting buildingSetting;
+    WinterIsComing winterIsComing;
+    BuildingColider buildingColider;
 
-    private void Start()
+    void Start()
     {
         buildingSetting = GetComponent<BuildingSetting>();
+        buildingColider = GetComponent<BuildingColider>();
     }
 
-    private void Update()
+     void Update()
     {
-
         if (cultureCheck == false)
         {
             timer += Time.deltaTime;
             WheatProduction();
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -47,14 +48,16 @@ public class Cornfield : MonoBehaviour
 
     public void WheatProduction()
     {
-        if(timer >= increaseInterval)
+        if(buildingColider.isSettingComplete == true)
         {
-            timer = 0f;
-            wheat = 10;
-            RandomEvent();
-            cultureCheck = true;
-            Debug.Log("¹Ð»ý¼º");
-            AddPrefab();
+            if (timer >= increaseInterval)
+            {
+                timer = 0f;
+                wheat = 10;
+                RandomEvent();
+                cultureCheck = true;
+                AddPrefab();
+            }
         }
     }
 

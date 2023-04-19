@@ -73,7 +73,7 @@ public class Setgrid : MonoBehaviour
                     else if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Building"))
                     {
                         weight = 100;
-                        iswalkable = false;
+                        iswalkable = true;
                     }
                     else if (hit.collider.CompareTag("tree"))
                     {

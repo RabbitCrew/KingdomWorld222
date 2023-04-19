@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 572162901210503324}
   - component: {fileID: 5137101579848262872}
   - component: {fileID: -6791243754594292931}
+  - component: {fileID: -7531525043976530090}
+  - component: {fileID: -3492307222971707449}
   m_Layer: 0
   m_Name: HamHouse
   m_TagString: Ham_house
@@ -164,3 +166,36 @@ MonoBehaviour:
   sprArr:
   - {fileID: 21300000, guid: 241478b8d50185c4a90d57042b27f3e0, type: 3}
   - {fileID: 21300000, guid: 34e327dae777cf649a41195b438cd3d6, type: 3}
+--- !u!114 &-7531525043976530090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704300178716685400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 0}
+  BuildingNum: 0
+  carpenternCheck: 0
+  npcCount: 0
+  npcs: []
+  storeMax: 50
+  store: 0
+--- !u!114 &-3492307222971707449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704300178716685400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f42f63cd1f950445ab92d4855f6978b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meat: 10
+  ham: 0
