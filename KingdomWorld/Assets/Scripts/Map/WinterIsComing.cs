@@ -15,6 +15,7 @@ public class WinterIsComing : MonoBehaviour
     private Color textProColor;
     private float intensity;
     public int winterCount { get; set; }
+    public bool isWinter { get; set; }
     public bool isOneDay { get; set; }
     public bool isChangedSprite { get; set; }
     // Start is called before the first frame update
@@ -28,7 +29,7 @@ public class WinterIsComing : MonoBehaviour
     public void initField()
 	{
         isOneDay = false;
-        //isWinter = false;
+        isWinter = false;
         winterCount = 3;
         isChangedSprite = false;
         intensity = 0f;
@@ -49,13 +50,13 @@ public class WinterIsComing : MonoBehaviour
             isOneDay = false;
         }
 
-        if (GameManager.instance.isWinter)
+        if (isWinter)
 		{
             WinterPanel.SetActive(true);
             particle.Play();
             textProMaterial = textPro.material;
             //Invoke("ChangeSprite", 5f);
-            GameManager.instance.isWinter = false;
+            isWinter = false;
 		}
 
 
@@ -63,7 +64,7 @@ public class WinterIsComing : MonoBehaviour
         {
             //Time.timeScale = 0;
             Debug.Log("겨울이 온다...");
-            GameManager.instance.isWinter = true;
+            isWinter = true;
             if (emissionModule.rateOverTime.constant < 2200f)
             {
                 emissionModule.rateOverTime = emissionModule.rateOverTime.constant + 5f;
@@ -82,7 +83,7 @@ public class WinterIsComing : MonoBehaviour
                 textProMaterial.SetColor("_Glow", textProColor * intensity);
 			}
 
-            if (intensity >= 4.2f) { winterCount = -10; ChangeSprite(); }
+            if (intensity >= 4.2f) { winterCount = -10; ChangeSprite(); GameManager.instance.isWinterComing = true; }
         }
 
         if (isChangedSprite)

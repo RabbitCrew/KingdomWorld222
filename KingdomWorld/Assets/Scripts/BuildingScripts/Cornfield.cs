@@ -53,7 +53,7 @@ public class Cornfield : MonoBehaviour
     {
         if(buildingColider.isSettingComplete == true)
         {
-            if(GameManager.instance.isWinter == false)
+            if(GameManager.instance.isWinterComing == false)
             {
                 if (timer >= increaseInterval)
                 {
