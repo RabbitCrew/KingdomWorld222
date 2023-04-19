@@ -1374,6 +1374,8 @@ MonoBehaviour:
   artifact: {fileID: 488373084755244492}
   anExchange: {fileID: 1039818447416293521}
   ArtifactActiveState: {fileID: 745680147}
+  CitizenPrefab: {fileID: 0}
+  NPCMother: {fileID: 0}
 --- !u!1 &780596845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,7 +1428,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HasArtifact: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   Children: 0
+  RainRate: 0
   ArtifactImage: []
+  CtSpriteList: []
   inven: {fileID: 793316662}
 --- !u!1 &789467341
 GameObject:
@@ -2330,7 +2334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 935, y: 0}
+  m_AnchoredPosition: {x: 930, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1078856837
@@ -7141,11 +7145,6 @@ MonoBehaviour:
   BuildingParent: {fileID: 962746208438951359}
   SpawnPoint: {fileID: 3827203993377617585}
   CitizenList: []
-  CtSpriteList:
-  - {fileID: -444469783, guid: ffdb731fb93558849a325e75a47942da, type: 3}
-  - {fileID: 249833567, guid: ffdb731fb93558849a325e75a47942da, type: 3}
-  - {fileID: -1104551943, guid: ffdb731fb93558849a325e75a47942da, type: 3}
-  - {fileID: -541674754, guid: ffdb731fb93558849a325e75a47942da, type: 3}
   SpawnTime: 10
   CitizenNum: 3
   HouseNum: 0

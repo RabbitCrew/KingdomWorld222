@@ -11,7 +11,7 @@ public class SpawnCitizen : MonoBehaviour
 
     public List<GameObject> CitizenList = new List<GameObject>();
 
-    public float SpawnTime = 30f;
+    public float FirstSTime = 1f;
 
     public int CitizenNum = 3;
 
@@ -19,7 +19,7 @@ public class SpawnCitizen : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("SpawnintgCitizen", SpawnTime, SpawnTime);
+        InvokeRepeating("SpawnintgCitizen", FirstSTime, Inventory.instance.SpawnTime);
     }
 
     void HouseCount()//생성된 건물 중 거주지 수 카운트.

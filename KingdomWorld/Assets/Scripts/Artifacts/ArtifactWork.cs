@@ -15,7 +15,8 @@ public class ArtifactWork : MonoBehaviour
     List<float> ChildList = new List<float>();
     float ChildCool = 3f;
     float DefaultChildCool = 3f;
-    int ChildRate;
+    float ChildRate;
+    float DefaultChildRate;
 
     float HPWaterTime = 180f;
     float DefaultHPWaterTime = 180f;
@@ -169,7 +170,7 @@ public class ArtifactWork : MonoBehaviour
 
                     if (ChildCool <= 0)
                     {
-                        ChildRate = Random.Range(0, 1000);
+                        ChildRate = Random.Range(DefaultChildRate, 1000);
 
                         ChildCool = DefaultChildCool;
                     }
@@ -187,8 +188,26 @@ public class ArtifactWork : MonoBehaviour
                 }
                 break;
             case 7:
+                //애낳을 확률 증가
+                if(ArtifactActiveState.isOn == true)
+                {
+                    DefaultChildRate += Inventory.instance.HasArtifact[value];
+                }
+                else
+                {
+                    DefaultChildRate = 0;
+                }
                 break;
             case 8:
+                //시민 스폰 속도 증가. // 20개 넘기면 적용 안됨.
+                if(ArtifactActiveState.isOn == true)
+                {
+                    Inventory.instance.SpawnTime += Inventory.instance.SpawnTime * ((5 * Inventory.instance.HasArtifact[value]) / 100);
+                }
+                else
+                {
+                    Inventory.instance.SpawnTime -= Inventory.instance.SpawnTime * ((5 * Inventory.instance.HasArtifact[value]) / 100);
+                }
                 break;
             case 9:
                 break;
@@ -215,6 +234,28 @@ public class ArtifactWork : MonoBehaviour
             case 20:
                 break;
             case 21:
+                break;
+            case 22:
+                break;
+            case 23:
+                break;
+            case 24:
+                break;
+            case 25:
+                break;
+            case 26:
+                break;
+            case 27:
+                break;
+            case 28:
+                break;
+            case 29:
+                break;
+            case 30:
+                break;
+            case 31:
+                break;
+            case 32:
                 break;
             default:
                 break;
