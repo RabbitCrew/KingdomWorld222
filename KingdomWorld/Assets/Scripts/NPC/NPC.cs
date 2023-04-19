@@ -76,10 +76,7 @@ public class NPC : NPCScrip
         }else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.HUNTER)
         {
             SearchMyBuilding("Hunter_house");
-        }/*else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.FARMER)
-        {
-            SearchMyBuilding("Wheat");
-        }*/
+        }
         else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.PASTORALIST)
         {
             SearchMyBuilding("Farm_house");
@@ -130,21 +127,28 @@ public class NPC : NPCScrip
         if (BuildingNum != null)
         {
             //NPCBUildTrigger가 true일시 경로수정
-            if (NPCBUildTrigger && GameManager.instance.isDaytime)//중간에 NPC배정했을시
+            /*if (NPCBUildTrigger && GameManager.instance.isDaytime)//중간에 NPC배정했을시
             {
                 Debug.Log("이동시작");
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
                 NPCBUildTrigger = false;
                 work = false;
-            }
+            }*/
         
             //낮과밤이 바뀔때 한번만 경로수정
-            if (GameManager.instance.isDaytime && !reSetPathTrigger && !work)//출근시작
+            if (GameManager.instance.isDaytime && !reSetPathTrigger && !work || NPCBUildTrigger && GameManager.instance.isDaytime)//출근시작
             {
-                ResetPath(this.transform, BuildingNum.transform);
-                currentPathIndex = 0;
+                if (this.CompareTag("FarmNPC"))
+                    work = true;
+                else
+                {
+                    ResetPath(this.transform, BuildingNum.transform);
+                    currentPathIndex = 0;
+                }
                 reSetPathTrigger = true;
+                NPCBUildTrigger = false;
+                
             }
             else if (!GameManager.instance.isDaytime && reSetPathTrigger && work)//퇴근
             {
@@ -250,23 +254,24 @@ public class NPC : NPCScrip
 
 
 
-    bool isWeatStart = false;
-    bool isWeatCarry = false;
+    public bool isWeatStart = false;
+    public bool isWeatCarry = false;
     public GameObject WheatfieldGameObject = null;
     void Farmer()
     {
         BuildingNum = HouseTr.gameObject;
+        dayTimeResetPath();
         if (work)
         {
             if (!isWeatStart && GameManager.instance.isDaytime)//밀탐색
             {
+                
                 if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)//밀이 있고 밀을 갖고있지않으면
                 {
                     isWeatStart = true;
                     WheatfieldGameObject = GameManager.instance.WheatList[0].transform.parent.gameObject;//wheatfield저장
                     GameManager.instance.WheatList.RemoveAt(0);
                     ResetPath(this.transform, WheatfieldGameObject.transform);
-                    Debug.Log(this.transform.position + "   " + WheatfieldGameObject.transform.position);
                     currentPathIndex = 0;
                 }
                 else if (GameManager.instance.StorageList.Count > 0 && !isWeatCarry && HavedWheat > 0)//창고가 있고 밀을 가지고 있으면
@@ -286,7 +291,7 @@ public class NPC : NPCScrip
             }
         }
         
-        dayTimeResetPath();
+        
         Move();
     }
 
@@ -395,47 +400,6 @@ public class NPC : NPCScrip
                     ResetPath(this.transform, Building.transform);
                     currentPathIndex = 0;
                 }
-                /*Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-                //1. 건설대기 건물 찾기 
-                foreach (Collider collider in colliders)
-                {
-                    if (collider.CompareTag("WaitingBuilding"))
-                    {
-                        isBuilingStart = true;
-                        Building = collider.transform;
-                        ResetPath(this.transform, Building);
-                        currentPathIndex = 0;
-                        break;
-                    }
-                    else if (collider.GetComponent<BuildingSetting>() != null)//손상된 건물 찾기
-                    {
-                        if (collider.GetComponent<BuildingSetting>().BuildingHp < collider.GetComponent<BuildingSetting>().MaxBuildingHp && !isRepairStart)
-                        {
-                            isRepairStart = true;
-                            Building = collider.transform;
-                            ResetPath(this.transform, Building);
-                            currentPathIndex = 0;
-                            break;
-                        }
-                    }
-                }*/
-            /*}
-            if(Building != null)
-            {
-                if (Building.position == transform.position && isBuilingStart && Building != null)//건설
-                {
-                    currentBuildingGauge += BuildingSpeed * Time.deltaTime;
-                    if (currentBuildingGauge >= Building.GetComponent<BuildingSetting>().BuildingTime)
-                    {
-                        //건설완료
-                        isBuilingStart = false;
-                        Building = null;
-                    }
-                }
-                else if (Building.position == transform.position && isRepairStart && Building != null)//리페어
-                {
-                    StartCoroutine(Repair(1f, Building));
-                }*/
             }
         }
         dayTimeResetPath();
@@ -469,7 +433,7 @@ public class NPC : NPCScrip
             {
                 work = true;
             }
-            else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding"))//목수NPC 건설
+            else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding") && other.transform == Building.transform)//목수NPC 건설
             {
                 StartCoroutine(Build(0.1f, other));
                 //Debug.Log("여기는 몇번 찍힙니까?");
@@ -481,11 +445,9 @@ public class NPC : NPCScrip
                 }
             }else if(this.CompareTag("FarmNPC") && !isWeatStart && isWeatCarry && HavedWheat > 0)//농부NPC 창고가서 밀넣기
             {
-                if (other.CompareTag("Storage") /*&& other.transform == BuildingNum.transform*/)
+                if (other.CompareTag("Storage"))
                 {
-                    GameManager.instance.Wheat += HavedWheat;
-                    HavedWheat = 0;
-                    isWeatCarry = false;
+                    Invoke("farmNPCpushWheat", 3f);
                 }
             }else if (this.CompareTag("WoodCutter") && other.CompareTag("tree") && other.transform == Tree)//나무꾼
             {
@@ -510,6 +472,12 @@ public class NPC : NPCScrip
             }
         }
     }
+    void farmNPCpushWheat()
+    {
+        GameManager.instance.Wheat += HavedWheat;
+        HavedWheat = 0;
+        isWeatCarry = false;
+    }
     IEnumerator Wheat(float delay, GameObject wheatfield)//밀수확 코루틴
     {
         yield return new WaitForSeconds(delay);
@@ -530,8 +498,6 @@ public class NPC : NPCScrip
             {
                 // 3중 나생문
                 yield return null;
-                StopCoroutine("Build");
-                StopCoroutine("Build");
                 StopCoroutine("Build");
                 yield break;
             }
