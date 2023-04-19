@@ -11,6 +11,7 @@ public class GameManager : Resource
     public float uiSizeX { get; private set; }
     public float uiSizeY { get; private set; }
     public float timeSpeed { get; set; }
+    public bool isWinter { get; set; }
     /// <summary>
     /// 현재 건물 개수에 따른 할당 가능한 직업의 빈자리
     /// </summary>
@@ -28,7 +29,7 @@ public class GameManager : Resource
         uiSizeY = 1080;
         timeSpeed = 1;
         instance = this;
-
+        isWinter = false;
         for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
         {
             if (i == 4) { jobCountDic.Add((JobNum)i, 10000); }

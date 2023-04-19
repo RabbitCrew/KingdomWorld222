@@ -45,17 +45,17 @@ public class BuildingSetting : MonoBehaviour
 
     public void AddNpcCount()
     {
-        Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 플러스 전");
+        //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 플러스 전");
 
         GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] += npcCount;
-        Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 플러스 후");
+        //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 플러스 후");
     }
 
     public void MinusNpcCount()
     {
-        Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 마이너스 전");
+        //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 마이너스 전");
         GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] -= (npcCount - npcs.Count);
-        Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 마이너스 후");
+        //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] + " " + npcCount + " 마이너스 후");
         for (int i = 0; i < npcs.Count; i++)
         {
             if (npcs[i] != null)
@@ -78,22 +78,22 @@ public class BuildingSetting : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        //if (other.tag == "carpenter")
-        //{
-        //    carpenternCheck = true;
-        //}
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    //if (other.tag == "carpenter")
+    //    //{
+    //    //    carpenternCheck = true;
+    //    //}
 
-        //if (other.tag == "NPC")
-        //{
-        //    if (arrayIndex < npcs.Length)
-        //    {
-        //        npcs[arrayIndex] = other.gameObject;
-        //        arrayIndex++;
-        //    }
-        //}
-    }
+    //    //if (other.tag == "NPC")
+    //    //{
+    //    //    if (arrayIndex < npcs.Length)
+    //    //    {
+    //    //        npcs[arrayIndex] = other.gameObject;
+    //    //        arrayIndex++;
+    //    //    }
+    //    //}
+    //}
 
     public void AddNPCs(GameObject npc)
     {

@@ -98,10 +98,10 @@ public class JobListPanelScrollView : MonoBehaviour
                     citizenInfoPanel.WareClothes(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1), jobListButnArr[index].butnNum);
                     citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
                     citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
-                    Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " けけけ 穿");
+                    //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " けけけ 穿");
 
                     GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]--;
-                    Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " けけけ 板");
+                    //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " けけけ 板");
                 }
                 else
                 {
