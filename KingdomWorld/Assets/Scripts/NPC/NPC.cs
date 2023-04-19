@@ -147,7 +147,7 @@ public class NPC : NPCScrip
                 reSetPathTrigger = true;
                 NPCBUildTrigger = false;
             }
-            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work && !Farmerwork)//퇴근
+            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work /*&& !Farmerwork*/)//퇴근
             {
                 Debug.Log("퇴근");
                 ResetPath(this.transform, HouseTr);
@@ -255,7 +255,6 @@ public class NPC : NPCScrip
     public bool isWeatStart = false;
     public bool isWeatCarry = false;
     public GameObject WheatfieldGameObject = null;
-    bool Farmerwork = false;
     void Farmer()
     {
         BuildingNum = HouseTr.gameObject;
@@ -268,7 +267,7 @@ public class NPC : NPCScrip
                 if (GameManager.instance.WheatList.Count > 0 && HavedWheat == 0)//밀이 있고 밀을 갖고있지않으면
                 {
                     isWeatStart = true;
-                    Farmerwork = true;
+                    work = false;
                     WheatfieldGameObject = GameManager.instance.WheatList[0].transform.parent.gameObject;//wheatfield저장
                     GameManager.instance.WheatList.RemoveAt(0);
                     ResetPath(this.transform, WheatfieldGameObject.transform);
@@ -284,32 +283,12 @@ public class NPC : NPCScrip
                             ResetPath(this.transform, collider.transform);
                             currentPathIndex = 0;
                             isWeatCarry = true;
-                            Farmerwork = true;
+                            work = false;
                             break;
                         }
                     }
                 }
-            }/*else if (Farmerwork && isWeatStart && GameManager.instance.isDaytime)
-            {
-                Farmerwork = false;
-                ResetPath(this.transform, WheatfieldGameObject.transform);
-                currentPathIndex = 0;
             }
-            else if(Farmerwork && isWeatCarry && GameManager.instance.isDaytime)
-            {
-                Farmerwork = false;
-                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-                foreach (var collider in colliders)
-                {
-                    if (collider.CompareTag("Storage"))
-                    {
-                        ResetPath(this.transform, collider.transform);
-                        currentPathIndex = 0;
-                        isWeatCarry = true;
-                        break;
-                    }
-                }
-            }*/
         }
         
         
@@ -498,7 +477,7 @@ public class NPC : NPCScrip
         GameManager.instance.Wheat += HavedWheat;
         HavedWheat = 0;
         isWeatCarry = false;
-        Farmerwork = false;
+        work = true;
     }
     IEnumerator Wheat(float delay, GameObject wheatfield)//밀수확 코루틴
     {
@@ -509,7 +488,7 @@ public class NPC : NPCScrip
         HavedWheat += 1;
         isWeatStart = false;
         WheatfieldGameObject = null;
-        Farmerwork = false;
+        work = true;
     }
     IEnumerator Build(float delay, Collider building)
     {
