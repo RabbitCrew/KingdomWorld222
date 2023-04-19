@@ -343,6 +343,7 @@ public class SettingObject : MonoBehaviour
         if (obj.GetComponent<BuildingSetting>() != null)
         {
             obj.GetComponent<BuildingSetting>().MinusNpcCount();
+
         }
 	}
     public bool CheckStartBuildingRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
