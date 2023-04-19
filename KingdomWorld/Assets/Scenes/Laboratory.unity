@@ -38639,6 +38639,7 @@ MonoBehaviour:
   clockImageRect: {fileID: 0}
   gameManager: {fileID: 7702240910932419315}
   light2D: {fileID: 3468762695567619615}
+  rainParticle: {fileID: 0}
 --- !u!1 &6563857079737612559
 GameObject:
   m_ObjectHideFlags: 0
@@ -53109,7 +53110,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 708539413983815383}
   m_HandleRect: {fileID: 7091817622124144321}
   m_Direction: 2
-  m_Value: 0.9999996
+  m_Value: 1
   m_Size: 0.5
   m_NumberOfSteps: 0
   m_OnValueChanged:
