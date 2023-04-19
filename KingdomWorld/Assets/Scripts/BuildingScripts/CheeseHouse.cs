@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Smithy : MonoBehaviour
+public class CheeseHouse : MonoBehaviour
 {
 
     BuildingSetting buildingSetting;
     BuildingColider buildingColider;
 
-    public int itronstone = 0;
-    public int castIron = 0;
-    private int castIronMax = 0;
+    public int milk = 0;
+    public int cheese = 0;
+    private int cheeseMax = 0;
 
     private float increaseInterval = 3f;
     private float timer = 0f;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.tag == "MineWorker")
+        if (collision.tag == "MineWorker")
         {
             //buildingSetting.AddItem("itronstone", npc°¡ °¡Áö°íÀÖ´Â Ã¶±¤¼® ¼ö);
         }
@@ -31,31 +31,31 @@ public class Smithy : MonoBehaviour
 
     private void Update()
     {
-        GameManager.instance.Itronstone = itronstone;
-        GameManager.instance.CastIron = castIron;
+        //GameManager.instance.Milk = milk;
+        GameManager.instance.Cheese = cheese;
 
-        castIronMax = buildingSetting.storeMax;
+        cheeseMax = buildingSetting.storeMax;
 
         timer += Time.deltaTime;
 
-        if(buildingColider.isSettingComplete == true)
+        if (buildingColider.isSettingComplete == true)
         {
-            ChangeCastIron();
+            ChangeCheese();
         }
     }
 
-    public void ChangeCastIron()
+    public void ChangeCheese()
     {
-        if(itronstone > 0 && castIron < castIronMax)
+        if (milk > 0 && cheese < cheeseMax)
         {
-            if(timer >= increaseInterval)
+            if (timer >= increaseInterval)
             {
                 timer = 0;
-                itronstone--;
+                milk--;
                 buildingSetting.store--;
 
-                castIron++;
-                buildingSetting.AddItem("castIron", 1);
+                cheese++;
+                buildingSetting.AddItem("cheese", 1);
             }
         }
     }
