@@ -188,12 +188,10 @@ public class NPC : NPCScrip
     void WoodCutter()
     {
         if (work)
-        {
-            if (!treeCuting)//나무탐색
-            {
-                if (!isCarryTree && HavedWood == 0)
+        {       
+                if (!isCarryTree && HavedWood == 0 && !treeCuting)//나무탐색
                 {
-                    Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
+                    Collider[] colliders = Physics.OverlapSphere(this.transform.position, 10f);
                     foreach (Collider collider in colliders)
                     {
                         if (collider.CompareTag("tree"))
@@ -202,6 +200,7 @@ public class NPC : NPCScrip
                             ResetPath(this.transform, Tree);
                             currentPathIndex = 0;
                             treeCuting = true;
+                            work = false;
                             break;
                         }
                     }
@@ -210,8 +209,8 @@ public class NPC : NPCScrip
                     ResetPath(this.transform, BuildingNum.transform);
                     currentPathIndex = 0;
                     isCarryTree = true;
+                    work = false;
                 }
-            }
         }
         dayTimeResetPath();
         Move();
@@ -433,7 +432,7 @@ public class NPC : NPCScrip
             {
                 work = true;
             }
-            else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding") && other.transform == Building.transform)//목수NPC 건설
+            if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding") && other.transform == Building.transform)//목수NPC 건설
             {
                 StartCoroutine(Build(0.1f, other));
                 //Debug.Log("여기는 몇번 찍힙니까?");
@@ -451,12 +450,13 @@ public class NPC : NPCScrip
                 }
             }else if (this.CompareTag("WoodCutter") && other.CompareTag("tree") && other.transform == Tree)//나무꾼
             {
-                StartCoroutine(CuttingTree(3, Tree.transform));
+                StartCoroutine(CuttingTree(3));
             }else if (this.CompareTag("WoodCutter") && other.CompareTag("WoodCutter_house") && isCarryTree)//나무꾼 나무꾼건물에 나무넣기
             {
                 GameManager.instance.Wood += HavedWood;
                 HavedWood = 0;
                 isCarryTree = false;
+                work = true;
             }
             else if (this.CompareTag("StorageNPC") && other.CompareTag(fullbuilding.tag))
             {
@@ -517,12 +517,14 @@ public class NPC : NPCScrip
             }
         }
     }
-    private IEnumerator CuttingTree(float delay, Transform tree)
+    private IEnumerator CuttingTree(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Destroy(tree);
+        Destroy(Tree.gameObject);
+        HavedWood += 1;
         Tree = null;
         treeCuting = false;//나무자르기 완료
+        work = true;
         yield break;
     }
     private IEnumerator HuntingAnimal(float delay, Transform animal)
