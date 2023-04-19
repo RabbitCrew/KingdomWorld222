@@ -16,7 +16,7 @@ public class WinterIsComing : MonoBehaviour
     private float intensity;
     public int winterCount { get; set; }
     public bool isOneDay { get; set; }
-    public bool isWinter;
+    public bool isWinter = false;
     public bool isChangedSprite { get; set; }
     // Start is called before the first frame update
     void Start()
