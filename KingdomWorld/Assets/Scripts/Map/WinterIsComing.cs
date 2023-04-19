@@ -83,7 +83,12 @@ public class WinterIsComing : MonoBehaviour
                 textProMaterial.SetColor("_Glow", textProColor * intensity);
 			}
 
-            if (intensity >= 4.2f) { winterCount = -10; ChangeSprite(); GameManager.instance.isWinterComing = true; }
+            if (intensity >= 4.2f) 
+            {
+                winterCount = -10; ChangeSprite(); 
+                GameManager.instance.isWinterComing = true;
+                GameManager.instance.InitializeGrid(500, 500);
+            }
         }
 
         if (isChangedSprite)
