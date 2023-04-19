@@ -13,6 +13,8 @@ public class GameManager : Resource
     public float uiSizeY { get; private set; }
     public float timeSpeed { get; set; }
     public bool isWinterComing { get; set; }
+    public bool isRain { get; set; }
+    /// <summary>
     public float DayTime { get; set; }
     /// <summary>
     /// 현재 건물 개수에 따른 할당 가능한 직업의 빈자리
@@ -32,11 +34,13 @@ public class GameManager : Resource
         timeSpeed = 1;
         instance = this;
         isWinterComing = false;
+        isRain = false;
+        for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
         DayTime = 2f / 3f;
 
         for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
         {
-            if (i == 4) { jobCountDic.Add((JobNum)i, 10000); }
+            if (i == 4 || i == 0) { jobCountDic.Add((JobNum)i, 10000); }
             else
             {
                 jobCountDic.Add((JobNum)i, 0);
