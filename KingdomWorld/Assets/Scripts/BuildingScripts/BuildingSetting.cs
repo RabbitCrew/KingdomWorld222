@@ -34,6 +34,7 @@ public class BuildingSetting : MonoBehaviour
         buildingShield = 0;
         maxBuildingShield = 100;
         Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum]);
+        npcs = new GameObject[npcCount];
         //GameManager.instance.InitializeGrid(500, 500);
     }
     void Start()
@@ -50,13 +51,21 @@ public class BuildingSetting : MonoBehaviour
     public void MinusNpcCount()
     {
         GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] -= npcCount;
+        for (int i = 0; i < npcs.Length; i++)
+        {
+            if (npcs[i] != null)
+            {
+                npcs[i].GetComponent<CitizenInfoPanel>().WareClothes(null, 0);
+                npcs[i].GetComponent<BuildingNPCSet>().SetBNPC(0);
+                npcs[i].GetComponent<NPC>().searchMyBuilding();
+            }
+        }
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        npcs = new GameObject[npcCount];
         if(store == storeMax)
         {
             GameManager.instance.FullResourceBuildingList.Add(this.gameObject);
