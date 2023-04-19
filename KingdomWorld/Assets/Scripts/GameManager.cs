@@ -7,6 +7,7 @@ public class GameManager : Resource
     private float startTime;
     private float timeElapsed;
     public float dayNightRatio { get; private set; }
+
     public bool isDaytime { get; private set; }//true 낮, false 밤
     public float uiSizeX { get; private set; }
     public float uiSizeY { get; private set; }
