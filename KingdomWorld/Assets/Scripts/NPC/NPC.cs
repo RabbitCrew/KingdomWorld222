@@ -284,71 +284,17 @@ public class NPC : NPCScrip
     Transform stone = null;
     void StoneMiner()
     {
-        if (!mining)//±¤¹°Å½»ö
-        {
-            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-            foreach (Collider collider in colliders)
-            {
-                if (collider.CompareTag("stone"))
-                {
-                    stone = collider.transform;
-                    ResetPath(this.transform, stone);
-                    currentPathIndex = 0;
-                    mining = true;
-                    break;
-                }
-            }
-        }
-        else
-        {
-            if (this.transform.position == stone.position)
-            {
-                StartCoroutine(MiningStone(3f, stone));
-            }
-        }
         dayTimeResetPath();
         Move();
     }
-    private IEnumerator MiningStone(float delay, Transform stone)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(stone);
-        mining = false;//¹ÙÀ§ Ã¤±¤ ¿Ï·á
-    }
+
     Transform iron = null;
     void ironMiner()
     {
-        if (!mining)//±¤¹°Å½»ö
-        {
-            Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-            foreach (Collider collider in colliders)
-            {
-                if (collider.CompareTag("stone"))
-                {
-                    iron = collider.transform;
-                    ResetPath(this.transform, iron);
-                    currentPathIndex = 0;
-                    mining = true;
-                    break;
-                }
-            }
-        }
-        else
-        {
-            if (this.transform.position == iron.position)
-            {
-                StartCoroutine(MiningIron(3f, iron));
-            }
-        }
         dayTimeResetPath();
         Move();
     }
-    private IEnumerator MiningIron(float delay, Transform iron)
-    {
-        yield return new WaitForSeconds(delay);
-        Destroy(iron);
-        mining = false;//¹ÙÀ§ Ã¤±¤ ¿Ï·á
-    }
+
     void Smith()
     {
         dayTimeResetPath();
