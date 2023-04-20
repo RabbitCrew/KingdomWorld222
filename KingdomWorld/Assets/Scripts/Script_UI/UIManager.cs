@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject hpAndShieldBarUIObj;
     [SerializeField] private Image hpBarMask;
     [SerializeField] private Image shieldBarMask;
-
+    [SerializeField] private GameObject humanListPanel;
     public bool isOpenCitizenPanel { get; private set; }
 
     private Vector3 openJobChangeUIVec;
@@ -62,7 +62,17 @@ public class UIManager : MonoBehaviour
         }
 
 	}
-
+    public void SetActiveHumanListPanel()
+    {
+        if (humanListPanel.activeSelf)
+        {
+            humanListPanel.SetActive(false);
+        }
+        else
+        {
+            humanListPanel.SetActive(true);
+        }
+    }
 
     // Update is called once per frame
     void Update()
