@@ -13,6 +13,7 @@ public class NPC : NPCScrip
         //BuildingNum = Testbuilding;
         Grid = GameManager.instance.GetComponent<Setgrid>();
         Speed = 3f;
+        cargoclasshaveitem.Add("Wood", 0);
     }
     void Update()
     {
@@ -114,6 +115,7 @@ public class NPC : NPCScrip
     }
     private void SearchMyBuilding(string Building)
     {
+        ResetParameter();
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
         foreach (var collider in colliders)
         {
@@ -164,7 +166,7 @@ public class NPC : NPCScrip
     {
         if (GameManager.instance.isDaytime && !isCargoWorkStart)
         {
-            if(GameManager.instance.FullResourceBuildingList.Count > 0)
+            if (GameManager.instance.FullResourceBuildingList.Count > 0 && fullbuilding == null)
             {
                 isCargoWorkStart = true;
                 fullbuilding = GameManager.instance.FullResourceBuildingList[0].transform;
@@ -175,10 +177,12 @@ public class NPC : NPCScrip
         }
         if (GameManager.instance.isDaytime && isCargoWorkStart)
         {
-            /*건물에서 무슨자원인지 알아야함 자원꺼내기*/
             if(OnTriggerBuilding.transform == fullbuilding.transform)
             {
-
+                if (OnTriggerBuilding.CompareTag("WoodCutter_house"))
+                {
+                    cargoclasshaveitem["Wood"] = OnTriggerBuilding.GetComponent<BuildingSetting>().store;
+                }
             }
         }
         dayTimeResetPath();

@@ -13,6 +13,7 @@ public class NPCParameter : MonoBehaviour
     public int HavedWheat;
     public int HavedWood;
     public int HavedAnimal;
+    protected Dictionary<string, int> cargoclasshaveitem= new Dictionary<string, int>();
     public int HP
     {
         get { return hp; }
