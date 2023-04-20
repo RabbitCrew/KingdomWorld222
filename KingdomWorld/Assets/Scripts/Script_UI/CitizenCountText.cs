@@ -5,7 +5,7 @@ using TMPro;
 
 public class CitizenCountText : MonoBehaviour
 {
-    TextMeshProUGUI CitizenText;
+    [SerializeField]TextMeshProUGUI CitizenText;
 
     private void Update()
     {
