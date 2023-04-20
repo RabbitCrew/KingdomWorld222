@@ -1,9 +1,10 @@
-using UnityEngine;
-using System.Collections.Generic;
 using ObjectNS;
+using System.Collections.Generic;
+using UnityEngine;
 public class GameManager : Resource
 {
     [SerializeField] private PerlinNoiseMapMaker perlinNoise;
+    [SerializeField] private HumanListPanel humanListPanel;
     private float startTime;
     private float timeElapsed;
     public float dayNightRatio { get; private set; }
@@ -64,12 +65,17 @@ public class GameManager : Resource
     {
         InitializeGrid(500, 500);
     }
+    public void AddAllHumanList(GameObject obj)
+    {
+        AllHuman.Add(obj);
+        humanListPanel.UpdateHumanList();
+    }
+
 
     void Update()
     {
         //timeElapsed = Time.realtimeSinceStartup - startTime;
         dayNightRatio += (Time.deltaTime / 180f) * timeSpeed; // 180 seconds = 3 minutes
-        Debug.Log(timeSpeed);
         if (dayNightRatio >= 1f)
         {
             //startTime = Time.realtimeSinceStartup;

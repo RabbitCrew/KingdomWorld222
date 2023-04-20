@@ -9,10 +9,25 @@ public class MouseRay : MonoBehaviour
 
     private float distance = 50f;
     private RaycastHit[] hits;
-
+    private Transform targetTransform;
+    private Vector3 targetPosition;
+    private bool isTarget;
     // Update is called once per frame
     void Update()
     {
+        // 목표 지점이 있을 때
+        if (isTarget && targetTransform != null)
+        {
+            // 카메라가 목표지점까지 이동
+            targetPosition = new Vector3(targetTransform.position.x, 40, targetTransform.position.z);
+            this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.deltaTime * 5f);
+            // 일정거리거리에 가까워지면 목표지점 도달 성공
+            if (Vector3.SqrMagnitude(this.transform.position - targetPosition) < 0.1f)
+            {
+                this.transform.position = targetPosition;
+            }
+        }
+
         if (Time.timeScale == 0) { return; }
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -30,8 +45,6 @@ public class MouseRay : MonoBehaviour
 
         if (!IsPointerOverUIObject())
 		{
-
-
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
             hits = Physics.RaycastAll(ray, distance);
 
@@ -42,6 +55,13 @@ public class MouseRay : MonoBehaviour
                     uiManager.SetIsHpAndShieldBarUIObj(
                         true, hits[i].transform.GetComponent<BuildingSetting>().BuildingHp, hits[i].transform.GetComponent<BuildingSetting>().buildingShield,
                         hits[i].transform.GetComponent<BuildingSetting>().MaxBuildingHp, hits[i].transform.GetComponent<BuildingSetting>().maxBuildingShield);
+                    break;
+                }
+                else if (hits[i].transform.GetComponent<WaitingBuilding>() != null)
+                {
+                    uiManager.SetIsHpAndShieldBarUIObj(
+                        true, (int)hits[i].transform.GetComponent<WaitingBuilding>().time, hits[i].transform.GetComponent<WaitingBuilding>().shield,
+                        (int)hits[i].transform.GetComponent<WaitingBuilding>().maxTime, hits[i].transform.GetComponent<WaitingBuilding>().maxShield);
                     break;
                 }
                 else
@@ -70,7 +90,10 @@ public class MouseRay : MonoBehaviour
                 if (hits[i].transform.GetComponent<CitizenInfoPanel>() != null)
                 {
                     uiManager.SetIsOpenCitizenPanel(true, hits[i].transform.GetComponent<CitizenInfoPanel>());
+                    SetTargetTransform(hits[i].transform);
+                    break;
                 }
+                isTarget = false;
             }
         }
 
@@ -89,7 +112,11 @@ public class MouseRay : MonoBehaviour
             }
         }
     }
-
+    private void SetTargetTransform(Transform trans)
+    {
+        targetTransform = trans;
+        isTarget = true;
+    }
     // ���콺 �����Ͱ� UI���� ������ true���� �ƴϸ� false�� ��ȯ�Ѵ�.
     private bool IsPointerOverUIObject()
     {
