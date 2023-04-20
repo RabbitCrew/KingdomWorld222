@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8489713658704657409}
   - component: {fileID: 821866293744613281}
   - component: {fileID: 3787451274827604539}
+  - component: {fileID: 5616691564184311846}
+  - component: {fileID: -9220196584000615506}
   m_Layer: 0
   m_Name: FabricHouse
   m_TagString: Cloth_house
@@ -164,3 +166,37 @@ MonoBehaviour:
   sprArr:
   - {fileID: 21300000, guid: 4dcb914d6f9764348ad863ff266a9820, type: 3}
   - {fileID: 21300000, guid: 14e2476f768552b409cee32a6efaec46, type: 3}
+--- !u!114 &5616691564184311846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007518261052910153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcNum: 0
+  npc: {fileID: 0}
+  BuildingNum: 0
+  carpenternCheck: 0
+  npcCount: 0
+  npcs: []
+  storeMax: 50
+  store: 0
+--- !u!114 &-9220196584000615506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007518261052910153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a27cb0f1b143d4085894c2cb98de3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fleece: 10
+  cloth: 0
