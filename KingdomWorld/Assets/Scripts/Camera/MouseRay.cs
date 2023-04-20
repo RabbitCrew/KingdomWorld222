@@ -45,8 +45,6 @@ public class MouseRay : MonoBehaviour
 
         if (!IsPointerOverUIObject())
 		{
-
-
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
             hits = Physics.RaycastAll(ray, distance);
 
@@ -57,6 +55,13 @@ public class MouseRay : MonoBehaviour
                     uiManager.SetIsHpAndShieldBarUIObj(
                         true, hits[i].transform.GetComponent<BuildingSetting>().BuildingHp, hits[i].transform.GetComponent<BuildingSetting>().buildingShield,
                         hits[i].transform.GetComponent<BuildingSetting>().MaxBuildingHp, hits[i].transform.GetComponent<BuildingSetting>().maxBuildingShield);
+                    break;
+                }
+                else if (hits[i].transform.GetComponent<WaitingBuilding>() != null)
+                {
+                    uiManager.SetIsHpAndShieldBarUIObj(
+                        true, (int)hits[i].transform.GetComponent<WaitingBuilding>().time, hits[i].transform.GetComponent<WaitingBuilding>().shield,
+                        (int)hits[i].transform.GetComponent<WaitingBuilding>().maxTime, hits[i].transform.GetComponent<WaitingBuilding>().maxShield);
                     break;
                 }
                 else
@@ -85,8 +90,7 @@ public class MouseRay : MonoBehaviour
                 if (hits[i].transform.GetComponent<CitizenInfoPanel>() != null)
                 {
                     uiManager.SetIsOpenCitizenPanel(true, hits[i].transform.GetComponent<CitizenInfoPanel>());
-                    targetTransform = hits[i].transform;
-                    isTarget = true;
+                    SetTargetTransform(hits[i].transform);
                     break;
                 }
                 isTarget = false;
@@ -108,7 +112,11 @@ public class MouseRay : MonoBehaviour
             }
         }
     }
-
+    private void SetTargetTransform(Transform trans)
+    {
+        targetTransform = trans;
+        isTarget = true;
+    }
     // ���콺 �����Ͱ� UI���� ������ true���� �ƴϸ� false�� ��ȯ�Ѵ�.
     private bool IsPointerOverUIObject()
     {
