@@ -14004,6 +14004,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938072758}
   m_CullTransparentMesh: 1
+--- !u!1 &1952963500
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1952963501}
+  m_Layer: 5
+  m_Name: DeadPeople
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1952963501
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952963500}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4826823, y: 0.4826823, z: 0.4826823}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1614277189068844858}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 463.375, y: 260.5}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1956360614
 GameObject:
   m_ObjectHideFlags: 0
@@ -22975,6 +23011,7 @@ Transform:
   - {fileID: 4415751090842139742}
   - {fileID: 2100231512468087544}
   - {fileID: 8158628852314262380}
+  - {fileID: 1952963501}
   - {fileID: 6912520138457582056}
   - {fileID: 3024430026445397314}
   - {fileID: 7995941833485858081}
@@ -34723,6 +34760,7 @@ MonoBehaviour:
   hpAndShieldBarUIObj: {fileID: 2768078630214699935}
   hpBarMask: {fileID: 1964178951153905988}
   shieldBarMask: {fileID: 5263374608070933798}
+  humanListPanel: {fileID: 0}
 --- !u!224 &3846446786387151445
 RectTransform:
   m_ObjectHideFlags: 0
@@ -44848,7 +44886,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 149.99994}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99997}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &5721680995988855902
@@ -57230,6 +57268,7 @@ MonoBehaviour:
   MaxResource: 50
   AllHuman: []
   perlinNoise: {fileID: 468777081064770225}
+  humanListPanel: {fileID: 0}
   RestHuman: []
   WheatList: []
   WaitingBuildingList: []
