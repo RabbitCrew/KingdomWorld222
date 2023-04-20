@@ -28,25 +28,17 @@ public class Cornfield : MonoBehaviour
         buildingSetting = GetComponent<BuildingSetting>();
         buildingColider = GetComponent<BuildingColider>();
         //winterIsComing = GetComponent<WinterIsComing>();
+
+        GameManager.instance.Wheat = wheat;
     }
 
      void Update()
     {
-
-
         if (cultureCheck == false)
         {
             timer += Time.deltaTime;
             WheatProduction();
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-       /*if(collision.tag == "NPC")
-        {
-            // . . . NPC가 수확하면 wheatPrefab 제거
-        }*/
     }
 
     public void WheatProduction()

@@ -27,13 +27,13 @@ public class Smithy : MonoBehaviour
     {
         buildingSetting = GetComponent<BuildingSetting>();
         buildingColider = GetComponent<BuildingColider>();
+
+        GameManager.instance.Itronstone = itronstone;
+        GameManager.instance.CastIron = castIron;
     }
 
     private void Update()
-    {
-        GameManager.instance.Itronstone = itronstone;
-        GameManager.instance.CastIron = castIron;
-
+    { 
         castIronMax = buildingSetting.storeMax;
 
         timer += Time.deltaTime;
@@ -52,9 +52,12 @@ public class Smithy : MonoBehaviour
             {
                 timer = 0;
                 itronstone--;
+                GameManager.instance.Itronstone--;
                 buildingSetting.store--;
 
+
                 castIron++;
+                GameManager.instance.CastIron++;
                 buildingSetting.AddItem("castIron", 1);
             }
         }
