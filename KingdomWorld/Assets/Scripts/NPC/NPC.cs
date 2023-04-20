@@ -16,7 +16,6 @@ public class NPC : NPCScrip
     }
     void Update()
     {
-        time += Time.deltaTime;
         if (gameObject.CompareTag("StorageNPC"))
         {
             CargoClass();
