@@ -46,7 +46,7 @@ public class ArtifactWork : MonoBehaviour
                 // ½Ã°è
                 if (ArtifactActiveState.isOn == true)
                 {
-                    if (Inventory.instance.HasArtifact[value] <= 2)
+                    if (Inventory.instance.HasArtifact[value] <= 2 && Inventory.instance.HasArtifact[value] > 0)
                     {
                         GameManager.instance.timeSpeed = 2 * Inventory.instance.HasArtifact[value];
                     }
@@ -57,7 +57,7 @@ public class ArtifactWork : MonoBehaviour
                 }
                 else
                 {
-                    GameManager.instance.timeSpeed = 0;
+                    GameManager.instance.timeSpeed = 1;
                 }
                 break;
             case 1:

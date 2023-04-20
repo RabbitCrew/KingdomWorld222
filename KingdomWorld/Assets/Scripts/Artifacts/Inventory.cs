@@ -24,6 +24,7 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         AddExchangeRate = 0;
         MaxNegoText = 6;
 

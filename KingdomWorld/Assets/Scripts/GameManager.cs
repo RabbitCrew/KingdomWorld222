@@ -69,7 +69,7 @@ public class GameManager : Resource
     {
         //timeElapsed = Time.realtimeSinceStartup - startTime;
         dayNightRatio += (Time.deltaTime / 180f) * timeSpeed; // 180 seconds = 3 minutes
-
+        Debug.Log(timeSpeed);
         if (dayNightRatio >= 1f)
         {
             //startTime = Time.realtimeSinceStartup;
