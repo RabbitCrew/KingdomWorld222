@@ -32,7 +32,7 @@ public class Artifacts : MonoBehaviour
         SetTodayArtifact();
     }
 
-    void SetTodayArtifact()//소지하고 있는 유물이 일정 갯수 이상ㅇ이면 안뜨게 수정해야됨. 아직 수정중이니까 건들면 문닷
+    void SetTodayArtifact()//소지하고 있는 유물이 일정 갯수 이상ㅇ이면 안뜨게 수정해야됨. 아직 수정중이니까 건들면 문닷 유물 전체 구현하고 만들거양
     {
         if (GameManager.instance.dayNightRatio == 0f || GameManager.instance.dayNightRatio == 1f)
         {

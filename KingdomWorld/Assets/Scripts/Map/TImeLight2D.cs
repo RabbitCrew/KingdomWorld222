@@ -18,7 +18,6 @@ public class TImeLight2D : MonoBehaviour
     private Color colorMorning; // 아침 시간
     private Color colorEvening; // 저녁 시간
     private Color colorNight;   // 밤 시간
-    private Color rainColorMinus;   // 비 내릴때 얼마나 흐리게 해줄지 
     private float rotate;
     void Start()
     {
@@ -27,7 +26,6 @@ public class TImeLight2D : MonoBehaviour
         colorMorning = new Color(255 / 255f, 249 / 255f, 219 / 255f);   // 아침 조명 색깔
         colorEvening = new Color(221 / 255f, 149 / 255f, 66 / 255f);    // 저녁 조명 색깔
         colorNight = new Color(7 / 255f, 11 / 255f, 22 / 255f); // 밤 조명 색깔
-        rainColorMinus = new Color(0 / 255f, 0 / 255f, 0 / 255f);
         light2D.color = colorDawn;  // 시간은 0부터 시작하므로 시작 조명은 새벽
         rotate = 45f;
         //isRain = false;
@@ -70,7 +68,7 @@ public class TImeLight2D : MonoBehaviour
             light2D.color = Color.Lerp(colorNight, colorDawn, colorLerp);
         }
 
-        light2D.color = light2D.color - rainColorMinus;
+        //light2D.color = light2D.color - rainColorMinus;
 
         if (Time.timeScale != 0)
         {
@@ -117,9 +115,9 @@ public class TImeLight2D : MonoBehaviour
             {
                 if (i < length / 2)
                 {
-                    if (i < 30)
+                    if (i < 50)
                     {
-                        rainColorMinus = new Color(i / 255f, i / 255f, i / 255f);
+                        light2D.intensity -= 0.01f;
                     }
 
                     if (emissionModule.rateOverTime.constant < 300f )
@@ -129,10 +127,11 @@ public class TImeLight2D : MonoBehaviour
                 }
                 else
                 {
-                    if (rainColorMinus != new Color(0/255f, 0/255f, 0/255f))
+                    if (light2D.intensity < 1)
                     {
-                        rainColorMinus -= oneColor;
+                        light2D.intensity += 0.01f;
                     }
+
 
                     if (emissionModule.rateOverTime.constant > 10f)
                     {
@@ -141,8 +140,7 @@ public class TImeLight2D : MonoBehaviour
                 }
                 yield return one;
             }
-
-            rainColorMinus = new Color(0 / 255f, 0 / 255f, 0 / 255f);
+            light2D.intensity = 1f;
             GameManager.instance.isRain = false;
             rainParticle.Stop();
         }

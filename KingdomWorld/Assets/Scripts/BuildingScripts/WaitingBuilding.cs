@@ -56,6 +56,11 @@ public class WaitingBuilding : MonoBehaviour
         time += Time.deltaTime;
 
         fade = Mathf.InverseLerp(0, building.GetComponent<BuildingSetting>().MaxBuildingHp, building.GetComponent<BuildingSetting>().BuildingHp);
+        maxTime = building.GetComponent<BuildingSetting>().MaxBuildingHp;
+        time = building.GetComponent<BuildingSetting>().BuildingHp;
+        shield = building.GetComponent<BuildingSetting>().buildingShield;
+        maxShield = building.GetComponent<BuildingSetting>().maxBuildingShield;
+
         //fade = Mathf.InverseLerp(0, maxTime, time); // 윗줄 코드와 전환
 
         fade *= 0.6f;

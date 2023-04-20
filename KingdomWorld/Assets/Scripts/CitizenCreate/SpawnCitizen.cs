@@ -10,33 +10,29 @@ public class SpawnCitizen : MonoBehaviour
     public GameObject SpawnPoint;
 
     public List<GameObject> CitizenList = new List<GameObject>();
-    public Sprite[] CtSpriteList;
 
-    public float SpawnTime = 30f;
+    public float FirstSTime = 1f;
 
     public int CitizenNum = 3;
 
     public int HouseNum = 0;
 
-
-    private Dictionary<int, GameObject> houseDic = new Dictionary<int, GameObject>();
-
     private void Start()
     {
-        InvokeRepeating("SpawnintgCitizen", SpawnTime, SpawnTime);
+        InvokeRepeating("SpawnintgCitizen", FirstSTime, Inventory.instance.SpawnTime);
     }
 
     void HouseCount()//생성된 건물 중 거주지 수 카운트.
     {
         HouseNum = 0;
-        houseDic.Clear();
+        Inventory.instance.houseDic.Clear();
         int n = 0;
 
         for (int i = 0; i < BuildingParent.transform.childCount; i++)
         {
             if(BuildingParent.transform.GetChild(i).tag == "House" && BuildingParent.transform.GetChild(i).gameObject.activeSelf)
             {
-                houseDic.Add(n, BuildingParent.transform.GetChild(i).gameObject);
+                Inventory.instance.houseDic.Add(n, BuildingParent.transform.GetChild(i).gameObject);
                 n++;
                 HouseNum++;
             }
@@ -47,22 +43,22 @@ public class SpawnCitizen : MonoBehaviour
     {
         HouseCount();
 
-        for (int i = 0; i < houseDic.Count; i++)
+        for (int i = 0; i < Inventory.instance.houseDic.Count; i++)
         {
             if (CitizenList.Count < CitizenNum * HouseNum) // 거주지 수 비례 인구 수보다 현재 인구 수가 적을 시 인구 생성.
             {
                 GameObject CSpawn = Instantiate(Citizen);
                 CSpawn.transform.parent = SpawnPoint.transform;
-                if (houseDic.ContainsKey(i))
+                if (Inventory.instance.houseDic.ContainsKey(i))
                 {
-                    CSpawn.transform.position = houseDic[i].transform.position;
-                    CSpawn.GetComponent<NPC>().HouseTr = houseDic[i].transform;
+                    CSpawn.transform.position = Inventory.instance.houseDic[i].transform.position;
+                    CSpawn.GetComponent<NPC>().HouseTr = Inventory.instance.houseDic[i].transform;
                 }
 
-                CSpawn.GetComponent<SpriteRenderer>().sprite = CtSpriteList[RandomSprite()];
+                CSpawn.GetComponent<SpriteRenderer>().sprite = Inventory.instance.CtSpriteList[RandomSprite()];
 
                 CitizenList.Add(CSpawn); //시민 생성 후 리스트에 넣음.
-                GameManager.instance.AllHuman.Add(CSpawn);
+                GameManager.instance.AddAllHumanList(CSpawn);
 
                 CSpawn.SendMessage("SetPAni", Count);
 
@@ -73,9 +69,9 @@ public class SpawnCitizen : MonoBehaviour
 
     int Count = 0;
 
-    int RandomSprite() //일반 시민 스프라이트 랜덤 지정
+    public int RandomSprite() //일반 시민 스프라이트 랜덤 지정
     {
-        Count = Random.Range(0, CtSpriteList.Length - 1);
+        Count = Random.Range(0, Inventory.instance.CtSpriteList.Length);
         //Debug.Log(Count);
         return Count;
     }

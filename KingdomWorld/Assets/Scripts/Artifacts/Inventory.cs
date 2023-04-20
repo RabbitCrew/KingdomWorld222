@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,18 +9,22 @@ public class Inventory : MonoBehaviour
     public int[] HasArtifact = new int[30];
     public int Children;
     public int RainRate;
-
+    public float SpawnTime = 30f;
     public Sprite[] ArtifactImage;
+    public Sprite[] CtSpriteList;
 
     [SerializeField] GameObject inven;
 
     private Vector3 InvenPos;
     private bool IsLerp = false;
 
+    public Dictionary<int, GameObject> houseDic = new Dictionary<int, GameObject>();
+
     public static Inventory instance;
 
     private void Awake()
     {
+        instance = this;
         AddExchangeRate = 0;
         MaxNegoText = 6;
 
