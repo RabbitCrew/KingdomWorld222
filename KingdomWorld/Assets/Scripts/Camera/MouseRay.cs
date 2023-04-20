@@ -9,10 +9,25 @@ public class MouseRay : MonoBehaviour
 
     private float distance = 50f;
     private RaycastHit[] hits;
-
+    private Transform targetTransform;
+    private Vector3 targetPosition;
+    private bool isTarget;
     // Update is called once per frame
     void Update()
     {
+        // 목표 지점이 있을 때
+        if (isTarget && targetTransform != null)
+        {
+            // 카메라가 목표지점까지 이동
+            targetPosition = new Vector3(targetTransform.position.x, 40, targetTransform.position.z);
+            this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.deltaTime * 5f);
+            // 일정거리거리에 가까워지면 목표지점 도달 성공
+            if (Vector3.SqrMagnitude(this.transform.position - targetPosition) < 0.1f)
+            {
+                this.transform.position = targetPosition;
+            }
+        }
+
         if (Time.timeScale == 0) { return; }
 
         if (Input.GetKeyDown(KeyCode.S))
@@ -70,7 +85,11 @@ public class MouseRay : MonoBehaviour
                 if (hits[i].transform.GetComponent<CitizenInfoPanel>() != null)
                 {
                     uiManager.SetIsOpenCitizenPanel(true, hits[i].transform.GetComponent<CitizenInfoPanel>());
+                    targetTransform = hits[i].transform;
+                    isTarget = true;
+                    break;
                 }
+                isTarget = false;
             }
         }
 
