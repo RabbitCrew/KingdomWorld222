@@ -6,35 +6,41 @@ public class PestOn : MonoBehaviour
 {
     [SerializeField] float PestDistance;
 
-    float Cool = 10f;
+    float DestroyCool = 12f;
+    float CorruptionCool = 3f;
 
     private void Update()
     {
         PeopleFind();
 
-        DeadCool();
+        DeadBodyCool();
     }
 
     void PeopleFind()
     {
-        RaycastHit[] hits = Physics.SphereCastAll(transform.position, PestDistance, Vector3.up, 0);
-
-        for (int i = 0; i < hits.Length; i++) // 레이로 클릭한 부분의 오브젝트 뒤져서
+        if (CorruptionCool > 0)
         {
-            if (hits[i].collider.name == "Citizen1(Clone)")
-            {
-                //Debug.Log(hits[i].collider.name);
+            CorruptionCool -= Time.deltaTime;
+        }
+        else if (CorruptionCool <= 0)
+        {
+            RaycastHit[] hits = Physics.SphereCastAll(transform.position, PestDistance, Vector3.up, 0);
 
-                hits[i].collider.SendMessage("IsPest");
+            for (int i = 0; i < hits.Length; i++) // 레이로 클릭한 부분의 오브젝트 뒤져서
+            {
+                if (hits[i].collider.name == "Citizen1(Clone)")
+                {
+                    hits[i].collider.SendMessage("IsPest");
+                }
             }
         }
     }
 
-    void DeadCool()
+    void DeadBodyCool()
     {
-        if(Cool > 0)
+        if(DestroyCool > 0)
         {
-            Cool -= Time.deltaTime;
+            DestroyCool -= Time.deltaTime;
         }
         else
         {

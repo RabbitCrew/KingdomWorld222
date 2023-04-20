@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5123814152574304622}
   - component: {fileID: -658061582517763237}
   - component: {fileID: 4581786162597176300}
+  - component: {fileID: 4627780200525142799}
   m_Layer: 0
   m_Name: Citizen1
   m_TagString: NPC
@@ -228,6 +229,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PestImage: {fileID: 3643745059866649896}
+--- !u!114 &4627780200525142799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459160076541427711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f11308d8a8d60489bb6811a14a2aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DeadBodyPrefab: {fileID: 6051902495863427369, guid: 43621922ab0c05f4b87c56e1bb90dc8b, type: 3}
 --- !u!1 &3643745059866649896
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +253,7 @@ GameObject:
   - component: {fileID: 552916853231243081}
   - component: {fileID: 7561689223629257370}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: PestImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class NPCPestState : MonoBehaviour
 {
-    bool InPest = false;
+    public bool InPest { get; set; }
 
     [SerializeField] GameObject PestImage;
+
+    private void Awake()
+    {
+        InPest = false;
+    }
 
     private void Update()
     {
@@ -31,18 +36,9 @@ public class NPCPestState : MonoBehaviour
 
             if (HPDropCool <= 0)
             {
-                this.gameObject.GetComponent<NPCParameter>().HP--;
+                this.gameObject.GetComponent<NPCParameter>().HP -= 1;
 
                 HPDropCool = DefaultHPDropCool;
-            }
-
-            Debug.Log(this.gameObject.GetComponent<NPCParameter>().HP);
-
-            if (this.gameObject.GetComponent<NPCParameter>().HP <= 0)
-            {
-                Destroy(this.gameObject);
-
-                GameManager.instance.AllHuman.Remove(this.gameObject);
             }
         }
         else
