@@ -133,7 +133,7 @@ public class NPC : NPCScrip
     void dayTimeResetPath()
     {
         if (BuildingNum != null)
-        {//밀을 창고에 넣으려 가고있을때 퇴근을 하면 다음날 아침이 되면 길찾아주는 함수가 필요함
+        {
             //낮과밤이 바뀔때 한번만 경로수정
             if ((GameManager.instance.isDaytime && !reSetPathTrigger) || (NPCBUildTrigger && GameManager.instance.isDaytime))//출근시작
             {
@@ -174,21 +174,21 @@ public class NPC : NPCScrip
                 currentPathIndex = 0;
             }
         }
-        if (GameManager.instance.isDaytime && (this.transform.position == fullbuilding.position) && isCargoWorkStart)
+        if (GameManager.instance.isDaytime && isCargoWorkStart)
         {
             /*건물에서 무슨자원인지 알아야함 자원꺼내기*/
+            if(OnTriggerBuilding.transform == fullbuilding.transform)
+            {
+
+            }
         }
         dayTimeResetPath();
         Move();
     }
         
 
-    private bool treeCuting = false;
     Transform Tree = null;
-    private bool isSearchWood_house = false;
-    bool isCarryWood = false;
     bool allwork = false;
-    float time = 0f;
     void WoodCutter()
     {
         if (!allwork && GameManager.instance.isDaytime)
@@ -355,11 +355,12 @@ public class NPC : NPCScrip
         dayTimeResetPath();
         Move();
     }
-    
+    Collider OnTriggerBuilding;
     private void OnTriggerEnter(Collider other)//목적지 도착시 일시작
     {
         if(BuildingNum != null)
         {
+            other = OnTriggerBuilding;
             if (other.tag == BuildingNum.tag && !work && GameManager.instance.isDaytime)
             {
                 work = true;
@@ -500,5 +501,14 @@ public class NPC : NPCScrip
         Destroy(animal);
         Animal = null;
         hunting = false;//동물 사냥 완료
+    }
+    public void ResetParameter()
+    {
+        isBuilingStart = false;//목수
+        Building = null;//목수
+        isCargoWorkStart = false;//창고지기
+        fullbuilding = null;//창고지기
+        Tree = null;//나무꾼
+        allwork = false;//나무꾼
     }
 }
