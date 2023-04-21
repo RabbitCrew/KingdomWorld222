@@ -25,7 +25,13 @@ public class NPCParameter : MonoBehaviour
     public int HP
     {
         get { return hp; }
-        set { hp = value; }
+        set { 
+            if (value > maxHp)
+            {
+                value = maxHp;
+            }
+            hp = value;
+        }
     }
 
     public GameObject BuildingNum
