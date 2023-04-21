@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Resource : Setgrid
 {
-    //¹Ğ, ½Ä·®, ³ª¹«, À°·ù, °¡Á×, ±İÈ­, Ã¶±¤¼®, ÁÖÁ¶Ã¶, ¼Ò, ¾ç, Ä¡Áî, ¾çÅĞ, ¿Ê
+    //¹Ğ, ½Ä·®, ³ª¹«, À°·ù, °¡Á×, ±İÈ­, Ã¶±¤¼®, ÁÖÁ¶Ã¶, ¼Ò, ¾ç, ¿ìÀ¯, Ä¡Áî, ÇÜ, ¾çÅĞ, ¿Ê°¨, ¹ÙÀ§
 
     private int wheat;
     private int food;
@@ -16,13 +16,35 @@ public class Resource : Setgrid
     private int castIron;
     private int cow;
     private int sheep;
+    private int milk;
     private int cheese;
     private int ham;
     private int fleece;
     private int cloth;
+    private int stone;
     public int MaxResource; //ÀÚ¿ø ÃÖ´ëÄ¡
     public List<GameObject> AllHuman = new List<GameObject>();
 
+    public int Stone
+    {
+        get { return stone; }
+        set { if(value >= MaxResource)
+            {
+                value = MaxResource;
+            }
+            stone = value;
+        }
+    }
+    public int Milk
+    {
+        get { return milk; }
+        set { if(value >= MaxResource)
+            {
+                value = MaxResource;
+            }
+            milk = value;
+        }
+    }
     public int Wheat {
         get { return wheat; } 
         set 
