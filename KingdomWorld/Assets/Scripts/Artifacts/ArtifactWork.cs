@@ -303,7 +303,7 @@ public class ArtifactWork : MonoBehaviour
 
                 CSpawn.GetComponent<SpriteRenderer>().sprite = Inventory.instance.CtSpriteList[Count];
 
-                GameManager.instance.AddAllHumanList(CSpawn);
+                GameManager.instance.AllHuman.Add(CSpawn);
 
                 CSpawn.SendMessage("SetPAni", Count);
 

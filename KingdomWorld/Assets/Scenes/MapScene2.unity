@@ -662,6 +662,7 @@ MonoBehaviour:
   - {fileID: 940421374}
   - {fileID: 1539329138}
   - {fileID: 1351264978}
+  mouseRay: {fileID: 4877636155598369508}
 --- !u!1 &763196870
 GameObject:
   m_ObjectHideFlags: 0
@@ -7096,7 +7097,7 @@ MonoBehaviour:
   HasArtifact: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   Children: 0
   RainRate: 0
-  SpawnTime: 30
+  SpawnTime: 10
   ArtifactImage: []
   CtSpriteList:
   - {fileID: -1370853688, guid: eaceb68b211747146b357b17a92fdf3b, type: 3}
@@ -19876,10 +19877,10 @@ RectTransform:
   - {fileID: 4481831290625618623}
   - {fileID: 8771872718227013420}
   - {fileID: 2683756516630144607}
+  - {fileID: 702836349}
   - {fileID: 8273633113436148225}
   - {fileID: 5706153761570370014}
   - {fileID: 1588539549}
-  - {fileID: 702836349}
   - {fileID: 2744508829642258908}
   m_Father: {fileID: 8940071481664160039}
   m_RootOrder: -1
@@ -32898,7 +32899,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 8319467195238309342}
   m_Direction: 2
   m_Value: 1.0000006
-  m_Size: 0.24999918
+  m_Size: 0.5000002
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -52030,7 +52031,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 149.99951}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99924}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &7496445882411692138

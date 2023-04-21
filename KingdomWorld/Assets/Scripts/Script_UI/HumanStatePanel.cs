@@ -6,18 +6,24 @@ public class HumanStatePanel : JobStringArr
 {
     [SerializeField] private TextMeshProUGUI jobText;
     private GameObject human;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private MouseRay mouseRay;
 
     public void SetHuman(GameObject human)
     {
         this.human = human;
         UpdateText();
     }
+    public void SetMouseRay(MouseRay mouseRay)
+    {
+        this.mouseRay = mouseRay;
+    }
+    public void SetTargetTrans()
+    {
+        if (mouseRay != null)
+        {
+            mouseRay.SetTargetTransform(human.transform);
+        }
+    }    
 
     private void UpdateText()
     {
