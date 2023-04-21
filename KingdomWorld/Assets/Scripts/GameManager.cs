@@ -68,7 +68,7 @@ public class GameManager : Resource
     public void AddAllHumanList(GameObject obj)
     {
         AllHuman.Add(obj);
-        humanListPanel.UpdateHumanList();
+        //humanListPanel.UpdateHumanList();
     }
 
 

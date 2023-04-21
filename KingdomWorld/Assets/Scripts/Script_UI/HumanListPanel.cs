@@ -5,6 +5,8 @@ using UnityEngine;
 public class HumanListPanel : MonoBehaviour
 {
     [SerializeField] private GameObject[] humanStatePanelObjArr;
+    [SerializeField] private MouseRay mouseRay;
+
     private HumanStatePanel[] humanStatePanelArr;
     private int nowPage;
 
@@ -15,7 +17,12 @@ public class HumanListPanel : MonoBehaviour
         for (int i = 0; i < humanStatePanelObjArr.Length; i++)
         {
             humanStatePanelArr[i] = humanStatePanelObjArr[i].GetComponent<HumanStatePanel>();
+            humanStatePanelArr[i].SetMouseRay(mouseRay);
         }
+    }
+
+    private void Start()
+    {
     }
 
     public void ChangePage(int i)
@@ -43,7 +50,7 @@ public class HumanListPanel : MonoBehaviour
 
     void OnEnable()
     {
-        UpdateHumanList();
+        StartCoroutine(UpdateHumanInfo());
     }
 
     public void UpdateHumanList()
@@ -56,10 +63,19 @@ public class HumanListPanel : MonoBehaviour
             }
             else
             {
-                //Debug.Log(i);
                 humanStatePanelArr[i].SetHuman(GameManager.instance.AllHuman[i]);
             }
         }
     }
 
+    IEnumerator UpdateHumanInfo()
+    {
+        var one = new WaitForSeconds(1f);
+
+        while(true)
+        {
+            UpdateHumanList();
+            yield return one;
+        }
+    }
 }

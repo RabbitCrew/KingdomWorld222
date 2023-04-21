@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8884330963357774745}
   - component: {fileID: 7316316529344106404}
   - component: {fileID: -588798930648443055}
+  - component: {fileID: -1148189100712071190}
   m_Layer: 0
   m_Name: MineworkerHouse
   m_TagString: Mine_house
@@ -164,3 +165,23 @@ MonoBehaviour:
   sprArr:
   - {fileID: 21300000, guid: b3e391d4fbdd1cd4fb2b8226fd5d3ac7, type: 3}
   - {fileID: 21300000, guid: 360329f64d224c3498ed677c74858561, type: 3}
+--- !u!114 &-1148189100712071190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064245014530534050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcNum: 0
+  npc: {fileID: 0}
+  BuildingNum: 0
+  carpenternCheck: 0
+  npcCount: 0
+  npcs: []
+  storeMax: 50
+  store: 0

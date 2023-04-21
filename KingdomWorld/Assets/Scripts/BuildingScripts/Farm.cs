@@ -40,15 +40,17 @@ public class Farm : MonoBehaviour
     {
         buildingSetting = GetComponent<BuildingSetting>();
         buildingColider = GetComponent<BuildingColider>();
+
+        GameManager.instance.Cow = cow;
+        GameManager.instance.Sheep = sheep;
+        //GameManager.instance.Milk = milk;
+        GameManager.instance.Fleece = fleece;
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
         timer_1 += Time.deltaTime;
-
-        GameManager.instance.Cow = cow;
-        GameManager.instance.Sheep = sheep;
 
         animalstore = cow + sheep;
 
@@ -67,6 +69,7 @@ public class Farm : MonoBehaviour
             if(cow < cowMax)
             { 
                 cow++;
+                GameManager.instance.Cow++;
 
                 animalClone_1 = cowPrefab;
                 animalClone_1.transform.position = animalSpwner.transform.position;
@@ -76,6 +79,7 @@ public class Farm : MonoBehaviour
             if(sheep < sheepMax)
             {
                 sheep++;
+                GameManager.instance.Sheep++;
 
                 animalClone_2 = sheepPrefab;
                 animalClone_2.transform.position = animalSpwner.transform.position;
@@ -93,11 +97,13 @@ public class Farm : MonoBehaviour
             for (int i = 0; i < cow; i++)
             {
                 milk++;
+                //GameManager.instance.Milk++;
                 buildingSetting.AddItem("milk", 1);
             }
             for (int j = 0; j < sheep; j++)
             {
                 fleece++;
+                GameManager.instance.Fleece++;
                 buildingSetting.AddItem("fleece", 1);
             }
         }

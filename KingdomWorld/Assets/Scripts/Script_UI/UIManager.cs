@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class UIManager : MonoBehaviour
+public class UIManager : JobStringArr
 {
     [SerializeField] private RectTransform jobChangeUI;
     [SerializeField] private CitizenButtonListPanel citizenButtonListPanel;
     [SerializeField] private GameObject hpAndShieldBarUIObj;
+    [SerializeField] private GameObject npcHpAndShieldBarUIObj;
     [SerializeField] private Image hpBarMask;
     [SerializeField] private Image shieldBarMask;
+    [SerializeField] private Image npcHpBarMask;
+    [SerializeField] private Image npcShieldBarMask;
     [SerializeField] private GameObject humanListPanel;
+    [SerializeField] private TextMeshProUGUI buildingText;
     public bool isOpenCitizenPanel { get; private set; }
 
     private Vector3 openJobChangeUIVec;
@@ -24,11 +29,12 @@ public class UIManager : MonoBehaviour
         closeJobChangeUIVec = new Vector3(-1160f, 100f, 0f);
     }
 
-    public void SetIsHpAndShieldBarUIObj(bool bo, int hp, int shield, int maxHp, int maxShield)
+    public void SetIsHpAndShieldBarUIObj(bool bo, int hp, int shield, int maxHp, int maxShield, int buildingNumber)
 	{
         hpAndShieldBarUIObj.SetActive(bo);
         if (!bo) { return; }
 
+        buildingText.text = buildingArr[buildingNumber];
         if (float.IsNaN((float)hp / (float)maxHp))
         {
             hpBarMask.fillAmount = 0f;
@@ -47,6 +53,30 @@ public class UIManager : MonoBehaviour
         {
             shieldBarMask.fillAmount = (float)shield / (float)maxShield;
         }
+    }
+
+    public void SetIsNPCHpAndShieldBarUIObj(bool bo, int hp, int maxHp)
+    {
+        npcHpAndShieldBarUIObj.SetActive(bo);
+        if (!bo) { return; }
+
+        if (float.IsNaN((float)hp / (float)maxHp))
+        {
+            npcHpBarMask.fillAmount = 0f;
+        }
+        else
+        {
+            npcHpBarMask.fillAmount = (float)hp / (float)maxHp;
+        }
+
+        //if (float.IsNaN((float)shield/ (float)maxShield))
+        //{
+        //    npcShieldBarMask.fillAmount = 0f;
+        //}
+        //else
+        //{
+        //    npcShieldBarMask.fillAmount = (float)shield / (float)maxShield;
+        //}
     }
 
     public void SetIsOpenCitizenPanel(bool bo, CitizenInfoPanel citizenInfo)

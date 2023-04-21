@@ -54,21 +54,38 @@ public class MouseRay : MonoBehaviour
                 {
                     uiManager.SetIsHpAndShieldBarUIObj(
                         true, hits[i].transform.GetComponent<BuildingSetting>().BuildingHp, hits[i].transform.GetComponent<BuildingSetting>().buildingShield,
-                        hits[i].transform.GetComponent<BuildingSetting>().MaxBuildingHp, hits[i].transform.GetComponent<BuildingSetting>().maxBuildingShield);
+                        hits[i].transform.GetComponent<BuildingSetting>().MaxBuildingHp, hits[i].transform.GetComponent<BuildingSetting>().maxBuildingShield,
+                        hits[i].transform.GetComponent<BuildingSetting>().BuildingNum);
                     break;
                 }
                 else if (hits[i].transform.GetComponent<WaitingBuilding>() != null)
                 {
                     uiManager.SetIsHpAndShieldBarUIObj(
                         true, (int)hits[i].transform.GetComponent<WaitingBuilding>().time, hits[i].transform.GetComponent<WaitingBuilding>().shield,
-                        (int)hits[i].transform.GetComponent<WaitingBuilding>().maxTime, hits[i].transform.GetComponent<WaitingBuilding>().maxShield);
+                        (int)hits[i].transform.GetComponent<WaitingBuilding>().maxTime, hits[i].transform.GetComponent<WaitingBuilding>().maxShield,
+                        hits[i].transform.GetComponent<BuildingSetting>().BuildingNum);
                     break;
                 }
                 else
                 {
-                    uiManager.SetIsHpAndShieldBarUIObj(false, 1, 1, 1, 1);
+                    uiManager.SetIsHpAndShieldBarUIObj(false, 1, 1, 1, 1, -1);
                 }
             }
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].transform.GetComponent<NPC>() != null)
+                {
+                    uiManager.SetIsNPCHpAndShieldBarUIObj(
+                        true, hits[i].transform.GetComponent<NPC>().HP, hits[i].transform.GetComponent<NPC>().Maxhp);
+                    break;
+                }
+                else
+                {
+                    uiManager.SetIsNPCHpAndShieldBarUIObj(false, 1, 1);
+                }
+            }
+
         }
 
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
@@ -112,7 +129,7 @@ public class MouseRay : MonoBehaviour
             }
         }
     }
-    private void SetTargetTransform(Transform trans)
+    public void SetTargetTransform(Transform trans)
     {
         targetTransform = trans;
         isTarget = true;

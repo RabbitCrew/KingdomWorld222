@@ -57,8 +57,9 @@ public class JobListPanelScrollView : JobStringArr
 
         if (visibleButnNum != ((int)(contentsTrans.anchoredPosition3D.y - startVec.y) / heightButn))
         {
-            //Debug.Log(visibleButnNum);
             visibleButnNum = ((int)(contentsTrans.anchoredPosition3D.y - startVec.y) / heightButn);
+            Debug.Log(visibleButnNum);
+
             Pooling();
         }
     }

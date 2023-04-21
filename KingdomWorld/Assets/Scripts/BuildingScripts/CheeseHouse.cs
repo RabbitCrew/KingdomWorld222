@@ -27,13 +27,13 @@ public class CheeseHouse : MonoBehaviour
     {
         buildingSetting = GetComponent<BuildingSetting>();
         buildingColider = GetComponent<BuildingColider>();
+
+        //GameManager.instance.Milk = milk;
+        GameManager.instance.Cheese = cheese;
     }
 
     private void Update()
     {
-        //GameManager.instance.Milk = milk;
-        GameManager.instance.Cheese = cheese;
-
         cheeseMax = buildingSetting.storeMax;
 
         timer += Time.deltaTime;
@@ -52,9 +52,11 @@ public class CheeseHouse : MonoBehaviour
             {
                 timer = 0;
                 milk--;
+                //GameManager.instance.Milk--;
                 buildingSetting.store--;
 
                 cheese++;
+                GameManager.instance.Cheese++;
                 buildingSetting.AddItem("cheese", 1);
             }
         }

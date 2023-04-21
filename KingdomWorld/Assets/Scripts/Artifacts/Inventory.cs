@@ -9,7 +9,7 @@ public class Inventory : MonoBehaviour
     public int[] HasArtifact = new int[30];
     public int Children;
     public int RainRate;
-    public float SpawnTime = 30f;
+    public float SpawnTime = 10f;
     public Sprite[] ArtifactImage;
     public Sprite[] CtSpriteList;
 
