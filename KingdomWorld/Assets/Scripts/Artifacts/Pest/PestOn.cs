@@ -6,7 +6,7 @@ public class PestOn : MonoBehaviour
 {
     [SerializeField] float PestDistance;
 
-    float DestroyCool = 12f;
+    float DestroyCool = 30f;
     float CorruptionCool = 3f;
 
     private void Update()
