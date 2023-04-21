@@ -541,13 +541,18 @@ public class NPC : NPCScrip
         currentPathIndex = 0;
         yield break;
     }
-    private IEnumerator HuntingAnimal(float delay, Transform animal)
+    private IEnumerator HuntingAnimal(float delay, Transform animal)//동물 사냥 완료
     {
         yield return new WaitForSeconds(delay);
-        Destroy(animal);
+        if(animal != null)
+            Destroy(animal.gameObject);
+        HavedAnimal += 1;
         Animal = null;
-        hunting = false;//동물 사냥 완료
+        hunting = false;
         isReturntohunterhouse = true;
+        ResetPath(this.transform, BuildingNum.transform);
+        currentPathIndex = 0;
+        yield break;
     }
     public void ResetParameter()
     {
