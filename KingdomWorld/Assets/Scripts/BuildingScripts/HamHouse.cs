@@ -18,16 +18,17 @@ public class HamHouse : MonoBehaviour
     {
         buildingSetting = GetComponent<BuildingSetting>();
         buildingColider = GetComponent<BuildingColider>();
+
+        GameManager.instance.Meat = meat;
+        GameManager.instance.Ham = ham;
     }
 
     private void Update()
     {
         timer += Time.deltaTime;
 
-        GameManager.instance.Meat = meat;
-        GameManager.instance.Ham = ham;
-
         hamMax = buildingSetting.storeMax;
+
         if(buildingColider.isSettingComplete == true)
         {
             ChangeHam();
@@ -43,9 +44,11 @@ public class HamHouse : MonoBehaviour
             {
                 timer = 0;
                 meat--;
+                GameManager.instance.Meat--;
                 buildingSetting.store--;
 
                 ham++;
+                GameManager.instance.Ham++;
                 buildingSetting.store++;
             }
         }

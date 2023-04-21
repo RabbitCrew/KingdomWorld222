@@ -109,7 +109,8 @@ public class ArtifactWork : MonoBehaviour
                 {
                     for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
                     {
-                        GameManager.instance.AllHuman[i].GetComponent<NPC>().HP *= 150 / 100;
+                        GameManager.instance.AllHuman[i].GetComponent<NPC>().Maxhp *= 150 / 100;
+                        GameManager.instance.AllHuman[i].GetComponent<NPC>().HP = GameManager.instance.AllHuman[i].GetComponent<NPC>().Maxhp;
                     }
 
                     Inventory.instance.HasArtifact[value] -= 1;
@@ -130,7 +131,7 @@ public class ArtifactWork : MonoBehaviour
                 {
                     for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
                     {
-                        GameManager.instance.AllHuman[i].GetComponent<NPC>().HP *= 100 / 150;
+                        GameManager.instance.AllHuman[i].GetComponent<NPC>().Maxhp *= 100 / 150;
                     }
                 }
                 break;
@@ -210,6 +211,18 @@ public class ArtifactWork : MonoBehaviour
                 }
                 break;
             case 9:
+                // 역병 치료제
+                if(ArtifactActiveState.isOn == true)
+                {
+                    for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
+                    {
+                        GameManager.instance.AllHuman[i].GetComponent<NPCPestState>().InPest = false;
+                    }
+
+                    Inventory.instance.HasArtifact[value] -= 1;
+
+                    ArtifactActiveState.isOn = false;
+                }
                 break;
             case 10:
                 break;

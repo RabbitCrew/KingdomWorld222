@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPCParameter : MonoBehaviour
 {
     private int hp;
+    private int maxHp;
     [SerializeField]
     private GameObject buildingNum;
     private Transform houseTr;
@@ -13,6 +14,14 @@ public class NPCParameter : MonoBehaviour
     public int HavedWheat;
     public int HavedWood;
     public int HavedAnimal;
+    protected Dictionary<string, int> cargoclasshaveitem = new Dictionary<string, int>();
+
+    public int Maxhp
+    {
+        get { return maxHp; }
+        set { maxHp = value; }
+    }
+
     public int HP
     {
         get { return hp; }
