@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-public class UIManager : MonoBehaviour
+public class UIManager : JobStringArr
 {
     [SerializeField] private RectTransform jobChangeUI;
     [SerializeField] private CitizenButtonListPanel citizenButtonListPanel;
@@ -11,6 +12,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image hpBarMask;
     [SerializeField] private Image shieldBarMask;
     [SerializeField] private GameObject humanListPanel;
+    [SerializeField] private TextMeshProUGUI buildingText;
     public bool isOpenCitizenPanel { get; private set; }
 
     private Vector3 openJobChangeUIVec;
@@ -24,11 +26,12 @@ public class UIManager : MonoBehaviour
         closeJobChangeUIVec = new Vector3(-1160f, 100f, 0f);
     }
 
-    public void SetIsHpAndShieldBarUIObj(bool bo, int hp, int shield, int maxHp, int maxShield)
+    public void SetIsHpAndShieldBarUIObj(bool bo, int hp, int shield, int maxHp, int maxShield, int buildingNumber)
 	{
         hpAndShieldBarUIObj.SetActive(bo);
         if (!bo) { return; }
 
+        buildingText.text = buildingArr[buildingNumber];
         if (float.IsNaN((float)hp / (float)maxHp))
         {
             hpBarMask.fillAmount = 0f;
