@@ -150,7 +150,7 @@ public class NPC : NPCScrip
                 reSetPathTrigger = true;
                 NPCBUildTrigger = false;
             }
-            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work /*&& !Farmerwork*/)//퇴근
+            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work && !OneCycle/*&& !Farmerwork*/)//퇴근
             {
                 Debug.Log("퇴근");
                 ResetPath(this.transform, HouseTr);
@@ -203,17 +203,12 @@ public class NPC : NPCScrip
 
     private bool hunting = false;
     Transform Animal = null;
-    private bool isAnimalCarry = false;
+    bool isReturntohunterhouse = false;
     void Hunter()
     {
-        if (!hunting)//동물탐색
+        if (work)
         {
-            if (!isAnimalCarry && HavedAnimal > 0)
-            {
-                ResetPath(this.transform, BuildingNum.transform);
-                currentPathIndex = 0;
-                isAnimalCarry = true;
-            }else if(!isAnimalCarry && HavedAnimal == 0)
+            if (!hunting && !isReturntohunterhouse)
             {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
                 foreach (Collider collider in colliders)
@@ -224,13 +219,14 @@ public class NPC : NPCScrip
                         ResetPath(this.transform, Animal);
                         currentPathIndex = 0;
                         hunting = true;
+                        OneCycle = true;
                         break;
                     }
                 }
             }
         }
+
         dayTimeResetPath();
-        
         Move();
     }
 
@@ -274,27 +270,22 @@ public class NPC : NPCScrip
                 }
             }
         }
-        
-        
         Move();
     }
 
-    private bool mining = false;
-    Transform stone = null;
     void StoneMiner()
     {
         dayTimeResetPath();
         Move();
     }
 
-    Transform iron = null;
     void ironMiner()
     {
         dayTimeResetPath();
         Move();
     }
 
-    void Smith()
+    void Smith()//대장장이
     {
         dayTimeResetPath();
         /*대장장이구현*/
@@ -482,18 +473,15 @@ public class NPC : NPCScrip
                 {
                     allwork = false;//일끝
                 }
-            }
-            else if (this.CompareTag("StorageNPC") && other.CompareTag(fullbuilding.tag))
-            {
-                //fullbuilding자원 꺼내기
             }else if(this.CompareTag("Hunter") && Animal.transform == other.transform && hunting)
             {
                 StartCoroutine(HuntingAnimal(3f, Animal));
-            }else if(this.CompareTag("Hunter") && HavedAnimal > 0 && isAnimalCarry && other.transform == BuildingNum.transform)
+            }else if(this.CompareTag("Hunter") && HavedAnimal > 0 && isReturntohunterhouse && other.transform == BuildingNum.transform)
             {
-                GameManager.instance.Meat += HavedAnimal;
+                BuildingNum.GetComponent<BuildingSetting>().store += HavedAnimal;
                 HavedAnimal = 0;
-                isAnimalCarry = false;
+                isReturntohunterhouse = false;
+                OneCycle = false;
             }
         }
     }
@@ -559,13 +547,18 @@ public class NPC : NPCScrip
         Destroy(animal);
         Animal = null;
         hunting = false;//동물 사냥 완료
+        isReturntohunterhouse = true;
     }
     public void ResetParameter()
     {
+        OneCycle = false;
         isBuilingStart = false;//목수
         Building = null;//목수
         isCargoWorkStart = false;//창고지기
         fullbuilding = null;//창고지기
+        isreturntocargo = false;//창고지기
+        Animal = null;//사냥꾼
+        isReturntohunterhouse = false;//사냥꾼
         Tree = null;//나무꾼
         allwork = false;//나무꾼
     }
