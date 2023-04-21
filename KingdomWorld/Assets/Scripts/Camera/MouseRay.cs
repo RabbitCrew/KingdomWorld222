@@ -112,7 +112,7 @@ public class MouseRay : MonoBehaviour
             }
         }
     }
-    private void SetTargetTransform(Transform trans)
+    public void SetTargetTransform(Transform trans)
     {
         targetTransform = trans;
         isTarget = true;
