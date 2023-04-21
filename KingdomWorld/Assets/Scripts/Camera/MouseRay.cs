@@ -71,6 +71,21 @@ public class MouseRay : MonoBehaviour
                     uiManager.SetIsHpAndShieldBarUIObj(false, 1, 1, 1, 1, -1);
                 }
             }
+
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].transform.GetComponent<NPC>() != null)
+                {
+                    uiManager.SetIsNPCHpAndShieldBarUIObj(
+                        true, hits[i].transform.GetComponent<NPC>().HP, hits[i].transform.GetComponent<NPC>().Maxhp);
+                    break;
+                }
+                else
+                {
+                    uiManager.SetIsNPCHpAndShieldBarUIObj(false, 1, 1);
+                }
+            }
+
         }
 
         if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())

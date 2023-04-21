@@ -9,8 +9,11 @@ public class UIManager : JobStringArr
     [SerializeField] private RectTransform jobChangeUI;
     [SerializeField] private CitizenButtonListPanel citizenButtonListPanel;
     [SerializeField] private GameObject hpAndShieldBarUIObj;
+    [SerializeField] private GameObject npcHpAndShieldBarUIObj;
     [SerializeField] private Image hpBarMask;
     [SerializeField] private Image shieldBarMask;
+    [SerializeField] private Image npcHpBarMask;
+    [SerializeField] private Image npcShieldBarMask;
     [SerializeField] private GameObject humanListPanel;
     [SerializeField] private TextMeshProUGUI buildingText;
     public bool isOpenCitizenPanel { get; private set; }
@@ -50,6 +53,30 @@ public class UIManager : JobStringArr
         {
             shieldBarMask.fillAmount = (float)shield / (float)maxShield;
         }
+    }
+
+    public void SetIsNPCHpAndShieldBarUIObj(bool bo, int hp, int maxHp)
+    {
+        npcHpAndShieldBarUIObj.SetActive(bo);
+        if (!bo) { return; }
+
+        if (float.IsNaN((float)hp / (float)maxHp))
+        {
+            npcHpBarMask.fillAmount = 0f;
+        }
+        else
+        {
+            npcHpBarMask.fillAmount = (float)hp / (float)maxHp;
+        }
+
+        //if (float.IsNaN((float)shield/ (float)maxShield))
+        //{
+        //    npcShieldBarMask.fillAmount = 0f;
+        //}
+        //else
+        //{
+        //    npcShieldBarMask.fillAmount = (float)shield / (float)maxShield;
+        //}
     }
 
     public void SetIsOpenCitizenPanel(bool bo, CitizenInfoPanel citizenInfo)
