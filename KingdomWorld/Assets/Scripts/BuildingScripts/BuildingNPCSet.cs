@@ -19,7 +19,7 @@ public class BuildingNPCSet : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("GetPos", 0.1f, 0.1f);
+        InvokeRepeating("GetPos", 0.1f, 0.5f);
     }
 
     private void FixedUpdate()
