@@ -68,13 +68,18 @@ public class BuildingSetting : MonoBehaviour
         //GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] -= npcCount;
     }
 
-
+    bool addStop = false;
     // Update is called once per frame
     void Update()
     {
-        if(store == storeMax)
+        if(store == 0)
+        {
+            addStop = false;
+        }
+        if(store == storeMax && !addStop)
         {
             GameManager.instance.FullResourceBuildingList.Add(this.gameObject);
+            addStop = true;
         }
     }
 
