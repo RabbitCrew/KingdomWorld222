@@ -13,8 +13,8 @@ public class BuildingNPCSet : MonoBehaviour
     {
         NPCPos = NPC.transform.position;
 
-        animator.SetInteger("IsIdle", 80);
-        animator.SetInteger("IsWearingClothes", 80);
+        animator.SetInteger("IsIdle", -2);
+        animator.SetInteger("IsWearingClothes", -2);
     }
 
     private void Start()
@@ -237,7 +237,7 @@ public class BuildingNPCSet : MonoBehaviour
                 animator.SetBool("IsLeft", false);
             }
         }
-        else
+        else//위쪽으로 가고 있을 때
         {
             animator.SetBool("IsFront", false);
 
