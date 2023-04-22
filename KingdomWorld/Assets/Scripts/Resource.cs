@@ -90,8 +90,9 @@ public class Resource : Setgrid
                         {
                             if(AllHuman.Count >= 1)
                             {
-                                Destroy(AllHuman[0]);
-                                AllHuman.RemoveAt(0);
+                                AllHuman[0].GetComponent<NPC>().HP = 0;
+                                //Destroy(AllHuman[0]);
+                                //AllHuman.RemoveAt(0);
                             }
                         }
                         value = 0;
