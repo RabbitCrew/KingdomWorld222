@@ -411,6 +411,7 @@ public class NPC : NPCScrip
                     {
                         isreturntocargo = false;
                         OneCycle = false;
+                        fullbuilding = null;
                     }
                 }
             }
