@@ -163,12 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcNum: 0
   npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
   BuildingNum: 8
   carpenternCheck: 0
   npcCount: 5
   npcs: []
-  storeMax: 0
+  storeMax: 50
   store: 0
 --- !u!114 &-6236440270005168184
 MonoBehaviour:

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NPC : NPCScrip
 {
+    public bool OneCycle = false; //NPC가 이동중인지 체크하는 변수
+    public bool MyPosition = false;//NPC가 직장위치에 있는지 체크하는 변수
     public bool work = false;//출근 체크 변수
     private bool reSetPathTrigger = false;//update마다 Astar가 작동하지 않게 해주는 bool값
     public bool Sleep = false;
@@ -71,7 +73,6 @@ public class NPC : NPCScrip
         
         if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.WAREHOUSEKEEPER)
         {
-            
             SearchMyBuilding("Storage");
         }
         else if(this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.WOODCUTTER)
@@ -149,7 +150,7 @@ public class NPC : NPCScrip
                 reSetPathTrigger = true;
                 NPCBUildTrigger = false;
             }
-            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work /*&& !Farmerwork*/)//퇴근
+            else if (!GameManager.instance.isDaytime && reSetPathTrigger && work && !OneCycle/*&& !Farmerwork*/)//퇴근
             {
                 Debug.Log("퇴근");
                 ResetPath(this.transform, HouseTr);
@@ -160,11 +161,12 @@ public class NPC : NPCScrip
         }
     }
     //창고지기 
-    private bool isCargoWorkStart = false;
-    Transform fullbuilding = null;
+    private bool isCargoWorkStart = false;//목표로 이동했는지 체크
+    Transform fullbuilding = null;//저장량이 가득찬 건물
+    private bool isreturntocargo = false;//목표건물에서 다시 창고로 복귀하는지 체크
     void CargoClass()
     {
-        if (GameManager.instance.isDaytime && !isCargoWorkStart)
+        if (GameManager.instance.isDaytime && !isCargoWorkStart && !isreturntocargo && work)//직장에도착햇을때(조건 : 낮)
         {
             if (GameManager.instance.FullResourceBuildingList.Count > 0 && fullbuilding == null)
             {
@@ -173,19 +175,12 @@ public class NPC : NPCScrip
                 GameManager.instance.FullResourceBuildingList.RemoveAt(0);
                 ResetPath(this.transform, fullbuilding);
                 currentPathIndex = 0;
+                OneCycle = true;
             }
         }
-        if (GameManager.instance.isDaytime && isCargoWorkStart)
-        {
-            if(OnTriggerBuilding.transform == fullbuilding.transform)
-            {
-                if (OnTriggerBuilding.CompareTag("WoodCutter_house"))
-                {
-                    cargoclasshaveitem["Wood"] = OnTriggerBuilding.GetComponent<BuildingSetting>().store;
-                }
-            }
-        }
-        dayTimeResetPath();
+        
+        if(!OneCycle)
+            dayTimeResetPath();
         Move();
     }
         
@@ -208,17 +203,12 @@ public class NPC : NPCScrip
 
     private bool hunting = false;
     Transform Animal = null;
-    private bool isAnimalCarry = false;
+    bool isReturntohunterhouse = false;
     void Hunter()
     {
-        if (!hunting)//동물탐색
+        if (work)
         {
-            if (!isAnimalCarry && HavedAnimal > 0)
-            {
-                ResetPath(this.transform, BuildingNum.transform);
-                currentPathIndex = 0;
-                isAnimalCarry = true;
-            }else if(!isAnimalCarry && HavedAnimal == 0)
+            if (!hunting && !isReturntohunterhouse)
             {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
                 foreach (Collider collider in colliders)
@@ -229,11 +219,13 @@ public class NPC : NPCScrip
                         ResetPath(this.transform, Animal);
                         currentPathIndex = 0;
                         hunting = true;
+                        OneCycle = true;
                         break;
                     }
                 }
             }
         }
+
         dayTimeResetPath();
         Move();
     }
@@ -278,27 +270,22 @@ public class NPC : NPCScrip
                 }
             }
         }
-        
-        
         Move();
     }
 
-    private bool mining = false;
-    Transform stone = null;
     void StoneMiner()
     {
         dayTimeResetPath();
         Move();
     }
 
-    Transform iron = null;
     void ironMiner()
     {
         dayTimeResetPath();
         Move();
     }
 
-    void Smith()
+    void Smith()//대장장이
     {
         dayTimeResetPath();
         /*대장장이구현*/
@@ -358,17 +345,77 @@ public class NPC : NPCScrip
         dayTimeResetPath();
         Move();
     }
-    Collider OnTriggerBuilding;
     private void OnTriggerEnter(Collider other)//목적지 도착시 일시작
     {
         if(BuildingNum != null)
         {
-            other = OnTriggerBuilding;
             if (other.tag == BuildingNum.tag && !work && GameManager.instance.isDaytime)
             {
                 work = true;
             }
-            if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding") && other.transform == Building.transform)//목수NPC 건설
+            if (this.CompareTag("StorageNPC"))
+            {
+                if (isCargoWorkStart)//목표건물을 향해 이동중 (조건 : 밤, 낮)
+                {
+                    if (other.transform == fullbuilding.transform)//목표건물에 도착
+                    {
+                        if (other.CompareTag("WoodCutter_house"))
+                        {
+                            cargoclasshaveitem["Wood"] = other.GetComponent<BuildingSetting>().store;
+                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
+                        }
+                        else if (other.CompareTag("Hunter_house"))
+                        {
+                            cargoclasshaveitem["Meat"] = other.GetComponent<BuildingSetting>().store;
+                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
+                        }
+                        else if (other.CompareTag("Farm_house"))
+                        {
+                            cargoclasshaveitem["Milk"] = other.GetComponent<BuildingSetting>().store;
+                            cargoclasshaveitem["Fleece"] = other.GetComponent<BuildingSetting>().store;
+                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;//우유랑 양털 둘다있어야함
+                        }
+                        else if (other.CompareTag("Cheese_house"))
+                        {
+                            cargoclasshaveitem["Cheese"] = other.GetComponent<BuildingSetting>().store;
+                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
+                        }
+                        else if (other.CompareTag("Ham_house"))
+                        {
+                            cargoclasshaveitem["Ham"] = other.GetComponent<BuildingSetting>().store;
+                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
+                        }
+                        else if (other.CompareTag("Mine_house"))
+                        {
+                            cargoclasshaveitem["Stone"] = other.GetComponent<BuildingSetting>().store;
+                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
+                        }
+                        else if (other.CompareTag("Cloth_house"))
+                        {
+                            cargoclasshaveitem["Cloth"] = other.GetComponent<BuildingSetting>().store;
+                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
+                        }
+                        else if (other.CompareTag("Smith_house"))
+                        {
+                            cargoclasshaveitem["CastIron"] = other.GetComponent<BuildingSetting>().store;
+                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
+                        }
+                        isCargoWorkStart = false;
+                        isreturntocargo = true;
+                        ResetPath(this.transform, BuildingNum.transform);//복귀
+                        currentPathIndex = 0;
+                    }
+                }else if (isreturntocargo)
+                {
+                    if(other.transform == BuildingNum.transform)
+                    {
+                        isreturntocargo = false;
+                        OneCycle = false;
+                        fullbuilding = null;
+                    }
+                }
+            }
+            else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding") && other.transform == Building.transform)//목수NPC 건설
             {
                 StartCoroutine(Build(0.1f, other));
                 //Debug.Log("여기는 몇번 찍힙니까?");
@@ -384,7 +431,7 @@ public class NPC : NPCScrip
                 {
                     Invoke("farmNPCpushWheat", 3f);
                 }
-            } else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood == 0)
+            } else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood == 0)//출근시 나무탐색
             {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 10f);
                 foreach (Collider collider in colliders)
@@ -399,13 +446,13 @@ public class NPC : NPCScrip
                         break;
                     }
                 }
-            }else if(this.CompareTag("WoodCutter") && Tree != null)
+            }else if(this.CompareTag("WoodCutter") && Tree != null)//나무에 도착시 나무자르기
             {
                 if(other.transform == Tree)
                     StartCoroutine(CuttingTree(3));
             }else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood > 0)
             {
-                GameManager.instance.Wood += HavedWood;
+                other.GetComponent<BuildingSetting>().store += HavedWood;
                 HavedWood = 0;
                 if (GameManager.instance.isDaytime)
                 {
@@ -427,18 +474,15 @@ public class NPC : NPCScrip
                 {
                     allwork = false;//일끝
                 }
-            }
-            else if (this.CompareTag("StorageNPC") && other.CompareTag(fullbuilding.tag))
-            {
-                //fullbuilding자원 꺼내기
             }else if(this.CompareTag("Hunter") && Animal.transform == other.transform && hunting)
             {
                 StartCoroutine(HuntingAnimal(3f, Animal));
-            }else if(this.CompareTag("Hunter") && HavedAnimal > 0 && isAnimalCarry && other.transform == BuildingNum.transform)
+            }else if(this.CompareTag("Hunter") && HavedAnimal > 0 && isReturntohunterhouse && other.transform == BuildingNum.transform)
             {
-                GameManager.instance.Meat += HavedAnimal;
+                BuildingNum.GetComponent<BuildingSetting>().store += HavedAnimal;
                 HavedAnimal = 0;
-                isAnimalCarry = false;
+                isReturntohunterhouse = false;
+                OneCycle = false;
             }
         }
     }
@@ -498,19 +542,29 @@ public class NPC : NPCScrip
         currentPathIndex = 0;
         yield break;
     }
-    private IEnumerator HuntingAnimal(float delay, Transform animal)
+    private IEnumerator HuntingAnimal(float delay, Transform animal)//동물 사냥 완료
     {
         yield return new WaitForSeconds(delay);
-        Destroy(animal);
+        if(animal != null)
+            Destroy(animal.gameObject);
+        HavedAnimal += 1;
         Animal = null;
-        hunting = false;//동물 사냥 완료
+        hunting = false;
+        isReturntohunterhouse = true;
+        ResetPath(this.transform, BuildingNum.transform);
+        currentPathIndex = 0;
+        yield break;
     }
     public void ResetParameter()
     {
+        OneCycle = false;
         isBuilingStart = false;//목수
         Building = null;//목수
         isCargoWorkStart = false;//창고지기
         fullbuilding = null;//창고지기
+        isreturntocargo = false;//창고지기
+        Animal = null;//사냥꾼
+        isReturntohunterhouse = false;//사냥꾼
         Tree = null;//나무꾼
         allwork = false;//나무꾼
     }
