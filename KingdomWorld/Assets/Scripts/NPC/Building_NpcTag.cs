@@ -30,8 +30,6 @@ public class Building_NpcTag : MonoBehaviour
     private void Update()
     {
         BuildingCheck();
-
-        NPCFound();
     }
 
     int IsSetcount;
@@ -54,19 +52,15 @@ public class Building_NpcTag : MonoBehaviour
         {
             if (GameManager.instance.AllHuman[j].GetComponent<NPC>().BuildingNum == JobBuilding)
             {
-                NPCPanel[NpcValue].SetActive(true);
+                NpcValue++;
 
-                NPCPanel[NpcValue].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
+                NPCPanel[NpcValue - 1].SetActive(true);
+
+                NPCPanel[NpcValue - 1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
                     GameManager.instance.AllHuman[j].gameObject.name + "\n" + TagCheck(GameManager.instance.AllHuman[j].gameObject);
 
                 JobAddB.transform.localPosition =
-                    JobAddBPos - new Vector3(0, 100 * (NpcValue + 1), 0);
-
-                NpcValue++;
-            }
-            else
-            {
-                return;
+                    JobAddBPos - new Vector3(0, 100 * NpcValue, 0);
             }
         }
 
@@ -100,7 +94,14 @@ public class Building_NpcTag : MonoBehaviour
                         NPcButton.SetActive(false);
                         NPcButtonOther.SetActive(false);
 
-                        if (hits[i].collider.gameObject.tag.Equals("Storage"))
+                        for (int j = 0; j < NPCPanel.Length; j++)
+                        {
+                            NPCPanel[j].SetActive(false);
+                        }
+
+                        NPCFound();
+
+                        if (hits[i].collider.gameObject.tag == "Storage")
                         {
                             Job = "StorageNPC";
 
@@ -110,7 +111,7 @@ public class Building_NpcTag : MonoBehaviour
 
                             JobText.text = InputJobText[NPCCount];
                         }
-                        else if (hits[i].collider.gameObject.tag.Equals("WoodCutter_house"))
+                        else if (hits[i].collider.gameObject.tag == "WoodCutter_house")
                         {
                             Job = "WoodCutter";
 
@@ -120,7 +121,7 @@ public class Building_NpcTag : MonoBehaviour
 
                             JobText.text = InputJobText[NPCCount];
                         }
-                        else if (hits[i].collider.gameObject.tag.Equals("Carpenter_house"))
+                        else if (hits[i].collider.gameObject.tag == "Carpenter_house")
                         {
                             Job = "CarpenterNPC";
 
@@ -130,7 +131,7 @@ public class Building_NpcTag : MonoBehaviour
 
                             JobText.text = InputJobText[NPCCount];
                         }
-                        else if (hits[i].collider.gameObject.tag.Equals("Hunter_house"))
+                        else if (hits[i].collider.gameObject.tag == "Hunter_house")
                         {
                             Job = "Hunter";
 
@@ -371,6 +372,8 @@ public class Building_NpcTag : MonoBehaviour
         {
             SMassage.SendMessage("MessageQ", "이미 인부의 수가 한계에 도달했습니다.");
         }
+
+        NPCFound();
     }
 
     public GameObject MotherBuilding;
@@ -436,6 +439,8 @@ public class Building_NpcTag : MonoBehaviour
                 }
             }
         }
+
+        NPCFound();
     }
 
     private bool IsPointerOverUIObject()
@@ -457,5 +462,7 @@ public class Building_NpcTag : MonoBehaviour
     public void ExitButton()
     {
         JobPanel.SetActive(false);
+
+        NPCFound();
     }
 }
