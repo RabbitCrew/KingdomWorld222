@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npcNum: 0
   npc: {fileID: 0}
-  BuildingNum: 0
+  BuildingNum: 12
   carpenternCheck: 0
   npcCount: 3
   npcs: []
