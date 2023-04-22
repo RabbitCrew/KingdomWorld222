@@ -157,7 +157,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsLeft
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsBack
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 686208829981735679}
   m_Solo: 0
@@ -482,7 +491,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsFront
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsLeft
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2823339593589466720}
   m_Solo: 0
@@ -2879,6 +2897,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsBack
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 533676612622882791}
   m_Solo: 0
@@ -2987,7 +3008,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsFront
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsBack
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 686208829981735679}
   m_Solo: 0
@@ -3203,6 +3233,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsLeft
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5002208286090818560}
   m_Solo: 0
@@ -4355,16 +4388,16 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 3444847472748267621}
-    m_Position: {x: 1140, y: 150, z: 0}
+    m_Position: {x: 1140, y: 250, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2256327706728814820}
-    m_Position: {x: 1430, y: 90, z: 0}
+    m_Position: {x: 1440, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8310001246497064431}
-    m_Position: {x: 1300, y: 310, z: 0}
+    m_Position: {x: 1110, y: 520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8237774757204523741}
-    m_Position: {x: 1460, y: 190, z: 0}
+    m_Position: {x: 1450, y: 400, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6918581914292679985}
     m_Position: {x: 840, y: 340, z: 0}
@@ -4394,7 +4427,7 @@ AnimatorStateMachine:
     m_Position: {x: 1110, y: -510, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1606229782797463298}
-    m_Position: {x: 990, y: -310, z: 0}
+    m_Position: {x: 1070, y: -300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2397013100951943167}
     m_Position: {x: -880, y: -110, z: 0}
@@ -4403,7 +4436,7 @@ AnimatorStateMachine:
     m_Position: {x: -690, y: -260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6262796603803258981}
-    m_Position: {x: -740, y: -10, z: 0}
+    m_Position: {x: -790, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 701612458670461702}
     m_Position: {x: -420, y: -240, z: 0}
@@ -4445,16 +4478,16 @@ AnimatorStateMachine:
     m_Position: {x: -60, y: -520, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7461829463641802125}
-    m_Position: {x: 1460, y: 0, z: 0}
+    m_Position: {x: 1580, y: 190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1963608369009724532}
     m_Position: {x: 1660, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5936429962740779270}
-    m_Position: {x: 1370, y: 430, z: 0}
+    m_Position: {x: 1360, y: 550, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8765347845212792230}
-    m_Position: {x: 1230, y: 0, z: 0}
+    m_Position: {x: 1260, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7966684889379609368}
     m_Position: {x: 576.33545, y: 260.48706, z: 0}
@@ -4490,10 +4523,10 @@ AnimatorStateMachine:
     m_Position: {x: -950, y: -160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6668993983815444006}
-    m_Position: {x: -830, y: 30, z: 0}
+    m_Position: {x: -840, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 466149996777532491}
-    m_Position: {x: -220, y: -170, z: 0}
+    m_Position: {x: -320, y: -320, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5642707654182897835}
     m_Position: {x: -520, y: -830, z: 0}
@@ -4511,7 +4544,7 @@ AnimatorStateMachine:
     m_Position: {x: -560, y: 680, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8712703165014723934}
-    m_Position: {x: -820, y: 700, z: 0}
+    m_Position: {x: -970, y: 610, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7153614988587172486}
     m_Position: {x: -920, y: 240, z: 0}
@@ -4520,16 +4553,16 @@ AnimatorStateMachine:
     m_Position: {x: -1140, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5939681475936039865}
-    m_Position: {x: 1040, y: -100, z: 0}
+    m_Position: {x: 1240, y: -120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6338340150645402217}
-    m_Position: {x: 700, y: 190, z: 0}
+    m_Position: {x: 770, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1341164716279292690}
-    m_Position: {x: 1070, y: 60, z: 0}
+    m_Position: {x: 1220, y: 90, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4556574044833133368}
-    m_Position: {x: 770, y: -60, z: 0}
+    m_Position: {x: 930, y: -110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8306314456842807806}
     m_Position: {x: 900, y: 500, z: 0}
@@ -4556,7 +4589,7 @@ AnimatorStateMachine:
     m_Position: {x: 360, y: -230, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5496134532684211397}
-    m_Position: {x: -510, y: -30, z: 0}
+    m_Position: {x: -510, y: -10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3887426843110030188}
     m_Position: {x: -220, y: 200, z: 0}
@@ -5112,7 +5145,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsLeft
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsRight
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2823339593589466720}
   m_Solo: 0
@@ -5445,7 +5487,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFront
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsLeft
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8196086149836591312}
   m_Solo: 0
@@ -6266,7 +6317,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFront
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsRight
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8196086149836591312}
   m_Solo: 0
@@ -6796,7 +6856,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsBack
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsRight
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7232061753413452475}
   m_Solo: 0
@@ -7299,6 +7368,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3444847472748267621}
   m_Solo: 0
@@ -7662,6 +7734,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsRight
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1399544993091073594}
   m_Solo: 0
@@ -7798,6 +7873,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsRight
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 701612458670461702}
   m_Solo: 0
@@ -8967,6 +9045,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsFront
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 5358152327399125207}
   m_Solo: 0
@@ -9197,7 +9278,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsBack
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsRight
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 686208829981735679}
   m_Solo: 0
@@ -9413,6 +9503,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8310001246497064431}
   m_Solo: 0
@@ -9618,6 +9711,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsLeft
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 676661411049790472}
   m_Solo: 0
@@ -9730,6 +9826,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsBack
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8299076381632622706}
   m_Solo: 0
@@ -10802,6 +10901,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsLeft
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6262796603803258981}
   m_Solo: 0
@@ -12259,6 +12361,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsFront
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3697544358551130429}
   m_Solo: 0
@@ -12361,7 +12466,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsLeft
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsBack
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2823339593589466720}
   m_Solo: 0
@@ -12998,6 +13112,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsLeft
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3826336271561952965}
   m_Solo: 0
@@ -13026,6 +13143,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsBack
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1989487629094211619}
   m_Solo: 0
@@ -13555,7 +13675,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsFront
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsRight
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7232061753413452475}
   m_Solo: 0
@@ -16733,6 +16862,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsRight
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1293917869008966085}
   m_Solo: 0
@@ -16894,6 +17026,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8237774757204523741}
   m_Solo: 0
@@ -17461,7 +17596,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsFront
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsBack
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8196086149836591312}
   m_Solo: 0
@@ -18736,6 +18880,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsBack
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6829353714185549034}
   m_Solo: 0
@@ -19203,6 +19350,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsFront
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3148302899212297248}
   m_Solo: 0
@@ -19284,6 +19434,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsFront
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4365971767193190736}
   m_Solo: 0
@@ -19925,7 +20078,16 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions: []
+  m_Conditions:
+  - m_ConditionMode: 3
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
+  - m_ConditionMode: 2
+    m_ConditionEvent: IsLeft
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: IsRight
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7232061753413452475}
   m_Solo: 0
@@ -20233,6 +20395,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2256327706728814820}
   m_Solo: 0
@@ -20677,6 +20842,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsRight
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1606229782797463298}
   m_Solo: 0
@@ -21450,6 +21618,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsLeft
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2123676475584521754}
   m_Solo: 0
@@ -22774,6 +22945,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsFront
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -2397013100951943167}
   m_Solo: 0
@@ -24124,6 +24298,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsBack
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6906043108394117718}
   m_Solo: 0
@@ -24792,6 +24969,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: IsRight
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: IsWearingClothes
+    m_EventTreshold: -1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8031153285630535820}
   m_Solo: 0
