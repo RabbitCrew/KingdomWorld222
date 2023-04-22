@@ -430,7 +430,7 @@ public class NPC : NPCScrip
                 {
                     Invoke("farmNPCpushWheat", 3f);
                 }
-            } else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood == 0)
+            } else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood == 0)//출근시 나무탐색
             {
                 Collider[] colliders = Physics.OverlapSphere(this.transform.position, 10f);
                 foreach (Collider collider in colliders)
@@ -445,13 +445,13 @@ public class NPC : NPCScrip
                         break;
                     }
                 }
-            }else if(this.CompareTag("WoodCutter") && Tree != null)
+            }else if(this.CompareTag("WoodCutter") && Tree != null)//나무에 도착시 나무자르기
             {
                 if(other.transform == Tree)
                     StartCoroutine(CuttingTree(3));
             }else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood > 0)
             {
-                GameManager.instance.Wood += HavedWood;
+                other.GetComponent<BuildingSetting>().store += HavedWood;
                 HavedWood = 0;
                 if (GameManager.instance.isDaytime)
                 {
