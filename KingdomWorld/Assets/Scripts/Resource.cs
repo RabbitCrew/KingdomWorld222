@@ -63,44 +63,39 @@ public class Resource : Setgrid
         {
             if (value >= MaxResource)
             {
-                food = MaxResource;
+                value = MaxResource;
             }
-            if(value < 0)
+            else if(value <= 0)
             {
-                while(value > 0)//food°¡ 0ÀÌÇÏ·Î ¶³¾îÁú½Ã ½Ã¹Î »ç¸Á
+                while (value > 0)//food°¡ 0ÀÌÇÏ·Î ¶³¾îÁú½Ã ½Ã¹Î »ç¸Á
                 {
-                    if(Meat > 0)
+                    if (Meat > 0)
                     {
                         Meat -= 1;
                         value += 10;
-                    }else if(Ham > 0)
+                    } else if (Ham > 0)
                     {
                         Ham -= 1;
                         value += 5;
-                    }else if(Cheese > 0)
+                    } else if (Cheese > 0)
                     {
                         Cheese -= 1;
                         value += 5;
                     }
-                    else
+                }
+                if (value < 10)
+                    value = 10;
+                for(int i=0; i < value / 10; i++)
+                {
+                    if(AllHuman.Count >= 1)
                     {
-                        if (value < 10)
-                            value = 10;
-                        for(int i=0; i < value / 10; i++)
-                        {
-                            if(AllHuman.Count >= 1)
-                            {
-                                AllHuman[0].GetComponent<NPC>().HP = 0;
-                                //Destroy(AllHuman[0]);
-                                //AllHuman.RemoveAt(0);
-                            }
-                        }
-                        value = 0;
-                        break;
+                        AllHuman[0].GetComponent<NPC>().HP = 0;
+                        AllHuman.RemoveAt(0);
                     }
                 }
-                food = value;
+                value = 0;
             }
+            food = value;
         }
     }
     public int Wood
@@ -110,6 +105,19 @@ public class Resource : Setgrid
             if (value >= MaxResource)
             {
                 value = MaxResource;
+            }else if(value <= 0)
+            {
+                if (value < 10)
+                    value = 10;
+                for (int i = 0; i < value / 10; i++)
+                {
+                    if (AllHuman.Count >= 1)
+                    {
+                        AllHuman[0].GetComponent<NPC>().HP = 0;
+                        AllHuman.RemoveAt(0);
+                    }
+                }
+                value = 0;
             }
             wood = value;
         }

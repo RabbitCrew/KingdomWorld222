@@ -61,6 +61,10 @@ public class GameManager : Resource
     {
         Food -= AllHuman.Count / 10;
     }
+    private void winterExpensed()
+    {
+        Wood -= (AllHuman.Count*2) / 10;
+    }
     private void InitGrid()
     {
         InitializeGrid(500, 500);
@@ -81,6 +85,7 @@ public class GameManager : Resource
             //startTime = Time.realtimeSinceStartup;
             dayNightRatio = 0f;
             expensed();
+            winterExpensed();
             isDaytime = true;
         }
         else if (dayNightRatio >= DayTime)
