@@ -63,7 +63,15 @@ public class GameManager : Resource
     }
     private void winterExpensed()
     {
-        Wood -= (AllHuman.Count*2) / 10;
+        if(isWinterComing)
+            Wood -= (AllHuman.Count*2) / 10;
+    }
+    private void endListener()
+    {
+        if(AllHuman.Count >= 1000)
+        {
+            Debug.Log("게임클리어");
+        }
     }
     private void InitGrid()
     {

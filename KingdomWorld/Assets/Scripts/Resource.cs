@@ -105,7 +105,7 @@ public class Resource : Setgrid
             if (value >= MaxResource)
             {
                 value = MaxResource;
-            }else if(value <= 0)
+            }else if(value < 0)
             {
                 if (value < 10)
                     value = 10;
