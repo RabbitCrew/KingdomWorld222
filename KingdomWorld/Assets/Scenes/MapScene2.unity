@@ -42414,6 +42414,16 @@ MonoBehaviour:
   - {fileID: 1825959653, guid: 62530890315a08044983b01ece8eb912, type: 3}
   - {fileID: 1528368467, guid: 62530890315a08044983b01ece8eb912, type: 3}
   - {fileID: -1731534925, guid: 62530890315a08044983b01ece8eb912, type: 3}
+  grassSnowTileArr:
+  - {fileID: 1429113221, guid: a45eb26084df489479ad81e34be7bb2f, type: 3}
+  - {fileID: -1646596670, guid: a45eb26084df489479ad81e34be7bb2f, type: 3}
+  - {fileID: 733245208, guid: a45eb26084df489479ad81e34be7bb2f, type: 3}
+  - {fileID: -772581922, guid: a45eb26084df489479ad81e34be7bb2f, type: 3}
+  - {fileID: -466118223, guid: a45eb26084df489479ad81e34be7bb2f, type: 3}
+  - {fileID: 1261997205, guid: a45eb26084df489479ad81e34be7bb2f, type: 3}
+  - {fileID: 1084334860, guid: a45eb26084df489479ad81e34be7bb2f, type: 3}
+  - {fileID: -808613002, guid: a45eb26084df489479ad81e34be7bb2f, type: 3}
+  - {fileID: -1180083988, guid: a45eb26084df489479ad81e34be7bb2f, type: 3}
   grassShadowTileArr:
   - {fileID: -1077492551, guid: b4177188f61d0ad469cfad89ed74903a, type: 3}
   - {fileID: -1067924803, guid: b4177188f61d0ad469cfad89ed74903a, type: 3}
@@ -42433,6 +42443,16 @@ MonoBehaviour:
   - {fileID: 555208689, guid: cdb462e90c8118042becf8bb98d44230, type: 3}
   - {fileID: 2101581883, guid: cdb462e90c8118042becf8bb98d44230, type: 3}
   - {fileID: 1038820089, guid: cdb462e90c8118042becf8bb98d44230, type: 3}
+  stoneSnowTileArr:
+  - {fileID: -202871825, guid: 4307f5260d2fcc549ab04f86ac70f919, type: 3}
+  - {fileID: 2082206203, guid: 4307f5260d2fcc549ab04f86ac70f919, type: 3}
+  - {fileID: -59329446, guid: 4307f5260d2fcc549ab04f86ac70f919, type: 3}
+  - {fileID: -1851152961, guid: 4307f5260d2fcc549ab04f86ac70f919, type: 3}
+  - {fileID: 1261989054, guid: 4307f5260d2fcc549ab04f86ac70f919, type: 3}
+  - {fileID: -745372482, guid: 4307f5260d2fcc549ab04f86ac70f919, type: 3}
+  - {fileID: -872712057, guid: 4307f5260d2fcc549ab04f86ac70f919, type: 3}
+  - {fileID: 550586398, guid: 4307f5260d2fcc549ab04f86ac70f919, type: 3}
+  - {fileID: -1077987154, guid: 4307f5260d2fcc549ab04f86ac70f919, type: 3}
   stoneShadowTileArr:
   - {fileID: -207535896, guid: 908a67652d3c65447b9a95591c74d5a6, type: 3}
   - {fileID: -1534138145, guid: 908a67652d3c65447b9a95591c74d5a6, type: 3}
@@ -42452,6 +42472,16 @@ MonoBehaviour:
   - {fileID: 719865136, guid: bb65db7ed0873744f91950df4aad1b91, type: 3}
   - {fileID: -56722592, guid: bb65db7ed0873744f91950df4aad1b91, type: 3}
   - {fileID: -679143314, guid: bb65db7ed0873744f91950df4aad1b91, type: 3}
+  bumpyGroundSnowTileArr:
+  - {fileID: -1484311689, guid: d4f0ddd5d4ad04d40af0c26e8fc9ab99, type: 3}
+  - {fileID: 1452339534, guid: d4f0ddd5d4ad04d40af0c26e8fc9ab99, type: 3}
+  - {fileID: -1865068690, guid: d4f0ddd5d4ad04d40af0c26e8fc9ab99, type: 3}
+  - {fileID: 1941721730, guid: d4f0ddd5d4ad04d40af0c26e8fc9ab99, type: 3}
+  - {fileID: 1667330533, guid: d4f0ddd5d4ad04d40af0c26e8fc9ab99, type: 3}
+  - {fileID: -1844730448, guid: d4f0ddd5d4ad04d40af0c26e8fc9ab99, type: 3}
+  - {fileID: -2144063186, guid: d4f0ddd5d4ad04d40af0c26e8fc9ab99, type: 3}
+  - {fileID: 1993212258, guid: d4f0ddd5d4ad04d40af0c26e8fc9ab99, type: 3}
+  - {fileID: 2114921234, guid: d4f0ddd5d4ad04d40af0c26e8fc9ab99, type: 3}
   bumpyGroundShadowTileArr:
   - {fileID: -609583803, guid: 619fe8be63975864893d6d0fb2d831e4, type: 3}
   - {fileID: -2012569229, guid: 619fe8be63975864893d6d0fb2d831e4, type: 3}
@@ -42471,6 +42501,16 @@ MonoBehaviour:
   - {fileID: -1216528952, guid: 15d0e5d0100f3894d9a44fdb1bfb871d, type: 3}
   - {fileID: 673616335, guid: 15d0e5d0100f3894d9a44fdb1bfb871d, type: 3}
   - {fileID: -2140005900, guid: 15d0e5d0100f3894d9a44fdb1bfb871d, type: 3}
+  groundSnowTileArr:
+  - {fileID: 260982056, guid: 4ef92d47d928ce54da3625183a059062, type: 3}
+  - {fileID: 549818980, guid: 4ef92d47d928ce54da3625183a059062, type: 3}
+  - {fileID: -1353893525, guid: 4ef92d47d928ce54da3625183a059062, type: 3}
+  - {fileID: -785820373, guid: 4ef92d47d928ce54da3625183a059062, type: 3}
+  - {fileID: 656161164, guid: 4ef92d47d928ce54da3625183a059062, type: 3}
+  - {fileID: -2027178278, guid: 4ef92d47d928ce54da3625183a059062, type: 3}
+  - {fileID: 694789368, guid: 4ef92d47d928ce54da3625183a059062, type: 3}
+  - {fileID: 1582921880, guid: 4ef92d47d928ce54da3625183a059062, type: 3}
+  - {fileID: -1230894474, guid: 4ef92d47d928ce54da3625183a059062, type: 3}
   groundShadowTileArr:
   - {fileID: -1001517811, guid: e47aa85395ec3a84ca3a7eee66247844, type: 3}
   - {fileID: 1445367607, guid: e47aa85395ec3a84ca3a7eee66247844, type: 3}
@@ -42490,6 +42530,16 @@ MonoBehaviour:
   - {fileID: 363434824, guid: 117ce95696d989a4ab84f0fe82024d6f, type: 3}
   - {fileID: 1186315075, guid: 117ce95696d989a4ab84f0fe82024d6f, type: 3}
   - {fileID: 507094407, guid: 117ce95696d989a4ab84f0fe82024d6f, type: 3}
+  riverSnowTileArr:
+  - {fileID: 212727999, guid: 3c260e1360cb43545892c99c9e72ccfb, type: 3}
+  - {fileID: -1285014770, guid: 3c260e1360cb43545892c99c9e72ccfb, type: 3}
+  - {fileID: 1553931170, guid: 3c260e1360cb43545892c99c9e72ccfb, type: 3}
+  - {fileID: -1170720186, guid: 3c260e1360cb43545892c99c9e72ccfb, type: 3}
+  - {fileID: -1203461870, guid: 3c260e1360cb43545892c99c9e72ccfb, type: 3}
+  - {fileID: -1722453095, guid: 3c260e1360cb43545892c99c9e72ccfb, type: 3}
+  - {fileID: 142265183, guid: 3c260e1360cb43545892c99c9e72ccfb, type: 3}
+  - {fileID: -1618691332, guid: 3c260e1360cb43545892c99c9e72ccfb, type: 3}
+  - {fileID: 1025244082, guid: 3c260e1360cb43545892c99c9e72ccfb, type: 3}
   riverShadowTileArr:
   - {fileID: 167869, guid: 1a360c10588314b46a2643f25340b319, type: 3}
   - {fileID: 1099149564, guid: 1a360c10588314b46a2643f25340b319, type: 3}
@@ -58562,7 +58612,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 150.00046}
+  m_AnchoredPosition: {x: -126.499985, y: 150}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &8212541107939640975

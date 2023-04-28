@@ -501,13 +501,13 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tileDIc[0].tileOrder >= tileDIc[4].tileOrder && tileDIc[0].tileNum != tileDIc[1].tileNum && tileDIc[0].tileNum != tileDIc[3].tileNum && tileDIc[0].tileNum != tileDIc[4].tileNum)
 		{
             childTile = FindChildObj(tile);
-            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[0].tileNum, 8);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[0].tileNum, 8, isSnow);
             childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[0].tileOrder;
             childTile.transform.localPosition = Vector3.zero;
             if (tileDIc[0].tileOrder > tileDIc[4].tileOrder + 5)
 			{
                 childTile = FindChildObj(tile);
-                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[0].tileNum, 7);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[0].tileNum, 7, isSnow);
                 childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[0].tileOrder - 5;
                 childTile.transform.localPosition = Vector3.zero;
             }
@@ -516,13 +516,13 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tileDIc[1].tileOrder >= tileDIc[4].tileOrder && tileDIc[1].tileNum != tileDIc[4].tileNum)
 		{
             childTile = FindChildObj(tile);
-            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[1].tileNum, 7);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[1].tileNum, 7, isSnow);
             childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[1].tileOrder;
             childTile.transform.localPosition = Vector3.zero;
             if (tileDIc[1].tileOrder > tileDIc[4].tileOrder + 5)
 			{
                 childTile = FindChildObj(tile);
-                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[1].tileNum, 6);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[1].tileNum, 6, isSnow);
                 childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[1].tileOrder - 5;
                 childTile.transform.localPosition = Vector3.zero;
             }
@@ -531,13 +531,13 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tileDIc[2].tileOrder >= tileDIc[4].tileOrder && tileDIc[2].tileNum != tileDIc[1].tileNum && tileDIc[2].tileNum != tileDIc[5].tileNum && tileDIc[2].tileNum != tileDIc[4].tileNum)
         {
             childTile = FindChildObj(tile);
-            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[2].tileNum, 6);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[2].tileNum, 6, isSnow);
             childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[2].tileOrder;
             childTile.transform.localPosition = Vector3.zero;
             if (tileDIc[2].tileOrder > tileDIc[4].tileOrder + 5)
             {
                 childTile = FindChildObj(tile);
-                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[2].tileNum, 5);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[2].tileNum, 5, isSnow);
                 childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[2].tileOrder - 5;
                 childTile.transform.localPosition = Vector3.zero;
             }
@@ -546,19 +546,19 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tileDIc[3].tileOrder >= tileDIc[4].tileOrder && tileDIc[3].tileNum != tileDIc[4].tileNum)
         {
             childTile = FindChildObj(tile);
-            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[3].tileNum, 5);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[3].tileNum, 5, isSnow);
             childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[3].tileOrder;
             childTile.transform.localPosition = Vector3.zero;
             if (tileDIc[3].tileOrder > tileDIc[4].tileOrder + 5)
             {
                 childTile = FindChildObj(tile);
-                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[3].tileNum, 4);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[3].tileNum, 4, isSnow);
                 childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[3].tileOrder - 5;
                 childTile.transform.localPosition = Vector3.zero;
             }
         }
         // Á¤Áß¾Ó
-        tile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[4].tileNum, 4);
+        tile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[4].tileNum, 4, isSnow);
         tile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[4].tileOrder;
         tile.GetComponent<TileInfo>().TileNum = tileDIc[4].tileNum;
         AttachTag(tile, tileDIc[4].tileNum);
@@ -567,13 +567,13 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tileDIc[5].tileOrder >= tileDIc[4].tileOrder && tileDIc[5].tileNum != tileDIc[4].tileNum)
         {
             childTile = FindChildObj(tile);
-            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[5].tileNum, 3);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[5].tileNum, 3, isSnow);
             childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[5].tileOrder;
             childTile.transform.localPosition = Vector3.zero;
             if (tileDIc[5].tileOrder > tileDIc[4].tileOrder + 5)
             {
                 childTile = FindChildObj(tile);
-                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[5].tileNum, 3);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[5].tileNum, 3, isSnow);
                 childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[5].tileOrder - 5;
                 childTile.transform.localPosition = Vector3.zero;
             }
@@ -583,7 +583,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tileDIc[6].tileOrder >= tileDIc[4].tileOrder && tileDIc[6].tileNum != tileDIc[3].tileNum && tileDIc[6].tileNum != tileDIc[7].tileNum && tileDIc[6].tileNum != tileDIc[4].tileNum)
         {
             childTile = FindChildObj(tile);
-            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[6].tileNum, 2);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[6].tileNum, 2, isSnow);
             childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[6].tileOrder;
             childTile.transform.localPosition = Vector3.zero;
         }
@@ -592,7 +592,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tileDIc[7].tileOrder >= tileDIc[4].tileOrder && tileDIc[7].tileNum != tileDIc[4].tileNum)
         {
             childTile = FindChildObj(tile);
-            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[7].tileNum, 1);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[7].tileNum, 1, isSnow);
             childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[7].tileOrder;
             childTile.transform.localPosition = Vector3.zero;
         }
@@ -601,7 +601,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tileDIc[8].tileOrder >= tileDIc[4].tileOrder && tileDIc[8].tileNum != tileDIc[5].tileNum && tileDIc[8].tileNum != tileDIc[7].tileNum && tileDIc[8].tileNum != tileDIc[4].tileNum)
         {
             childTile = FindChildObj(tile);
-            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[8].tileNum, 0);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[8].tileNum, 0, isSnow);
             childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[8].tileOrder;
             childTile.transform.localPosition = Vector3.zero;
         }
