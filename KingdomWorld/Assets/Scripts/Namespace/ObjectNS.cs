@@ -30,7 +30,7 @@ namespace ObjectNS
 
     public enum TileNum
     {
-        BUMPYTILE, FLATTILE, GLASS, RIVER, OCEAN, STONE
+        BUMPYTILE, FLATTILE, GRASS, RIVER, OCEAN, STONE
     };
 
     public enum JobNum

@@ -13,27 +13,42 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     [SerializeField] private int worldSize = 80;
     [SerializeField] private float noiseFreq = 0.2f;
     [SerializeField] private SettingObject settingObject;
-
-    struct point
+    [SerializeField] private SpriteManager spriteManager;
+    struct Point
     {
         public float x { get; }   // 생성자에서만 수정이 가능함. 읽기전용
         public float z { get; }   // 생성자에서만 수정이 가능함. 읽기전용
 
-        public point(float x, float z)
+        public Point(float x, float z)
         {
             this.x = x;
             this.z = z;
         }
     }
 
+    struct TileOrder
+	{
+        public int tileNum { get; }
+        public int tileOrder { get; }
+
+        public TileOrder(int tileNum, int tileOrder)
+		{
+            this.tileNum = tileNum;
+            this.tileOrder = tileOrder;
+		}
+	}
+
+
     public float seed;
     public Texture2D noiseTexture;
     public GameObject mother;
     public GameObject[,] worldChunks;
 
+    private GameObject childTile;
     private Transform cameraTrans;
-    private List<point> pointList = new List<point>();
+    private List<Point> pointList = new List<Point>();
     private List<GameObject> falseChunksList = new List<GameObject>();
+    private Dictionary<int, TileOrder> tileDIc = new Dictionary<int, TileOrder>();
     private int startChunkX;
     private int startChunkZ;
     private int preCameraXMax;
@@ -70,8 +85,11 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
         cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
 
+        // 화면 한번 돌렸다가 RefreshChunks로 정보가 없는 타일에 정보 넣어줌
         RefreshChunks();
-
+        Camera.main.transform.position += new Vector3(0, 0, 100f);
+        RefreshChunks();
+        Camera.main.transform.position -= new Vector3(0, 0, 100f);
     }
     private void Update()
     {
@@ -160,7 +178,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                     //청크 좌표에 맞춰 맵을 재생성한다.
                     RefreshTexture(worldChunks[x, y], worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y);
                     //청크 좌표를 청크 좌표 리스트(pointList)에 추가한다.
-                    pointList.Add(new point(worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y));
+                    pointList.Add(new Point(worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y));
 
                 }
             }
@@ -175,7 +193,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                     falseChunksList[0].SetActive(true);
                     falseChunksList[0].transform.localPosition = new Vector3(x * chunkSize, z * chunkSize, 0);
                     RefreshTexture(falseChunksList[0], x * chunkSize, z * chunkSize);
-                    pointList.Add(new point(falseChunksList[0].transform.localPosition.x, falseChunksList[0].transform.localPosition.y));
+                    pointList.Add(new Point(falseChunksList[0].transform.localPosition.x, falseChunksList[0].transform.localPosition.y));
                     falseChunksList.RemoveAt(0);
                     // 오브젝트의 스프라이트 렌더러를 켜준다.
                     settingObject.EnableSpriteRenderer(x, z);
@@ -219,6 +237,15 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 newTile.GetComponent<BoxCollider>().isTrigger = true;
                 // 타일 오브젝트의 위치를 지정함.
                 newTile.transform.localPosition = new Vector3(x % chunkSize, y % chunkSize);
+
+                for (int i = 0; i < 16; i++)
+				{
+                    GameObject miniTile = new GameObject(name = "miniTile");
+                    miniTile.transform.parent = newTile.transform;
+                    miniTile.AddComponent<SpriteRenderer>();
+                    miniTile.GetComponent<SpriteRenderer>().material = material;
+                    miniTile.SetActive(false);
+                }
             }
         }
     }
@@ -263,105 +290,107 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         {
             for (int y = 0; y < chunkSize; y++)
             {
-                // 지정된 좌표에서의 펄린노이즈 값을 가져온다. 펄린 노이즈값은 0~1 사이의 값이다.
-                // seed는 awake에서 딱 한번 설정되므로 펄린 노이즈 값이 바뀌지 않는다.
-                float v = Mathf.PerlinNoise((x + pointX + seed) * noiseFreq, (y + pointY + seed) * noiseFreq);
-                noiseMap[x, y] = v;
-                //x와 y는 0~19사이의 값. 거기에 pointX,Y값은 청크 좌표의 위치값
-                //그리고 gradientSize는 그라디언트 텍스쳐에서 좌표값(gradientSize, gradientSize) 이므로 0.5f를 각각 곱해서 (0,0)좌표값을 텍스처의 중앙으로 맞춤
-                //그러면 텍스처의 중앙에서 (x + pointX, y + pointY)값을 더하게 되는 셈.
-                //거기에 실제 텍스처의 가로 세로 사이즈를 곱해주고, 이를 gradientSize로 만큼 분할해준다.(나눈다.)
-                //지정된 좌표값에 따른 그라디언트의 좌표값이 xCoord, yCoord값에 저장된다.
-                int xCoord = Mathf.RoundToInt((x + pointX + gradientSize * 0.5f) * (float)gradientTex.width / gradientSize);
-                int yCoord = Mathf.RoundToInt((y + pointY + gradientSize * 0.5f) * (float)gradientTex.height / gradientSize);
-                //Debug.Log(xCoord + " " + yCoord);
-                //그라디언트 텍스처에서 좌표값을 통하여 그레이스케일 값을 구하고 이를 배열에 저장한다. 이 값은 0에서 1사이 값을 가진다.
-                gradientMap[x, y] = gradientTex.GetPixel(xCoord, yCoord).grayscale;
-                //일정 값 아래는 0, 일정값 위에는 0.75로 고정한다.
-                if (gradientMap[x, y] <= 0.3f) { gradientMap[x, y] = 0f; }
-                else if (gradientMap[x, y] >= 0.75f) { gradientMap[x, y] = 0.75f; }
-                // 펄린노이즈 값과 그라디언트 값을 합친다.
-                float value = noiseMap[x, y] + gradientMap[x, y];
-                // 두 값의 합은 0에서 2사이 값을 지니게 된다.(일정값 위에는 0.75로 고정했지만 이는 무시)
-                // InverseLerp(a,b,c)는 a에서 b로 가는 c의 값을 퍼센트로 환산하여 0~1사이의 값으로 변환시켜서 반환한다. 즉 0~1사이의 값을 반환한다.
-                value = Mathf.InverseLerp(0, 2, value);
-                // Color.Lerp에 value 값을 사용하여 검정,각종 회색들, 흰색 값을 지정한다. 
-                color[x, y] = Color.Lerp(Color.black, Color.white, value);
+                //// 지정된 좌표에서의 펄린노이즈 값을 가져온다. 펄린 노이즈값은 0~1 사이의 값이다.
+                //// seed는 awake에서 딱 한번 설정되므로 펄린 노이즈 값이 바뀌지 않는다.
+                //float v = Mathf.PerlinNoise((x + pointX + seed) * noiseFreq, (y + pointY + seed) * noiseFreq);
+                //noiseMap[x, y] = v;
+                ////x와 y는 0~19사이의 값. 거기에 pointX,Y값은 청크 좌표의 위치값
+                ////그리고 gradientSize는 그라디언트 텍스쳐에서 좌표값(gradientSize, gradientSize) 이므로 0.5f를 각각 곱해서 (0,0)좌표값을 텍스처의 중앙으로 맞춤
+                ////그러면 텍스처의 중앙에서 (x + pointX, y + pointY)값을 더하게 되는 셈.
+                ////거기에 실제 텍스처의 가로 세로 사이즈를 곱해주고, 이를 gradientSize로 만큼 분할해준다.(나눈다.)
+                ////지정된 좌표값에 따른 그라디언트의 좌표값이 xCoord, yCoord값에 저장된다.
+                //int xCoord = Mathf.RoundToInt((x + pointX + gradientSize * 0.5f) * (float)gradientTex.width / gradientSize);
+                //int yCoord = Mathf.RoundToInt((y + pointY + gradientSize * 0.5f) * (float)gradientTex.height / gradientSize);
+                ////Debug.Log(xCoord + " " + yCoord);
+                ////그라디언트 텍스처에서 좌표값을 통하여 그레이스케일 값을 구하고 이를 배열에 저장한다. 이 값은 0에서 1사이 값을 가진다.
+                //gradientMap[x, y] = gradientTex.GetPixel(xCoord, yCoord).grayscale;
+                ////일정 값 아래는 0, 일정값 위에는 0.75로 고정한다.
+                //if (gradientMap[x, y] <= 0.3f) { gradientMap[x, y] = 0f; }
+                //else if (gradientMap[x, y] >= 0.75f) { gradientMap[x, y] = 0.75f; }
+                //// 펄린노이즈 값과 그라디언트 값을 합친다.
+                //float value = noiseMap[x, y] + gradientMap[x, y];
+                //// 두 값의 합은 0에서 2사이 값을 지니게 된다.(일정값 위에는 0.75로 고정했지만 이는 무시)
+                //// InverseLerp(a,b,c)는 a에서 b로 가는 c의 값을 퍼센트로 환산하여 0~1사이의 값으로 변환시켜서 반환한다. 즉 0~1사이의 값을 반환한다.
+                //value = Mathf.InverseLerp(0, 2, value);
+                //// Color.Lerp에 value 값을 사용하여 검정,각종 회색들, 흰색 값을 지정한다. 
+                //color[x, y] = Color.Lerp(Color.black, Color.white, value);
                 // color 배열의 그레이스케일에 따라 타일의 스프라이트를 다시 설정한다.
-                if (color[x, y].grayscale < 0.2)
-                {
-                    if (!isSnow)
-                    {
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.OCEAN];
-                    }
-					else
-					{
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.OCEAN];
-                    }
-                    chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
-                }
-                else if (color[x, y].grayscale < 0.375)
-                {
-                    if (!isSnow)
-                    {
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.RIVER];
-                        chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
-                    }
-                    else
-                    {
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.RIVER];
-                        chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
-                    }
-                }
-                else if (color[x, y].grayscale < 0.475)
-                {
-                    if (!isSnow)
-                    {
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.GLASS];
-                    }
-                    else
-					{
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.GLASS];
-                    }
-                    chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
-                }
-                else if (color[x, y].grayscale < 0.6)
-                {
-                    if (!isSnow)
-                    {
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.BUMPYTILE];
-                    }
-                    else
-					{
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.BUMPYTILE];
-                    }
-                    chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
-                }
-                else if (color[x, y].grayscale < 0.785)
-                {
-                    if (!isSnow)
-                    {
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.FLATTILE];
-                    }
-                    else
-					{
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.FLATTILE];
-                    }
-                    chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
-                }
-                else
-                {
-                    if (!isSnow)
-                    {
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.STONE];
-                    }
-                    else
-                    {
-                        chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.STONE];
-                    }
-                    chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
-                }
+     //           if (color[x, y].grayscale < 0.2)
+     //           {
+     //               if (!isSnow)
+     //               {
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.OCEAN];
+     //               }
+					//else
+					//{
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.OCEAN];
+     //               }
+     //               chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
+     //           }
+     //           else if (color[x, y].grayscale < 0.375)
+     //           {
+     //               if (!isSnow)
+     //               {
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.RIVER];
+     //                   chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
+     //               }
+     //               else
+     //               {
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.RIVER];
+     //                   chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
+     //               }
+     //           }
+     //           else if (color[x, y].grayscale < 0.475)
+     //           {
+     //               if (!isSnow)
+     //               {
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.GRASS];
+     //               }
+     //               else
+					//{
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.GRASS];
+     //               }
+     //               chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
+     //           }
+     //           else if (color[x, y].grayscale < 0.6)
+     //           {
+     //               if (!isSnow)
+     //               {
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.BUMPYTILE];
+     //               }
+     //               else
+					//{
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.BUMPYTILE];
+     //               }
+     //               chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
+     //           }
+     //           else if (color[x, y].grayscale < 0.785)
+     //           {
+     //               if (!isSnow)
+     //               {
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.FLATTILE];
+     //               }
+     //               else
+					//{
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.FLATTILE];
+     //               }
+     //               chunk.transform.GetChild(x * chunkSize + y).tag = "Walkable";
+     //           }
+     //           else
+     //           {
+     //               if (!isSnow)
+     //               {
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = tile[(int)TileNum.STONE];
+                        
+     //               }
+     //               else
+     //               {
+     //                   chunk.transform.GetChild(x * chunkSize + y).GetComponent<SpriteRenderer>().sprite = snowTile[(int)TileNum.STONE];
+     //               }
+     //               chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
+     //           }
 
+                DecideSprite((int)(x + pointX), (int)(y + pointY), chunk, x, y);
             }
         }
 
@@ -371,9 +400,9 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 			{
                 for (int y = 0; y < chunkSize; y++)
 				{
-                    if (settingObject.CheckStartBuildingRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
-                        settingObject.CheckStartBuildingRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
-                        settingObject.CheckStartBuildingRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
+                    if (settingObject.CheckStartBuildingRange(chunkX, chunkY, chunk, x, y, (int)TileNum.OCEAN, chunkSize) &&
+                        settingObject.CheckStartBuildingRange(chunkX, chunkY, chunk, x, y, (int)TileNum.RIVER, chunkSize) &&
+                        settingObject.CheckStartBuildingRange(chunkX, chunkY, chunk, x, y, (int)TileNum.STONE, chunkSize))
                     {
                         settingObject.AddTilePoint3(chunkX, chunkY, (int)ObjectTypeNum.HOUSE, x-2, y);
                         settingObject.AddTilePoint3(chunkX, chunkY, (int)ObjectTypeNum.CARPENTERHOUSE, x + 1, y);
@@ -399,9 +428,9 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                     // 동굴 생성 확률
                     if (ran < 1)
                     {
-                        if (settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
-                            settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
-                            settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
+                        if (settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, (int)TileNum.OCEAN, chunkSize) &&
+                            settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, (int)TileNum.RIVER, chunkSize) &&
+                            settingObject.CheckMineRange(chunkX, chunkY, chunk, x, y, (int)TileNum.STONE, chunkSize))
                         {
                             settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.MINE, x, y);
                         }
@@ -409,9 +438,9 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                     // 나무 생성 확률
                     else if (ran < 80)
                     {
-                        if (settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.OCEAN], chunkSize) &&
-                            settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.RIVER], chunkSize) &&
-                            settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, tile[(int)TileNum.STONE], chunkSize))
+                        if (settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, (int)TileNum.OCEAN, chunkSize) &&
+                            settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, (int)TileNum.RIVER, chunkSize) &&
+                            settingObject.CheckTreeRange(chunkX, chunkY, chunk, x, y, (int)TileNum.STONE, chunkSize))
                         {
                             settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.TREE, x, y);
                         }
@@ -424,6 +453,191 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (!isObject) { settingObject.CreateObejct(chunkX, chunkY); }
         // 위 과정을 통해 오브젝트가 확정적으로 생성되었으므로 isObject는 무조건 true(없어도 되는 코드인듯?)
         isObject = true;
+    }
+    // RefreshTexture에서 worldX에 x + pointX, worldY에 y + pointY 를 실인자로 받아옴
+    private void DecideSprite(int worldX, int worldY, GameObject chunk, int x, int y)
+	{
+        GameObject tile = chunk.transform.GetChild(x * chunkSize + y).gameObject;
+        float[] nearBlockArr = new float[9];
+        tileDIc.Clear();
+
+        int cnt = 0;
+
+        for (int i = 0; i < tile.transform.childCount; i++)
+		{
+            tile.transform.GetChild(i).gameObject.SetActive(false);
+		}
+
+        for (int j = worldY + 1; j > worldY - 2; j--)
+        {
+            for (int i = worldX - 1; i < worldX + 2; i++)
+            {
+
+                float v = Mathf.PerlinNoise((i + seed) * noiseFreq, (j + seed) * noiseFreq);
+                int xCoord = Mathf.RoundToInt((i + gradientSize * 0.5f) * (float)gradientTex.width / gradientSize);
+                int yCoord = Mathf.RoundToInt((j + gradientSize * 0.5f) * (float)gradientTex.height / gradientSize);
+                float g = gradientTex.GetPixel(xCoord, yCoord).grayscale;
+                if (g <= 0.3f) { g = 0f; }
+                else if (g >= 0.75) { g = 0.75f; }
+                float value = v + g;
+                value = Mathf.InverseLerp(0, 2, value);
+                float gray = Color.Lerp(Color.black, Color.white, value).grayscale;
+
+                nearBlockArr[cnt] = Color.Lerp(Color.black, Color.white, value).grayscale;
+                cnt++;
+            }
+        }
+
+        for (int i = 0; i < nearBlockArr.Length; i++)
+		{
+            if(nearBlockArr[i] < 0.2f) { tileDIc.Add(i, new TileOrder((int)TileNum.OCEAN, 950)); }
+            else if (nearBlockArr[i] < 0.375f) { tileDIc.Add(i, new TileOrder((int)TileNum.RIVER, 960)); }
+            else if (nearBlockArr[i] < 0.475f) { tileDIc.Add(i, new TileOrder((int)TileNum.GRASS, 990)); }
+            else if (nearBlockArr[i] < 0.6f) { tileDIc.Add(i, new TileOrder((int)TileNum.BUMPYTILE, 970)); }
+            else if (nearBlockArr[i] < 0.785f) { tileDIc.Add(i, new TileOrder((int)TileNum.FLATTILE, 970)); }
+            else { tileDIc.Add(i, new TileOrder((int)TileNum.STONE, 980)); }
+        }
+        // 좌상단
+        if (tileDIc[0].tileOrder >= tileDIc[4].tileOrder && tileDIc[0].tileNum != tileDIc[1].tileNum && tileDIc[0].tileNum != tileDIc[3].tileNum && tileDIc[0].tileNum != tileDIc[4].tileNum)
+		{
+            childTile = FindChildObj(tile);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[0].tileNum, 8);
+            childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[0].tileOrder;
+            childTile.transform.localPosition = Vector3.zero;
+            if (tileDIc[0].tileOrder > tileDIc[4].tileOrder)
+			{
+                childTile = FindChildObj(tile);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[0].tileNum, 7);
+                childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[0].tileOrder - 5;
+                childTile.transform.localPosition = Vector3.zero;
+            }
+        }
+        // 중상단
+        if (tileDIc[1].tileOrder >= tileDIc[4].tileOrder && tileDIc[1].tileNum != tileDIc[4].tileNum)
+		{
+            childTile = FindChildObj(tile);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[1].tileNum, 7);
+            childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[1].tileOrder;
+            childTile.transform.localPosition = Vector3.zero;
+
+            if (tileDIc[1].tileOrder > tileDIc[4].tileOrder)
+			{
+                childTile = FindChildObj(tile);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[1].tileNum, 6);
+                childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[1].tileOrder - 5;
+                childTile.transform.localPosition = Vector3.zero;
+            }
+        }
+        // 우상단
+        if (tileDIc[2].tileOrder >= tileDIc[4].tileOrder && tileDIc[2].tileNum != tileDIc[1].tileNum && tileDIc[2].tileNum != tileDIc[5].tileNum && tileDIc[2].tileNum != tileDIc[4].tileNum)
+        {
+            childTile = FindChildObj(tile);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[2].tileNum, 6);
+            childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[2].tileOrder;
+            childTile.transform.localPosition = Vector3.zero;
+
+            if (tileDIc[2].tileOrder > tileDIc[4].tileOrder)
+            {
+                childTile = FindChildObj(tile);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[2].tileNum, 5);
+                childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[2].tileOrder - 5;
+                childTile.transform.localPosition = Vector3.zero;
+            }
+        }
+        // 좌중단
+        if (tileDIc[3].tileOrder >= tileDIc[4].tileOrder && tileDIc[3].tileNum != tileDIc[4].tileNum)
+        {
+            childTile = FindChildObj(tile);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[3].tileNum, 5);
+            childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[3].tileOrder;
+            childTile.transform.localPosition = Vector3.zero;
+
+            if (tileDIc[3].tileOrder > tileDIc[4].tileOrder)
+            {
+                childTile = FindChildObj(tile);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[3].tileNum, 4);
+                childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[3].tileOrder - 5;
+                childTile.transform.localPosition = Vector3.zero;
+            }
+        }
+        // 정중앙
+        tile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[4].tileNum, 4);
+        tile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[4].tileOrder;
+        tile.GetComponent<TileInfo>().TileNum = tileDIc[4].tileNum;
+        AttachTag(tile, tileDIc[4].tileNum);
+
+        //우중단
+        if (tileDIc[5].tileOrder >= tileDIc[4].tileOrder && tileDIc[5].tileNum != tileDIc[4].tileNum)
+        {
+            childTile = FindChildObj(tile);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[5].tileNum, 3);
+            childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[5].tileOrder;
+            childTile.transform.localPosition = Vector3.zero;
+
+            if (tileDIc[5].tileOrder > tileDIc[4].tileOrder)
+            {
+                childTile = FindChildObj(tile);
+                childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileShadowSprite(tileDIc[5].tileNum, 3);
+                childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[5].tileOrder - 5;
+                childTile.transform.localPosition = Vector3.zero;
+            }
+        }
+
+        //좌하단
+        if (tileDIc[6].tileOrder >= tileDIc[4].tileOrder && tileDIc[6].tileNum != tileDIc[3].tileNum && tileDIc[6].tileNum != tileDIc[7].tileNum && tileDIc[6].tileNum != tileDIc[4].tileNum)
+        {
+            childTile = FindChildObj(tile);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[6].tileNum, 2);
+            childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[6].tileOrder;
+            childTile.transform.localPosition = Vector3.zero;
+        }
+
+        //중하단
+        if (tileDIc[7].tileOrder >= tileDIc[4].tileOrder && tileDIc[7].tileNum != tileDIc[4].tileNum)
+        {
+            childTile = FindChildObj(tile);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[7].tileNum, 1);
+            childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[7].tileOrder;
+            childTile.transform.localPosition = Vector3.zero;
+        }
+
+        //우하단
+        if (tileDIc[8].tileOrder >= tileDIc[4].tileOrder && tileDIc[8].tileNum != tileDIc[5].tileNum && tileDIc[8].tileNum != tileDIc[7].tileNum && tileDIc[8].tileNum != tileDIc[4].tileNum)
+        {
+            childTile = FindChildObj(tile);
+            childTile.GetComponent<SpriteRenderer>().sprite = spriteManager.GetTileSprite(tileDIc[8].tileNum, 0);
+            childTile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[8].tileOrder;
+            childTile.transform.localPosition = Vector3.zero;
+        }
+    }
+    private GameObject FindChildObj(GameObject tile)
+	{
+        for (int i = 0; i < tile.transform.childCount; i++)
+		{
+            if (!tile.transform.GetChild(i).gameObject.activeSelf)
+			{
+                tile.transform.GetChild(i).gameObject.SetActive(true);
+                return tile.transform.GetChild(i).gameObject;
+			}
+		}
+
+        return null;
+	}
+
+    private void AttachTag(GameObject tile, int tileNum)
+	{
+        switch ((TileNum)tileNum)
+        {
+            case TileNum.OCEAN: tile.tag = "NotWalkable"; break;
+            case TileNum.RIVER:
+                if (!isSnow) { tile.tag = "NotWalkable"; }
+                else { tile.tag = "Walkable"; }
+                break;
+            case TileNum.FLATTILE: tile.tag = "Walkable"; break;
+            case TileNum.BUMPYTILE: tile.tag = "Walkable"; break;
+            case TileNum.STONE: tile.tag = "NotWalkable"; break;
+            case TileNum.GRASS: tile.tag = "Walkable"; break;
+        }
     }
 
     public float[,] GenerateMap(int width, int height)
@@ -489,7 +703,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         {
             if (!isSnow)
             {// 생성 가능한 타일의 종류와 하나씩 비교해간다.
-                if (chunk.transform.GetChild(tileX * chunkSize + tileY).GetComponent<SpriteRenderer>().sprite == tile[objTypeNumArr[i]])
+                if (chunk.transform.GetChild(tileX * chunkSize + tileY).GetComponent<TileInfo>().TileNum == objTypeNumArr[i])
                 {
                     // 생성가능한 타일과 일치하면 cnt에 1을 더한다.
                     cnt++;
@@ -497,7 +711,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
             }
             else
 			{
-                if (chunk.transform.GetChild(tileX * chunkSize + tileY).GetComponent<SpriteRenderer>().sprite == snowTile[objTypeNumArr[i]])
+                if (chunk.transform.GetChild(tileX * chunkSize + tileY).GetComponent<TileInfo>().TileNum == objTypeNumArr[i])
                 {
                     // 생성가능한 타일과 일치하면 cnt에 1을 더한다.
                     cnt++;

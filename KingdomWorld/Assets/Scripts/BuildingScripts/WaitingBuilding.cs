@@ -10,6 +10,8 @@ public class WaitingBuilding : MonoBehaviour
     public float maxTime { get; set; }
     public int shield { get; set; }
     public int maxShield { get; set; }
+    public int BuildingNum { get; set; }
+
     private CallBuildingAttachMouseToWaitingBuildingEventDriven callBuildingAttachMouseToWaitingBuildingEventDriven = new CallBuildingAttachMouseToWaitingBuildingEventDriven();
     private Material material;
     private float fade;
@@ -43,6 +45,7 @@ public class WaitingBuilding : MonoBehaviour
         {
             maxTime = building.GetComponent<BuildingSetting>().BuildingTime;
             building.GetComponent<BuildingSetting>().BuildingHp = 1;
+            BuildingNum = building.GetComponent<BuildingSetting>().BuildingNum;
         }
         else
         {

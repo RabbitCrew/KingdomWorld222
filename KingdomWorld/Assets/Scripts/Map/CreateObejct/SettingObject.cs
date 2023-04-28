@@ -352,7 +352,7 @@ public class SettingObject : MonoBehaviour
 
         }
 	}
-    public bool CheckStartBuildingRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
+    public bool CheckStartBuildingRange(int chunkX, int chunkY, GameObject chunk, int x, int y, int tileNum, int chunkSize)
 	{
         if (x - 2 <= 0 || x + 2 >= chunkSize || y + 1 >= chunkSize) { return false; }
         for (int i = x - 2; i <= x + 2; i++)
@@ -371,7 +371,7 @@ public class SettingObject : MonoBehaviour
                     }
                 }
                 // 청크 오브젝트 내 자식 오브젝트인 타일 오브젝트의 스프라이트가 tile이라면 시작건물을 생성할 수 없음(false)을 반환
-                if (chunk.transform.GetChild(i * chunkSize + j).GetComponent<SpriteRenderer>().sprite == tile)
+                if (chunk.transform.GetChild(i * chunkSize + j).GetComponent<TileInfo>().TileNum == tileNum)
                 {
                     return false;
                 }
@@ -383,7 +383,7 @@ public class SettingObject : MonoBehaviour
     // 지정된 범위 내에 동굴을 생성할 조건을 만족하는지 여부를 판단.
     // 인자값 chunkX, chnukY는 청크 좌표. chunk는 해당 게임오브젝트의 자식 오브젝트인 tile 오브젝트를 찾기 위함.
     // x,y는 청크 좌표 내 타일 좌표, tile은 비교할 타일, chunkSize는 청크 하나의 가로세로 사이즈
-    public bool CheckMineRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
+    public bool CheckMineRange(int chunkX, int chunkY, GameObject chunk, int x, int y, int tileNum, int chunkSize)
     {
         // 동굴의 범위는 가로 3(*16픽셀),세로 3(*16픽셀)임. 따라서 상하좌우로 한칸 범위를 청크 사이즈 내에서 확보해야됨
         if (x - 1 <= 0 || x + 1 >= chunkSize || y - 1 <= 0 || y + 1 >= chunkSize) { return false; }
@@ -404,7 +404,7 @@ public class SettingObject : MonoBehaviour
                     }
                 }
                 // 청크 오브젝트 내 자식 오브젝트인 타일 오브젝트의 스프라이트가 tile이라면 동굴을 생성할 수 없음(false)을 반환
-                if (chunk.transform.GetChild(i * chunkSize + j).GetComponent<SpriteRenderer>().sprite == tile)
+                if (chunk.transform.GetChild(i * chunkSize + j).GetComponent<TileInfo>().TileNum == tileNum)
                 {
                     return false;
                 }
@@ -415,7 +415,7 @@ public class SettingObject : MonoBehaviour
     }
 
     // 지정된 범위 내에 나무를 생성할 조건을 만족하는지 여부를 판단
-    public bool CheckTreeRange(int chunkX, int chunkY, GameObject chunk, int x, int y, Sprite tile, int chunkSize)
+    public bool CheckTreeRange(int chunkX, int chunkY, GameObject chunk, int x, int y, int tileNum, int chunkSize)
     {
         // 나무의 범위는 가로 1(*16픽셀), 세로 2(*16)픽셀임. 위로 한칸 범위까지만 청크 사이즈 내에서 확보해야됨
         if (y + 1 >= chunkSize) { return false; }
@@ -434,7 +434,7 @@ public class SettingObject : MonoBehaviour
                 }
             }
             // 청크 오브젝트 내 자식 오브젝트인 타일 오브젝트의 스프라이트가 tile이라면 나무를 생성할 수 없음(false)을 반환 
-            if (chunk.transform.GetChild(x * chunkSize + i).GetComponent<SpriteRenderer>().sprite == tile)
+            if (chunk.transform.GetChild(x * chunkSize + i).GetComponent<TileInfo>().TileNum == tileNum)
             {
                 return false;
             }
@@ -462,13 +462,16 @@ public class SettingObject : MonoBehaviour
         {
             gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = false;
 
-            if (isSnow)
-			{
-                gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(1);
-            }
-            else
-			{
-                gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(0);
+            if (gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>() != null)
+            {
+                if (isSnow)
+                {
+                    gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(1);
+                }
+                else
+                {
+                    gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(0);
+                }
             }
         }
     }

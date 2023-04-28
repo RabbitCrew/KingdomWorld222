@@ -63,7 +63,7 @@ public class MouseRay : MonoBehaviour
                     uiManager.SetIsHpAndShieldBarUIObj(
                         true, (int)hits[i].transform.GetComponent<WaitingBuilding>().time, hits[i].transform.GetComponent<WaitingBuilding>().shield,
                         (int)hits[i].transform.GetComponent<WaitingBuilding>().maxTime, hits[i].transform.GetComponent<WaitingBuilding>().maxShield,
-                        hits[i].transform.GetComponent<BuildingSetting>().BuildingNum);
+                        hits[i].transform.GetComponent<WaitingBuilding>().BuildingNum);
                     break;
                 }
                 else
