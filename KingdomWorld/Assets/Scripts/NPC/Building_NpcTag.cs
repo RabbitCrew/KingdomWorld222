@@ -7,37 +7,38 @@ public class Building_NpcTag : MonoBehaviour
 {
     public NPC Citizen;
 
-    private float distance = 50f;
-    public GameObject NPcButton;
-    public GameObject RemoveNPcButton;
-    public GameObject NPcButtonOther;
-    public GameObject JobPanel;
-    public GameObject[] NPCPanel;
-    public GameObject SMassage;
+    [SerializeField] GameObject NPcButton;
+    [SerializeField] GameObject RemoveNPcButton;
+    [SerializeField] GameObject NPcButtonOther;
+    [SerializeField] GameObject JobPanel;
+    [SerializeField] GameObject[] NPCPanel;
+    [SerializeField] GameObject SMassage;
+    [SerializeField] GameObject JobAddB;
+    [SerializeField] GameObject MotherBuilding;
     GameObject JobBuilding;
-    public GameObject JobAddB;
 
     [SerializeField] string[] InputJobText;
+
+    [SerializeField] TextMeshProUGUI JobText;
+    [SerializeField] TextMeshProUGUI OtherJobText;
 
     string Job = null;
     string OtherJob = null;
 
     bool IsOther = false;
 
-    [SerializeField] TextMeshProUGUI JobText;
-    [SerializeField] TextMeshProUGUI OtherJobText;
+    int IsSetcount;
+    int NPCCount;
+    int NpcValue = 0;
+
+    private float distance = 50f;
+
+    Vector3 JobAddBPos;
 
     private void Update()
     {
         BuildingCheck();
     }
-
-    int IsSetcount;
-    int NPCCount;
-
-    int NpcValue = 0;
-
-    Vector3 JobAddBPos;
 
     private void Start()
     {
@@ -375,8 +376,6 @@ public class Building_NpcTag : MonoBehaviour
 
         NPCFound();
     }
-
-    public GameObject MotherBuilding;
 
     public void RemoveJobButton(int value)
     {
