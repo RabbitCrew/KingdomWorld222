@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2538979524183147578}
   - component: {fileID: -1032215776031185551}
   - component: {fileID: -6441371018507435946}
+  - component: {fileID: -5136372674981537159}
   m_Layer: 0
   m_Name: An exchange
   m_TagString: AnExchange
@@ -165,6 +166,26 @@ MonoBehaviour:
   sprArr:
   - {fileID: 21300000, guid: 56934e00f88bd9f4980feae33dd52477, type: 3}
   - {fileID: 21300000, guid: e4b4e156c3f5bc446898cab13f474f21, type: 3}
+--- !u!114 &-5136372674981537159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459160076541427711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcNum: 0
+  npc: {fileID: 0}
+  BuildingNum: 2
+  carpenternCheck: 0
+  npcCount: 0
+  npcs: []
+  storeMax: 50
+  store: 0
 --- !u!1 &7022967873587549887
 GameObject:
   m_ObjectHideFlags: 0

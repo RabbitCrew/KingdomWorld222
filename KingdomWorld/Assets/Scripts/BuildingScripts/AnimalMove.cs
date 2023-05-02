@@ -28,9 +28,9 @@ public class AnimalMove : MonoBehaviour
             timer = 0f;
 
             speedX = Random.Range(-0.5f, 0.5f);
-            Debug.Log(speedX);
+            //Debug.Log(speedX);
             speedY = Random.Range(-0.5f, 0.5f);
-            Debug.Log(speedY);
+            //Debug.Log(speedY);
         }
     }
 }
