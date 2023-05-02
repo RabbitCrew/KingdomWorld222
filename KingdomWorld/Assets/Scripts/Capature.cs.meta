@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 598bfee844a12c943b2f7fef29e3d8aa
+guid: dc29c35d00dfcdc44a10b98c3b43998e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - buildingButnObj: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
