@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BuildingSetting : MonoBehaviour
 {
+    [SerializeField] private int necessaryWood;
+    [SerializeField] private int necessaryStone;
+    [SerializeField] private int necessaryIron;
+    [SerializeField] private int necessaryFood;
+
     [SerializeField] private int npcNum = 0;
     // . . . 건물 제한 ( 거래소 / 연구소는 제한 1 / 나머지는 임의로 지정 
     public int buildingShield { get; set; }
@@ -67,6 +72,37 @@ public class BuildingSetting : MonoBehaviour
         }
         //GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum] -= npcCount;
     }
+
+    public bool CheckNecessaryItem()
+	{
+        if (GameManager.instance.Itronstone >= necessaryIron && 
+            GameManager.instance.Wood >= necessaryWood &&
+            GameManager.instance.Stone >= necessaryStone &&
+            GameManager.instance.Food >= necessaryFood)
+		{
+            return true;
+		}
+
+        return false;
+	}
+
+    public void SpendNecessaryItem()
+	{
+        if (!CheckNecessaryItem()) { return; }
+
+        GameManager.instance.Itronstone -= necessaryIron;
+        GameManager.instance.Wood -= necessaryWood;
+        GameManager.instance.Stone -= necessaryStone;
+        GameManager.instance.Food -= necessaryFood;
+	}
+
+    public void ReplenishNecessaryItem()
+	{
+        GameManager.instance.Itronstone += necessaryIron;
+        GameManager.instance.Wood += necessaryWood;
+        GameManager.instance.Stone += necessaryStone;
+        GameManager.instance.Food += necessaryFood;
+	}
 
     bool addStop = false;
     // Update is called once per frame

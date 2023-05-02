@@ -34,11 +34,24 @@ public class BuildingAttachMouse : MonoBehaviour
         CallBuildingAttachMouseToSettingObjectEventDriven.SetObjectAndPointEvent -= CreateStartBuilding;
         RemoveEventDriven.isRemoveEvent -= RemoveEvent;
     }
+
+    public bool CheckResourceToMakeBuilding(GameObject obj)
+	{
+        if (obj.GetComponent<BuildingSetting>() != null)
+		{
+            return obj.GetComponent<BuildingSetting>().CheckNecessaryItem();   
+		}
+        else
+		{
+            return false;
+		}
+	}
     // ��� ������ư�� Ŭ���� BuildingButton���� ȣ���ϴ� �Լ��̴�.
     // �������� �����ϰ�, �ش� �������� BuildingColider�� isFollowMouse�� true�� �ٲ��ش�.
     // isFollowMouse�� �������� ���콺 ��ǥ�� ����ٴϴ��� �����̴�.
     public void CloneInst(GameObject obj)
 	{
+
         // �������� null�̸� �������� �������ش�.
         if (clone == null)
         {

@@ -177,6 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  necessaryWood: 10
+  necessaryStone: 0
+  necessaryIron: 0
   npcNum: 7
   npc: {fileID: 0}
   BuildingNum: 0

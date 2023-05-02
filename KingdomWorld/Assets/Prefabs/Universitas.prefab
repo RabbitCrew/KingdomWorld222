@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -2054272779357680567}
   - component: {fileID: 4155325346510432260}
   - component: {fileID: -4163905034494295409}
+  - component: {fileID: -5958221888950091279}
   m_Layer: 0
   m_Name: Universitas
   m_TagString: Untagged
@@ -164,3 +165,26 @@ MonoBehaviour:
   sprArr:
   - {fileID: 21300000, guid: a4c02f659639e4641b679135144e6f81, type: 3}
   - {fileID: 21300000, guid: 6ae76b6c42010a14ca82e9ea54493375, type: 3}
+--- !u!114 &-5958221888950091279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5463561290101031232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  necessaryWood: 20
+  necessaryStone: 0
+  necessaryIron: 10
+  npcNum: 0
+  npc: {fileID: 0}
+  BuildingNum: 0
+  carpenternCheck: 0
+  npcCount: 0
+  npcs: []
+  storeMax: 50
+  store: 0

@@ -46,6 +46,8 @@ public class WaitingBuilding : MonoBehaviour
             maxTime = building.GetComponent<BuildingSetting>().BuildingTime;
             building.GetComponent<BuildingSetting>().BuildingHp = 1;
             BuildingNum = building.GetComponent<BuildingSetting>().BuildingNum;
+
+            building.GetComponent<BuildingSetting>().SpendNecessaryItem();
         }
         else
         {
@@ -95,6 +97,14 @@ public class WaitingBuilding : MonoBehaviour
     {
         if (!building.activeSelf)
         {
+            if (building.gameObject.GetComponent<BuildingSetting>() != null)
+            {
+                building.gameObject.GetComponent<BuildingSetting>().ReplenishNecessaryItem();
+            }
+
+            int index = GameManager.instance.WaitingBuildingList.FindIndex(a => a.Equals(this.gameObject));
+            if (index != -1) { GameManager.instance.WaitingBuildingList.RemoveAt(index); }
+
             Destroy(building.gameObject);
         }
     }

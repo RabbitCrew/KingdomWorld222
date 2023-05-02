@@ -455,7 +455,7 @@ public class AnExchange : MonoBehaviour
     {
         for (int i = 0; i < AnExchangeBP.transform.childCount; i++)
         {
-            Debug.Log(AnExchangeBP.transform.GetChild(i).tag);
+            //Debug.Log(AnExchangeBP.transform.GetChild(i).tag);
             if (AnExchangeBP.transform.GetChild(i).tag.Equals("AnExchange")) // 건물 생성 오브젝트 하위에 있는 오브젝트 중 태그가 AnExchange인 건물이 있으면 
             {
                 AnExchangeB = AnExchangeBP.transform.GetChild(i).gameObject; // 게임오브젝트에 연결

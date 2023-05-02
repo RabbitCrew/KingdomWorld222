@@ -78,6 +78,7 @@ public class BuildingColider : MonoBehaviour
         }
         else
 		{
+            //Debug.Log(this.gameObject.name);
             CallSettingObjectToBuildingColiderEventDriven.RunGetObjectCodeEvent(objCode, this.gameObject);
         }
         colList.Clear();
@@ -118,6 +119,11 @@ public class BuildingColider : MonoBehaviour
         Debug.Log("만트라 !");
         if (isSettingComplete)
         {
+            if (this.gameObject.GetComponent<BuildingSetting>() != null)
+            {
+                this.gameObject.GetComponent<BuildingSetting>().ReplenishNecessaryItem();
+            }
+
             //Debug.Log("만트라 !");
             Destroy(this.gameObject);
         }
