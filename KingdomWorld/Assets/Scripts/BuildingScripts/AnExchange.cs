@@ -455,13 +455,17 @@ public class AnExchange : MonoBehaviour
     {
         for (int i = 0; i < AnExchangeBP.transform.childCount; i++)
         {
+            Debug.Log(AnExchangeBP.transform.GetChild(i).tag);
             if (AnExchangeBP.transform.GetChild(i).tag.Equals("AnExchange")) // 건물 생성 오브젝트 하위에 있는 오브젝트 중 태그가 AnExchange인 건물이 있으면 
             {
                 AnExchangeB = AnExchangeBP.transform.GetChild(i).gameObject; // 게임오브젝트에 연결
+                return;
+                //Debug.Log("못찾는 이유?");
             }
             else
             {
-                return; // 없을 시 리턴
+                //Debug.Log("리턴되는 이유?");
+                continue; // 없을 시 리턴
             }
         }
     }
@@ -482,8 +486,10 @@ public class AnExchange : MonoBehaviour
             {
                 IsOpen = true; //문열기
 
-                IsOpenImageObj.gameObject.SetActive(true);//알림 이미지 키고
-
+                if (AnExchangeB != null && AnExchangeB.activeSelf)
+                {
+                    IsOpenImageObj.gameObject.SetActive(true);//알림 이미지 키고
+                }
                 float x = GameManager.instance.uiSizeX / Camera.main.scaledPixelWidth;
                 float y = GameManager.instance.uiSizeY / Camera.main.scaledPixelHeight;
 
