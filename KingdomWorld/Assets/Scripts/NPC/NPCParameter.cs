@@ -32,6 +32,8 @@ public class NPCParameter : MonoBehaviour
             }else if(value <= 0)
             {
                 Debug.Log("Á×À½");
+                int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
+                if (index != -1) { GameManager.instance.RestHuman.RemoveAt(index); }
                 Destroy(this.gameObject);
             }
             hp = value;

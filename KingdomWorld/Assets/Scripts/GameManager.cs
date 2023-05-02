@@ -38,7 +38,6 @@ public class GameManager : Resource
         isRain = false;
         for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
         DayTime = 2f / 3f;
-
         for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
         {
             if (i == 4 || i == 0) { jobCountDic.Add((JobNum)i, 10000); }
@@ -51,6 +50,8 @@ public class GameManager : Resource
     void Start()
     {
         //InitializeGrid(500, 500);
+        Food = 10;
+        Wood = 50;
         perlinNoise.InitStart();
         Invoke("InitGrid", Time.deltaTime * 3f);
         //startTime = Time.realtimeSinceStartup;
@@ -59,12 +60,12 @@ public class GameManager : Resource
 
     private void expensed()
     {
-        Food -= AllHuman.Count / 10;
+        Food -= AllHuman.Count * 10;
     }
     private void winterExpensed()
     {
         if(isWinterComing)
-            Wood -= (AllHuman.Count*2) / 10;
+            Wood -= (AllHuman.Count*2);
     }
     private void endListener()
     {

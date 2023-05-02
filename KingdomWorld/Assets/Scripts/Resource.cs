@@ -7,7 +7,7 @@ public class Resource : Setgrid
     //¹Ð, ½Ä·®, ³ª¹«, À°·ù, °¡Á×, ±ÝÈ­, Ã¶±¤¼®, ÁÖÁ¶Ã¶, ¼Ò, ¾ç, ¿ìÀ¯, Ä¡Áî, ÇÜ, ¾çÅÐ, ¿Ê°¨, ¹ÙÀ§
 
     private int wheat;
-    private int food = 1000;
+    private int food;
     private int wood;
     private int meat;
     private int leather;
@@ -63,37 +63,59 @@ public class Resource : Setgrid
         {
             if (value >= MaxResource)
             {
+                Debug.Log("Food ¸Æ½º¸®¼Ò½º ÃÊ°ú");
                 value = MaxResource;
             }
-            else if(value <= 0)
+            else if(value < 0)
             {
-                while (value > 0)//food°¡ 0ÀÌÇÏ·Î ¶³¾îÁú½Ã ½Ã¹Î »ç¸Á
+                while (value <= AllHuman.Count * 10)//food°¡ 0ÀÌÇÏ·Î ¶³¾îÁú½Ã ½Ã¹Î »ç¸Á
                 {
-                    if (Meat > 0)
+                    if(Wheat > 0)
+                    {
+                        Wheat -= 1;
+                        value += 1;
+                    }
+                    else if (Meat > 0)
                     {
                         Meat -= 1;
                         value += 10;
-                    } else if (Ham > 0)
+                    }
+                    else if (Ham > 0)
                     {
                         Ham -= 1;
                         value += 5;
-                    } else if (Cheese > 0)
+                    }
+                    else if (Cheese > 0)
                     {
                         Cheese -= 1;
                         value += 5;
                     }
-                }
-                if (value < 10)
-                    value = 10;
-                for(int i=0; i < value / 10; i++)
-                {
-                    if(AllHuman.Count >= 1)
+                    else if (Meat <= 0 && Ham <= 0 && Cheese <= 0 && Wheat <= 0)
                     {
-                        AllHuman[0].GetComponent<NPC>().HP = 0;
-                        AllHuman.RemoveAt(0);
+                        break;
                     }
                 }
-                value = 0;
+                if(value < AllHuman.Count * 10)
+                {
+                    if(value < 0)
+                    {
+                        value *= -1;
+                    }if (value > 0 && value < 10)
+                        value = 10;
+                    for (int i = 0; i < value / 10; i++)
+                    {
+                        if (AllHuman.Count >= 1)
+                        {
+                            AllHuman[0].GetComponent<NPC>().HP = 0;
+                            AllHuman.RemoveAt(0);
+                        }
+                    }
+                    value = 0;
+                }
+                else
+                {
+                    value -= AllHuman.Count * 10;
+                }
             }
             food = value;
         }
@@ -107,7 +129,7 @@ public class Resource : Setgrid
                 value = MaxResource;
             }else if(value < 0)
             {
-                if (value < 10)
+                if (value > 0 && value < 10)
                     value = 10;
                 for (int i = 0; i < value / 10; i++)
                 {
