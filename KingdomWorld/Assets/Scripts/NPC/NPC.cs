@@ -5,7 +5,6 @@ using UnityEngine;
 public class NPC : NPCScrip
 {
     public bool OneCycle = false; //NPC가 이동중인지 체크하는 변수
-    public bool MyPosition = false;//NPC가 직장위치에 있는지 체크하는 변수
     public bool work = false;//출근 체크 변수
     private bool reSetPathTrigger = false;//update마다 Astar가 작동하지 않게 해주는 bool값
     public bool Sleep = false;
@@ -13,6 +12,7 @@ public class NPC : NPCScrip
     private void Start()
     {
         //BuildingNum = Testbuilding;
+        HP = 100;
         Grid = GameManager.instance.GetComponent<Setgrid>();
         Speed = 3f;
         cargoclasshaveitem.Add("Wood", 0);

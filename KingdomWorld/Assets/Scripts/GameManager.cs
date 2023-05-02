@@ -61,6 +61,18 @@ public class GameManager : Resource
     {
         Food -= AllHuman.Count / 10;
     }
+    private void winterExpensed()
+    {
+        if(isWinterComing)
+            Wood -= (AllHuman.Count*2) / 10;
+    }
+    private void endListener()
+    {
+        if(AllHuman.Count >= 1000)
+        {
+            Debug.Log("게임클리어");
+        }
+    }
     private void InitGrid()
     {
         InitializeGrid(500, 500);
@@ -81,6 +93,7 @@ public class GameManager : Resource
             //startTime = Time.realtimeSinceStartup;
             dayNightRatio = 0f;
             expensed();
+            winterExpensed();
             isDaytime = true;
         }
         else if (dayNightRatio >= DayTime)

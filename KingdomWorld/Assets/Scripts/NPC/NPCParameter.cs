@@ -29,6 +29,9 @@ public class NPCParameter : MonoBehaviour
             if (value > maxHp)
             {
                 value = maxHp;
+            }else if(value <= 0)
+            {
+                Destroy(this.gameObject);
             }
             hp = value;
         }
