@@ -725,7 +725,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 /*
 건물클릭하면 자원 몇개차있는지 보여주는 UI 추가
 
-건물비용추가
+건물비용추가(해결)
 시민거주지 : 나무 10개
 목수의집 : 나무 10개
 사냥꾼의 오두막 : 나무 10개

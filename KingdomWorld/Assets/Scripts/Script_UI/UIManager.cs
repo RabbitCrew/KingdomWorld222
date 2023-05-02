@@ -25,8 +25,8 @@ public class UIManager : JobStringArr
     {
         isOpenCitizenPanel = false;
 
-        openJobChangeUIVec = new Vector3(-760f, 100f, 0f);
-        closeJobChangeUIVec = new Vector3(-1160f, 100f, 0f);
+        openJobChangeUIVec = new Vector3(-740f, 100f, 0f);
+        closeJobChangeUIVec = new Vector3(-1180f, 100f, 0f);
     }
 
     public void SetIsHpAndShieldBarUIObj(bool bo, int hp, int shield, int maxHp, int maxShield, int buildingNumber)

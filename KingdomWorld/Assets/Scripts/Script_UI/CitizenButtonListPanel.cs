@@ -22,10 +22,10 @@ public class CitizenButtonListPanel : MonoBehaviour
         jobListPanelUI = jobListObj.GetComponent<RectTransform>();
 
         openJobListPanel = new Vector3(75,100,0);
-        closeJobListPanel = new Vector3(-175, 100, 0);
+        closeJobListPanel = new Vector3(-350, 100, 0);
 
         openNumberOfEmployeesPanel = new Vector3(75, -150, 0);
-        closeNumberOfEmployeesPanel = new Vector3(75, -350, 0);
+        closeNumberOfEmployeesPanel = new Vector3(75, -370, 0);
     }
 
     public void ClickButn()
