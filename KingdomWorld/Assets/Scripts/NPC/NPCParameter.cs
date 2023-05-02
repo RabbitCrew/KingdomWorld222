@@ -31,6 +31,7 @@ public class NPCParameter : MonoBehaviour
                 value = maxHp;
             }else if(value <= 0)
             {
+                Debug.Log("Á×À½");
                 Destroy(this.gameObject);
             }
             hp = value;

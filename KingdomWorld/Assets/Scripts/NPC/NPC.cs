@@ -12,6 +12,7 @@ public class NPC : NPCScrip
     private void Start()
     {
         //BuildingNum = Testbuilding;
+        Maxhp = 100;
         HP = 100;
         Grid = GameManager.instance.GetComponent<Setgrid>();
         Speed = 3f;

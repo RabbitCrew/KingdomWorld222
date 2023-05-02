@@ -11,13 +11,14 @@ public class NPCHP : MonoBehaviour
 
     private void Awake()
     {
-        SetHp();
+        //SetHp();
     }
 
     private void Update()
     {
-        DeadCheck();
+        //DeadCheck();
         GetHP();
+        //Debug.Log(this.gameObject.GetComponent<NPC>().HP);
     }
 
     void SetHp()
@@ -41,13 +42,18 @@ public class NPCHP : MonoBehaviour
 
     void DeadCheck()
     {
-        if(Hp <= 0)
+        //Debug.Log(this.gameObject.GetComponent<NPC>().HP);
+        if(this.gameObject.GetComponent<NPC>().HP <= 0)
         {
-            GameManager.instance.AllHuman.Remove(this.gameObject);
+            //GameManager.instance.AllHuman.Remove(this.gameObject);
 
             this.transform.parent.SendMessage("DeadBodyCreate", this.transform.position);
-
-            Destroy(this.gameObject);
+            //Debug.Log("Á×À½");
+            //Destroy(this.gameObject);
         }
+    }
+    private void OnDisable()
+    {
+        DeadCheck();
     }
 }

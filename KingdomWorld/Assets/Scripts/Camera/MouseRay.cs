@@ -78,6 +78,7 @@ public class MouseRay : MonoBehaviour
                 {
                     uiManager.SetIsNPCHpAndShieldBarUIObj(
                         true, hits[i].transform.GetComponent<NPC>().HP, hits[i].transform.GetComponent<NPC>().Maxhp);
+                    Debug.Log(hits[i].transform.GetComponent<NPC>().HP + " "  + hits[i].transform.GetComponent<NPC>().Maxhp);
                     break;
                 }
                 else

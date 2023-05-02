@@ -450,17 +450,6 @@ public class SettingObject : MonoBehaviour
         for (int i = 0; i < gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
         {
             gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = true;
-        }
-    }
-
-    // 비활성화된 청크 위치 있는 오브젝트의 스프라이트 렌더러를 꺼준다.
-    public void DisableSpriteRenderer(int chunkX, int chunkY)
-    {
-        if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
-
-        for (int i = 0; i < gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
-        {
-            gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = false;
 
             if (gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>() != null)
             {
@@ -473,6 +462,30 @@ public class SettingObject : MonoBehaviour
                     gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(0);
                 }
             }
+        }
+    }
+
+    // 비활성화된 청크 위치 있는 오브젝트의 스프라이트 렌더러를 꺼준다.
+    public void DisableSpriteRenderer(int chunkX, int chunkY)
+    {
+        if (!gameObjectChunkPointList.ContainsKey(new ChunkPoint(chunkX, chunkY))) { return; }
+
+        for (int i = 0; i < gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)].Count; i++)
+        {
+
+            if (gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>() != null)
+            {
+                if (isSnow)
+                {
+                    gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(1);
+                }
+                else
+                {
+                    gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<ChangeSnowBuildingSprite>().ChangeSprite(0);
+                }
+            }
+
+            gameObjectChunkPointList[new ChunkPoint(chunkX, chunkY)][i].GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 

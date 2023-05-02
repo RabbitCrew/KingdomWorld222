@@ -28,7 +28,7 @@ public class MoveBackgroundAsMouse : MonoBehaviour
             {
                 cam.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * 2;
 
-                if (cam.orthographicSize > 20) { cam.orthographicSize = 20; }
+                if (cam.orthographicSize > 14) { cam.orthographicSize = 14; }
                 else if (cam.orthographicSize < 4) { cam.orthographicSize = 4; }
             }
 

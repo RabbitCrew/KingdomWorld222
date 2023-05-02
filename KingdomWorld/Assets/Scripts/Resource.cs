@@ -7,7 +7,7 @@ public class Resource : Setgrid
     //밀, 식량, 나무, 육류, 가죽, 금화, 철광석, 주조철, 소, 양, 우유, 치즈, 햄, 양털, 옷감, 바위
 
     private int wheat;
-    private int food;
+    private int food = 1000;
     private int wood;
     private int meat;
     private int leather;
