@@ -60,7 +60,11 @@ public class NPC : NPCScrip
         else if (gameObject.CompareTag("FabricNPC"))
         {
             fabric();
-        }else if (this.CompareTag("NPC"))
+        }else if (gameObject.CompareTag("Pastoralist"))
+        {
+            Pastoralist();
+        }
+        else if (this.CompareTag("NPC"))
         {
             ResetPath(this.transform, HouseTr);
             currentPathIndex = 0;
@@ -231,7 +235,11 @@ public class NPC : NPCScrip
         Move();
     }
 
-
+    void Pastoralist()
+    {
+        dayTimeResetPath();
+        Move();
+    }
 
     public bool isWeatStart = false;
     public bool isWeatCarry = false;

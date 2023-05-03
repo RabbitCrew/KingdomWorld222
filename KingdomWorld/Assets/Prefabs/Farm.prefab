@@ -168,14 +168,17 @@ MonoBehaviour:
   necessaryWood: 15
   necessaryStone: 0
   necessaryIron: 0
-  npcNum: 0
+  necessaryFood: 0
+  npcNum: 5
   npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
   BuildingNum: 6
   carpenternCheck: 0
-  npcCount: 0
+  npcCount: 1
   npcs: []
   storeMax: 40
   store: 0
+  milk: 0
+  fleece: 0
 --- !u!114 &-8722687033631352920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,8 +199,6 @@ MonoBehaviour:
   animalClone_1: {fileID: 0}
   animalClone_2: {fileID: 0}
   animalSpwner: {fileID: 99974996308934457}
-  milk: 0
-  fleece: 0
 --- !u!114 &-7038153560697592045
 MonoBehaviour:
   m_ObjectHideFlags: 0
