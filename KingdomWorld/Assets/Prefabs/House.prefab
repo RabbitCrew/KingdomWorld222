@@ -166,11 +166,12 @@ MonoBehaviour:
   necessaryWood: 10
   necessaryStone: 0
   necessaryIron: 0
+  necessaryFood: 0
   npcNum: 0
   npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
   BuildingNum: 8
   carpenternCheck: 0
-  npcCount: 5
+  npcCount: 3
   npcs: []
   storeMax: 50
   store: 0
