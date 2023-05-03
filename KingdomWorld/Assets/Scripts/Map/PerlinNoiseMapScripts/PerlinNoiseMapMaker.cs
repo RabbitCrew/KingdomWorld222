@@ -238,7 +238,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 // 타일 오브젝트의 위치를 지정함.
                 newTile.transform.localPosition = new Vector3(x % chunkSize, y % chunkSize);
 
-                for (int i = 0; i < 16; i++)
+                for (int i = 0; i < 13; i++)
 				{
                     GameObject miniTile = new GameObject(name = "miniTile");
                     miniTile.transform.parent = newTile.transform;
