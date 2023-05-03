@@ -29,7 +29,9 @@ public class BuildingSetting : MonoBehaviour
     public int store = 0;       // . . . ¿˙¿Â∑Æ
     public Dictionary<string, int> items = new Dictionary<string, int>();
 
-
+    int MaxResource = 10;
+    public int milk = 0;
+    public int fleece = 0;
     // Start is called before the first frame update
     private void Awake()
     {

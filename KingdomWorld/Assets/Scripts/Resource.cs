@@ -66,9 +66,9 @@ public class Resource : Setgrid
                 Debug.Log("Food ¸Æ½º¸®¼Ò½º ÃÊ°ú");
                 value = MaxResource;
             }
-            else if(value < 0)
+            else if(value < 0)//Á×À½ÀÇÁ¶°Ç
             {
-                while (value <= AllHuman.Count * 10)//food°¡ 0ÀÌÇÏ·Î ¶³¾îÁú½Ã ½Ã¹Î »ç¸Á
+                while (value <= MaxResource)//food»ý»ê
                 {
                     if(Wheat > 0)
                     {
@@ -95,13 +95,9 @@ public class Resource : Setgrid
                         break;
                     }
                 }
-                if(value < AllHuman.Count * 10)
+                if(value < 0)
                 {
-                    if(value < 0)
-                    {
-                        value *= -1;
-                    }if (value > 0 && value < 10)
-                        value = 10;
+                    value *= -1;
                     for (int i = 0; i < value / 10; i++)
                     {
                         if (AllHuman.Count >= 1)
@@ -112,10 +108,19 @@ public class Resource : Setgrid
                     }
                     value = 0;
                 }
-                else
+                else if (value >= 0 && value < 10)
                 {
-                    value -= AllHuman.Count * 10;
-                }
+                    value = 10;
+                    for (int i = 0; i < value / 10; i++)
+                    {
+                        if (AllHuman.Count >= 1)
+                        {
+                            AllHuman[0].GetComponent<NPC>().HP = 0;
+                            AllHuman.RemoveAt(0);
+                        }
+                    }
+                    value = 0;
+                }                
             }
             food = value;
         }
@@ -129,6 +134,7 @@ public class Resource : Setgrid
                 value = MaxResource;
             }else if(value < 0)
             {
+                value *= -1;
                 if (value > 0 && value < 10)
                     value = 10;
                 for (int i = 0; i < value / 10; i++)
