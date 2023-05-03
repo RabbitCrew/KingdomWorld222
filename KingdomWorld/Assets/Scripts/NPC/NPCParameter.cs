@@ -32,10 +32,13 @@ public class NPCParameter : MonoBehaviour
             }else if(value <= 0)
             {
                 Debug.Log("Á×À½");
-                int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
-                if (index != -1) { GameManager.instance.RestHuman.RemoveAt(index); }
-                index = BuildingNum.GetComponent<BuildingSetting>().npcs.FindIndex(a => a.Equals(this.gameObject));
-                if (index != -1) { BuildingNum.GetComponent<BuildingSetting>().npcs.RemoveAt(index); }
+                if(buildingNum != null)
+                {
+                    int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
+                    if (index != -1) { GameManager.instance.RestHuman.RemoveAt(index); }
+                    index = BuildingNum.GetComponent<BuildingSetting>().npcs.FindIndex(a => a.Equals(this.gameObject));
+                    if (index != -1) { BuildingNum.GetComponent<BuildingSetting>().npcs.RemoveAt(index); }
+                }
                 if (this.GetComponent<CitizenInfoPanel>() != null)
                 {
                     GameManager.instance.jobCountDic[this.GetComponent<CitizenInfoPanel>().jobNumEnum]++;
