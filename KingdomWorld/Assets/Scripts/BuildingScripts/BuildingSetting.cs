@@ -25,13 +25,15 @@ public class BuildingSetting : MonoBehaviour
     public List<GameObject> npcs; 
     private int arrayIndex = 0;
 
-    public int storeMax = 50;
+    public int storeMax = 10;
     public int store = 0;       // . . . ¿˙¿Â∑Æ
     public Dictionary<string, int> items = new Dictionary<string, int>();
 
     int MaxResource = 10;
     public int milk = 0;
     public int fleece = 0;
+
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -47,7 +49,6 @@ public class BuildingSetting : MonoBehaviour
     void Start()
     {
         ItemSetting();
-
     }
 
     public void AddNpcCount()

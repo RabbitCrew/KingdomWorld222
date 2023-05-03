@@ -40,6 +40,7 @@ public class Farm : MonoBehaviour
                 value = milkMax;
             }
             buildingSetting.milk = value;
+            buildingSetting.store = value;
         }
     }
     public int Fleece

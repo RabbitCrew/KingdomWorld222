@@ -360,45 +360,14 @@ public class NPC : NPCScrip
                 {
                     if (other.transform == fullbuilding.transform)//목표건물에 도착
                     {
-                        if (other.CompareTag("WoodCutter_house"))
+                        if (other.CompareTag("Farm_house"))
                         {
-                            cargoclasshaveitem["Wood"] = other.GetComponent<BuildingSetting>().store;
                             other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
+                            other.GetComponent<BuildingSetting>().milk -= other.GetComponent<BuildingSetting>().storeMax;
+                            other.GetComponent<BuildingSetting>().fleece -= other.GetComponent<BuildingSetting>().storeMax;
                         }
-                        else if (other.CompareTag("Hunter_house"))
+                        else
                         {
-                            cargoclasshaveitem["Meat"] = other.GetComponent<BuildingSetting>().store;
-                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
-                        }
-                        else if (other.CompareTag("Farm_house"))
-                        {
-                            cargoclasshaveitem["Milk"] = other.GetComponent<BuildingSetting>().store;
-                            cargoclasshaveitem["Fleece"] = other.GetComponent<BuildingSetting>().store;
-                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;//우유랑 양털 둘다있어야함
-                        }
-                        else if (other.CompareTag("Cheese_house"))
-                        {
-                            cargoclasshaveitem["Cheese"] = other.GetComponent<BuildingSetting>().store;
-                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
-                        }
-                        else if (other.CompareTag("Ham_house"))
-                        {
-                            cargoclasshaveitem["Ham"] = other.GetComponent<BuildingSetting>().store;
-                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
-                        }
-                        else if (other.CompareTag("Mine_house"))
-                        {
-                            cargoclasshaveitem["Stone"] = other.GetComponent<BuildingSetting>().store;
-                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
-                        }
-                        else if (other.CompareTag("Cloth_house"))
-                        {
-                            cargoclasshaveitem["Cloth"] = other.GetComponent<BuildingSetting>().store;
-                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
-                        }
-                        else if (other.CompareTag("Smith_house"))
-                        {
-                            cargoclasshaveitem["CastIron"] = other.GetComponent<BuildingSetting>().store;
                             other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
                         }
                         isCargoWorkStart = false;
