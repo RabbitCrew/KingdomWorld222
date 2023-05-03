@@ -103,7 +103,7 @@ public class Resource : Setgrid
                         if (AllHuman.Count >= 1)
                         {
                             AllHuman[0].GetComponent<NPC>().HP = 0;
-                            AllHuman.RemoveAt(0);
+                            //AllHuman.RemoveAt(0);
                         }
                     }
                     value = 0;
@@ -116,7 +116,7 @@ public class Resource : Setgrid
                         if (AllHuman.Count >= 1)
                         {
                             AllHuman[0].GetComponent<NPC>().HP = 0;
-                            AllHuman.RemoveAt(0);
+                            //AllHuman.RemoveAt(0);
                         }
                     }
                     value = 0;
@@ -142,7 +142,7 @@ public class Resource : Setgrid
                     if (AllHuman.Count >= 1)
                     {
                         AllHuman[0].GetComponent<NPC>().HP = 0;
-                        AllHuman.RemoveAt(0);
+                        //AllHuman.RemoveAt(0);
                     }
                 }
                 value = 0;
