@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Farm : MonoBehaviour
 {
+    
     // . . . 미완 ( 최대값 제한 X 
 
     private BuildingSetting buildingSetting;
@@ -25,11 +26,34 @@ public class Farm : MonoBehaviour
     public Transform animalSpwner;
 
     // . . . 우유 / 양털
-    public int milk = 0;
+    //private int milk = 0;
     private int milkMax = 10;
-    public int fleece = 0;
+    //public int fleece = 0;
     private int fleeceMax = 10;
 
+    public int Milk 
+    { 
+        get { return buildingSetting.milk; } 
+        set {
+            if (buildingSetting.milk > milkMax) 
+            {
+                value = milkMax;
+            }
+            buildingSetting.milk = value;
+        }
+    }
+    public int Fleece
+    {
+        get { return buildingSetting.fleece; }
+        set
+        {
+            if(buildingSetting.fleece > fleeceMax)
+            {
+                value = fleeceMax;
+            }
+            buildingSetting.fleece = value;
+        }
+    }
     private float increaseInterval = 10f;
     private float timer = 0f;
     private float timer_1 = 0f;
@@ -44,7 +68,7 @@ public class Farm : MonoBehaviour
         GameManager.instance.Cow = cow;
         GameManager.instance.Sheep = sheep;
         //GameManager.instance.Milk = milk;
-        GameManager.instance.Fleece = fleece;
+        //GameManager.instance.Fleece = fleece;
     }
 
     private void Update()
@@ -96,14 +120,20 @@ public class Farm : MonoBehaviour
             timer_1 = 0f;
             for (int i = 0; i < cow; i++)
             {
-                milk++;
-                //GameManager.instance.Milk++;
+                if(Milk < milkMax)
+                {
+                    Milk++;
+                    GameManager.instance.Milk++;
+                }
                 buildingSetting.AddItem("milk", 1);
             }
             for (int j = 0; j < sheep; j++)
             {
-                fleece++;
-                GameManager.instance.Fleece++;
+                if(Fleece < fleeceMax)
+                {
+                    Fleece++;
+                    GameManager.instance.Fleece++;
+                }
                 buildingSetting.AddItem("fleece", 1);
             }
         }
