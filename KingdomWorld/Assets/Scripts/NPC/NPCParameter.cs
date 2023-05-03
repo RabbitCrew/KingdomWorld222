@@ -38,6 +38,9 @@ public class NPCParameter : MonoBehaviour
                     if (index != -1) { GameManager.instance.RestHuman.RemoveAt(index); }
                     index = BuildingNum.GetComponent<BuildingSetting>().npcs.FindIndex(a => a.Equals(this.gameObject));
                     if (index != -1) { BuildingNum.GetComponent<BuildingSetting>().npcs.RemoveAt(index); }
+                    index = GameManager.instance.AllHuman.FindIndex(a => a.Equals(this.gameObject));
+                    if (index != -1) { GameManager.instance.AllHuman.RemoveAt(index); }
+
                 }
                 if (this.GetComponent<CitizenInfoPanel>() != null)
                 {
