@@ -23,6 +23,7 @@ public class ArtifactWork : MonoBehaviour
 
     float DefaultIncreaseInterval;
     float DefaultincreaseProbability;
+    float DefaultDayLength;
 
     bool TeruTeruBous = false;
 
@@ -33,6 +34,7 @@ public class ArtifactWork : MonoBehaviour
     {
         DefaultIncreaseInterval = Cornfield.increaseInterval;
         DefaultincreaseProbability = Cornfield.increaseProbability;
+        DefaultDayLength = GameManager.instance.dayLength;
     }
 
     private void Update()
@@ -187,7 +189,7 @@ public class ArtifactWork : MonoBehaviour
 
                     if(ChildRate >= 0 && ChildRate <= 8 * Inventory.instance.HasArtifact[value])
                     {
-                        ChildList[Inventory.instance.Children] = 180 * 30; //자라는 시간 설정
+                        ChildList[Inventory.instance.Children] = GameManager.instance.dayLength * 30; //자라는 시간 설정
 
                         Inventory.instance.Children++;
                     }
@@ -260,10 +262,14 @@ public class ArtifactWork : MonoBehaviour
                 if (ArtifactActiveState.isOn == true)
                 {
                     Cornfield.increaseProbability += (7 + (Inventory.instance.HasArtifact[value] - 1) * 3) / 100;
+
+                    GameManager.instance.dayLength -= 10f * Inventory.instance.HasArtifact[value];
                 }
                 else
                 {
                     Cornfield.increaseProbability = DefaultincreaseProbability;
+
+                    GameManager.instance.dayLength = DefaultDayLength;
                 }
                 break;
             case 13:
