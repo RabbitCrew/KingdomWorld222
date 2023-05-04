@@ -80,8 +80,6 @@ public class AnExchange : MonoBehaviour
     private void Start()
     {
         PositionSet(); //포시션 값 받음
-
-        //isLerp = true;
     }
 
     private void Update()

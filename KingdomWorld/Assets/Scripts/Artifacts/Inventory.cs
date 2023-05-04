@@ -6,7 +6,7 @@ public class Inventory : MonoBehaviour
     public float AddExchangeRate { get; set; }
     float DefaultLerpTime = 5f;
     public int MaxNegoText { get; set; }
-    public int[] HasArtifact = new int[30];
+    public int[] HasArtifact = new int[10];
     public int Children;
     public int RainRate;
     public float SpawnTime = 10f;
@@ -36,8 +36,6 @@ public class Inventory : MonoBehaviour
     private void Update()
     {
         InventoryOn();
-
-        ArtifactEffect();
     }
 
     public void InventoryButton()
@@ -78,6 +76,8 @@ public class Inventory : MonoBehaviour
         {
             inven.GetComponent<RectTransform>().anchoredPosition3D =
            Vector3.Lerp(inven.GetComponent<RectTransform>().anchoredPosition3D, new Vector3(760, 100, 0), Time.deltaTime * DefaultLerpTime);
+
+            ArtifactEffect();
         }
         else if(IsLerp == false)
         {
