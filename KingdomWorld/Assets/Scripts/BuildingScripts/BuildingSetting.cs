@@ -25,7 +25,7 @@ public class BuildingSetting : MonoBehaviour
     public List<GameObject> npcs; 
     private int arrayIndex = 0;
 
-    public int storeMax = 10;
+    public int storeMax = 20;
     public int store = 0;       // . . . ¿˙¿Â∑Æ
     public Dictionary<string, int> items = new Dictionary<string, int>();
 
@@ -33,10 +33,11 @@ public class BuildingSetting : MonoBehaviour
     public int milk = 0;
     public int fleece = 0;
 
-
+    public bool WoodEmptyTrigger;
     // Start is called before the first frame update
     private void Awake()
     {
+        storeMax = 20;
         BuildingTime = 10f;
         MaxBuildingHp = 10;
         BuildingHp = 10;
@@ -206,7 +207,7 @@ public class BuildingSetting : MonoBehaviour
 
     public void AddItem(string itemName, int amount)
     {
-        if (items.ContainsKey(itemName))
+        /*if (items.ContainsKey(itemName))
         {
             for (int i = 0; i < amount; i++)
             {
@@ -216,7 +217,7 @@ public class BuildingSetting : MonoBehaviour
                 }
                 store++;
             }
-        }
+        }*/
     }
 
     public void ItemSetting()

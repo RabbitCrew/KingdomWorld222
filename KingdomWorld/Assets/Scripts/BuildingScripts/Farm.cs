@@ -7,7 +7,7 @@ public class Farm : MonoBehaviour
     
     // . . . 미완 ( 최대값 제한 X 
 
-    private BuildingSetting buildingSetting;
+    public BuildingSetting buildingSetting;
     BuildingColider buildingColider;
 
     // . . . 소 / 양
@@ -27,10 +27,11 @@ public class Farm : MonoBehaviour
 
     // . . . 우유 / 양털
     //private int milk = 0;
-    private int milkMax = 10;
+    private int milkMax = 20;
     //public int fleece = 0;
-    private int fleeceMax = 10;
+    private int fleeceMax = 20;
 
+    public bool isWork = false;
     public int Milk 
     { 
         get { return buildingSetting.milk; } 
@@ -78,8 +79,11 @@ public class Farm : MonoBehaviour
         timer_1 += Time.deltaTime;
 
         animalstore = cow + sheep;
-
-        if(buildingColider.isSettingComplete == true)
+        if (!GameManager.instance.isDaytime)
+        {
+            isWork = false;
+        }
+        if(buildingColider.isSettingComplete == true && isWork)
         {
             AddCowSheep();
             Collection();
