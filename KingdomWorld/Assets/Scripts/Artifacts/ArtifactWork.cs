@@ -177,39 +177,29 @@ public class ArtifactWork : MonoBehaviour
                 }
                 break;
             case 6:
-                //애새끼 함 만들어보자... 연성이다!!!!!!!
+                // 작물 성장 속도 감소
                 if (ArtifactActiveState.isOn == true)
                 {
-                    ChildCool -= Time.deltaTime;
-
-                    if (ChildCool <= 0)
-                    {
-                        ChildRate = Random.Range(DefaultChildRate, 1000);
-
-                        ChildCool = DefaultChildCool;
-                    }
-
-                    if(ChildRate >= 0 && ChildRate <= 8 * Inventory.instance.HasArtifact[value])
-                    {
-                        ChildList[Inventory.instance.Children] = GameManager.instance.dayLength * 30; //자라는 시간 설정
-
-                        Inventory.instance.Children++;
-                    }
+                    Cornfield.increaseInterval *= 1 - (0.01f * Inventory.instance.HasArtifact[value]);
                 }
                 else
                 {
-                    ChildCool = DefaultChildCool;
+                    Cornfield.increaseInterval = DefaultIncreaseInterval;
                 }
                 break;
             case 7:
-                //애낳을 확률 증가
-                if(ArtifactActiveState.isOn == true)
+                // 풍년 확률 조작 //17개 까지만 소지 가능
+                if (ArtifactActiveState.isOn == true)
                 {
-                    DefaultChildRate += Inventory.instance.HasArtifact[value];
+                    Cornfield.increaseProbability += (7 + (Inventory.instance.HasArtifact[value] - 1) * 3) / 100;
+
+                    GameManager.instance.dayLength -= 10f * Inventory.instance.HasArtifact[value];
                 }
                 else
                 {
-                    DefaultChildRate = 0;
+                    Cornfield.increaseProbability = DefaultincreaseProbability;
+
+                    GameManager.instance.dayLength = DefaultDayLength;
                 }
                 break;
             case 8:
@@ -249,30 +239,8 @@ public class ArtifactWork : MonoBehaviour
                 }
                 break;
             case 11:
-                // 작물 성장 속도 감소
-                if (ArtifactActiveState.isOn == true)
-                {
-                    Cornfield.increaseInterval *= 1 - (0.01f * Inventory.instance.HasArtifact[value]);
-                }
-                else
-                {
-                    Cornfield.increaseInterval = DefaultIncreaseInterval;
-                }
                 break;
             case 12:
-                // 풍년 확률 조작 //17개 까지만 소지 가능
-                if (ArtifactActiveState.isOn == true)
-                {
-                    Cornfield.increaseProbability += (7 + (Inventory.instance.HasArtifact[value] - 1) * 3) / 100;
-
-                    GameManager.instance.dayLength -= 10f * Inventory.instance.HasArtifact[value];
-                }
-                else
-                {
-                    Cornfield.increaseProbability = DefaultincreaseProbability;
-
-                    GameManager.instance.dayLength = DefaultDayLength;
-                }
                 break;
             case 13:
                 break;
@@ -311,8 +279,40 @@ public class ArtifactWork : MonoBehaviour
             case 30:
                 break;
             case 31:
+                //애새끼 함 만들어보자... 연성이다!!!!!!!
+                if (ArtifactActiveState.isOn == true)
+                {
+                    ChildCool -= Time.deltaTime;
+
+                    if (ChildCool <= 0)
+                    {
+                        ChildRate = Random.Range(DefaultChildRate, 1000);
+
+                        ChildCool = DefaultChildCool;
+                    }
+
+                    if (ChildRate >= 0 && ChildRate <= 8 * Inventory.instance.HasArtifact[value])
+                    {
+                        ChildList[Inventory.instance.Children] = GameManager.instance.dayLength * 30; //자라는 시간 설정
+
+                        Inventory.instance.Children++;
+                    }
+                }
+                else
+                {
+                    ChildCool = DefaultChildCool;
+                }
                 break;
             case 32:
+                //애낳을 확률 증가
+                if (ArtifactActiveState.isOn == true)
+                {
+                    DefaultChildRate += Inventory.instance.HasArtifact[value];
+                }
+                else
+                {
+                    DefaultChildRate = 0;
+                }
                 break;
             default:
                 break;
