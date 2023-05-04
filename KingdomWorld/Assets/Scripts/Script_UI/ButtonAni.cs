@@ -11,7 +11,7 @@ public class ButtonAni : MonoBehaviour
     {
         TypingAni.Play();
 
-        Invoke("IsDrop", TypingAni["TitleTyping"].length);
+        Invoke("IsDrop", TypingAni["TitleTyping"].length + 0.8f);
     }
 
     void IsDrop()
