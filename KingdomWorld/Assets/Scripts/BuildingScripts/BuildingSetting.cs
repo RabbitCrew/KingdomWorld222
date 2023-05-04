@@ -33,7 +33,7 @@ public class BuildingSetting : MonoBehaviour
     public int milk = 0;
     public int fleece = 0;
 
-
+    public bool WoodEmptyTrigger;
     // Start is called before the first frame update
     private void Awake()
     {

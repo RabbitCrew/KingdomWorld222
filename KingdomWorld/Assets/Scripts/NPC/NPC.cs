@@ -202,6 +202,11 @@ public class NPC : NPCScrip
         {
             dayTimeResetPath();
         }
+        if (BuildingNum.GetComponent<BuildingSetting>().WoodEmptyTrigger && work)
+        {
+            searchWood();
+            BuildingNum.GetComponent<BuildingSetting>().WoodEmptyTrigger = false;
+        }
         Move();
     }
 
@@ -370,14 +375,15 @@ public class NPC : NPCScrip
                     {
                         if (other.CompareTag("Farm_house"))
                         {
-                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
-                            other.GetComponent<BuildingSetting>().milk -= other.GetComponent<BuildingSetting>().storeMax;
-                            other.GetComponent<BuildingSetting>().fleece -= other.GetComponent<BuildingSetting>().storeMax;
+                            other.GetComponent<BuildingSetting>().store = 0;
+                            other.GetComponent<BuildingSetting>().milk = 0;
+                            other.GetComponent<BuildingSetting>().fleece = 0;
                         }
                         else
                         {
-                            other.GetComponent<BuildingSetting>().store -= other.GetComponent<BuildingSetting>().storeMax;
+                            other.GetComponent<BuildingSetting>().store = 0;
                         }
+                        other.GetComponent<BuildingSetting>().WoodEmptyTrigger = true;
                         isCargoWorkStart = false;
                         isreturntocargo = true;
                         ResetPath(this.transform, BuildingNum.transform);//복귀
@@ -409,49 +415,28 @@ public class NPC : NPCScrip
                 {
                     Invoke("farmNPCpushWheat", 3f);
                 }
-            } else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood == 0)//출근시 나무탐색
+            } else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood == 0 && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)//출근시 나무탐색
             {
-                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 10f);
-                foreach (Collider collider in colliders)
-                {
-                    if (collider.CompareTag("tree") && !collider.GetComponent<NatureObject>().Slave)
-                    {
-                        Debug.Log("나무 탐색");
-                        Tree = collider.transform;
-                        Tree.GetComponent<NatureObject>().Slave = true;
-                        ResetPath(this.transform, Tree);
-                        currentPathIndex = 0;
-                        break;
-                    }
-                }
-            }else if(this.CompareTag("WoodCutter") && Tree != null)//나무에 도착시 나무자르기
+                searchWood();
+            }
+            else if(this.CompareTag("WoodCutter") && Tree != null)//나무에 도착시 나무자르기
             {
                 if(other.transform == Tree)
                     StartCoroutine(CuttingTree(3));
             }else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood > 0)
             {
                 other.GetComponent<BuildingSetting>().store += HavedWood;
+                GameManager.instance.Wood += 1;
                 HavedWood = 0;
-                if (GameManager.instance.isDaytime)
+                allwork = false;
+                if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
                 {
-                    Collider[] colliders = Physics.OverlapSphere(this.transform.position, 10f);
-                    foreach (Collider collider in colliders)
-                    {
-                        if (collider.CompareTag("tree") && !collider.GetComponent<NatureObject>().Slave)
-                        {
-                            Debug.Log("나무 탐색");
-                            Tree = collider.transform;
-                            Tree.GetComponent<NatureObject>().Slave = true;
-                            ResetPath(this.transform, Tree);
-                            currentPathIndex = 0;
-                            break;
-                        }
-                    }
+                    searchWood();
                 }
-                else
+                /*else
                 {
                     allwork = false;//일끝
-                }
+                }*/
             }else if(this.CompareTag("Hunter") && Animal.transform == other.transform && hunting)
             {
                 StartCoroutine(HuntingAnimal(3f, Animal));
@@ -461,6 +446,22 @@ public class NPC : NPCScrip
                 HavedAnimal = 0;
                 isReturntohunterhouse = false;
                 OneCycle = false;
+            }
+        }
+    }
+    void searchWood()
+    {
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, 10f);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("tree") && !collider.GetComponent<NatureObject>().Slave)
+            {
+                Debug.Log("나무 탐색");
+                Tree = collider.transform;
+                Tree.GetComponent<NatureObject>().Slave = true;
+                ResetPath(this.transform, Tree);
+                currentPathIndex = 0;
+                break;
             }
         }
     }
