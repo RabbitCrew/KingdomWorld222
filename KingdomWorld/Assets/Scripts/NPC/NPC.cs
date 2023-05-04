@@ -425,19 +425,13 @@ public class NPC : NPCScrip
                     StartCoroutine(CuttingTree(3));
             }else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood > 0)
             {
-                other.GetComponent<BuildingSetting>().store += HavedWood;
-                GameManager.instance.Wood += 1;
-                HavedWood = 0;
-                allwork = false;
-                if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
-                {
-                    searchWood();
-                }
+                StartCoroutine(PutWood(1f, other));
                 /*else
                 {
                     allwork = false;//ÀÏ³¡
                 }*/
-            }else if(this.CompareTag("Hunter") && Animal.transform == other.transform && hunting)
+            }
+            else if(this.CompareTag("Hunter") && Animal.transform == other.transform && hunting)
             {
                 StartCoroutine(HuntingAnimal(3f, Animal));
             }else if(this.CompareTag("Hunter") && HavedAnimal > 0 && isReturntohunterhouse && other.transform == BuildingNum.transform)
@@ -447,6 +441,19 @@ public class NPC : NPCScrip
                 isReturntohunterhouse = false;
                 OneCycle = false;
             }
+        }
+    }
+
+    IEnumerator PutWood(float delay, Collider other)
+    {
+        yield return new WaitForSeconds(delay);
+        other.GetComponent<BuildingSetting>().store += HavedWood;
+        GameManager.instance.Wood += 1;
+        HavedWood = 0;
+        allwork = false;
+        if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
+        {
+            searchWood();
         }
     }
     void searchWood()
