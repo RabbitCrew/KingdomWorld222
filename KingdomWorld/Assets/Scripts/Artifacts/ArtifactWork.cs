@@ -226,15 +226,6 @@ public class ArtifactWork : MonoBehaviour
                 }
                 break;
             case 10:
-                // 식량 소모량 감소
-                if(ArtifactActiveState.isOn == true)
-                {
-
-                }
-                else
-                {
-
-                }
                 break;
             case 11:
                 break;
@@ -275,6 +266,15 @@ public class ArtifactWork : MonoBehaviour
             case 29:
                 break;
             case 30:
+                // 식량 소모량 감소
+                if (ArtifactActiveState.isOn == true)
+                {
+
+                }
+                else
+                {
+
+                }
                 break;
             case 31:
                 //애새끼 함 만들어보자... 연성이다!!!!!!!

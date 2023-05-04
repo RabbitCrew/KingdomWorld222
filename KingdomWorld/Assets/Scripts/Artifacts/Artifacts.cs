@@ -11,7 +11,7 @@ public class Artifacts : MonoBehaviour
 
     public AnExchange AnExchangeUI;
 
-    [SerializeField] int ArtifactNums = 30;
+    [SerializeField] int ArtifactNums = 10;
     int AtNum;
     public int[] TodayArtifact = new int[3];
     public int[] ArtifactPrice;
@@ -32,6 +32,18 @@ public class Artifacts : MonoBehaviour
         SetTodayArtifact();
     }
 
+    private void Start()
+    {
+        for (int i = 0; i < TodayArtifact.Length; i++)
+        {
+            TodayArtifact[i] = Random.Range(0, ArtifactNums);// 유물 목록에서 랜덤으로 유물을 가져옴
+
+            //TodayArtifactSet[i].GetComponent<SpriteRenderer>().sprite = Inventory.instance.ArtifactImage[TodayArtifact[i]];
+
+            NameText[i].text = ArtifactName[TodayArtifact[i]].ToString();
+        }
+    }
+
     void SetTodayArtifact()//소지하고 있는 유물이 일정 갯수 이상ㅇ이면 안뜨게 수정해야됨. 아직 수정중이니까 건들면 문닷 유물 전체 구현하고 만들거양
     {
         if (GameManager.instance.dayNightRatio == 0f || GameManager.instance.dayNightRatio == 1f)
@@ -43,23 +55,27 @@ public class Artifacts : MonoBehaviour
                     TodayArtifact[i] = Random.Range(0, ArtifactNums);// 유물 목록에서 랜덤으로 유물을 가져옴
 
                     TodayArtifactSet[i].GetComponent<SpriteRenderer>().sprite = Inventory.instance.ArtifactImage[TodayArtifact[i]];
+
+                    NameText[i].text = ArtifactName[TodayArtifact[i]].ToString();
                 }
             }
         }
+
+        PriceText.text = "가격 : " + (ArtifactPrice[TodayArtifact[AtNum]] * AnExchangeUI.ExchangeRate).ToString() + " 골드";
     }
 
     public void ShowArtifactInfo(int ANum) //거래소에서 유물 설명 표기
     {
         AtNum = ANum;
 
-        PriceText.text = (ArtifactPrice[TodayArtifact[ANum]] * AnExchangeUI.ExchangeRate).ToString();
-        InfoText.text = ArtifactInfo[TodayArtifact[ANum]];
-        NameText[ANum].text = ArtifactName[TodayArtifact[ANum]];
+        PriceText.text = "가격 : " + (ArtifactPrice[TodayArtifact[ANum]] * AnExchangeUI.ExchangeRate).ToString() + " 골드";
+        InfoText.text = ArtifactInfo[TodayArtifact[ANum]].ToString();
+        NameText[ANum].text = ArtifactName[TodayArtifact[ANum]].ToString();
     }
 
     public void BuyArtifact()//돈이 있으면 구매되고 아니면 거부되게.
     {
-        if (ArtifactPrice[AtNum] * AnExchangeUI.ExchangeRate >= GameManager.instance.Gold)
+        if (ArtifactPrice[TodayArtifact[AtNum]] * AnExchangeUI.ExchangeRate >= GameManager.instance.Gold)
         {
             GameManager.instance.Gold -= ArtifactPrice[TodayArtifact[AtNum]];
 

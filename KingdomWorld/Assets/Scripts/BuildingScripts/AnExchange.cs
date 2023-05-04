@@ -122,7 +122,7 @@ public class AnExchange : MonoBehaviour
             CellerSlider.value = CellerSlider.value + 0.1f;
             TCellerSlider.value = TCellerSlider.value + 0.1f;
 
-            if (MySlider.value >= 1)//게이지가 꽉차면 네고 못하게 하고
+            if (MySlider.value >= 1 || TMySlider.value >= 1)//게이지가 꽉차면 네고 못하게 하고
             {
                 NegoBtn.interactable = false;
                 TNegoBtn.interactable = false;
@@ -288,11 +288,6 @@ public class AnExchange : MonoBehaviour
             UIImage.GetComponent<RectTransform>().anchoredPosition3D =
           Vector3.Lerp(UIImage.GetComponent<RectTransform>().anchoredPosition3D,
          AnExchangeUIPos, Time.deltaTime * DefaultLerpTime);
-
-            if (UIImage.GetComponent<RectTransform>().anchoredPosition3D == AnExchangeUIPos)
-            {
-                AnExchangeUI.SetActive(false);
-            }
         }
     }
 
@@ -439,7 +434,7 @@ public class AnExchange : MonoBehaviour
                         }
                         else
                         {
-                            AnExchangeUI.SetActive(false); //아닐시 꺼주기
+                            //AnExchangeUI.SetActive(false); //아닐시 꺼주기
 
                             isLerp = false;
                         }
