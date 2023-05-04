@@ -34,9 +34,11 @@ public class ArtifactWork : MonoBehaviour
     {
         DefaultIncreaseInterval = Cornfield.increaseInterval;
         DefaultincreaseProbability = Cornfield.increaseProbability;
+    }
+	private void Start()
+	{
         DefaultDayLength = GameManager.instance.dayLength;
     }
-
     private void Update()
     {
         ArtifactEffect(ArtifactNum);
