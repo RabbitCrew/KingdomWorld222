@@ -59,11 +59,11 @@ public class HumanListPanel : MonoBehaviour
         {
             if (i > GameManager.instance.AllHuman.Count - 1)
             {
-                humanStatePanelArr[i].SetHuman(null);
+                humanStatePanelArr[i % 10].SetHuman(null);
             }
             else
             {
-                humanStatePanelArr[i].SetHuman(GameManager.instance.AllHuman[i]);
+                humanStatePanelArr[i % 10].SetHuman(GameManager.instance.AllHuman[i]);
             }
         }
     }

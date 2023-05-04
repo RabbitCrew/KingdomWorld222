@@ -28,12 +28,14 @@ public class GameManager : Resource
     public List<GameObject> WaitingBuildingList = new List<GameObject>();
     public List<GameObject> StorageList = new List<GameObject>();
     public List<GameObject> FullResourceBuildingList = new List<GameObject>();
+    public float dayLength; 
     public static GameManager instance;
     private void Awake()
     {
         uiSizeX = 1920;
         uiSizeY = 1080;
         timeSpeed = 1;
+        dayLength = 180f;
         instance = this;
         isWinterComing = false;
         isRain = false;
@@ -88,8 +90,10 @@ public class GameManager : Resource
 
     void Update()
     {
+        if (GameStop) { return; }
+
         //timeElapsed = Time.realtimeSinceStartup - startTime;
-        dayNightRatio += (Time.deltaTime / 180f) * timeSpeed; // 180 seconds = 3 minutes
+        dayNightRatio += (Time.deltaTime / dayLength) * timeSpeed; // 180 seconds = 3 minutes
         if (dayNightRatio >= 1f)
         {
             //startTime = Time.realtimeSinceStartup;
