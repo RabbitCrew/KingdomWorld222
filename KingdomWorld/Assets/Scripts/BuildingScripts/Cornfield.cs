@@ -11,17 +11,24 @@ public class Cornfield : MonoBehaviour
     public int wheat = 0;
     public bool cultureCheck = false;
 
-    private float increaseInterval = 5f;
+    public static float increaseInterval { get; set; }
     private float timer = 0f;
 
-    private float decreaseProbability = 0.2f;
+    public static float decreaseProbability { get; set; }
     private float decreaseRatio = 0.1f;
-    private float increaseProbability = 0.2f;
+    public static float increaseProbability { get; set; }
     private float increaseRatio = 0.2f;
 
     BuildingSetting buildingSetting;
     //WinterIsComing winterIsComing;
     BuildingColider buildingColider;
+
+    private void Awake()
+    {
+        decreaseProbability = 0.2f;
+        increaseProbability = 0.2f;
+        increaseInterval = 5f;
+    }
 
     void Start()
     {

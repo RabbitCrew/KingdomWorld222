@@ -21,10 +21,19 @@ public class ArtifactWork : MonoBehaviour
     float HPWaterTime = 180f;
     float DefaultHPWaterTime = 180f;
 
+    float DefaultIncreaseInterval;
+    float DefaultincreaseProbability;
+
     bool TeruTeruBous = false;
 
     [SerializeField] GameObject CitizenPrefab;
     [SerializeField] GameObject NPCMother;
+
+    private void Awake()
+    {
+        DefaultIncreaseInterval = Cornfield.increaseInterval;
+        DefaultincreaseProbability = Cornfield.increaseProbability;
+    }
 
     private void Update()
     {
@@ -36,7 +45,7 @@ public class ArtifactWork : MonoBehaviour
     public void GetArtifactNum(int value)
     {
         ArtifactNum = value;
-    }
+    }// 어떤 유물인지 받아오는 함수
 
     void ArtifactEffect(int value)
     {
@@ -225,10 +234,37 @@ public class ArtifactWork : MonoBehaviour
                 }
                 break;
             case 10:
+                // 식량 소모량 감소
+                if(ArtifactActiveState.isOn == true)
+                {
+
+                }
+                else
+                {
+
+                }
                 break;
             case 11:
+                // 작물 성장 속도 감소
+                if (ArtifactActiveState.isOn == true)
+                {
+                    Cornfield.increaseInterval *= 1 - (0.01f * Inventory.instance.HasArtifact[value]);
+                }
+                else
+                {
+                    Cornfield.increaseInterval = DefaultIncreaseInterval;
+                }
                 break;
             case 12:
+                // 풍년 확률 조작 //17개 까지만 소지 가능
+                if (ArtifactActiveState.isOn == true)
+                {
+                    Cornfield.increaseProbability += (7 + (Inventory.instance.HasArtifact[value] - 1) * 3) / 100;
+                }
+                else
+                {
+                    Cornfield.increaseProbability = DefaultincreaseProbability;
+                }
                 break;
             case 13:
                 break;
