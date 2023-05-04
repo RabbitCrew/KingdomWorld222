@@ -440,6 +440,9 @@ public class NPC : NPCScrip
                 HavedAnimal = 0;
                 isReturntohunterhouse = false;
                 OneCycle = false;
+            }else if (this.CompareTag("Pastoralist") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<Farm>().isWork = true;
             }
         }
     }
