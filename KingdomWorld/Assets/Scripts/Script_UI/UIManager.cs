@@ -10,21 +10,24 @@ public class UIManager : JobStringArr
     [SerializeField] private CitizenButtonListPanel citizenButtonListPanel;
     [SerializeField] private GameObject hpAndShieldBarUIObj;
     [SerializeField] private GameObject npcHpAndShieldBarUIObj;
+    [SerializeField] private GameObject endingPanel;
     [SerializeField] private Image hpBarMask;
     [SerializeField] private Image shieldBarMask;
     [SerializeField] private Image npcHpBarMask;
     [SerializeField] private Image npcShieldBarMask;
     [SerializeField] private GameObject humanListPanel;
     [SerializeField] private TextMeshProUGUI buildingText;
+    [SerializeField] private Image endingPanelImage;
     public bool isOpenCitizenPanel { get; private set; }
 
     private Vector3 openJobChangeUIVec;
     private Vector3 closeJobChangeUIVec;
+    private bool isEnding;
     // Start is called before the first frame update
     void Awake()
     {
         isOpenCitizenPanel = false;
-
+        isEnding = false;
         openJobChangeUIVec = new Vector3(-740f, 100f, 0f);
         closeJobChangeUIVec = new Vector3(-1180f, 100f, 0f);
     }
@@ -107,6 +110,8 @@ public class UIManager : JobStringArr
     // Update is called once per frame
     void Update()
     {
+
+
         if (isOpenCitizenPanel && openJobChangeUIVec.x != jobChangeUI.localPosition.x)
         {
             jobChangeUI.localPosition = Vector3.Lerp(jobChangeUI.localPosition, openJobChangeUIVec, Time.deltaTime * 5f);
@@ -122,6 +127,18 @@ public class UIManager : JobStringArr
             {
                 jobChangeUI.localPosition = closeJobChangeUIVec;
             }
+        }
+
+        if (GameManager.instance.AllHuman.Count > 10 && !endingPanel.activeSelf && !isEnding)
+        {
+            endingPanel.SetActive(true);
+            GameManager.instance.GameStop = true;
+            isEnding = true;
+        }
+
+        if (endingPanel.activeSelf && endingPanelImage.color.a <= 1f)
+        {
+            endingPanelImage.color += new Color(0, 0, 0, 5 / 255f);
         }
     }
 }

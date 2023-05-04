@@ -17,26 +17,25 @@ public class ClockRotateUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Time.timeScale != 0)
+        if (GameManager.instance.GameStop) { return; }
+
+        if (GameManager.instance.dayNightRatio >= 0f && GameManager.instance.dayNightRatio < 0.2f)
         {
-            if (GameManager.instance.dayNightRatio >= 0f && GameManager.instance.dayNightRatio < 0.2f)
-            {
-                rotate = Mathf.Lerp(45, -45, timeLight2D.colorLerp);
-            }
-            else if (GameManager.instance.dayNightRatio >= 0.2f && GameManager.instance.dayNightRatio < 0.4f)
-            {
-                rotate = Mathf.Lerp(-45, -135, timeLight2D.colorLerp);
-            }
-            else if (GameManager.instance.dayNightRatio >= 0.4f && GameManager.instance.dayNightRatio < 2f / 3f)
-            {
-                rotate = Mathf.Lerp(-135, -225, timeLight2D.colorLerp);
-            }
-            else if (GameManager.instance.dayNightRatio >= 2f / 3f && GameManager.instance.dayNightRatio <= 1f)
-            {
-                rotate = Mathf.Lerp(-225, -315, timeLight2D.colorLerp);
-            }
-            //Debug.Log(rotate + " " + timeLight2D.colorLerp + " " + GameManager.instance.dayNightRatio);
-            clockImageRect.localEulerAngles = new Vector3(0, 0, rotate);
+            rotate = Mathf.Lerp(45, -45, timeLight2D.colorLerp);
         }
+        else if (GameManager.instance.dayNightRatio >= 0.2f && GameManager.instance.dayNightRatio < 0.4f)
+        {
+            rotate = Mathf.Lerp(-45, -135, timeLight2D.colorLerp);
+        }
+        else if (GameManager.instance.dayNightRatio >= 0.4f && GameManager.instance.dayNightRatio < 2f / 3f)
+        {
+            rotate = Mathf.Lerp(-135, -225, timeLight2D.colorLerp);
+        }
+        else if (GameManager.instance.dayNightRatio >= 2f / 3f && GameManager.instance.dayNightRatio <= 1f)
+        {
+            rotate = Mathf.Lerp(-225, -315, timeLight2D.colorLerp);
+        }
+        //Debug.Log(rotate + " " + timeLight2D.colorLerp + " " + GameManager.instance.dayNightRatio);
+        clockImageRect.localEulerAngles = new Vector3(0, 0, rotate);
     }
 }

@@ -15,6 +15,7 @@ public class GameManager : Resource
     public float timeSpeed { get; set; }
     public bool isWinterComing { get; set; }
     public bool isRain { get; set; }
+    public bool GameStop = false;
     /// <summary>
     public float DayTime { get; set; }
     /// <summary>
