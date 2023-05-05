@@ -27,9 +27,9 @@ public class Farm : MonoBehaviour
 
     // . . . ¿ìÀ¯ / ¾çÅĞ
     //private int milk = 0;
-    private int milkMax = 20;
+    private int milkMax = 10;
     //public int fleece = 0;
-    private int fleeceMax = 20;
+    private int fleeceMax = 10;
 
     public bool isWork = false;
     public int Milk 
