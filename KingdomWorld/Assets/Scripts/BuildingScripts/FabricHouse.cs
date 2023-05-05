@@ -47,11 +47,11 @@ public class FabricHouse : MonoBehaviour
                 timer = 0;
                 fleece--;
                 GameManager.instance.Fleece--;
-                buildingSetting.store--;
+                //buildingSetting.store--;
 
                 cloth++;
-                GameManager.instance.Cloth--;
-                buildingSetting.AddItem("cloth", 1);
+                GameManager.instance.Cloth++;
+                //buildingSetting.AddItem("cloth", 1);
             }
         }
     }

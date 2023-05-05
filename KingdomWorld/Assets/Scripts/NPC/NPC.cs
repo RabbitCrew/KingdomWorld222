@@ -359,6 +359,8 @@ public class NPC : NPCScrip
         dayTimeResetPath();
         Move();
     }
+
+
     private void OnTriggerEnter(Collider other)//목적지 도착시 일시작
     {
         if(BuildingNum != null)
@@ -378,6 +380,7 @@ public class NPC : NPCScrip
                             other.GetComponent<BuildingSetting>().store = 0;
                             other.GetComponent<BuildingSetting>().milk = 0;
                             other.GetComponent<BuildingSetting>().fleece = 0;
+                            
                         }
                         else
                         {
