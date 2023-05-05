@@ -193,6 +193,7 @@ MonoBehaviour:
   milk: 0
   fleece: 0
   WoodEmptyTrigger: 0
+  isWork: 0
 --- !u!114 &6269047619833056345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,5 +206,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1bfe17ce7e28ba4090592c9c505c23a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  milk: 10
-  cheese: 0

@@ -34,6 +34,7 @@ public class BuildingSetting : MonoBehaviour
     public int fleece = 0;
 
     public bool WoodEmptyTrigger;
+    public bool isWork = false;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -115,7 +116,7 @@ public class BuildingSetting : MonoBehaviour
         {
             addStop = false;
         }
-        if(store == storeMax && !addStop)
+        if(store >= storeMax && !addStop)
         {
             GameManager.instance.FullResourceBuildingList.Add(this.gameObject);
             addStop = true;
