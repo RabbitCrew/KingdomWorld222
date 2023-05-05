@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FabricHouse : MonoBehaviour
+public class IronMine : MonoBehaviour
 {
+
     BuildingSetting buildingSetting;
     BuildingColider buildingColider;
 
-    private float increaseInterval = 5f;
+    private float increaseInterval = 3f;
     private float timer = 0f;
 
     private void Start()
@@ -18,24 +19,27 @@ public class FabricHouse : MonoBehaviour
 
     private void Update()
     {
-        timer += Time.deltaTime;
 
+        timer += Time.deltaTime;
+        if (!GameManager.instance.isDaytime)
+        {
+            buildingSetting.isWork = false;
+        }
         if (buildingColider.isSettingComplete == true && buildingSetting.isWork)
         {
-            ChangeCloth();
+            Ironmining();
         }
     }
 
-    public void ChangeCloth()
+    public void Ironmining()
     {
-        if (GameManager.instance.Fleece > 0 && buildingSetting.store < buildingSetting.storeMax)
+        if (buildingSetting.store < buildingSetting.storeMax)
         {
             if (timer >= increaseInterval)
             {
                 timer = 0;
-                GameManager.instance.Fleece--;
                 buildingSetting.store++;
-                GameManager.instance.Cloth++;
+                GameManager.instance.Itronstone++;
             }
         }
     }

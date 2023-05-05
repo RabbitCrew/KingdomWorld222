@@ -8,10 +8,8 @@ public class NPC : NPCScrip
     public bool work = false;//출근 체크 변수
     private bool reSetPathTrigger = false;//update마다 Astar가 작동하지 않게 해주는 bool값
     public bool Sleep = false;
-    //public GameObject Testbuilding;
     private void Start()
     {
-        //BuildingNum = Testbuilding;
         Maxhp = 100;
         HP = 100;
         Grid = GameManager.instance.GetComponent<Setgrid>();
@@ -248,16 +246,25 @@ public class NPC : NPCScrip
         {
             if (!hunting && !isReturntohunterhouse)
             {
-                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-                foreach (Collider collider in colliders)
+                float i = 1f;
+                while (true)
                 {
-                    if (collider.CompareTag("Animal"))
+                    Collider[] colliders = Physics.OverlapSphere(this.transform.position, i);
+                    foreach (Collider collider in colliders)
                     {
-                        Animal = collider.transform;
-                        ResetPath(this.transform, Animal);
-                        currentPathIndex = 0;
-                        hunting = true;
-                        OneCycle = true;
+                        if (collider.CompareTag("Animal"))
+                        {
+                            Animal = collider.transform;
+                            ResetPath(this.transform, Animal);
+                            currentPathIndex = 0;
+                            hunting = true;
+                            OneCycle = true;
+                            break;
+                        }
+                    }
+                    i++;
+                    if(Animal != null)
+                    {
                         break;
                     }
                 }
@@ -473,7 +480,22 @@ public class NPC : NPCScrip
                 OneCycle = false;
             }else if (this.CompareTag("Pastoralist") && other.transform == BuildingNum.transform)
             {
-                other.GetComponent<Farm>().isWork = true;
+                other.GetComponent<BuildingSetting>().isWork = true;
+            }else if (this.CompareTag("HamNPC") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<BuildingSetting>().isWork = true;
+            }
+            else if (this.CompareTag("CheeseNPC") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<BuildingSetting>().isWork = true;
+            }
+            else if(this.CompareTag("IronMineWorker") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<BuildingSetting>().isWork = true;
+            }
+            else if (this.CompareTag("FabricNPC") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<BuildingSetting>().isWork = true;
             }
         }
     }
