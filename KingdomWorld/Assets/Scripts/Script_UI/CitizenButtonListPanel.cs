@@ -21,7 +21,7 @@ public class CitizenButtonListPanel : MonoBehaviour
     {
         jobListPanelUI = jobListObj.GetComponent<RectTransform>();
 
-        openJobListPanel = new Vector3(75,100,0);
+        openJobListPanel = new Vector3(76,100,0);
         closeJobListPanel = new Vector3(-350, 100, 0);
 
         openNumberOfEmployeesPanel = new Vector3(75, -150, 0);
