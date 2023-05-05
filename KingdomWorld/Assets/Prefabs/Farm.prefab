@@ -175,10 +175,11 @@ MonoBehaviour:
   carpenternCheck: 0
   npcCount: 1
   npcs: []
-  storeMax: 40
+  storeMax: 10
   store: 0
   milk: 0
   fleece: 0
+  WoodEmptyTrigger: 0
 --- !u!114 &-8722687033631352920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589f710ca30313345942f1aa2d53b28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingSetting: {fileID: 0}
   cow: 2
   cowPrefab: {fileID: 3981191717576692367, guid: d514643709aba304bab6d96096b2c413, type: 3}
   sheep: 2
@@ -199,6 +201,7 @@ MonoBehaviour:
   animalClone_1: {fileID: 0}
   animalClone_2: {fileID: 0}
   animalSpwner: {fileID: 99974996308934457}
+  isWork: 0
 --- !u!114 &-7038153560697592045
 MonoBehaviour:
   m_ObjectHideFlags: 0

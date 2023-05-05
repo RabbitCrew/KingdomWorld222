@@ -145,7 +145,7 @@ MonoBehaviour:
   carpenternCheck: 0
   npcCount: 0
   npcs: []
-  storeMax: 999
+  storeMax: 10
   store: 0
   milk: 0
   fleece: 0
