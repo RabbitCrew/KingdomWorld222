@@ -119,22 +119,50 @@ public class NPC : NPCScrip
             SearchMyBuilding("Smith_house");
         }
     }
+    private void SearchMyIronBuilding(string Building)
+    {
+        ResetParameter();
+        float i = 1f;
+        while (true)
+        {
+            Collider[] colliders = Physics.OverlapSphere(this.transform.position, i);
+            foreach (var collider in colliders)
+            {
+                if (collider.CompareTag(Building))
+                {
+                    if (collider.GetComponent<BuildingSetting>().npcs.Count < collider.GetComponent<BuildingSetting>().npcCount && GameManager.instance.isDaytime)//1명미만 건물탐색
+                    {
+                        collider.GetComponent<BuildingSetting>().AddNPCs(this.gameObject);
+                        BuildingNum = collider.gameObject;
+                        NPCBUildTrigger = true;
+                        return;
+                    }
+                }
+            }
+            i++;
+        }
+    }
     private void SearchMyBuilding(string Building)
     {
         ResetParameter();
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-        foreach (var collider in colliders)
+        float i = 1f;
+        while (true)
         {
-            if (collider.CompareTag(Building))
+            Collider[] colliders = Physics.OverlapSphere(this.transform.position, i);
+            foreach (var collider in colliders)
             {
-                if (collider.GetComponent<BuildingSetting>().npcs.Count < collider.GetComponent<BuildingSetting>().npcCount && GameManager.instance.isDaytime)//3명이하 건물탐색
+                if (collider.CompareTag(Building))
                 {
-                    collider.GetComponent<BuildingSetting>().AddNPCs(this.gameObject);
-                    BuildingNum = collider.gameObject;
-                    NPCBUildTrigger = true;
-                    break;
+                    if (collider.GetComponent<BuildingSetting>().npcs.Count < collider.GetComponent<BuildingSetting>().npcCount && GameManager.instance.isDaytime)//1명미만 건물탐색
+                    {
+                        collider.GetComponent<BuildingSetting>().AddNPCs(this.gameObject);
+                        BuildingNum = collider.gameObject;
+                        NPCBUildTrigger = true;
+                        return;
+                    }
                 }
             }
+            i++;
         }
     }
     void dayTimeResetPath()
@@ -454,7 +482,7 @@ public class NPC : NPCScrip
     {
         yield return new WaitForSeconds(delay);
         other.GetComponent<BuildingSetting>().store += HavedWood;
-        GameManager.instance.Wood += 1;
+        GameManager.instance.Wood += HavedWood;
         HavedWood = 0;
         allwork = false;
         if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
@@ -464,18 +492,23 @@ public class NPC : NPCScrip
     }
     void searchWood()
     {
-        Collider[] colliders = Physics.OverlapSphere(this.transform.position, 10f);
-        foreach (Collider collider in colliders)
+        float i = 1f;
+        while (true)
         {
-            if (collider.CompareTag("tree") && !collider.GetComponent<NatureObject>().Slave)
+            Collider[] colliders = Physics.OverlapSphere(this.transform.position, i);
+            foreach (Collider collider in colliders)
             {
-                Debug.Log("나무 탐색");
-                Tree = collider.transform;
-                Tree.GetComponent<NatureObject>().Slave = true;
-                ResetPath(this.transform, Tree);
-                currentPathIndex = 0;
-                break;
+                if (collider.CompareTag("tree") && !collider.GetComponent<NatureObject>().Slave)
+                {
+                    Debug.Log("나무 탐색");
+                    Tree = collider.transform;
+                    Tree.GetComponent<NatureObject>().Slave = true;
+                    ResetPath(this.transform, Tree);
+                    currentPathIndex = 0;
+                    return;
+                }
             }
+            i++;
         }
     }
     void farmNPCpushWheat()
@@ -491,7 +524,7 @@ public class NPC : NPCScrip
         Debug.Log("밀파괴NPC코루틴");
         Destroy(wheatfield.GetComponent<Cornfield>().clone.gameObject);
         wheatfield.GetComponent<Cornfield>().cultureCheck = false;
-        HavedWheat += 1;
+        HavedWheat += 2;
         isWeatStart = false;
         WheatfieldGameObject = null;
         work = true;
@@ -528,7 +561,7 @@ public class NPC : NPCScrip
         yield return new WaitForSeconds(delay);
         if(Tree != null)
             Destroy(Tree.gameObject);
-        HavedWood += 1;
+        HavedWood += 3;
         Tree = null;
         ResetPath(this.transform, BuildingNum.transform);
         currentPathIndex = 0;

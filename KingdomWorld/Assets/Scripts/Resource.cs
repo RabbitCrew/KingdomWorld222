@@ -49,9 +49,16 @@ public class Resource : Setgrid
         get { return wheat; } 
         set 
         { 
-            if(value >= MaxResource)
+            if(Food < MaxResource)
             {
-                value = MaxResource;
+                Food += value;
+                value = 0;
+            }else if(Food >= MaxResource)
+            {
+                if (value >= MaxResource)
+                {
+                    value = MaxResource;
+                }
             }
             wheat = value;
         }
