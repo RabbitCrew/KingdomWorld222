@@ -96,7 +96,7 @@ public class NPC : NPCScrip
         }
         else if (this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.IRONMINER)
         {
-            SearchMyBuilding("Mine_house");
+            SearchMyIronBuilding("IronMine");
         }
         else if (this.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.STONEMINER)
         {
