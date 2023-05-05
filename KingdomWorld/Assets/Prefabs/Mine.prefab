@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3776155069360839308}
   m_Layer: 0
   m_Name: Mine
-  m_TagString: Untagged
+  m_TagString: IronMine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,13 +139,13 @@ MonoBehaviour:
   necessaryStone: 0
   necessaryIron: 0
   necessaryFood: 0
-  npcNum: 0
-  npc: {fileID: 0}
+  npcNum: 7
+  npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
   BuildingNum: 1
   carpenternCheck: 0
-  npcCount: 0
+  npcCount: 1
   npcs: []
-  storeMax: 999
+  storeMax: 10
   store: 0
   milk: 0
   fleece: 0
