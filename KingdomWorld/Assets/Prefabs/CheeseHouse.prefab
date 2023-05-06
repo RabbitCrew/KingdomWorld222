@@ -182,9 +182,9 @@ MonoBehaviour:
   necessaryStone: 10
   necessaryIron: 0
   necessaryFood: 0
-  npcNum: 0
+  npcNum: 10
   npc: {fileID: 0}
-  BuildingNum: 0
+  BuildingNum: 4
   carpenternCheck: 0
   npcCount: 0
   npcs: []

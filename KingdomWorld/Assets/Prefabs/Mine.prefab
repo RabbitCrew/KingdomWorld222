@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6658953455286491056}
   - component: {fileID: 3776155069360839308}
   - component: {fileID: -1328314533438530171}
+  - component: {fileID: -3012053821307605443}
   m_Layer: 0
   m_Name: Mine
   m_TagString: IronMine
@@ -164,4 +165,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f62070d970b1a43b67716e90ec1f0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Iron: 0
+--- !u!114 &-3012053821307605443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8480832763243909128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e238e7e2da90174cb589d7f269865bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objTypeNum: 1
