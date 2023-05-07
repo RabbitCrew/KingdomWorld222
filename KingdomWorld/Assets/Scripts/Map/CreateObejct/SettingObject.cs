@@ -266,7 +266,7 @@ public class SettingObject : MonoBehaviour
         ChunkPoint chunk = new ChunkPoint(chunkX, chunkY);
         for (int i = 0; i < objectPointList[chunk].Count; i++)
         {
-            if (objectPointList[chunk][i].isRoot && (objectPointList[chunk][i].objectNum == 0 || objectPointList[chunk][i].objectNum == 1))
+            if (objectPointList[chunk][i].isRoot && (objectPointList[chunk][i].objectNum == 0 || objectPointList[chunk][i].objectNum == 1 || objectPointList[chunk][i].objectNum == 17))
             {// 오브젝트 생성과 부모 오브젝트 설정
                 GameObject obj = Instantiate(objectArr[objectPointList[chunk][i].objectNum], motehrObject.transform);
                 if (obj.GetComponent<NatureObject>() != null)

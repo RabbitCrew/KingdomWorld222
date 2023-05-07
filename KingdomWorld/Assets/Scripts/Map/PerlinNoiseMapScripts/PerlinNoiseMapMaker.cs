@@ -83,13 +83,24 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         GenerateTerrain();
         mother.transform.eulerAngles = new Vector3(90, 0, 0);
 
-        cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
 
         // 화면 한번 돌렸다가 RefreshChunks로 정보가 없는 타일에 정보 넣어줌
-        RefreshChunks();
-        Camera.main.transform.position += new Vector3(0, 0, 100f);
-        RefreshChunks();
-        Camera.main.transform.position -= new Vector3(0, 0, 100f);
+        //RefreshChunks();
+        //Camera.main.transform.position += new Vector3(0, 0, 100f);
+        //RefreshChunks();
+        //Camera.main.transform.position -= new Vector3(0, 0, 100f);
+
+        for (int i = -4; i < 4; i++)
+		{
+            for (int j = -4; j < 4; j++)
+			{
+                RefreshChunks();
+                Camera.main.transform.position = new Vector3(i * 20f, 40f, j * 20f);
+			}
+		}
+
+        cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
+
     }
     private void Update()
     {
@@ -390,7 +401,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
      //               chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
      //           }
 
-                DecideSprite((int)(x + pointX), (int)(y + pointY), chunk, x, y);
+                DecideSprite((int)(x + pointX), (int)(y + pointY), chunk, x, y, chunkX, chunkY);
             }
         }
 
@@ -455,7 +466,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         isObject = true;
     }
     // RefreshTexture에서 worldX에 x + pointX, worldY에 y + pointY 를 실인자로 받아옴
-    private void DecideSprite(int worldX, int worldY, GameObject chunk, int x, int y)
+    private void DecideSprite(int worldX, int worldY, GameObject chunk, int x, int y, int chunkX, int chunkY)
 	{
         GameObject tile = chunk.transform.GetChild(x * chunkSize + y).gameObject;
         float[] nearBlockArr = new float[9];
@@ -562,6 +573,11 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         tile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[4].tileOrder;
         tile.GetComponent<TileInfo>().TileNum = tileDIc[4].tileNum;
         AttachTag(tile, tileDIc[4].tileNum);
+        if (tile.GetComponent<TileInfo>().TileNum == 5)
+		{
+            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.STONE, x, y);
+        }
+
 
         //우중단
         if (tileDIc[5].tileOrder >= tileDIc[4].tileOrder && tileDIc[5].tileNum != tileDIc[4].tileNum)
