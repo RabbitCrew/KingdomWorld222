@@ -98,7 +98,6 @@ public class Farm : MonoBehaviour
             { 
                 cow++;
                 GameManager.instance.Cow++;
-
                 animalClone_1 = cowPrefab;
                 animalClone_1.transform.position = animalSpwner.transform.position;
                 animalClone_1 = Instantiate(cowPrefab);
@@ -128,6 +127,7 @@ public class Farm : MonoBehaviour
                 {
                     Milk++;
                     GameManager.instance.Milk++;
+                    GameManager.instance.Meat++;
                 }
                 buildingSetting.AddItem("milk", 1);
             }
