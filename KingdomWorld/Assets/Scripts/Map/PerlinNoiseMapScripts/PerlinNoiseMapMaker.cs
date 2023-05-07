@@ -46,6 +46,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
     private GameObject childTile;
     private Transform cameraTrans;
+    private Vector3 startVector3;
     private List<Point> pointList = new List<Point>();
     private List<GameObject> falseChunksList = new List<GameObject>();
     private Dictionary<int, TileOrder> tileDIc = new Dictionary<int, TileOrder>();
@@ -83,23 +84,22 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         GenerateTerrain();
         mother.transform.eulerAngles = new Vector3(90, 0, 0);
 
-
+        cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
         // 화면 한번 돌렸다가 RefreshChunks로 정보가 없는 타일에 정보 넣어줌
         //RefreshChunks();
         //Camera.main.transform.position += new Vector3(0, 0, 100f);
         //RefreshChunks();
         //Camera.main.transform.position -= new Vector3(0, 0, 100f);
 
-        for (int i = -4; i < 4; i++)
+		for (int i = -4; i < 4; i++)
 		{
-            for (int j = -4; j < 4; j++)
+			for (int j = -4; j < 4; j++)
 			{
-                RefreshChunks();
-                Camera.main.transform.position = new Vector3(i * 20f, 40f, j * 20f);
+				RefreshChunks();
+				cameraTrans.position = new Vector3(i * 20f, 40f, j * 20f);
 			}
 		}
-
-        cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
+        cameraTrans.position = startVector3;
 
     }
     private void Update()
@@ -418,7 +418,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                         settingObject.AddTilePoint3(chunkX, chunkY, (int)ObjectTypeNum.HOUSE, x-2, y);
                         settingObject.AddTilePoint3(chunkX, chunkY, (int)ObjectTypeNum.CARPENTERHOUSE, x + 1, y);
                         isStartBuilding = true;
-                        cameraTrans.position = new Vector3(pointX + x, 40, pointY + y);
+                        startVector3 = new Vector3(pointX + x, 40, pointY + y);
                         break;
                     }
                 }
@@ -647,7 +647,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 break;
             case TileNum.FLATTILE: tile.tag = "Walkable"; break;
             case TileNum.BUMPYTILE: tile.tag = "Walkable"; break;
-            case TileNum.STONE: tile.tag = "Stone"; break;
+            case TileNum.STONE: tile.tag = "Walkable"; break;
             case TileNum.GRASS: tile.tag = "Walkable"; break;
         }
     }
