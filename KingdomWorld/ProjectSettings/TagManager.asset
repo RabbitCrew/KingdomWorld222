@@ -41,6 +41,7 @@ TagManager:
   - Cow
   - Sheep
   - IronMine
+  - Stone
   layers:
   - Default
   - TransparentFX

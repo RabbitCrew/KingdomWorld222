@@ -12,7 +12,7 @@ public class NPCParameter : MonoBehaviour
     private float speed;
     private float buildingSpeed;
     public int HavedWheat;
-    public int HavedWood;
+    public int HavedResource;
     public int HavedAnimal;
     protected Dictionary<string, int> cargoclasshaveitem = new Dictionary<string, int>();
 
