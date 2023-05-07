@@ -87,7 +87,7 @@ public class WinterIsComing : MonoBehaviour
             {
                 winterCount = -10; ChangeSprite(); 
                 GameManager.instance.isWinterComing = true;
-                GameManager.instance.InitializeGrid(500, 500);
+                GameManager.instance.InitializeGrid(1000, 1000);
             }
         }
 
