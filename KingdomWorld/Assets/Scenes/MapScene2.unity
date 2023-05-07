@@ -252,15 +252,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d3d42b00223cf8d4d96b9a9c1fe8b417, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1748,7 +1748,7 @@ GameObject:
   - component: {fileID: 5698423404758220484}
   - component: {fileID: 2267503483733378535}
   m_Layer: 5
-  m_Name: sheep
+  m_Name: Milk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7511,7 +7511,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 150.00006}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99976}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &400802465897417866
@@ -16015,7 +16015,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d8f85f1a49444ca48aae2f03e546f46e, type: 3}
+  m_Sprite: {fileID: 21300226, guid: 2700e06d970d112489ff23cfb58c3f78, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17969,7 +17969,7 @@ GameObject:
   - component: {fileID: 4117163626604109560}
   - component: {fileID: 335720387858806069}
   m_Layer: 5
-  m_Name: SheepPanel
+  m_Name: MilkPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26482,7 +26482,7 @@ GameObject:
   - component: {fileID: 63510608773819148}
   - component: {fileID: 7848534204099743611}
   m_Layer: 5
-  m_Name: sheepText
+  m_Name: MilkText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28024,7 +28024,7 @@ GameObject:
   - component: {fileID: 604336805807001441}
   - component: {fileID: 578264234692356529}
   m_Layer: 5
-  m_Name: CowPanel
+  m_Name: StonePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28486,7 +28486,7 @@ GameObject:
   - component: {fileID: 4523769867177766794}
   - component: {fileID: 5666561150896810399}
   m_Layer: 5
-  m_Name: cowText
+  m_Name: StoneText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30182,6 +30182,9 @@ MonoBehaviour:
   - {fileID: 8611218813536486430, guid: 700aa2d17f0051e4ba63da7d0a3c956a, type: 3}
   - {fileID: 5463561290101031232, guid: 48904e2da00f6b945b23654cca7e7290, type: 3}
   - {fileID: 7818869694617374017, guid: 5cfc22da7fb93a74c95a34f82786927b, type: 3}
+  - {fileID: 7789147095921991592, guid: 631a71f86a9d2d748805e42ee4abf2a1, type: 3}
+  - {fileID: 7789147095921991592, guid: 631a71f86a9d2d748805e42ee4abf2a1, type: 3}
+  - {fileID: 7789147095921991592, guid: 631a71f86a9d2d748805e42ee4abf2a1, type: 3}
   snowObjectArr: []
   motehrObject: {fileID: 763534923959621713}
   motherBuildingObject: {fileID: 6946127628656528707}
@@ -36081,7 +36084,7 @@ GameObject:
   - component: {fileID: 464216547691997708}
   - component: {fileID: 7955145442693417285}
   m_Layer: 5
-  m_Name: cow
+  m_Name: Stone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48060,7 +48063,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1733186935, guid: 3e3fe4f423dd5fc458d70eb196f78709, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d58fd33da0c1714e83ed3c55ae05bb9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -52571,7 +52574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 20e64a1105b20a244baab1c4548a20a2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5539dbb5dabde1049877ea9f3f9734a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
