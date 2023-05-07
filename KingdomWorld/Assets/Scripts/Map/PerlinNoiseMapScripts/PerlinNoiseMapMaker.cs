@@ -631,7 +631,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 break;
             case TileNum.FLATTILE: tile.tag = "Walkable"; break;
             case TileNum.BUMPYTILE: tile.tag = "Walkable"; break;
-            case TileNum.STONE: tile.tag = "NotWalkable"; break;
+            case TileNum.STONE: tile.tag = "Walkable"; break;
             case TileNum.GRASS: tile.tag = "Walkable"; break;
         }
     }

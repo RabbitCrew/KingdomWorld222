@@ -43,7 +43,7 @@ public class GameManager : Resource
         DayTime = 2f / 3f;
         for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
         {
-            if (i == 4 || i == 0) { jobCountDic.Add((JobNum)i, 10000); }
+            if (i == 4 || i == 0 || i == 7) { jobCountDic.Add((JobNum)i, 10000); }
             else
             {
                 jobCountDic.Add((JobNum)i, 0);
