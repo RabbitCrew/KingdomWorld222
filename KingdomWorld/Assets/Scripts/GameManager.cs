@@ -5,6 +5,7 @@ public class GameManager : Resource
 {
     [SerializeField] private PerlinNoiseMapMaker perlinNoise;
     [SerializeField] private HumanListPanel humanListPanel;
+    [SerializeField] private DayPanel dayPanel;
     private float startTime;
     private float timeElapsed;
     public float dayNightRatio { get; private set; }
@@ -98,6 +99,7 @@ public class GameManager : Resource
         {
             //startTime = Time.realtimeSinceStartup;
             dayNightRatio = 0f;
+            dayPanel.CountDay();
             expensed();
             winterExpensed();
             isDaytime = true;
