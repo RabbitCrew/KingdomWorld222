@@ -25,7 +25,7 @@ public class IronMine : MonoBehaviour
         {
             buildingSetting.isWork = false;
         }
-        if (buildingColider.isSettingComplete == true && buildingSetting.isWork)
+        if (buildingSetting.isWork)
         {
             Ironmining();
         }

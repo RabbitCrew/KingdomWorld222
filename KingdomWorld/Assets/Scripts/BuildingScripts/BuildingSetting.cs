@@ -33,7 +33,7 @@ public class BuildingSetting : MonoBehaviour
     public int milk = 0;
     public int fleece = 0;
 
-    public bool WoodEmptyTrigger;
+    public bool EmptyTrigger;
     public bool isWork = false;
     // Start is called before the first frame update
     private void Awake()
@@ -257,5 +257,4 @@ public class BuildingSetting : MonoBehaviour
         name = "cloth";
         items.Add(name, 1);
     }
-
 }

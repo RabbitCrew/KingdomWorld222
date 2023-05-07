@@ -73,14 +73,14 @@ public class GameManager : Resource
     }
     private void endListener()
     {
-        if(AllHuman.Count >= 1000)
+        if(AllHuman.Count >= 500)
         {
             Debug.Log("게임클리어");
         }
     }
     private void InitGrid()
     {
-        InitializeGrid(500, 500);
+        InitializeGrid(1000, 1000);
     }
     public void AddAllHumanList(GameObject obj)
     {
