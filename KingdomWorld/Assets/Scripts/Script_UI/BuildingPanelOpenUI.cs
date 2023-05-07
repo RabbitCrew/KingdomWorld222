@@ -57,7 +57,6 @@ public class BuildingPanelOpenUI : MonoBehaviour
                     buttonTrans[i].localPosition = new Vector3(i * 80 - 922, -12, 0);
                     continue;
                 }
-                //nt ran = Random.Range(-19, 20);
                 buttonTrans[i].localPosition = Vector3.Lerp(buttonTrans[i].localPosition, new Vector3(i * 80 - 922,-12 ,0), Time.deltaTime * 5f);
             }
 
