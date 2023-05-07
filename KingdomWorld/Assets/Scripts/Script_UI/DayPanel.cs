@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class DayPanel : MonoBehaviour
+public class DayPanel : UIComment
 {
     [SerializeField] private TextMeshProUGUI dayText;
     private int[] dayArr = new int[12] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
@@ -30,6 +30,7 @@ public class DayPanel : MonoBehaviour
     void Awake()
     {
         Index = 2;
+        commentNum = 2;
         temMonth = 0;
         CountDay();
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChangeResourceUISprite : MonoBehaviour
+public class ChangeResourceUISprite : UIComment
 {
     [SerializeField] private Image resourceUI;
     [SerializeField] private Sprite shortResourceUISpr;
@@ -24,7 +24,7 @@ public class ChangeResourceUISprite : MonoBehaviour
 		shortResourceVec = new Vector2(0f, 240f);
 		longResourceVec = new Vector2(0f, 40f);
 		isLong = false;
-
+		commentNum = 1;
 	}
 
 	public void ChangeSprite()

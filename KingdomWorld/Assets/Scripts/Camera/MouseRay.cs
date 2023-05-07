@@ -77,13 +77,13 @@ public class MouseRay : MonoBehaviour
                 if (hits[i].transform.GetComponent<NPC>() != null)
                 {
                     uiManager.SetIsNPCHpAndShieldBarUIObj(
-                        true, hits[i].transform.GetComponent<NPC>().HP, hits[i].transform.GetComponent<NPC>().Maxhp);
+                        true, hits[i].transform.GetComponent<NPC>().HP, hits[i].transform.GetComponent<NPC>().Maxhp, hits[i].transform);
                     //Debug.Log(hits[i].transform.GetComponent<NPC>().HP + " "  + hits[i].transform.GetComponent<NPC>().Maxhp);
                     break;
                 }
                 else
                 {
-                    uiManager.SetIsNPCHpAndShieldBarUIObj(false, 1, 1);
+                    uiManager.SetIsNPCHpAndShieldBarUIObj(false, 1, 1, null);
                 }
             }
 
