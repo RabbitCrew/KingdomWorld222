@@ -18,11 +18,6 @@ public class Recource_UI : MonoBehaviour
         ResourceSearch();
     }
 
-    public void ChangeWinOn()
-    {
-        ChangeWin.SetActive(true);
-    }
-
     public void ResourceSearch()//자원 수량 텍스트로 띄워줌
     {
         TextColor = new Color(1, 0, 0, 1);
@@ -37,7 +32,6 @@ public class Recource_UI : MonoBehaviour
                     if (GameManager.instance.Wheat <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
-                        ChangeWinOn();
                     }
                     else
                     {

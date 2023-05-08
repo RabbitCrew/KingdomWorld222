@@ -23,7 +23,6 @@ public class NPCScrip : NPCParameter
     }
     public void ResetPath(Transform start, Transform end)
     {
-        //InitializeGrid(1000, 1000);
         path = Grid.FindPath(start.position, end.position);//게임매니저의 FindPath를 사용한다
         NPCBUildTrigger = false;
     }

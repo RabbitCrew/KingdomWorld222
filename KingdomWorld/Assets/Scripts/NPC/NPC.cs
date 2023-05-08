@@ -345,7 +345,7 @@ public class NPC : NPCScrip
         }
         if (BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger && work)
         {
-            searchWood();
+            searchStone();
             BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger = false;
         }
         dayTimeResetPath();

@@ -91,6 +91,10 @@ public class GameManager : Resource
 
     void Update()
     {
+        if(FullResourceBuildingList.Count > 0 && FullResourceBuildingList[0] == null)
+        {
+            FullResourceBuildingList.RemoveAt(0);
+        }
         if (GameStop) { return; }
 
         //timeElapsed = Time.realtimeSinceStartup - startTime;
@@ -106,8 +110,8 @@ public class GameManager : Resource
         }
         else if (dayNightRatio >= DayTime)
         {
-                //Debug.Log("��");
-                isDaytime = false;
+            //Debug.Log("��");
+            isDaytime = false;
         }
         else if (dayNightRatio >= 0f)
         {
