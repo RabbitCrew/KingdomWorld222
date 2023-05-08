@@ -27,6 +27,8 @@ public class Artifacts : MonoBehaviour
     public TextMeshProUGUI InfoText;
     public TextMeshProUGUI[] NameText;
 
+    [SerializeField] Button NegoB;
+
     private void Update()
     {
         SetTodayArtifact();
@@ -42,6 +44,8 @@ public class Artifacts : MonoBehaviour
 
             NameText[i].text = ArtifactName[TodayArtifact[i]].ToString();
         }
+
+        NegoB.interactable = false;
     }
 
     void SetTodayArtifact()//소지하고 있는 유물이 일정 갯수 이상ㅇ이면 안뜨게 수정해야됨. 아직 수정중이니까 건들면 문닷 유물 전체 구현하고 만들거양
@@ -71,12 +75,17 @@ public class Artifacts : MonoBehaviour
         PriceText.text = "가격 : " + (ArtifactPrice[TodayArtifact[ANum]] * AnExchangeUI.ExchangeRate).ToString() + " 골드";
         InfoText.text = ArtifactInfo[TodayArtifact[ANum]].ToString();
         NameText[ANum].text = ArtifactName[TodayArtifact[ANum]].ToString();
+
+        NegoB.interactable = true;
     }
 
     public void BuyArtifact()//돈이 있으면 구매되고 아니면 거부되게.
     {
-        if (ArtifactPrice[TodayArtifact[AtNum]] * AnExchangeUI.ExchangeRate >= GameManager.instance.Gold)
+        if ((ArtifactPrice[TodayArtifact[AtNum]] * AnExchangeUI.ExchangeRate) <= GameManager.instance.Gold)
         {
+            Debug.Log(ArtifactPrice[TodayArtifact[AtNum]] * AnExchangeUI.ExchangeRate);
+            Debug.Log(GameManager.instance.Gold);
+
             GameManager.instance.Gold -= ArtifactPrice[TodayArtifact[AtNum]];
 
             Smasege.SendMessage("MessageQ", "다음에 또 이용해주세요!");
