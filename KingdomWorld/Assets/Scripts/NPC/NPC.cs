@@ -8,10 +8,8 @@ public class NPC : NPCScrip
     public bool work = false;//출근 체크 변수
     private bool reSetPathTrigger = false;//update마다 Astar가 작동하지 않게 해주는 bool값
     public bool Sleep = false;
-    //public GameObject Testbuilding;
     private void Start()
     {
-        //BuildingNum = Testbuilding;
         Maxhp = 100;
         HP = 100;
         Grid = GameManager.instance.GetComponent<Setgrid>();
@@ -139,6 +137,11 @@ public class NPC : NPCScrip
                     }
                 }
             }
+            if (i >= 1000)
+            {
+                Debug.Log("광산이 없습니다");
+                return;
+            }
             i++;
         }
     }
@@ -161,6 +164,11 @@ public class NPC : NPCScrip
                         return;
                     }
                 }
+            }
+            if (i >= 1000)
+            {
+                Debug.Log("건물이 없습니다");
+                return;
             }
             i++;
         }
@@ -230,10 +238,10 @@ public class NPC : NPCScrip
         {
             dayTimeResetPath();
         }
-        if (BuildingNum.GetComponent<BuildingSetting>().WoodEmptyTrigger && work)
+        if (BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger && work)
         {
             searchWood();
-            BuildingNum.GetComponent<BuildingSetting>().WoodEmptyTrigger = false;
+            BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger = false;
         }
         Move();
     }
@@ -248,16 +256,25 @@ public class NPC : NPCScrip
         {
             if (!hunting && !isReturntohunterhouse)
             {
-                Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-                foreach (Collider collider in colliders)
+                float i = 1f;
+                while (true)
                 {
-                    if (collider.CompareTag("Animal"))
+                    Collider[] colliders = Physics.OverlapSphere(this.transform.position, i);
+                    foreach (Collider collider in colliders)
                     {
-                        Animal = collider.transform;
-                        ResetPath(this.transform, Animal);
-                        currentPathIndex = 0;
-                        hunting = true;
-                        OneCycle = true;
+                        if (collider.CompareTag("Animal"))
+                        {
+                            Animal = collider.transform;
+                            ResetPath(this.transform, Animal);
+                            currentPathIndex = 0;
+                            hunting = true;
+                            OneCycle = true;
+                            break;
+                        }
+                    }
+                    i++;
+                    if(Animal != null)
+                    {
                         break;
                     }
                 }
@@ -314,9 +331,23 @@ public class NPC : NPCScrip
         }
         Move();
     }
-
+    Transform Stone = null;
     void StoneMiner()
     {
+        if (!OneCycle && GameManager.instance.isDaytime)
+        {
+            dayTimeResetPath();
+            OneCycle = true;
+        }
+        else if (!OneCycle && !GameManager.instance.isDaytime)
+        {
+            dayTimeResetPath();
+        }
+        if (BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger && work)
+        {
+            searchWood();
+            BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger = false;
+        }
         dayTimeResetPath();
         Move();
     }
@@ -414,7 +445,7 @@ public class NPC : NPCScrip
                         {
                             other.GetComponent<BuildingSetting>().store = 0;
                         }
-                        other.GetComponent<BuildingSetting>().WoodEmptyTrigger = true;
+                        other.GetComponent<BuildingSetting>().EmptyTrigger = true;
                         isCargoWorkStart = false;
                         isreturntocargo = true;
                         ResetPath(this.transform, BuildingNum.transform);//복귀
@@ -446,7 +477,7 @@ public class NPC : NPCScrip
                 {
                     Invoke("farmNPCpushWheat", 3f);
                 }
-            } else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood == 0 && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)//출근시 나무탐색
+            } else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedResource == 0 && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)//출근시 나무탐색
             {
                 searchWood();
             }
@@ -454,7 +485,7 @@ public class NPC : NPCScrip
             {
                 if(other.transform == Tree)
                     StartCoroutine(CuttingTree(3));
-            }else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedWood > 0)
+            }else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedResource > 0)
             {
                 StartCoroutine(PutWood(1f, other));
                 /*else
@@ -473,17 +504,90 @@ public class NPC : NPCScrip
                 OneCycle = false;
             }else if (this.CompareTag("Pastoralist") && other.transform == BuildingNum.transform)
             {
-                other.GetComponent<Farm>().isWork = true;
+                other.GetComponent<BuildingSetting>().isWork = true;
+            }else if (this.CompareTag("HamNPC") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<BuildingSetting>().isWork = true;
+            }
+            else if (this.CompareTag("CheeseNPC") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<BuildingSetting>().isWork = true;
+            }
+            else if(this.CompareTag("IronMineWorker") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<BuildingSetting>().isWork = true;
+            }
+            else if (this.CompareTag("FabricNPC") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<BuildingSetting>().isWork = true;
+            }else if (this.CompareTag("StoneMineWorker") && other.transform == BuildingNum.transform && HavedResource == 0 && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
+            {
+                searchStone();
+            }
+            else if (this.CompareTag("StoneMineWorker") && Stone != null)//나무에 도착시 나무자르기
+            {
+                if (other.transform == Stone)
+                    StartCoroutine(CuttingStone(3));
+            }
+            else if (this.CompareTag("StoneMineWorker") && other.transform == BuildingNum.transform && HavedResource > 0)
+            {
+                StartCoroutine(PutStone(1f, other));
             }
         }
     }
 
+    void searchStone()
+    {
+        float i = 1f;
+        while (true)
+        {
+            Collider[] colliders = Physics.OverlapSphere(this.transform.position, i);
+            foreach (Collider collider in colliders)
+            {
+                if (collider.CompareTag("Stone"))
+                {
+                    Debug.Log("돌 탐색");
+                    Stone = collider.transform;
+                    ResetPath(this.transform, Stone);
+                    currentPathIndex = 0;
+                    return;
+                }
+            }
+            if (i >= 1000)
+            {
+                Debug.Log("돌이 없습니다");
+                return;
+            }
+            i++;
+        }
+    }
+    IEnumerator PutStone(float delay, Collider other)
+    {
+        yield return new WaitForSeconds(delay);
+        other.GetComponent<BuildingSetting>().store += HavedResource;
+        GameManager.instance.Stone += HavedResource;
+        HavedResource = 0;
+        OneCycle = false;
+        if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
+        {
+            searchStone();
+        }
+    }
+    private IEnumerator CuttingStone(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        HavedResource += 1;
+        Stone = null;
+        ResetPath(this.transform, BuildingNum.transform);
+        currentPathIndex = 0;
+        yield break;
+    }
     IEnumerator PutWood(float delay, Collider other)
     {
         yield return new WaitForSeconds(delay);
-        other.GetComponent<BuildingSetting>().store += HavedWood;
-        GameManager.instance.Wood += HavedWood;
-        HavedWood = 0;
+        other.GetComponent<BuildingSetting>().store += HavedResource;
+        GameManager.instance.Wood += HavedResource;
+        HavedResource = 0;
         allwork = false;
         if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
         {
@@ -507,6 +611,11 @@ public class NPC : NPCScrip
                     currentPathIndex = 0;
                     return;
                 }
+            }
+            if(i >= 1000)
+            {
+                Debug.Log("나무가 없습니다");
+                return;
             }
             i++;
         }
@@ -561,7 +670,7 @@ public class NPC : NPCScrip
         yield return new WaitForSeconds(delay);
         if(Tree != null)
             Destroy(Tree.gameObject);
-        HavedWood += 3;
+        HavedResource += 3;
         Tree = null;
         ResetPath(this.transform, BuildingNum.transform);
         currentPathIndex = 0;
@@ -592,5 +701,7 @@ public class NPC : NPCScrip
         isReturntohunterhouse = false;//사냥꾼
         Tree = null;//나무꾼
         allwork = false;//나무꾼
+        Stone = null;//돌광부
+        HavedResource = 0;
     }
 }

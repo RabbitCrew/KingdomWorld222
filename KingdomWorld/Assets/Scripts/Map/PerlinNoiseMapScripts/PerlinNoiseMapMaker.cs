@@ -46,6 +46,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 
     private GameObject childTile;
     private Transform cameraTrans;
+    private Vector3 startVector3;
     private List<Point> pointList = new List<Point>();
     private List<GameObject> falseChunksList = new List<GameObject>();
     private Dictionary<int, TileOrder> tileDIc = new Dictionary<int, TileOrder>();
@@ -84,12 +85,22 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         mother.transform.eulerAngles = new Vector3(90, 0, 0);
 
         cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
-
         // 화면 한번 돌렸다가 RefreshChunks로 정보가 없는 타일에 정보 넣어줌
-        RefreshChunks();
-        Camera.main.transform.position += new Vector3(0, 0, 100f);
-        RefreshChunks();
-        Camera.main.transform.position -= new Vector3(0, 0, 100f);
+        //RefreshChunks();
+        //Camera.main.transform.position += new Vector3(0, 0, 100f);
+        //RefreshChunks();
+        //Camera.main.transform.position -= new Vector3(0, 0, 100f);
+
+		for (int i = -4; i < 4; i++)
+		{
+			for (int j = -4; j < 4; j++)
+			{
+				RefreshChunks();
+				cameraTrans.position = new Vector3(i * 20f, 40f, j * 20f);
+			}
+		}
+        cameraTrans.position = startVector3;
+
     }
     private void Update()
     {
@@ -390,7 +401,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
      //               chunk.transform.GetChild(x * chunkSize + y).tag = "NotWalkable";
      //           }
 
-                DecideSprite((int)(x + pointX), (int)(y + pointY), chunk, x, y);
+                DecideSprite((int)(x + pointX), (int)(y + pointY), chunk, x, y, chunkX, chunkY);
             }
         }
 
@@ -407,7 +418,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                         settingObject.AddTilePoint3(chunkX, chunkY, (int)ObjectTypeNum.HOUSE, x-2, y);
                         settingObject.AddTilePoint3(chunkX, chunkY, (int)ObjectTypeNum.CARPENTERHOUSE, x + 1, y);
                         isStartBuilding = true;
-                        cameraTrans.position = new Vector3(pointX + x, 40, pointY + y);
+                        startVector3 = new Vector3(pointX + x, 40, pointY + y);
                         break;
                     }
                 }
@@ -455,7 +466,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         isObject = true;
     }
     // RefreshTexture에서 worldX에 x + pointX, worldY에 y + pointY 를 실인자로 받아옴
-    private void DecideSprite(int worldX, int worldY, GameObject chunk, int x, int y)
+    private void DecideSprite(int worldX, int worldY, GameObject chunk, int x, int y, int chunkX, int chunkY)
 	{
         GameObject tile = chunk.transform.GetChild(x * chunkSize + y).gameObject;
         float[] nearBlockArr = new float[9];
@@ -562,6 +573,11 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         tile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[4].tileOrder;
         tile.GetComponent<TileInfo>().TileNum = tileDIc[4].tileNum;
         AttachTag(tile, tileDIc[4].tileNum);
+        if (tile.GetComponent<TileInfo>().TileNum == 5)
+		{
+            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.STONE, x, y);
+        }
+
 
         //우중단
         if (tileDIc[5].tileOrder >= tileDIc[4].tileOrder && tileDIc[5].tileNum != tileDIc[4].tileNum)
@@ -631,7 +647,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 break;
             case TileNum.FLATTILE: tile.tag = "Walkable"; break;
             case TileNum.BUMPYTILE: tile.tag = "Walkable"; break;
-            case TileNum.STONE: tile.tag = "NotWalkable"; break;
+            case TileNum.STONE: tile.tag = "Walkable"; break;
             case TileNum.GRASS: tile.tag = "Walkable"; break;
         }
     }

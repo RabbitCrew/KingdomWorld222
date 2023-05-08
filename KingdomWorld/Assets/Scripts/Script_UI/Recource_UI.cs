@@ -11,7 +11,7 @@ public class Recource_UI : MonoBehaviour
     public TextMeshProUGUI[] RText = new TextMeshProUGUI[13];
 
     Color TextColor;
-    Color defaultTextColor = new Color(1, 1, 1, 1);
+    Color defaultTextColor = Color.black;
 
     private void Update()
     {
@@ -123,9 +123,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 8:
-                    RText[i].text = GameManager.instance.Cow.ToString();
+                    RText[i].text = GameManager.instance.Stone.ToString();
 
-                    if (GameManager.instance.Cow <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (GameManager.instance.Stone <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }
@@ -135,9 +135,9 @@ public class Recource_UI : MonoBehaviour
                     }
                     break;
                 case 9:
-                    RText[i].text = GameManager.instance.Sheep.ToString();
+                    RText[i].text = GameManager.instance.Milk.ToString();
 
-                    if (GameManager.instance.Sheep <= 0)//자원이 0개가 됬을 때 색상 변경
+                    if (GameManager.instance.Milk <= 0)//자원이 0개가 됬을 때 색상 변경
                     {
                         RText[i].color = TextColor;
                     }

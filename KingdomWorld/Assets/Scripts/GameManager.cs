@@ -5,6 +5,7 @@ public class GameManager : Resource
 {
     [SerializeField] private PerlinNoiseMapMaker perlinNoise;
     [SerializeField] private HumanListPanel humanListPanel;
+    [SerializeField] private DayPanel dayPanel;
     private float startTime;
     private float timeElapsed;
     public float dayNightRatio { get; private set; }
@@ -43,7 +44,7 @@ public class GameManager : Resource
         DayTime = 2f / 3f;
         for (int i = 0; i < System.Enum.GetValues(typeof(ObjectTypeNum)).Length; i++)
         {
-            if (i == 4 || i == 0) { jobCountDic.Add((JobNum)i, 10000); }
+            if (i == 4 || i == 0 || i == 7) { jobCountDic.Add((JobNum)i, 10000); }
             else
             {
                 jobCountDic.Add((JobNum)i, 0);
@@ -72,14 +73,14 @@ public class GameManager : Resource
     }
     private void endListener()
     {
-        if(AllHuman.Count >= 1000)
+        if(AllHuman.Count >= 500)
         {
             Debug.Log("게임클리어");
         }
     }
     private void InitGrid()
     {
-        InitializeGrid(500, 500);
+        InitializeGrid(1000, 1000);
     }
     public void AddAllHumanList(GameObject obj)
     {
@@ -98,6 +99,7 @@ public class GameManager : Resource
         {
             //startTime = Time.realtimeSinceStartup;
             dayNightRatio = 0f;
+            dayPanel.CountDay();
             expensed();
             winterExpensed();
             isDaytime = true;

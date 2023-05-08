@@ -180,11 +180,16 @@ MonoBehaviour:
   necessaryWood: 20
   necessaryStone: 0
   necessaryIron: 10
+  necessaryFood: 0
   npcNum: 0
   npc: {fileID: 0}
-  BuildingNum: 0
+  BuildingNum: 13
   carpenternCheck: 0
   npcCount: 0
   npcs: []
   storeMax: 50
   store: 0
+  milk: 0
+  fleece: 0
+  WoodEmptyTrigger: 0
+  isWork: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingPanelOpenUI : MonoBehaviour
+public class BuildingPanelOpenUI : UIComment
 {
     [SerializeField] private List<GameObject> buttonObj = new List<GameObject>();
     [SerializeField] private GameObject buildingButnObj;
@@ -13,8 +13,13 @@ public class BuildingPanelOpenUI : MonoBehaviour
     private List<BuildingButtonAlpha> buttonAlpha = new List<BuildingButtonAlpha>();
     private bool isOpen = false;
     private bool isMove = true;
-    // Start is called before the first frame update
-    void Start()
+
+	private void Awake()
+	{
+        commentNum = 3;
+	}
+	// Start is called before the first frame update
+	void Start()
     {
         for (int i = 0; i < buttonObj.Count; i++)
         {
@@ -57,7 +62,6 @@ public class BuildingPanelOpenUI : MonoBehaviour
                     buttonTrans[i].localPosition = new Vector3(i * 80 - 922, -12, 0);
                     continue;
                 }
-                //nt ran = Random.Range(-19, 20);
                 buttonTrans[i].localPosition = Vector3.Lerp(buttonTrans[i].localPosition, new Vector3(i * 80 - 922,-12 ,0), Time.deltaTime * 5f);
             }
 

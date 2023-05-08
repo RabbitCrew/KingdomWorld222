@@ -10,6 +10,7 @@ public class UIManager : JobStringArr
     [SerializeField] private CitizenButtonListPanel citizenButtonListPanel;
     [SerializeField] private GameObject hpAndShieldBarUIObj;
     [SerializeField] private GameObject npcHpAndShieldBarUIObj;
+    [SerializeField] private GameObject npcHpShieldBarUIObjPanel;
     [SerializeField] private GameObject endingPanel;
     [SerializeField] private Image hpBarMask;
     [SerializeField] private Image shieldBarMask;
@@ -22,6 +23,7 @@ public class UIManager : JobStringArr
 
     private Vector3 openJobChangeUIVec;
     private Vector3 closeJobChangeUIVec;
+    private Vector3 npcHpShield;
     private bool isEnding;
     // Start is called before the first frame update
     void Awake()
@@ -58,11 +60,14 @@ public class UIManager : JobStringArr
         }
     }
 
-    public void SetIsNPCHpAndShieldBarUIObj(bool bo, int hp, int maxHp)
+    public void SetIsNPCHpAndShieldBarUIObj(bool bo, int hp, int maxHp, Transform npcTrans)
     {
         npcHpAndShieldBarUIObj.SetActive(bo);
         if (!bo) { return; }
 
+        npcHpShield = Camera.main.WorldToViewportPoint(npcTrans.position);
+        // 1920, 1080은 캔버스의 width, height값임
+        npcHpShieldBarUIObjPanel.GetComponent<RectTransform>().anchoredPosition = new Vector3(((npcHpShield.x * 1920) - 960), ((npcHpShield.y * 1080) - 540) + 50, 40f);
         if (float.IsNaN((float)hp / (float)maxHp))
         {
             npcHpBarMask.fillAmount = 0f;

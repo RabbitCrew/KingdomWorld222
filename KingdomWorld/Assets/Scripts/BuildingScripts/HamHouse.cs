@@ -29,7 +29,7 @@ public class HamHouse : MonoBehaviour
 
         hamMax = buildingSetting.storeMax;
 
-        if(buildingColider.isSettingComplete == true)
+        if(buildingColider.isSettingComplete == true && buildingSetting.isWork)
         {
             ChangeHam();
         }
@@ -38,14 +38,12 @@ public class HamHouse : MonoBehaviour
 
     public void ChangeHam()
     {
-        if (meat > 0 && ham < hamMax)
+        if (GameManager.instance.Meat > 0)
         {
             if (timer >= increaseInterval)
             {
                 timer = 0;
-                meat--;
                 GameManager.instance.Meat--;
-                buildingSetting.store--;
 
                 ham++;
                 GameManager.instance.Ham++;

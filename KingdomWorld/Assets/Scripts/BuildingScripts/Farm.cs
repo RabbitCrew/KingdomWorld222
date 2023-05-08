@@ -31,7 +31,6 @@ public class Farm : MonoBehaviour
     //public int fleece = 0;
     private int fleeceMax = 10;
 
-    public bool isWork = false;
     public int Milk 
     { 
         get { return buildingSetting.milk; } 
@@ -67,8 +66,8 @@ public class Farm : MonoBehaviour
         buildingSetting = GetComponent<BuildingSetting>();
         buildingColider = GetComponent<BuildingColider>();
 
-        GameManager.instance.Cow = cow;
-        GameManager.instance.Sheep = sheep;
+        //GameManager.instance.Cow = cow;
+        //GameManager.instance.Sheep = sheep;
         //GameManager.instance.Milk = milk;
         //GameManager.instance.Fleece = fleece;
     }
@@ -81,9 +80,9 @@ public class Farm : MonoBehaviour
         animalstore = cow + sheep;
         if (!GameManager.instance.isDaytime)
         {
-            isWork = false;
+            buildingSetting.isWork = false;
         }
-        if(buildingColider.isSettingComplete == true && isWork)
+        if(buildingColider.isSettingComplete == true && buildingSetting.isWork)
         {
             AddCowSheep();
             Collection();
@@ -99,7 +98,6 @@ public class Farm : MonoBehaviour
             { 
                 cow++;
                 GameManager.instance.Cow++;
-
                 animalClone_1 = cowPrefab;
                 animalClone_1.transform.position = animalSpwner.transform.position;
                 animalClone_1 = Instantiate(cowPrefab);
@@ -129,6 +127,7 @@ public class Farm : MonoBehaviour
                 {
                     Milk++;
                     GameManager.instance.Milk++;
+                    GameManager.instance.Meat++;
                 }
                 buildingSetting.AddItem("milk", 1);
             }

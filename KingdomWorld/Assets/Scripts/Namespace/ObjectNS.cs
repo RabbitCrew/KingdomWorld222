@@ -21,11 +21,11 @@ namespace ObjectNS
 
     public enum ObjectTypeNum
     {
-        WATING = -1,TREE, MINE, ANEXCHANGE, CARPENTERHOUSE,
+        WATING = -1 ,TREE, MINE, ANEXCHANGE, CARPENTERHOUSE,
         CHEESEHOUSE, FABRICHOUSE, FARM, HAMHOUSE,
         HOUSE, HUNTERHOUSE, MINEWORKERHOUSE, SMITHY,
         STORAGE, UNIVERSITAS, WOODCUTTERHOUSE, FIELD,
-        ROAD
+        ROAD, STONE
     };
 
     public enum TileNum
