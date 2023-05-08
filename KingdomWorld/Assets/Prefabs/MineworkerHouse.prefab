@@ -185,7 +185,7 @@ MonoBehaviour:
   npc: {fileID: 0}
   BuildingNum: 10
   carpenternCheck: 0
-  npcCount: 3
+  npcCount: 1
   npcs: []
   storeMax: 10
   store: 0

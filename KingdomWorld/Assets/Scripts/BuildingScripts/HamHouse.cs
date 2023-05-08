@@ -38,7 +38,7 @@ public class HamHouse : MonoBehaviour
 
     public void ChangeHam()
     {
-        if (GameManager.instance.Meat > 0)
+        if (GameManager.instance.Meat > 0 && buildingSetting.store < buildingSetting.storeMax)
         {
             if (timer >= increaseInterval)
             {
