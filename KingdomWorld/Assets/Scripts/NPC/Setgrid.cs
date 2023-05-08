@@ -110,7 +110,7 @@ public class Setgrid : MonoBehaviour
                         iswalkable = true;
                     }
                     // 오브젝트가 walkable 레이어에 있다면 가중치를 10로 설정
-                    else if (hit.collider.CompareTag("Walkable"))
+                    else if (hit.collider.CompareTag("Walkable") || hit.collider.CompareTag("Stone"))
                     {
                         weight = 10;
                         iswalkable = true;
