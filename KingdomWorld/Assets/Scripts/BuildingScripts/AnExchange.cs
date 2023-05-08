@@ -117,10 +117,13 @@ public class AnExchange : MonoBehaviour
     {
         if (isNego == true)//네고를 진행했을 때
         {
-            MySlider.value = MySlider.value + 0.1f;//성공하면 그대로 두고 실패 시 게이지가 올라감
-            TMySlider.value = TMySlider.value + 0.1f;
-            CellerSlider.value = CellerSlider.value + 0.1f;
-            TCellerSlider.value = TCellerSlider.value + 0.1f;
+            if (IsNegoNum != 0)
+            {
+                MySlider.value = MySlider.value + 0.1f;//성공하면 그대로 두고 실패 시 게이지가 올라감
+                CellerSlider.value = MySlider.value;
+                TMySlider.value = MySlider.value;
+                TCellerSlider.value = MySlider.value;
+            }
 
             if (MySlider.value >= 1 || TMySlider.value >= 1)//게이지가 꽉차면 네고 못하게 하고
             {
@@ -753,11 +756,11 @@ public class AnExchange : MonoBehaviour
 
         if(Num == 0)
         {
-            ExchangeRate *= 1.1f;
+            ExchangeRate /= 1.1f;
         }
         else
         {
-            ExchangeRate *= 0.9f;
+            ExchangeRate *= 1.1f;
         }
 
         return IsNegoNum;
