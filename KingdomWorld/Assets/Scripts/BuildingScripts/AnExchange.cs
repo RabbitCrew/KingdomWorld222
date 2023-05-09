@@ -549,18 +549,18 @@ public class AnExchange : MonoBehaviour
     {
         ResourceCount = int.Parse (value);
 
-        ResourceCount = (int)(ResourceCount * (100 / ExchangeRate) * Value);
+        BuyRNum.text = (ResourceCount * (100 / ExchangeRate) * Value).ToString();
 
-        BuyRNum.text = ResourceCount.ToString();
+        ResourceCount_Buy = (int)(ResourceCount * (100 / ExchangeRate) * Value);
     }
 
     public void GetQuantityBuy(string value)//살 물건 갯수 받아서 환률 적용해서 팔 물건 갯수 계산하고 표기
     {
         ResourceCount_Buy = int.Parse(value);
 
-        ResourceCount_Buy = (int)(ResourceCount_Buy * (ExchangeRate / 100) * Value);
+        CellRNum.text = (ResourceCount_Buy * (ExchangeRate / 100) * Value).ToString();
 
-        CellRNum.text = ResourceCount_Buy.ToString();
+        ResourceCount = (int)(ResourceCount_Buy * (ExchangeRate / 100) * Value);
     }
 
     public void CellResources()
