@@ -428,11 +428,49 @@ public class NPC : NPCScrip
 
     private void OnTriggerStay(Collider other)
     {
+
         if (BuildingNum != null)
+        {
             if (other.tag == BuildingNum.tag && !work && GameManager.instance.isDaytime)
             {
                 work = true;
             }
+            if (this.CompareTag("StorageNPC"))
+            {
+                if (isCargoWorkStart)//목표건물을 향해 이동중 (조건 : 밤, 낮)
+                {
+                    if (other.transform == fullbuilding.transform)//목표건물에 도착
+                    {
+                        if (other.CompareTag("Farm_house"))
+                        {
+                            other.GetComponent<BuildingSetting>().store = 0;
+                            other.GetComponent<BuildingSetting>().milk = 0;
+                            other.GetComponent<BuildingSetting>().fleece = 0;
+
+                        }
+                        else
+                        {
+                            other.GetComponent<BuildingSetting>().store = 0;
+                        }
+                        other.GetComponent<BuildingSetting>().EmptyTrigger = true;
+                        isCargoWorkStart = false;
+                        isreturntocargo = true;
+                        ResetPath(this.transform, BuildingNum.transform);//복귀
+                        currentPathIndex = 0;
+                    }
+                }
+                else if (isreturntocargo)
+                {
+                    if (other.transform == BuildingNum.transform)
+                    {
+                        isreturntocargo = false;
+                        OneCycle = false;
+                        fullbuilding = null;
+                    }
+                }
+            }
+        }
+            
     }
     private void OnTriggerEnter(Collider other)//목적지 도착시 일시작
     {
@@ -545,6 +583,10 @@ public class NPC : NPCScrip
             else if (this.CompareTag("StoneMineWorker") && other.transform == BuildingNum.transform && HavedResource > 0)
             {
                 StartCoroutine(PutStone(1f, other));
+            }
+            else if (this.CompareTag("Smith") && other.transform == BuildingNum.transform)
+            {
+                other.GetComponent<BuildingSetting>().isWork = true;
             }
         }
         if (other.CompareTag("Street"))
