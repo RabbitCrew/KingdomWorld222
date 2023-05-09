@@ -185,13 +185,14 @@ MonoBehaviour:
   npc: {fileID: 0}
   BuildingNum: 12
   carpenternCheck: 0
-  npcCount: 3
+  npcCount: 1
   npcs: []
   storeMax: 100
   store: 0
   milk: 0
   fleece: 0
-  WoodEmptyTrigger: 0
+  EmptyTrigger: 0
+  isWork: 0
 --- !u!114 &-2687066950101322281
 MonoBehaviour:
   m_ObjectHideFlags: 0

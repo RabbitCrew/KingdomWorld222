@@ -314,17 +314,22 @@ public class NPC : NPCScrip
                 }
                 else if (GameManager.instance.StorageList.Count > 0 && !isWeatCarry && HavedWheat > 0)//창고가 있고 밀을 가지고 있으면
                 {
-                    Collider[] colliders = Physics.OverlapSphere(this.transform.position, 1000f);
-                    foreach (var collider in colliders)
+                    int i = 1;
+                    while (true)
                     {
-                        if (collider.CompareTag("Storage"))
+                        Collider[] colliders = Physics.OverlapSphere(this.transform.position, i);
+                        foreach (var collider in colliders)
                         {
-                            ResetPath(this.transform, collider.transform);
-                            currentPathIndex = 0;
-                            isWeatCarry = true;
-                            work = false;
-                            break;
+                            if (collider.CompareTag("Storage"))
+                            {
+                                ResetPath(this.transform, collider.transform);
+                                currentPathIndex = 0;
+                                isWeatCarry = true;
+                                work = false;
+                                break;
+                            }
                         }
+                        i++;
                     }
                 }
             }
