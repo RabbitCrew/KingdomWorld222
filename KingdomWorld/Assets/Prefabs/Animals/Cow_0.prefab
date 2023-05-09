@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trs: {fileID: 1776761763017332051}
   Grid: {fileID: 0}
+  animator: {fileID: 706976388416860602}
 --- !u!65 &-9105373514095612249
 BoxCollider:
   m_ObjectHideFlags: 0
