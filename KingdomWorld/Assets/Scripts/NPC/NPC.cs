@@ -545,6 +545,12 @@ public class NPC : NPCScrip
             else if (this.CompareTag("StoneMineWorker") && other.transform == BuildingNum.transform && HavedResource > 0)
             {
                 StartCoroutine(PutStone(1f, other));
+            }else if (other.CompareTag("Street"))
+            {
+                Speed = 30f;
+            }else if (other.CompareTag("Walkable"))
+            {
+                Speed = 3f;
             }
         }
     }
