@@ -77,6 +77,14 @@ public class Building_NpcTag : MonoBehaviour
             RaycastHit[] hits;
             hits = Physics.RaycastAll(ray, distance);
 
+            for (int i = 0; i < hits.Length; i++)
+            {
+                if (hits[i].collider.GetComponent<CitizenInfoPanel>() != null)
+                {
+                    return;
+                }
+            }
+
             for (int i = 0; i < hits.Length; i++) // 레이로 클릭한 부분의 오브젝트 뒤져서
             {
                 if (hits[i].collider.GetComponent<BuildingColider>() != null) // 건물에 할당한 콜라이더가 있을 시
