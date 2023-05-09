@@ -29,6 +29,7 @@ public class BuildingColider : MonoBehaviour
             {
                 if (col.gameObject.GetComponent<TileInfo>() != null)
                 {
+                    //Debug.Log(col.gameObject.GetComponent<TileInfo>().TileNum);
                     if (col.gameObject.GetComponent<TileInfo>().CheckPossibleSettingBuilding(objTypeNum))
                     {
                         col.gameObject.GetComponent<TileColorChange>().ChangeGreenColor();
