@@ -85,17 +85,17 @@ public class Resource : Setgrid
                     else if (Meat > 0)
                     {
                         Meat -= 1;
-                        value += 10;
+                        value += 5;
                     }
                     else if (Ham > 0)
                     {
                         Ham -= 1;
-                        value += 5;
+                        value += 20;
                     }
                     else if (Cheese > 0)
                     {
                         Cheese -= 1;
-                        value += 5;
+                        value += 20;
                     }
                     else if (Meat <= 0 && Ham <= 0 && Cheese <= 0 && Wheat <= 0)
                     {

@@ -8,7 +8,7 @@ public class CheeseHouse : MonoBehaviour
     BuildingSetting buildingSetting;
     BuildingColider buildingColider;
 
-    private float increaseInterval = 3f;
+    private float increaseInterval = 5f;
     private float timer = 0f;
 
     private void Start()

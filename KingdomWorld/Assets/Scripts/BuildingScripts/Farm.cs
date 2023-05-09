@@ -55,7 +55,7 @@ public class Farm : MonoBehaviour
             buildingSetting.fleece = value;
         }
     }
-    private float increaseInterval = 10f;
+    private float increaseInterval = 17f;
     private float timer = 0f;
     private float timer_1 = 0f;
     private float cooltime = 5f;
