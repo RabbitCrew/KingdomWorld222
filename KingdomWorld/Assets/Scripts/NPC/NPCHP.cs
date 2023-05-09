@@ -9,24 +9,9 @@ public class NPCHP : MonoBehaviour
     int MaxHP = 10;
     int Hp = 10;
 
-    private void Awake()
-    {
-        //SetHp();
-    }
-
     private void Update()
     {
-        //DeadCheck();
         GetHP();
-        //Debug.Log(this.gameObject.GetComponent<NPC>().HP);
-    }
-
-    void SetHp()
-    {
-        this.gameObject.GetComponent<NPC>().Maxhp = MaxHP;
-        this.gameObject.GetComponent<NPC>().HP = MaxHP;
-
-        Hp = MaxHP;
     }
 
     void GetHP()
@@ -42,16 +27,16 @@ public class NPCHP : MonoBehaviour
 
     void DeadCheck()
     {
-        //Debug.Log(this.gameObject.GetComponent<NPC>().HP);
-        if(this.gameObject.GetComponent<NPC>().HP <= 0)
-        {
-            //GameManager.instance.AllHuman.Remove(this.gameObject);
+        int RandomDead;
 
+        RandomDead = Random.Range(0, 100);
+
+        if (RandomDead <= 5)
+        {
             this.transform.parent.SendMessage("DeadBodyCreate", this.transform.position);
-            //Debug.Log("Á×À½");
-            //Destroy(this.gameObject);
         }
     }
+
     private void OnDisable()
     {
         DeadCheck();
