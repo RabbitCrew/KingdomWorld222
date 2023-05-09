@@ -326,7 +326,7 @@ public class NPC : NPCScrip
                                 currentPathIndex = 0;
                                 isWeatCarry = true;
                                 work = false;
-                                break;
+                                return;
                             }
                         }
                         i++;
@@ -336,6 +336,7 @@ public class NPC : NPCScrip
         }
         Move();
     }
+    
     Transform Stone = null;
     void StoneMiner()
     {
@@ -391,13 +392,14 @@ public class NPC : NPCScrip
         {
             if (!isBuilingStart)
             {
-                if (GameManager.instance.WaitingBuildingList.Count > 0)
+                if (GameManager.instance.WaitingBuildingList.Count > 0 && !OneCycle)
                 {
                     Building = GameManager.instance.WaitingBuildingList[0];
                     GameManager.instance.WaitingBuildingList.RemoveAt(0);
                     isBuilingStart = true;
                     ResetPath(this.transform, Building.transform);
                     currentPathIndex = 0;
+                    OneCycle = true;
                 }
             }
         }
@@ -424,7 +426,14 @@ public class NPC : NPCScrip
         Move();
     }
 
-
+    private void OnTriggerStay(Collider other)
+    {
+        if (BuildingNum != null)
+            if (other.tag == BuildingNum.tag && !work && GameManager.instance.isDaytime)
+            {
+                work = true;
+            }
+    }
     private void OnTriggerEnter(Collider other)//목적지 도착시 일시작
     {
         if(BuildingNum != null)
@@ -469,7 +478,6 @@ public class NPC : NPCScrip
             else if (this.CompareTag("CarpenterNPC") && isBuilingStart && other.CompareTag("WaitingBuilding") && other.transform == Building.transform)//목수NPC 건설
             {
                 StartCoroutine(Build(0.1f, other));
-                //Debug.Log("여기는 몇번 찍힙니까?");
             } else if (this.CompareTag("FarmNPC") && isWeatStart)//농부NPC 밀수확
             {
                 if (other.transform == WheatfieldGameObject.transform)
@@ -558,7 +566,7 @@ public class NPC : NPCScrip
                     return;
                 }
             }
-            if (i >= 100)
+            if (i >= 1000)
             {
                 Debug.Log("돌이 없습니다");
                 return;
@@ -666,6 +674,7 @@ public class NPC : NPCScrip
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
                 Building = null;
+                OneCycle = false;
                 yield break;
             }
         }
