@@ -42,6 +42,17 @@ public class Artifacts : MonoBehaviour
 
             //TodayArtifactSet[i].GetComponent<SpriteRenderer>().sprite = Inventory.instance.ArtifactImage[TodayArtifact[i]];
 
+            if(i > 0)
+            {
+                for (int j = 1; j < i; j++)
+                {
+                    while(TodayArtifact[i] == TodayArtifact[j])
+                    {
+                        TodayArtifact[i] = Random.Range(0, ArtifactNums);
+                    }
+                }
+            }
+
             NameText[i].text = ArtifactName[TodayArtifact[i]].ToString();
         }
 
@@ -61,6 +72,17 @@ public class Artifacts : MonoBehaviour
                     while(Inventory.instance.HasArtifact[TodayArtifact[i]] == Inventory.instance.ArtifactLimit[TodayArtifact[i]])
                     {
                         TodayArtifact[i] = Random.Range(0, ArtifactNums);// 유물 목록에서 랜덤으로 유물을 가져옴
+                    }
+
+                    if (i > 0)
+                    {
+                        for (int j = 1; j < i; j++)
+                        {
+                            while (TodayArtifact[i] == TodayArtifact[j])
+                            {
+                                TodayArtifact[i] = Random.Range(0, ArtifactNums);
+                            }
+                        }
                     }
 
                     TodayArtifactSet[i].GetComponent<SpriteRenderer>().sprite = Inventory.instance.ArtifactImage[TodayArtifact[i]];
