@@ -42,6 +42,8 @@ public class SpawnCitizen : MonoBehaviour
 
     void SpawnintgCitizen()
     {
+        if (GameManager.instance.GameStop) { return; }
+
         HouseCount();
 
         for (int i = 0; i < Inventory.instance.houseDic.Count; i++)

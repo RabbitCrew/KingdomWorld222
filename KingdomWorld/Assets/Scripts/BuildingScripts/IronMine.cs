@@ -8,7 +8,7 @@ public class IronMine : MonoBehaviour
     BuildingSetting buildingSetting;
     BuildingColider buildingColider;
 
-    private float increaseInterval = 3f;
+    private float increaseInterval = 10f;
     private float timer = 0f;
 
     private void Start()

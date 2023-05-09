@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 330939225182983791}
   - component: {fileID: 5154854377175010448}
   - component: {fileID: 4612551773643918066}
+  - component: {fileID: 628609450496329176}
   m_Layer: 0
   m_Name: Road_16_16
   m_TagString: Untagged
@@ -164,3 +165,31 @@ MonoBehaviour:
   sprArr:
   - {fileID: 21300000, guid: faed23acceb17b94d8ea1ee32e102c75, type: 3}
   - {fileID: 21300000, guid: 469c7419ba6b9f444aa3f6d94b79ff3c, type: 3}
+--- !u!114 &628609450496329176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495757412523967716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  necessaryWood: 1
+  necessaryStone: 1
+  necessaryIron: 0
+  necessaryFood: 0
+  npcNum: 0
+  npc: {fileID: 0}
+  BuildingNum: 16
+  carpenternCheck: 0
+  npcCount: 0
+  npcs: []
+  storeMax: 10
+  store: 0
+  milk: 0
+  fleece: 0
+  EmptyTrigger: 0
+  isWork: 0

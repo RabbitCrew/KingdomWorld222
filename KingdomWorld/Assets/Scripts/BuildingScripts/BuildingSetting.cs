@@ -39,8 +39,8 @@ public class BuildingSetting : MonoBehaviour
     private void Awake()
     {
         BuildingTime = 10f;
-        MaxBuildingHp = 10;
-        BuildingHp = 10;
+        MaxBuildingHp = 100;
+        BuildingHp = 100;
         buildingShield = 0;
         maxBuildingShield = 100;
         //Debug.Log(GameManager.instance.jobCountDic[(ObjectNS.JobNum)npcNum]);
