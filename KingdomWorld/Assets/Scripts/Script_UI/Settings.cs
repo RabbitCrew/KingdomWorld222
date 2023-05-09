@@ -7,7 +7,7 @@ public class Settings : MonoBehaviour
 {
     public void SceneChange(string Scene)
     {
-        SceneManager.LoadScene(Scene); // Scene으로 로딩 할 씬 이름 받아와서 이동
+        LoadingSceneManager.LoadScene(Scene); // Scene으로 로딩 할 씬 이름 받아와서 이동
     }
 
     public void GameQuit()
