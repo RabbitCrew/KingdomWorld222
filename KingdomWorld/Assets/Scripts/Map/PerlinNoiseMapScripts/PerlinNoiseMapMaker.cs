@@ -57,6 +57,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     private int preCameraZMax;
     private int preCameraZMin;
     private bool isStartBuilding;
+    private bool isStartChunk;
     private bool isSnow;
     private void Awake()
     {
@@ -68,6 +69,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         startChunkX = Random.Range(-12, 13);
         startChunkZ = Random.Range(-12, 13);
         isStartBuilding = false;
+        isStartChunk = false;
         isSnow = false;
 
         preCameraXMax = 99999;
@@ -576,6 +578,11 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tile.GetComponent<TileInfo>().TileNum == 5)
 		{
             settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.STONE, x, y);
+            if (!isStartChunk)
+            {
+
+            }
+
         }
 
 

@@ -12,7 +12,7 @@ public abstract class UIComment : MonoBehaviour, IPointerEnterHandler, IPointerE
 	private bool isActiveComment;
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		Invoke("ActiveTrueComment", 1f);
+		Invoke("ActiveTrueComment", 0.5f);
 		isActiveComment = true;
 	}
 
