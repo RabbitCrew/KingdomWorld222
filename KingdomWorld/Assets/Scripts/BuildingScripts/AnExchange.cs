@@ -36,7 +36,7 @@ public class AnExchange : MonoBehaviour
     int IsNegoNum;
 
     public bool IsOpen;
-    bool isLerp = false;
+    public bool isLerp = false;
     bool IsApear = false;
     bool IsTApear = false;
     bool isNego = false;
