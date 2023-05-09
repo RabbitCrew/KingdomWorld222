@@ -12368,13 +12368,33 @@ MonoBehaviour:
   NegoTextMama: {fileID: 1936986705002044506}
   ExchangeUI: {fileID: 2093261088912452727}
   NegoText: {fileID: 1948440856196380818, guid: c7be94c74c2203b4c8287275dc52fe6d, type: 3}
-  NegoMent: []
-  Thanks: []
-  NegoAnswer: []
+  NegoMent:
+  - "\uB124\uACE0\uD574\uC8FC\uC138\uC6A9~"
+  - "\uC81C\uAC00 \uC774\uAC83\uBC16\uC5D0 \uC5C6\uC5B4\uC11C..."
+  - "\uC800\uD76C \uC5B4\uBA38\uB2C8\uAC00 \uC544\uD504\uC138\uC694..."
+  - "\uC870\uAE08\uB9CC \uC0AC\uC815 \uBD10\uC8FC\uC2DC\uBA74 \uC548\uB420\uAE4C\uC694...?\u3160\u3160"
+  - "\uC5D0\uC774 \uB108\uBB34 \uC9DC\uC694! \uC870\uAE08\uB9CC \uAC00\uACA9 \uB0B4\uB824\uC918\uC694~"
+  - "\uC544\uC774\uCF54 \uC81C\uAC00 \uBB3C\uAC74\uC744 \uC880 \uB450\uACE0 \uC654\uB124\uC694...?"
+  Thanks:
+  - "\uB124\uACE0 \uAC10\uC0AC\uC694~"
+  - "\u3160\u3160..."
+  - "\uC798 \uC4F8\uAC8C\uC694~"
+  - "\uC54C\uACA0\uC2B5\uB2C8\uB2E4..."
+  - "\uCFE8\uAC70\uB798 \uAC10\uC0AC\uC694~"
+  - "\uAE4C\uBE44 \uC774\uAC8C \uC548\uBA39\uD788\uB124"
+  - "\uAC10\uC0AC\uD569\uB2C8\uB2E4~"
+  NegoAnswer:
+  - "\uC88B\uC544\uC694~"
+  - "\uC548\uB3FC\uC694!"
+  - "\uADF8\uB7FC \uC774\uAC83\uB9CC\uC774\uC5D0\uC694~"
+  - "\uC800\uD76C\uB3C4 \uC0AC\uC815\uC774..."
+  - "\uC544\uD734 \uB2F9\uC5F0\uD788 \uD574\uB4DC\uB9AC\uC8E0~"
+  - "\uB418\uACA0\uB0D0...?"
+  - "\uC815\uC774 \uC788\uB294\uB370 \uD574\uB4DC\uB9AC\uC8E0"
   NegoTexts: []
   vecList: []
-  NegoButton: {fileID: 0}
-  ChatText: {fileID: 0}
+  NegoButton: {fileID: 9026484920152304742}
+  ChatText: {fileID: 7651828416894340208}
 --- !u!1 &7237746145617803349
 GameObject:
   m_ObjectHideFlags: 0
