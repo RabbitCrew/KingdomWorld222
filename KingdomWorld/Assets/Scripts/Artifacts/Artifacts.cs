@@ -76,7 +76,7 @@ public class Artifacts : MonoBehaviour
 
                     if (i > 0)
                     {
-                        for (int j = 1; j < i; j++)
+                        for (int j = 0; j < i; j++)
                         {
                             while (TodayArtifact[i] == TodayArtifact[j])
                             {
