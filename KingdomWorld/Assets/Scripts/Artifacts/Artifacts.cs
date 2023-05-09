@@ -48,7 +48,7 @@ public class Artifacts : MonoBehaviour
         NegoB.interactable = false;
     }
 
-    void SetTodayArtifact()//소지하고 있는 유물이 일정 갯수 이상이면 안뜨게 수정해야됨. 아직 수정중이니까 건들면 문닷 유물 전체 구현하고 만들거양
+    void SetTodayArtifact()//소지하고 있는 유물이 일정 갯수 이상이면 안뜨게 수정해야됨.
     {
         if (GameManager.instance.dayNightRatio == 0f || GameManager.instance.dayNightRatio == 1f)
         {
@@ -57,6 +57,11 @@ public class Artifacts : MonoBehaviour
                 for (int i = 0; i < TodayArtifact.Length; i++)
                 {
                     TodayArtifact[i] = Random.Range(0, ArtifactNums);// 유물 목록에서 랜덤으로 유물을 가져옴
+
+                    while(Inventory.instance.HasArtifact[TodayArtifact[i]] == Inventory.instance.ArtifactLimit[TodayArtifact[i]])
+                    {
+                        TodayArtifact[i] = Random.Range(0, ArtifactNums);// 유물 목록에서 랜덤으로 유물을 가져옴
+                    }
 
                     TodayArtifactSet[i].GetComponent<SpriteRenderer>().sprite = Inventory.instance.ArtifactImage[TodayArtifact[i]];
 

@@ -57,6 +57,8 @@ public class ArtifactWork : MonoBehaviour
         {
             case 0:
                 // 시계
+                Inventory.instance.ArtifactLimit[value] = 2;
+
                 if (ArtifactActiveState.isOn == true)
                 {
                     if (Inventory.instance.HasArtifact[value] <= 2 && Inventory.instance.HasArtifact[value] > 0)
@@ -75,6 +77,8 @@ public class ArtifactWork : MonoBehaviour
                 break;
             case 1:
                 // 백야
+                Inventory.instance.ArtifactLimit[value] = 10;
+
                 if (ArtifactActiveState.isOn == true)
                 {
                     if (GameManager.instance.DayTime < 1f)
@@ -93,6 +97,8 @@ public class ArtifactWork : MonoBehaviour
                 break;
             case 2:
                 // 네고 확률 증가
+                Inventory.instance.ArtifactLimit[value] = 1;
+
                 if (anExchange.IsOpen == true)
                 {
                     if (ArtifactActiveState.isOn == true)
@@ -118,6 +124,8 @@ public class ArtifactWork : MonoBehaviour
                 break;
             case 4:
                 //hp 증가 유물 // 1회용 // 쿨타임 하루
+                Inventory.instance.ArtifactLimit[value] = -1;
+
                 if (ArtifactActiveState.isOn == true)
                 {
                     for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
@@ -150,6 +158,8 @@ public class ArtifactWork : MonoBehaviour
                 break;
             case 5:
                 //비다 비!!
+                Inventory.instance.ArtifactLimit[value] = -1;
+
                 if (ArtifactActiveState.isOn == true)
                 {
                     DefaultRainRate = Inventory.instance.RainRate;
@@ -178,6 +188,8 @@ public class ArtifactWork : MonoBehaviour
                 break;
             case 6:
                 // 작물 성장 속도 감소
+                Inventory.instance.ArtifactLimit[value] = 15;
+
                 if (ArtifactActiveState.isOn == true)
                 {
                     Cornfield.increaseInterval *= 1 - (0.01f * Inventory.instance.HasArtifact[value]);
@@ -189,6 +201,8 @@ public class ArtifactWork : MonoBehaviour
                 break;
             case 7:
                 // 풍년 확률 조작 //17개 까지만 소지 가능
+                Inventory.instance.ArtifactLimit[value] = 17;
+
                 if (ArtifactActiveState.isOn == true)
                 {
                     Cornfield.increaseProbability += (7 + (Inventory.instance.HasArtifact[value] - 1) * 3) / 100;
@@ -204,7 +218,9 @@ public class ArtifactWork : MonoBehaviour
                 break;
             case 8:
                 //시민 스폰 속도 증가. // 20개 넘기면 적용 안됨.
-                if(ArtifactActiveState.isOn == true)
+                Inventory.instance.ArtifactLimit[value] = 20;
+
+                if (ArtifactActiveState.isOn == true)
                 {
                     Inventory.instance.SpawnTime += Inventory.instance.SpawnTime * ((5 * Inventory.instance.HasArtifact[value]) / 100);
                 }
@@ -215,7 +231,9 @@ public class ArtifactWork : MonoBehaviour
                 break;
             case 9:
                 // 역병 치료제
-                if(ArtifactActiveState.isOn == true)
+                Inventory.instance.ArtifactLimit[value] = -1;
+
+                if (ArtifactActiveState.isOn == true)
                 {
                     for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
                     {
