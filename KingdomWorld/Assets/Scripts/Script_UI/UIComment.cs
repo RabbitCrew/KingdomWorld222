@@ -72,10 +72,4 @@ public abstract class UIComment : MonoBehaviour, IPointerEnterHandler, IPointerE
 		isActiveComment = false;
 		ActiveFalseComment();
 	}
-
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
 }
