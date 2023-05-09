@@ -4,7 +4,7 @@ using UnityEngine;
 public class NPCScrip : NPCParameter
 {
     public Setgrid Grid;
-    public bool NPCBUildTrigger = false;
+    public bool NPCBUildTrigger = false;//NPC에 직업배정시 작동하는 트리거
     //public Setgrid Grid;
     public Transform StartPos;
     public Transform EndPos;

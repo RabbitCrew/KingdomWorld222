@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
 public class JobListButn : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textPro;
