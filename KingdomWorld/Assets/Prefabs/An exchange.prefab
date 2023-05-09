@@ -178,9 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2e59f4b9f98524fb75b7d919100c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  necessaryWood: 20
+  necessaryWood: 0
   necessaryStone: 0
-  necessaryIron: 10
+  necessaryIron: 0
+  necessaryFood: 0
   npcNum: 0
   npc: {fileID: 0}
   BuildingNum: 2
@@ -189,6 +190,10 @@ MonoBehaviour:
   npcs: []
   storeMax: 50
   store: 0
+  milk: 0
+  fleece: 0
+  EmptyTrigger: 0
+  isWork: 0
 --- !u!1 &7022967873587549887
 GameObject:
   m_ObjectHideFlags: 0
