@@ -7,6 +7,7 @@ public class Inventory : MonoBehaviour
     float DefaultLerpTime = 5f;
     public int MaxNegoText { get; set; }
     public int[] HasArtifact = new int[10];
+    public int[] ArtifactLimit = new int[10];
     public int Children;
     public int RainRate;
     public float SpawnTime = 10f;
