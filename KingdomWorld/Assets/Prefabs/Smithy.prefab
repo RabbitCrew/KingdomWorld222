@@ -171,13 +171,13 @@ MonoBehaviour:
   npc: {fileID: 2459160076541427711, guid: 5221feb4bb2339c4282cb073872a63ae, type: 3}
   BuildingNum: 11
   carpenternCheck: 0
-  npcCount: 0
+  npcCount: 1
   npcs: []
   storeMax: 10
   store: 0
   milk: 0
   fleece: 0
-  WoodEmptyTrigger: 0
+  EmptyTrigger: 0
   isWork: 0
 --- !u!114 &7846658614816487041
 MonoBehaviour:
