@@ -79,7 +79,7 @@ public class BuildingSetting : MonoBehaviour
 
     public bool CheckNecessaryItem()
 	{
-        if (GameManager.instance.Itronstone >= necessaryIron && 
+        if (GameManager.instance.CastIron >= necessaryIron && 
             GameManager.instance.Wood >= necessaryWood &&
             GameManager.instance.Stone >= necessaryStone &&
             GameManager.instance.Food >= necessaryFood)
@@ -94,7 +94,7 @@ public class BuildingSetting : MonoBehaviour
 	{
         if (!CheckNecessaryItem()) { return; }
 
-        GameManager.instance.Itronstone -= necessaryIron;
+        GameManager.instance.CastIron -= necessaryIron;
         GameManager.instance.Wood -= necessaryWood;
         GameManager.instance.Stone -= necessaryStone;
         GameManager.instance.Food -= necessaryFood;
@@ -102,7 +102,7 @@ public class BuildingSetting : MonoBehaviour
 
     public void ReplenishNecessaryItem()
 	{
-        GameManager.instance.Itronstone += necessaryIron;
+        GameManager.instance.CastIron += necessaryIron;
         GameManager.instance.Wood += necessaryWood;
         GameManager.instance.Stone += necessaryStone;
         GameManager.instance.Food += necessaryFood;
