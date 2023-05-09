@@ -70,7 +70,7 @@ public class Building_NpcTag : MonoBehaviour
 
     void BuildingCheck()
     {
-        if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+        if (Input.GetMouseButtonUp(0) && !IsPointerOverUIObject())
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);// ray로 마우스 눌렀을 때 마우스 위치 받아옴
 
