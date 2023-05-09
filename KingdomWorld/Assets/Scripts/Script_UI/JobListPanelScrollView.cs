@@ -9,7 +9,6 @@ public class JobListPanelScrollView : JobStringArr
     [SerializeField] private GameObject[] jobButtonPoolingArr;
     [SerializeField] private SpriteManager spriteManager;
     [SerializeField] private GameObject contentObj;
-
     public CitizenInfoPanel citizenInfoPanel { get; set; }
 
     private JobListButn[] jobListButnArr;
@@ -89,31 +88,38 @@ public class JobListPanelScrollView : JobStringArr
 
     public void ClickJobButton(int index)
     {
-        if (citizenInfoPanel != null)
+        if (GameManager.instance.isDaytime)
         {
-            if (jobListButnArr.Length > index && index > -1)
+            if (citizenInfoPanel != null)
             {
-                //Debug.Log(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1));
-                if (GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] > 0)
+                if (jobListButnArr.Length > index && index > -1)
                 {
-                    GameManager.instance.jobCountDic[citizenInfoPanel.jobNumEnum]++;
-                    citizenInfoPanel.WareClothes(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1), jobListButnArr[index].butnNum);
-                    citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
-                    if (citizenInfoPanel.gameObject.GetComponent<NPC>().BuildingNum != null)
+                    //Debug.Log(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1));
+                    if (GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] > 0)
                     {
-                        citizenInfoPanel.gameObject.GetComponent<NPC>().BuildingNum.GetComponent<BuildingSetting>().npcs.Remove(citizenInfoPanel.gameObject);
-                    }
+                        GameManager.instance.jobCountDic[citizenInfoPanel.jobNumEnum]++;
+                        citizenInfoPanel.WareClothes(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1), jobListButnArr[index].butnNum);
+                        citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
+                        if (citizenInfoPanel.gameObject.GetComponent<NPC>().BuildingNum != null)
+                        {
+                            citizenInfoPanel.gameObject.GetComponent<NPC>().BuildingNum.GetComponent<BuildingSetting>().npcs.Remove(citizenInfoPanel.gameObject);
+                        }
 
-                    citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
-                    //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " ㅁㅁㅁ 전");
-                    GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]--;
-                    //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " ㅁㅁㅁ 후");
-                }
-                else
-                {
-                    Debug.Log((JobNum)(jobListButnArr[index].butnNum) + " 빈 자리가 없습니다.");
+                        citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
+                        //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " ㅁㅁㅁ 전");
+                        GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]--;
+                        //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " ㅁㅁㅁ 후");
+                    }
+                    else
+                    {
+                        Debug.Log((JobNum)(jobListButnArr[index].butnNum) + " 빈 자리가 없습니다.");
+                    }
                 }
             }
+        }
+        else
+        {
+            Debug.Log("밤입니다.");
         }
     }
 }

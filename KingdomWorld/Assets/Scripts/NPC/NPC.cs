@@ -553,7 +553,7 @@ public class NPC : NPCScrip
                     return;
                 }
             }
-            if (i >= 1000)
+            if (i >= 100)
             {
                 Debug.Log("돌이 없습니다");
                 return;
