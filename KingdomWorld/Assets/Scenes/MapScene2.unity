@@ -145,6 +145,7 @@ GameObject:
   - component: {fileID: 662063102}
   - component: {fileID: 662063104}
   - component: {fileID: 662063103}
+  - component: {fileID: 662063105}
   m_Layer: 5
   m_Name: JobComment
   m_TagString: Untagged
@@ -192,17 +193,19 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: '
+
+'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
+  m_sharedMaterial: {fileID: -7897185509842292026, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -219,8 +222,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -269,6 +272,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 662063101}
   m_CullTransparentMesh: 1
+--- !u!114 &662063105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662063101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f04702a1f9d7a74ea22387fa503bb15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comment: {fileID: 662063103}
 --- !u!1001 &1688697021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5017,7 +5033,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1389821978412602036}
   m_Direction: 2
   m_Value: 0.9999984
-  m_Size: 0.24999927
+  m_Size: 0.5000002
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5754,6 +5770,10 @@ PrefabInstance:
       propertyPath: BNSet
       value: 
       objectReference: {fileID: 2232895983042591237}
+    - target: {fileID: 116128419136826053, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: uiJobComment
+      value: 
+      objectReference: {fileID: 662063105}
     - target: {fileID: 1878706299454608550, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -11906,6 +11926,10 @@ PrefabInstance:
       propertyPath: BNSet
       value: 
       objectReference: {fileID: 2232895983042591237}
+    - target: {fileID: 116128419136826053, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: uiJobComment
+      value: 
+      objectReference: {fileID: 662063105}
     - target: {fileID: 1878706299454608550, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -14551,6 +14575,10 @@ PrefabInstance:
       propertyPath: BNSet
       value: 
       objectReference: {fileID: 2232895983042591237}
+    - target: {fileID: 116128419136826053, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: uiJobComment
+      value: 
+      objectReference: {fileID: 662063105}
     - target: {fileID: 1878706299454608550, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -14862,6 +14890,10 @@ PrefabInstance:
       propertyPath: BNSet
       value: 
       objectReference: {fileID: 2232895983042591237}
+    - target: {fileID: 116128419136826053, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: uiJobComment
+      value: 
+      objectReference: {fileID: 662063105}
     - target: {fileID: 1878706299454608550, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -16947,7 +16979,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 150.00018}
+  m_AnchoredPosition: {x: -126.499985, y: 150.00024}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!1001 &5100429129807906535
@@ -17075,6 +17107,10 @@ PrefabInstance:
       propertyPath: BNSet
       value: 
       objectReference: {fileID: 2232895983042591237}
+    - target: {fileID: 116128419136826053, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: uiJobComment
+      value: 
+      objectReference: {fileID: 662063105}
     - target: {fileID: 1878706299454608550, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -31498,6 +31534,10 @@ PrefabInstance:
       propertyPath: BNSet
       value: 
       objectReference: {fileID: 2232895983042591237}
+    - target: {fileID: 116128419136826053, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: uiJobComment
+      value: 
+      objectReference: {fileID: 662063105}
     - target: {fileID: 1878706299454608550, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -36978,6 +37018,10 @@ PrefabInstance:
       propertyPath: BNSet
       value: 
       objectReference: {fileID: 2232895983042591237}
+    - target: {fileID: 116128419136826053, guid: 079418bdf43949c45892e82bce639c76, type: 3}
+      propertyPath: uiJobComment
+      value: 
+      objectReference: {fileID: 662063105}
     - target: {fileID: 1878706299454608550, guid: 079418bdf43949c45892e82bce639c76, type: 3}
       propertyPath: m_fontAsset
       value: 

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-public class JobListButn : MonoBehaviour
+using UnityEngine.EventSystems;
+
+public class JobListButn : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI textPro;
-
+    [SerializeField] private UIJobComment uiJobComment;
     public BuildingNPCSet BNSet;
 
     public int butnNum { get; private set; }
@@ -26,9 +28,14 @@ public class JobListButn : MonoBehaviour
     {
         textPro.text = str;
     }
-    // Update is called once per frame
-    void Update()
+
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        
+        uiJobComment.AppearComment(butnNum);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        uiJobComment.AppearComment(-100);
     }
 }
