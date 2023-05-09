@@ -113,8 +113,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 1, z: 0.20000005}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.29406363, y: 0.17076598, z: 0.20000005}
+  m_Center: {x: -0.014869966, y: -0.031397536, z: -2.0967242e-18}
 --- !u!54 &-1032215776031185551
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -170,12 +170,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingNum: {fileID: 0}
   HavedWheat: 0
-  HavedWood: 0
+  HavedResource: 0
   HavedAnimal: 0
   Grid: {fileID: 0}
   NPCBUildTrigger: 1
   StartPos: {fileID: 0}
   EndPos: {fileID: 0}
+  OneCycle: 0
   work: 0
   Sleep: 0
   isWeatStart: 0
@@ -241,7 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f11308d8a8d60489bb6811a14a2aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeadBodyPrefab: {fileID: 6051902495863427369, guid: 43621922ab0c05f4b87c56e1bb90dc8b, type: 3}
+  DeadBodyMom: {fileID: 0}
 --- !u!1 &3643745059866649896
 GameObject:
   m_ObjectHideFlags: 0
