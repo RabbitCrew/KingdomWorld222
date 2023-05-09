@@ -2399,7 +2399,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 183083879206040227}
   m_HandleRect: {fileID: 5246025102539532975}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2871,8 +2871,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1210896318859557034}
   m_HandleRect: {fileID: 8116799287697287791}
   m_Direction: 2
-  m_Value: 1.0000015
-  m_Size: 0.64250875
+  m_Value: 0.9999997
+  m_Size: 0.6425086
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3182,7 +3182,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00029945374}
+  m_AnchoredPosition: {x: 0, y: -0.00058086275}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &8916462884277188222
@@ -3429,8 +3429,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC218\uB7C9\uC744 \uC785\uB825\uD558\uC2DC\uC624.."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fdef7948a75c7384a8999b9c08c1e219, type: 2}
-  m_sharedMaterial: {fileID: -7897185509842292026, guid: fdef7948a75c7384a8999b9c08c1e219, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
+  m_sharedMaterial: {fileID: -7897185509842292026, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3617,7 +3617,7 @@ MonoBehaviour:
   CellerSlider: {fileID: 7070813659795880811}
   TCellerSlider: {fileID: 216414447349093627}
   NegoBtn: {fileID: 7987707147131621026}
-  TNegoBtn: {fileID: 7987707147131621026}
+  TNegoBtn: {fileID: 9026484920152304742}
 --- !u!114 &8172899327287344339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3636,27 +3636,37 @@ MonoBehaviour:
   TodayArtifact: 000000000100000002000000
   ArtifactPrice: 0a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a0000000a000000
   ArtifactInfo:
-  - "\uC2DC\uAC04\uC774 \uBE60\uB974\uAC8C \uD750\uB985\uB2C8\uB2E4."
-  - "\uC74C\uC624\uC544\uC608"
-  - "\uC81C\uBC1C\uB418\uB77C"
-  - "\u315C\u315C\u315C\u315C\u315C"
-  - "\uC548\uB418\uB294\uC774\uC720\uAC00\uBB50\uC57C"
-  - "\uC548\uB418\uB294\uC774\uC720\uAC00\uBB50\uC57C"
-  - "\uC548\uB418\uB294\uC774\uC720\uAC00\uBB50\uC57C"
-  - "\uC548\uB418\uB294\uC774\uC720\uAC00\uBB50\uC57C"
-  - "\uC548\uB418\uB294\uC774\uC720\uAC00\uBB50\uC57C"
-  - "\uC548\uB418\uB294\uC774\uC720\uAC00\uBB50\uC57C"
+  - " \uC18C\uC9C0 \uAC2F\uC218\uC5D0 \uB530\uB77C \uC138\uACC4\uC758 \uC2DC\uAC04\uC774
+    \uBE60\uB974\uAC8C \uD750\uB985\uB2C8\uB2E4."
+  - " \uC18C\uC9C0 \uAC2F\uC218\uC5D0 \uB530\uB77C \uC804\uCCB4 \uD558\uB8E8\uC758
+    \uB0AE \uBE44\uC728\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4"
+  - " \uC18C\uC9C0 \uAC2F\uC218\uC5D0 \uB530\uB77C \uAC70\uB798\uC18C\uC758 \uD765\uC815
+    \uC131\uACF5 \uD655\uB960\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - " \uC18C\uC9C0 \uAC2F\uC218\uC5D0 \uB530\uB77C \uAC70\uB798\uC18C\uC758 \uD658\uC728\uC774
+    \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - " \uC0AC\uC6A9 \uC2DC \uC18C\uBAA8\uB418\uBA70, \uC77C\uC815 \uC2DC\uAC04 \uB3D9\uC548
+    \uC804\uCCB4 \uC2DC\uBBFC\uC758 \uCCB4\uB825\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - " \uC18C\uC9C0 \uAC2F\uC218\uC5D0 \uB530\uB77C \uBE44\uAC00 \uC62C \uD655\uB960\uC774
+    \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - " \uC18C\uC9C0 \uAC2F\uC218\uC5D0 \uB530\uB77C \uC74C\uC2DD\uC744 \uC18C\uBAA8\uD558\uC5EC
+    \uC791\uBB3C\uC758 \uC131\uC7A5 \uC18D\uB3C4\uAC00 \uBE68\uB77C\uC9D1\uB2C8\uB2E4."
+  - " \uC18C\uC9C0 \uAC2F\uC218\uC5D0 \uB530\uB77C \uD48D\uB144\uC774 \uB4E4 \uD655\uB960\uC774
+    \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - " \uC18C\uC9C0 \uAC2F\uC218\uC5D0 \uB530\uB77C \uC2DC\uBBFC\uC758 \uC774\uC8FC
+    \uC18D\uB3C4\uAC00 \uC99D\uAC00\uD569\uB2C8\uB2E4."
+  - " \uC0AC\uC6A9 \uC2DC \uD55C\uAC1C\uB97C \uC18C\uBAA8\uD558\uC5EC \uC804\uCCB4
+    \uC2DC\uBBFC\uC758 \uC5ED\uBCD1\uC744 \uCE58\uB8CC\uD569\uB2C8\uB2E4."
   ArtifactName:
   - "\uACE0\uC7A5\uB09C \uC2DC\uACC4"
-  - "\uC774\uB984"
-  - "\uBB50\uB77C\uD558\uC9C0"
-  - "\uBAA8\uB974\uACA0\uB2E4"
-  - "\uC73C\uC5B4"
-  - "\uC73C\uC5B4"
-  - "\uC73C\uC5B4"
-  - "\uC73C\uC5B4"
-  - "\uC73C\uC5B4"
-  - "\uC73C\uC5B4"
+  - "\uBC31\uC57C"
+  - "\uB124\uACE0 \uD655\uB960 \uC99D\uAC00"
+  - "\uD658\uC728 \uC99D\uAC00"
+  - "\uCCB4\uB825 \uC99D\uAC00 \uBB3C\uC57D"
+  - "\uBE44 \uD655\uB960 \uC870\uC791"
+  - "\uC791\uBB3C \uC131\uC7A5 \uC18D\uB3C4 \uC870\uC791"
+  - "\uD48D\uB144 \uD655\uB960 \uC870\uC791"
+  - "\uC2DC\uBBFC \uC774\uC8FC \uC18D\uB3C4 \uC99D\uAC00"
+  - "\uC5ED\uBCD1 \uCE58\uB8CC"
   TodayArtifactSet:
   - {fileID: 4100325054050005382}
   - {fileID: 2821650941387069538}
@@ -5149,14 +5159,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1788208776348113246}
-        m_TargetAssemblyTypeName: SVScrollBttm, Assembly-CSharp
-        m_MethodName: TryNego
-        m_Mode: 1
+      - m_Target: {fileID: 8172899327287344339}
+        m_TargetAssemblyTypeName: Artifacts, Assembly-CSharp
+        m_MethodName: ShowArtifactInfo
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6924,10 +6934,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6680798701688944684}
-        m_TargetAssemblyTypeName: AnExchange, Assembly-CSharp
-        m_MethodName: CellResources
-        m_Mode: 1
+      - m_Target: {fileID: 8172899327287344339}
+        m_TargetAssemblyTypeName: Artifacts, Assembly-CSharp
+        m_MethodName: ShowArtifactInfo
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7504,9 +7514,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6680798701688944684}
-        m_TargetAssemblyTypeName: AnExchange, Assembly-CSharp
-        m_MethodName: CellResources
+      - m_Target: {fileID: 8172899327287344339}
+        m_TargetAssemblyTypeName: Artifacts, Assembly-CSharp
+        m_MethodName: BuyArtifact
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9520,8 +9530,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fdef7948a75c7384a8999b9c08c1e219, type: 2}
-  m_sharedMaterial: {fileID: -7897185509842292026, guid: fdef7948a75c7384a8999b9c08c1e219, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
+  m_sharedMaterial: {fileID: -7897185509842292026, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10484,8 +10494,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1766569657032752777}
   m_HandleRect: {fileID: 1005892584674324994}
   m_Direction: 2
-  m_Value: 1.0000015
-  m_Size: 0.64250875
+  m_Value: 0.9999997
+  m_Size: 0.6425086
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12749,14 +12759,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6680798701688944684}
-        m_TargetAssemblyTypeName: AnExchange, Assembly-CSharp
-        m_MethodName: CellResources
-        m_Mode: 1
+      - m_Target: {fileID: 8172899327287344339}
+        m_TargetAssemblyTypeName: Artifacts, Assembly-CSharp
+        m_MethodName: ShowArtifactInfo
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -15478,8 +15488,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC218\uB7C9\uC744 \uC785\uB825\uD558\uC2DC\uC624.."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fdef7948a75c7384a8999b9c08c1e219, type: 2}
-  m_sharedMaterial: {fileID: -7897185509842292026, guid: fdef7948a75c7384a8999b9c08c1e219, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
+  m_sharedMaterial: {fileID: -7897185509842292026, guid: a6c6e430ce96c4e40b5ad5f19ff032eb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
