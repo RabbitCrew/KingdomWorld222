@@ -24,6 +24,11 @@ public class AnimalMove : MonoBehaviour
 
     private void Start()
     {
+        animator.SetBool("IsIdle", true);
+        animator.SetBool("IsRight", false);
+        animator.SetBool("IsLeft", false);
+        animator.SetBool("Hungry", false);
+
         Grid = GameManager.instance.GetComponent<Setgrid>();
 
         InvokeRepeating("GetAnimalPos", 0.1f, 0.5f);
@@ -38,10 +43,12 @@ public class AnimalMove : MonoBehaviour
 
         AnimalAniSet();
     }
+
     public void ResetPath(Transform start, Transform end)
     {
         path = Grid.FindPath(start.position, end.position);//게임매니저의 FindPath를 사용한다
     }
+
     public void Move()
     {
 
@@ -55,6 +62,7 @@ public class AnimalMove : MonoBehaviour
             }
         }
     }
+
     private void RandomTimer()
     {
         if(timer >= increaseInterval)
@@ -77,68 +85,68 @@ public class AnimalMove : MonoBehaviour
 
     void GetAnimalPos()
     {
-        AnimalPos = this.transform.position;
+        AnimalPos = trs.position;
     }
 
     void AnimalAniSet()
     {
-        float Directionx = 0;
-        float Directionz = 0;
-
         bool GoRight = false;
+        bool GoLeft = false;
         bool GoUpDown = false;
 
-        if (this.transform.position.x > AnimalPos.x) //처음 받은 값보다 현재 값이 오른쪽일때
+        if (trs.position.x > AnimalPos.x) //처음 받은 값보다 현재 값이 오른쪽일때
         {
-            Directionx = (this.transform.position.x - AnimalPos.x);
-
             GoRight = true;
+            GoLeft = false;
             GoUpDown = false;
         }
-        else if (this.transform.position.x < AnimalPos.x)// 처음 받은 값보다 현재 값이 왼쪽일 때
+        else if (trs.position.x < AnimalPos.x)// 처음 받은 값보다 현재 값이 왼쪽일 때
         {
-            Directionx = (AnimalPos.x - this.transform.position.x);
-
             GoRight = false;
             GoUpDown = false;
+            GoLeft = true;
         }
-
-        if (this.transform.position == AnimalPos)//처음 받은 값과 현재 값이 같을 때
+        else if(trs.position == AnimalPos)
         {
+            GoUpDown = false;
             GoRight = false;
-
-            animator.SetBool("IsRight", false);
-            animator.SetBool("IsLeft", false);
-            animator.SetBool("Hungry", true);
-            animator.SetBool("IsIdle", true);
+            GoLeft = false;
         }
-        else
+        else if(trs.position.z != AnimalPos.z)
         {
             GoUpDown = true;
+            GoRight = false;
+            GoLeft = false;
         }
 
         if(GoRight == true)
         {
             animator.SetBool("IsRight", true);
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsHungry", false);
             animator.SetBool("IsLeft", false);
-            animator.SetBool("Hungry", false);
-            animator.SetBool("IsIdle", false);
         }
-        else if(GoRight == false)
+        else if(GoLeft == true)
         {
-            animator.SetBool("IsLeft", true);
             animator.SetBool("IsRight", false);
-            animator.SetBool("Hungry", false);
             animator.SetBool("IsIdle", false);
-
-            if (GoUpDown == true)
-            {
-                animator.SetBool("Hungry", true);
-                animator.SetBool("IsIdle", true);
-                animator.SetBool("IsRight", false);
-                animator.SetBool("IsLeft", false);
-            }
+            animator.SetBool("IsHungry", false);
+            animator.SetBool("IsLeft", true);
         }
-
+        else if(GoUpDown == true)
+        {
+            animator.SetBool("IsRight", false);
+            animator.SetBool("IsIdle", true);
+            animator.SetBool("IsHungry", false);
+            animator.SetBool("IsLeft", false);
+        }
+        else
+        {
+            animator.SetBool("IsRight", false);
+            animator.SetBool("IsIdle", false);
+            animator.SetBool("IsHungry", true);
+            animator.SetBool("IsLeft", false);
+        }
+ 
     }//애니메이션 만드는중. 미완성임
 }
