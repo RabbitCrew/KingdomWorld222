@@ -9,20 +9,9 @@ public class NPCHP : MonoBehaviour
     int MaxHP = 10;
     int Hp = 10;
 
-    private void Update()
+    private void Start()
     {
-        GetHP();
-    }
-
-    void GetHP()
-    {
-        Hp = this.gameObject.GetComponent<NPC>().HP;
-        MaxHP = this.gameObject.GetComponent<NPC>().Maxhp;
-
-        if (this.gameObject.GetComponent<NPC>().Maxhp < this.gameObject.GetComponent<NPC>().HP)
-        {
-            this.gameObject.GetComponent<NPC>().HP = this.gameObject.GetComponent<NPC>().Maxhp;
-        }
+        this.gameObject.GetComponent<NPC>().HP = this.gameObject.GetComponent<NPC>().Maxhp;
     }
 
     void DeadCheck()
