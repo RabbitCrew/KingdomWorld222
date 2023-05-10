@@ -13,15 +13,16 @@ public class CitizenInfoPanel : MonoBehaviour
         if (clothes == null) { clothesSpr.sprite = null; }
         else { clothesSpr.sprite = clothes;}
 
-        if (System.Enum.GetValues(typeof(JobNum)).Length <= jobCode)
+        if (System.Enum.GetValues(typeof(JobNum)).Length <= jobCode || jobCode == -1)
         {
             jobNumEnum = JobNum.CITIZEN;
+            GameManager.instance.RestHuman.Add(this.gameObject);
         }
         else
         {
             jobNumEnum = (JobNum)jobCode;
         }
-        Debug.Log(jobNumEnum);
+        //Debug.Log(jobNumEnum);
     }
 
 }

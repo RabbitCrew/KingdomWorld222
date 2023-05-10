@@ -102,7 +102,7 @@ public class TImeLight2D : MonoBehaviour
         {
             ran = Random.Range(1, Inventory.instance.RainRate);
             length = Random.Range(1, Inventory.instance.RainRate);
-            Debug.Log(ran + " " + length);
+            //Debug.Log(ran + " " + length);
             for (int i = 0; i < ran; i++)
             {
                 yield return one;

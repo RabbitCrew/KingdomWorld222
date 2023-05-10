@@ -54,7 +54,7 @@ public class SpawnCitizen : MonoBehaviour
                 if (Inventory.instance.houseDic.ContainsKey(i))
                 {
                     houseTrList = GameManager.instance.AllHuman.FindAll(a => a.GetComponent<NPC>().HouseTr.position.Equals(Inventory.instance.houseDic[i].transform.position));
-                    Debug.Log(houseTrList.Count);
+                    //Debug.Log(houseTrList.Count);
                     if (houseTrList.Count < CitizenNum)
                     {
                         GameObject CSpawn = Instantiate(Citizen);

@@ -139,7 +139,7 @@ public class NPC : NPCScrip
             }
             if (i >= 1000)
             {
-                Debug.Log("광산이 없습니다");
+                //Debug.Log("광산이 없습니다");
                 return;
             }
             i++;
@@ -167,7 +167,7 @@ public class NPC : NPCScrip
             }
             if (i >= 1000)
             {
-                Debug.Log("건물이 없습니다");
+                //Debug.Log("건물이 없습니다");
                 return;
             }
             i++;

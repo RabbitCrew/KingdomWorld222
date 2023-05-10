@@ -26,7 +26,7 @@ public abstract class UIComment : MonoBehaviour, IPointerEnterHandler, IPointerE
 			case 1:
 				commentPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 400f);
 				commentPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 200f);
-				commentPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(760f, 340f);
+				commentPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(360f, 360f);
 
 				commentText.text = "현재 보유중인 자원을 표시합니다. 클릭시, 전체 자원을 확인할 수 있습니다.";
 				break;

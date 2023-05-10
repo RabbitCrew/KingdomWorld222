@@ -100,11 +100,17 @@ public class JobListPanelScrollView : JobStringArr
                         GameManager.instance.jobCountDic[citizenInfoPanel.jobNumEnum]++;
                         citizenInfoPanel.WareClothes(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1), jobListButnArr[index].butnNum);
                         citizenInfoPanel.gameObject.GetComponent<BuildingNPCSet>().SetBNPC(jobListButnArr[index].butnNum);
+
+
                         if (citizenInfoPanel.gameObject.GetComponent<NPC>().BuildingNum != null)
                         {
                             citizenInfoPanel.gameObject.GetComponent<NPC>().BuildingNum.GetComponent<BuildingSetting>().npcs.Remove(citizenInfoPanel.gameObject);
-                        }
 
+                            if (jobListButnArr[index].butnNum == 0)
+                            {
+                                citizenInfoPanel.gameObject.GetComponent<NPC>().BuildingNum = null;
+                            }
+                        }
                         citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
                         //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " ¤±¤±¤± Àü");
                         GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]--;
