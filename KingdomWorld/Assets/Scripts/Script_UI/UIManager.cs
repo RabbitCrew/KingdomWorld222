@@ -134,7 +134,7 @@ public class UIManager : JobStringArr
             }
         }
 
-        if (GameManager.instance.AllHuman.Count > 10 && !endingPanel.activeSelf && !isEnding)
+        if (GameManager.instance.AllHuman.Count > 100 && !endingPanel.activeSelf && !isEnding)
         {
             endingPanel.SetActive(true);
             GameManager.instance.GameStop = true;

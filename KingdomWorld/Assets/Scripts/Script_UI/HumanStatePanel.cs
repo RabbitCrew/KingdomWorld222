@@ -4,8 +4,9 @@ using UnityEngine;
 using TMPro;
 public class HumanStatePanel : JobStringArr
 {
+    [SerializeField] private UIManager uiManager;
     [SerializeField] private TextMeshProUGUI jobText;
-    private GameObject human;
+    private GameObject human = null;
     private MouseRay mouseRay;
 
     public void SetHuman(GameObject human)
@@ -19,9 +20,11 @@ public class HumanStatePanel : JobStringArr
     }
     public void SetTargetTrans()
     {
-        if (mouseRay != null)
+        if (mouseRay != null && human != null)
         {
             mouseRay.SetTargetTransform(human.transform);
+            uiManager.SetIsOpenCitizenPanel(false, null);
+            uiManager.SetIsOpenCitizenPanel(true, human.GetComponent<CitizenInfoPanel>());
         }
     }    
 

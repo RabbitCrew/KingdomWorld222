@@ -23,7 +23,8 @@ public class JobListPanelScrollView : JobStringArr
     void Awake()
     {
 
-        startVec = contentsTrans.anchoredPosition3D;
+        //startVec = contentsTrans.anchoredPosition3D;
+        startVec = new Vector3(-126.5f, 150f, 0f);
 
         jobListButnArr = new JobListButn[jobButtonPoolingArr.Length];
         contentsTrans.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, jobArr.Length * heightButn);
@@ -94,7 +95,7 @@ public class JobListPanelScrollView : JobStringArr
             {
                 if (jobListButnArr.Length > index && index > -1)
                 {
-                    //Debug.Log(spriteManager.GetCitizenSprArr(jobListButnArr[index].butnNum - 1));
+                    Debug.Log((JobNum)(jobListButnArr[index].butnNum));
                     if (GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] > 0)
                     {
                         GameManager.instance.jobCountDic[citizenInfoPanel.jobNumEnum]++;
@@ -118,14 +119,14 @@ public class JobListPanelScrollView : JobStringArr
                     }
                     else
                     {
-                        Debug.Log((JobNum)(jobListButnArr[index].butnNum) + " 빈 자리가 없습니다.");
+                        //Debug.Log((JobNum)(jobListButnArr[index].butnNum) + " 빈 자리가 없습니다.");
                     }
                 }
             }
         }
         else
         {
-            Debug.Log("밤입니다.");
+            //Debug.Log("밤입니다.");
         }
     }
 }

@@ -71,6 +71,6 @@ public class EndingPanel : MonoBehaviour
 
     public void GoMainPage()
     {
-        SceneManager.LoadScene("MAINUI");
+        LoadingSceneManager.LoadScene("MAINUI");
     }
 }

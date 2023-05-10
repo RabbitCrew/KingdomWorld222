@@ -497,11 +497,11 @@ public class AnExchange : MonoBehaviour
                 bool isX = false;
                 bool isY = false;
 
-                if (vec.x * x < 330f) { vecX = 330f; isX = false; }
-                else if (vec.x * x > 1610f) { vecX = 1610f; isX = false; }
+                if (vec.x * x < 200f) { vecX = 200f; isX = false; }
+                else if (vec.x * x > 1720f) { vecX = 1720f; isX = false; }
                 else { vecX = vec.x * x; isX = true; }
 
-                if (vec.y * y < 180f) { vecY = 180f; isY = false; }
+                if (vec.y * y < 100f) { vecY = 100f; isY = false; }
                 else if (vec.y * y > 900f) { vecY = 900f; isY = false; }
                 else { vecY = vec.y * y; isY = true; }
 
