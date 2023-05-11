@@ -5,6 +5,9 @@ using TMPro;
 
 public class Recource_UI : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI spendFoodText;
+    [SerializeField] private TextMeshProUGUI spendWoodText;
+
     public GameObject ChangeWin;
     public GameObject MReciver;
 
@@ -20,6 +23,11 @@ public class Recource_UI : MonoBehaviour
 
     public void ResourceSearch()//자원 수량 텍스트로 띄워줌
     {
+        spendFoodText.text = "(" + (GameManager.instance.AllHuman.Count * 10) + ")";
+
+        if (GameManager.instance.isWinterComing)
+        { spendWoodText.text = "(" + (GameManager.instance.AllHuman.Count * 2) + ")"; }
+
         TextColor = new Color(1, 0, 0, 1);
 
         for (int i = 0; i < RText.Length; i++)

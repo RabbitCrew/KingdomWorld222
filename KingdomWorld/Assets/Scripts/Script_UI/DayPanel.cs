@@ -8,6 +8,7 @@ public class DayPanel : UIComment
     private int[] dayArr = new int[12] { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     private int temMonth;
     private int index;
+    private int time;
     private int Index {
 		get 
         {
@@ -32,6 +33,7 @@ public class DayPanel : UIComment
         Index = 2;
         commentNum = 2;
         temMonth = 0;
+        time = 10;
         CountDay();
     }
 
@@ -40,13 +42,17 @@ public class DayPanel : UIComment
     {
 
         temMonth++;
+        
+        //dayText.text = (Index + 1).ToString() + "/" + temMonth.ToString();
+        if (!GameManager.instance.isWinterComing)
+        { time--; dayText.text = "D-" + time; }
+        else
+        { time++; dayText.text = "Day" + time; }
 
-        dayText.text = (Index + 1).ToString() + "/" + temMonth.ToString();
-
-        if (temMonth == dayArr[Index])
-		{
-            temMonth = 0;
-            Index++;
-		}
+  //      if (temMonth == dayArr[Index])
+		//{
+  //          temMonth = 0;
+  //          Index++;
+		//}
 	}
 }

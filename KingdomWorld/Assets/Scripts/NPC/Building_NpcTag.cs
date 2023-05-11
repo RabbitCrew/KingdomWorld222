@@ -5,35 +5,26 @@ using TMPro;
 
 public class Building_NpcTag : MonoBehaviour
 {
-    public NPC Citizen;
+    public NPC citizenNPC;
 
-    [SerializeField] GameObject NPcButton;
     [SerializeField] GameObject RemoveNPcButton;
-    [SerializeField] GameObject NPcButtonOther;
-    [SerializeField] GameObject JobPanel;
-    [SerializeField] GameObject[] NPCPanel;
+    [SerializeField] private GameObject JobPanel;
+    [SerializeField] private GameObject[] NPCPanel;
+    [SerializeField] private TextMeshProUGUI[] NPCPanelText;
+    [SerializeField] private SpriteManager spriteManager;
     [SerializeField] GameObject SMassage;
-    [SerializeField] GameObject JobAddB;
+    [SerializeField] private GameObject jobAddButton;
     [SerializeField] GameObject MotherBuilding;
-    GameObject JobBuilding;
-
     [SerializeField] string[] InputJobText;
 
-    [SerializeField] TextMeshProUGUI JobText;
-    [SerializeField] TextMeshProUGUI OtherJobText;
+    private List<GameObject> jobNPCList = new List<GameObject>();   // 현재 건물에 배정되어 있는 시민의 리스트
+    private GameObject JobBuilding;
 
-    string Job = null;
-    string OtherJob = null;
-
-    bool IsOther = false;
-
-    int IsSetcount;
-    int NPCCount;
-    int NpcValue = 0;
-
+    private int jobCount;   // 현재 누른 건물에 할당된 시민 수
+    private int jobCode;    // 배정받을 직업의 번호
     private float distance = 50f;
 
-    Vector3 JobAddBPos;
+    Vector3 jobAddBPos;
 
     private void Update()
     {
@@ -42,35 +33,37 @@ public class Building_NpcTag : MonoBehaviour
 
     private void Start()
     {
-        JobAddBPos = JobAddB.transform.localPosition;
+        jobAddBPos = jobAddButton.transform.localPosition;
     }
 
     void NPCFound()
     {
-        NpcValue = 0;
+        jobNPCList.Clear();
+        jobNPCList = GameManager.instance.AllHuman.FindAll(a => a.GetComponent<NPC>().BuildingNum == JobBuilding);
 
-        for (int j = 0; j < GameManager.instance.AllHuman.Count; j++)
-        {
-            if (GameManager.instance.AllHuman[j].GetComponent<NPC>().BuildingNum == JobBuilding)
-            {
-                NpcValue++;
+        for (int i =0; i < NPCPanel.Length; i++)
+		{
+            NPCPanel[i].SetActive(false);
+		}
 
-                NPCPanel[NpcValue - 1].SetActive(true);
 
-                NPCPanel[NpcValue - 1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text =
-                    GameManager.instance.AllHuman[j].gameObject.name + "\n" + TagCheck(GameManager.instance.AllHuman[j].gameObject);
+        for (int i = 0; i < jobNPCList.Count; i++)
+		{
+            NPCPanel[i].SetActive(true);
+            NPCPanelText[i].text = jobNPCList[i].name + "\n" + TagCheck(jobNPCList[i].gameObject);
+		}
 
-                JobAddB.transform.localPosition =
-                    JobAddBPos - new Vector3(0, 100 * NpcValue, 0);
-            }
-        }
-
-        NpcValue = 0;
+        JobAddButtonPosition(jobNPCList.Count * (-1));
     }
+
+    private void JobAddButtonPosition(int num)
+	{
+        jobAddButton.GetComponent<RectTransform>().anchoredPosition = jobAddBPos + new Vector3(0, 100 * num, 0);
+	}
 
     void BuildingCheck()
     {
-        if (Input.GetMouseButtonDown(0) && !IsPointerOverUIObject())
+        if (Input.GetMouseButtonUp(0) && !IsPointerOverUIObject())
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);// ray로 마우스 눌렀을 때 마우스 위치 받아옴
 
@@ -95,13 +88,10 @@ public class Building_NpcTag : MonoBehaviour
 
                         JobPanel.SetActive(true);
 
-                        IsOther = false;
-
-                        IsSetcount = 0;
-                        NPCCount = 0;
-
-                        NPcButton.SetActive(false);
-                        NPcButtonOther.SetActive(false);
+                        if (hits[i].collider.GetComponent<BuildingSetting>() != null)
+						{
+                            jobCount = hits[i].collider.GetComponent<BuildingSetting>().npcCount;
+						}
 
                         for (int j = 0; j < NPCPanel.Length; j++)
                         {
@@ -110,344 +100,89 @@ public class Building_NpcTag : MonoBehaviour
 
                         NPCFound();
 
-                        if (hits[i].collider.gameObject.tag == "Storage")
-                        {
-                            Job = "StorageNPC";
-
-                            IsOther = false;
-
-                            NPCCount = 0;
-
-                            JobText.text = InputJobText[NPCCount];
-                        }
-                        else if (hits[i].collider.gameObject.tag == "WoodCutter_house")
-                        {
-                            Job = "WoodCutter";
-
-                            IsOther = false;
-
-                            NPCCount = 1;
-
-                            JobText.text = InputJobText[NPCCount];
-                        }
-                        else if (hits[i].collider.gameObject.tag == "Carpenter_house")
-                        {
-                            Job = "CarpenterNPC";
-
-                            NPCCount = 2;
-
-                            IsOther = false;
-
-                            JobText.text = InputJobText[NPCCount];
-                        }
-                        else if (hits[i].collider.gameObject.tag == "Hunter_house")
-                        {
-                            Job = "Hunter";
-
-                            NPCCount = 3;
-
-                            IsOther = false;
-
-                            JobText.text = InputJobText[NPCCount];
-                        }
-                        else if (hits[i].collider.gameObject.tag.Equals("Farm_house"))
-                        {
-                            Job = "Pastoralist";
-
-                            IsOther = false;
-
-                            NPCCount = 4;
-
-                            JobText.text = InputJobText[NPCCount];
-                        }
-                        else if (hits[i].collider.gameObject.tag.Equals("WheatField"))
-                        {
-                            Job = "FarmNPC";
-
-                            NPCCount = 5;
-
-                            IsOther = false;
-
-                            JobText.text = InputJobText[NPCCount];
-                        }
-                        else if (hits[i].collider.gameObject.tag.Equals("Mine_house"))
-                        {
-                            Job = "StoneMineWorker";
-
-                            OtherJob = "IronMineWorker";
-
-                            NPCCount = 6;
-
-                            JobText.text = InputJobText[NPCCount];
-                            OtherJobText.text = InputJobText[NPCCount];
-
-                            IsOther = true;
-                        }
-                        else if (hits[i].collider.gameObject.tag.Equals("Ham_house"))
-                        {
-                            Job = "HamNPC";
-
-                            NPCCount = 8;
-
-                            JobText.text = InputJobText[NPCCount];
-
-                            IsOther = false;
-                        }
-                        else if (hits[i].collider.gameObject.tag.Equals("Cheese_house"))
-                        {
-                            Job = "CheeseNPC";
-
-                            NPCCount = 9;
-
-                            JobText.text = InputJobText[NPCCount];
-
-                            IsOther = false;
-                        }
-                        else if (hits[i].collider.gameObject.tag.Equals("Cloth_house"))
-                        {
-                            Job = "FabricNPC";
-
-                            NPCCount = 10;
-
-                            JobText.text = InputJobText[NPCCount];
-
-                            IsOther = false;
-                        }
-                        else if (hits[i].collider.gameObject.tag.Equals("Smith_house"))
-                        {
-                            Job = "Smith";
-
-                            NPCCount = 11;
-
-                            JobText.text = InputJobText[NPCCount];
-
-                            IsOther = false;
-                        }
-                        else
-                        {
-                            JobPanel.SetActive(false);
-                        }
+                        if (hits[i].collider.gameObject.tag.Equals("Storage")) {jobCode = 6;}
+                        else if (JobBuilding.tag.Equals("WoodCutter_house")) {jobCode = 1;}
+                        else if (JobBuilding.tag.Equals("Carpenter_house")) {jobCode = 2;}
+                        else if (JobBuilding.tag.Equals("Hunter_house")) {jobCode = 3;}
+                        else if (JobBuilding.tag.Equals("Farm_house")) {jobCode = 5;}
+                        else if (JobBuilding.tag.Equals("WheatField")) {jobCode = -1;}
+                        else if (JobBuilding.tag.Equals("Mine_house")) {jobCode = 8;}
+                        else if (JobBuilding.tag.Equals("Ham_house")) {jobCode = 9;}
+                        else if (JobBuilding.tag.Equals("Cheese_house")) {jobCode = 10;}
+                        else if (JobBuilding.tag.Equals("Cloth_house")) {jobCode = 11;}
+                        else if (JobBuilding.tag.Equals("Smith_house")) {jobCode = 12;}
+                        else { JobPanel.SetActive(false);}
                     }
                 }
             }
-        }
-    }
-
-    public void JobSetOn()
-    {
-        NPcButton.SetActive(true);
-
-        if (IsOther == true)
-        {
-            NPcButtonOther.SetActive(true);
         }
     }
 
     string TagCheck(GameObject ToCheckNpc)
     {
-        if (ToCheckNpc.tag.Equals("StorageNPC"))
-        {
-            NPCCount = 0;
-
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("WoodCutter"))
-        {
-            NPCCount = 1;
-
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("CarpenterNPC"))
-        {
-            NPCCount = 2;
-
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("Hunter"))
-        {
-            NPCCount = 3;
-
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("Pastoralist"))
-        {
-            NPCCount = 4;
-
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("Farmer"))
-        {
-            NPCCount = 5;
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("StoneMiner"))
-        {
-            NPCCount = 6;
-
-            return InputJobText[NPCCount];
-        }
-        else if(ToCheckNpc.tag.Equals("IronMiner"))
-        {
-            NPCCount = 7;
-
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("HamNPC"))
-        {
-            NPCCount = 8;
-
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("CheeseNPC"))
-        {
-            NPCCount = 9;
-
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("FabricNPC"))
-        {
-            NPCCount = 10;
-
-            return InputJobText[NPCCount];
-        }
-        else if (ToCheckNpc.tag.Equals("Smith"))
-        {
-            NPCCount = 11;
-
-            return InputJobText[NPCCount];
-        }
-        else
-        {
-            return "백수";
-        }
+        if (ToCheckNpc.tag.Equals("StorageNPC")) { return InputJobText[0]; }
+        else if (ToCheckNpc.tag.Equals("WoodCutter")) { return InputJobText[1]; }
+        else if (ToCheckNpc.tag.Equals("CarpenterNPC")) { return InputJobText[2]; }
+        else if (ToCheckNpc.tag.Equals("Hunter")) { return InputJobText[3]; }
+        else if (ToCheckNpc.tag.Equals("Pastoralist")) { return InputJobText[4]; }
+        else if (ToCheckNpc.tag.Equals("Farmer")) { return InputJobText[5]; }
+        else if (ToCheckNpc.tag.Equals("StoneMiner")) { return InputJobText[6]; }
+        else if (ToCheckNpc.tag.Equals("IronMiner")) { return InputJobText[7]; }
+        else if (ToCheckNpc.tag.Equals("HamNPC")) { return InputJobText[8]; }
+        else if (ToCheckNpc.tag.Equals("CheeseNPC")) { return InputJobText[9]; }
+        else if (ToCheckNpc.tag.Equals("FabricNPC")) { return InputJobText[10]; }
+        else if (ToCheckNpc.tag.Equals("Smith")) { return InputJobText[11]; }
+        else { return null; }
     }
 
-    public void jobButton(bool value)
+    public void AddJobButton()
     {
-        int NPCCount = 0;
+        // 배정가능한 인원의 수가 꽉차면 더 이상 배정 불가능.
+        if (jobNPCList.Count >= jobCount) { return; }
 
-        for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
-        {
-            if (GameManager.instance.AllHuman[i].tag == "NPC")
-            {
-                GameManager.instance.RestHuman[NPCCount] = GameManager.instance.AllHuman[i];
+        int index = GameManager.instance.AllHuman.FindIndex(a => a.tag.Equals("NPC"));
 
-                NPCCount++;
-            }
-        }
+        // 현재 놀고 있는 시민이 없으면 배정 불가능
+        if (index == -1) { return; }
 
-        if (NPCCount == 0)
-        {
-            SMassage.SendMessage("MessageQ", "현재 배당 가능한 시민이 없습니다.");
-        }
-        else if (NPCCount > 0)
-        {
-            if (IsSetcount < 3 && IsSetcount >= 0)
-            {
-                for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
-                {
-                    if (GameManager.instance.AllHuman[i].tag == "NPC")
-                    {
-                        Citizen = GameManager.instance.AllHuman[i].gameObject.GetComponent<NPC>();
+        // 시민에게 해당 직업 배정
+        GameManager.instance.AllHuman[index].GetComponent<CitizenInfoPanel>().WareClothes(spriteManager.GetCitizenSprArr(jobCode-1),jobCode);
+        GameManager.instance.jobCountDic[GameManager.instance.AllHuman[index].GetComponent<CitizenInfoPanel>().jobNumEnum]--;
+        GameManager.instance.AllHuman[index].GetComponent<BuildingNPCSet>().SetBNPC(jobCode);
+        citizenNPC = GameManager.instance.AllHuman[index].gameObject.GetComponent<NPC>();
 
-                        if (value == false)
-                        {
-                            GameManager.instance.AllHuman[i].gameObject.tag = Job;
+        JobBuilding.GetComponent<BuildingSetting>().AddNPCs(citizenNPC.gameObject);
+        citizenNPC.BuildingNum = JobBuilding;
+        citizenNPC.NPCBUildTrigger = true;
 
-                            Citizen.BuildingNum = JobBuilding;
-                            Citizen.NPCBUildTrigger = true;
+        jobNPCList.Add(GameManager.instance.AllHuman[index]);
 
-                            IsSetcount++;
-
-                            break; 
-                        }
-                        else if (value == true)
-                        {
-                            GameManager.instance.AllHuman[i].gameObject.tag = OtherJob;
-
-                            Citizen.BuildingNum = JobBuilding;
-                            Citizen.NPCBUildTrigger = true;
-
-                            IsSetcount++;
-
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        if (IsSetcount == 3)
-        {
-            SMassage.SendMessage("MessageQ", "이미 인부의 수가 한계에 도달했습니다.");
-        }
+        int index2 = GameManager.instance.RestHuman.FindIndex(a => a.Equals(GameManager.instance.AllHuman[index]));
+        if (index2 != -1) { GameManager.instance.RestHuman.RemoveAt(index2); }
 
         NPCFound();
     }
 
     public void RemoveJobButton(int value)
     {
-        int counts = 0;
+        int index = GameManager.instance.AllHuman.FindIndex(a => a.GetComponent<NPC>().BuildingNum == JobBuilding);
+        Debug.Log(index);
+        if (index == -1) { return; }
+        GameManager.instance.jobCountDic[GameManager.instance.AllHuman[index].GetComponent<CitizenInfoPanel>().jobNumEnum]++;
+        GameManager.instance.AllHuman[index].GetComponent<CitizenInfoPanel>().WareClothes(null, 0);
+        GameManager.instance.jobCountDic[GameManager.instance.AllHuman[index].GetComponent<CitizenInfoPanel>().jobNumEnum]--;
+        GameManager.instance.AllHuman[index].GetComponent<BuildingNPCSet>().SetBNPC(0);
+        GameManager.instance.AllHuman[index].GetComponent<NPC>().BuildingNum.GetComponent<BuildingSetting>().npcs.Remove(GameManager.instance.AllHuman[index]);
+        GameManager.instance.AllHuman[index].GetComponent<NPC>().BuildingNum = null;
+        GameManager.instance.AllHuman[index].GetComponent<NPC>().searchMyBuilding();
 
-        GameObject TargetPos = null;
+        GameManager.instance.RestHuman.Add(GameManager.instance.AllHuman[index]);
 
-        for (int i = 0; i < MotherBuilding.transform.childCount; i++)
-        {
-            if(MotherBuilding.transform.GetChild(i).tag == "House")
-            {
-                for (int j = 0; j < GameManager.instance.AllHuman.Count; j++)
-                {
-                    if(GameManager.instance.AllHuman[j].GetComponent<NPC>().BuildingNum == MotherBuilding.transform.GetChild(i))
-                    {
-                        if(counts < 3)
-                        {
-                            counts++;
-                        }
-                        else if(counts == 3)
-                        {
-                            continue;
-                        }
-                    }
-                }
-
-                if(counts < 3)
-                {
-                    TargetPos = MotherBuilding.transform.GetChild(i).gameObject;
-
-                    break;
-                }
-            }
-        }
-
-        counts = 0;
-
-        for (int i = 0; i < GameManager.instance.AllHuman.Count; i++)
-        {
-            if(GameManager.instance.AllHuman[i].GetComponent<NPC>().BuildingNum == JobBuilding)
-            {
-                if(counts == value)
-                {
-                    GameManager.instance.AllHuman[i].tag = "NPC";
-
-                    GameManager.instance.AllHuman[i].GetComponent<NPC>().BuildingNum = TargetPos;
-
-                    GameManager.instance.AllHuman[i].GetComponent<NPC>().NPCBUildTrigger = true;
-
-                    NPCPanel[value].SetActive(false);
-
-                    JobAddB.transform.localPosition =
-                   JobAddBPos + new Vector3(0, 100 * (NpcValue), 0);
-
-                    IsSetcount--;
-                }
-                else
-                {
-                    counts++;
-                }
-            }
-        }
+        jobNPCList.Remove(GameManager.instance.AllHuman[index]);
 
         NPCFound();
+
+        JobAddButtonPosition(jobNPCList.Count);
     }
 
     private bool IsPointerOverUIObject()
@@ -468,8 +203,9 @@ public class Building_NpcTag : MonoBehaviour
 
     public void ExitButton()
     {
+        NPCFound();
+
         JobPanel.SetActive(false);
 
-        NPCFound();
     }
 }

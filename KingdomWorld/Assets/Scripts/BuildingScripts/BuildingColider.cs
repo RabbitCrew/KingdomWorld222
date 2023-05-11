@@ -29,6 +29,7 @@ public class BuildingColider : MonoBehaviour
             {
                 if (col.gameObject.GetComponent<TileInfo>() != null)
                 {
+                    //Debug.Log(col.gameObject.GetComponent<TileInfo>().TileNum);
                     if (col.gameObject.GetComponent<TileInfo>().CheckPossibleSettingBuilding(objTypeNum))
                     {
                         col.gameObject.GetComponent<TileColorChange>().ChangeGreenColor();
@@ -116,7 +117,7 @@ public class BuildingColider : MonoBehaviour
 	}
     public void clickRemoveObject()
     {
-        Debug.Log("만트라 !");
+        //Debug.Log("만트라 !");
         if (isSettingComplete)
         {
             if (this.gameObject.GetComponent<BuildingSetting>() != null)

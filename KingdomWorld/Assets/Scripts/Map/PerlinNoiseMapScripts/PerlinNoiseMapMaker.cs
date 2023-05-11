@@ -87,11 +87,11 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         mother.transform.eulerAngles = new Vector3(90, 0, 0);
 
         cameraTrans.position = new Vector3(startChunkX * 20f, 40f, startChunkZ * 20f);
-        // 화면 한번 돌렸다가 RefreshChunks로 정보가 없는 타일에 정보 넣어줌
-        //RefreshChunks();
-        //Camera.main.transform.position += new Vector3(0, 0, 100f);
-        //RefreshChunks();
-        //Camera.main.transform.position -= new Vector3(0, 0, 100f);
+		// 화면 한번 돌렸다가 RefreshChunks로 정보가 없는 타일에 정보 넣어줌
+		RefreshChunks();
+		Camera.main.transform.position += new Vector3(0, 0, 200f);
+		RefreshChunks();
+		Camera.main.transform.position -= new Vector3(0, 0, 200f);
 
 		for (int i = -4; i < 4; i++)
 		{
@@ -103,6 +103,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 		}
         cameraTrans.position = startVector3;
 
+        
     }
     private void Update()
     {
@@ -575,16 +576,6 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         tile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[4].tileOrder;
         tile.GetComponent<TileInfo>().TileNum = tileDIc[4].tileNum;
         AttachTag(tile, tileDIc[4].tileNum);
-        if (tile.GetComponent<TileInfo>().TileNum == 5)
-		{
-            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.STONE, x, y);
-            if (!isStartChunk)
-            {
-
-            }
-
-        }
-
 
         //우중단
         if (tileDIc[5].tileOrder >= tileDIc[4].tileOrder && tileDIc[5].tileNum != tileDIc[4].tileNum)

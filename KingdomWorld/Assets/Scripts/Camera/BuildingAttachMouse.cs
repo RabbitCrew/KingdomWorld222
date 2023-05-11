@@ -93,7 +93,7 @@ public class BuildingAttachMouse : MonoBehaviour
             clone.transform.position = new Vector3(Mathf.RoundToInt(mousePosition.x) + plusX, 0, Mathf.RoundToInt(mousePosition.z) + plusZ);
         }
         // ��Ŭ���� �ϸ� ���콺�� �پ��ִ� �������� ������
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) && !GameManager.instance.ReturnTutorialPanel().TutorialProceeding)
         {
             if (clone != null)
             {
@@ -145,6 +145,8 @@ public class BuildingAttachMouse : MonoBehaviour
         //clone = null;
         // ���콺 Ŭ�� ���θ� false�� �صξ����� ���� ���콺���� ��������.
         isClick = false;
+
+        if (GameManager.instance.ReturnTutorialPanel().TutorialProceeding) { GameManager.instance.ReturnTutorialPanel().StartTuto(); }
     }
 
     private void CreateBuilding(GameObject building)

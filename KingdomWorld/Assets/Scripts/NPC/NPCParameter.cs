@@ -31,7 +31,7 @@ public class NPCParameter : MonoBehaviour
                 value = maxHp;
             }else if(value <= 0)
             {
-                Debug.Log("����");
+                //Debug.Log("����");
                 if(buildingNum != null)
                 {
                     int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
