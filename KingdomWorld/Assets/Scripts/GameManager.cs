@@ -73,12 +73,14 @@ public class GameManager : Resource
         Invoke("InitGrid", Time.deltaTime * 3f);
         //startTime = Time.realtimeSinceStartup;
         isDaytime = true;
-        if (!tutorialPanel.StartTutorial)
-        {
-            GameManager.instance.GameStop = true;
-            uiManager.SetAcitveTutoPanel(true);
-            tutorialPanel.StartTuto(); 
-        }
+        tutorialPanel.UnLockAllButton();
+        tutorialPanel.unLockSpawn = true;
+        //if (!tutorialPanel.StartTutorial)
+        //{
+        //    GameManager.instance.GameStop = true;
+        //    uiManager.SetAcitveTutoPanel(true);
+        //    tutorialPanel.StartTuto(); 
+        //}
     }
 
     private void expensed()

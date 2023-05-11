@@ -104,7 +104,9 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 		}
         cameraTrans.position = startVector3;
 
-        
+        falseChunksList.Clear();
+        pointList.Clear();
+
     }
     private void Update()
     {
@@ -158,6 +160,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
             && cameraZMin == preCameraZMin)
         { return; }
 
+
         // 메인 카메라 범위 밖에 있는 맵은 오브젝트를 꺼준다. 
         for (int x = 0; x < worldChunks.GetLength(0); x++)
         {
@@ -172,6 +175,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                     // 비활성화 시켜줄 청크가 비활성화 청크 리스트 (falseChunksList)에 있지 않아야 한다. 아직은 켜져있기 때문
                     if (falseChunksList.FindIndex(a => a.Equals(worldChunks[x, y])) == -1)
                     {
+                        //Debug.Log(x + "  " + y);
                         // 해당 청크를 비활성화 시킨다.
                         worldChunks[x, y].SetActive(false);
                         // 비활성화 청크 리스트(falseChunkList)에 추가한다.
@@ -190,7 +194,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 else if (pointList.FindIndex(a => a.x == worldChunks[x, y].transform.localPosition.x && a.z == worldChunks[x, y].transform.localPosition.y) == -1 &&
                          pointList.Count + falseChunksList.Count < worldChunks.GetLength(0) * worldChunks.GetLength(1))
                 {
-                    Debug.Log(1111);
+                    //Debug.Log(1111);
                     //청크 좌표에 맞춰 맵을 재생성한다.
                     RefreshTexture(worldChunks[x, y], worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y);
                     //청크 좌표를 청크 좌표 리스트(pointList)에 추가한다.
@@ -206,6 +210,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
             {
                 if (pointList.FindIndex(a => a.x == x * chunkSize && a.z == z * chunkSize) == -1)
                 {
+                    //Debug.Log(x + "  " + z);
                     falseChunksList[0].SetActive(true);
                     falseChunksList[0].transform.localPosition = new Vector3(x * chunkSize, z * chunkSize, 0);
                     RefreshTexture(falseChunksList[0], x * chunkSize, z * chunkSize);
@@ -497,7 +502,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 else if (g >= 0.75) { g = 0.75f; }
                 float value = v + g;
                 value = Mathf.InverseLerp(0, 2, value);
-                float gray = Color.Lerp(Color.black, Color.white, value).grayscale;
+                //float gray = Color.Lerp(Color.black, Color.white, value).grayscale;
 
                 nearBlockArr[cnt] = Color.Lerp(Color.black, Color.white, value).grayscale;
                 cnt++;
@@ -581,8 +586,8 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         if (tile.GetComponent<TileInfo>().TileNum == 5)
         {
             settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.STONE, x, y);
-
         }
+        //if (tile.GetComponent<TileInfo>().TileNum == -1) { Debug.Log("버그"); }
 
         //우중단
         if (tileDIc[5].tileOrder >= tileDIc[4].tileOrder && tileDIc[5].tileNum != tileDIc[4].tileNum)

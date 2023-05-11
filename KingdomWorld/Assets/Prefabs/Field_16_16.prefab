@@ -182,7 +182,7 @@ MonoBehaviour:
   necessaryWood: 0
   necessaryStone: 0
   necessaryIron: 0
-  necessaryFood: 2
+  necessaryFood: 0
   npcNum: 0
   npc: {fileID: 0}
   BuildingNum: 0
@@ -191,6 +191,10 @@ MonoBehaviour:
   npcs: []
   storeMax: 50
   store: 0
+  milk: 0
+  fleece: 0
+  EmptyTrigger: 0
+  isWork: 0
 --- !u!114 &-432946936514903964
 MonoBehaviour:
   m_ObjectHideFlags: 0

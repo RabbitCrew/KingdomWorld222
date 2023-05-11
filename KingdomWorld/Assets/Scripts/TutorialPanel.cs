@@ -25,8 +25,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 		thisImg.color = new Color(1, 1, 1, 1/255f);
 		TutorialNum = 0;
         StartTutorial = false;
-		IsBuildingButtonOpen = false;
-		isBuildingTypeButtonOpen = false;
+		UnLockAllButton();
 		TutorialProceeding = false;
 		unLockSpawn = false;
 		startTutorialNum = 0;
@@ -56,10 +55,6 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 		isBuildingTypeButtonOpen = true;
 		isHumanListButtonOpen = true;
 		isResourceButtonOpen = true;
-	}
-	public void Update()
-	{
-		//Debug.Log(StartTutorial);
 	}
 	public void StartTuto()
 	{
