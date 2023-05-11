@@ -330,6 +330,8 @@ public class NPC : NPCScrip
                             }
                         }
                         i++;
+                        // 예외처리
+                        if (i == 500) { return; }
                     }
                 }
             }

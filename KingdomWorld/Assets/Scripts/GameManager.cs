@@ -85,7 +85,7 @@ public class GameManager : Resource
 
     private void expensed()
     {
-        Food -= AllHuman.Count * 10;
+        Food -= AllHuman.Count * 6;
     }
     private void winterExpensed()
     {

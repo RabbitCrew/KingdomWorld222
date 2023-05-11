@@ -23,7 +23,7 @@ public class Recource_UI : MonoBehaviour
 
     public void ResourceSearch()//자원 수량 텍스트로 띄워줌
     {
-        spendFoodText.text = "(" + (GameManager.instance.AllHuman.Count * 10) + ")";
+        spendFoodText.text = "(" + (GameManager.instance.AllHuman.Count * 6) + ")";
 
         if (GameManager.instance.isWinterComing)
         { spendWoodText.text = "(" + (GameManager.instance.AllHuman.Count * 2) + ")"; }

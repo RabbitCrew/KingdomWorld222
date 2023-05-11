@@ -84,6 +84,11 @@ public class WaitingBuilding : MonoBehaviour
         {
             building.SetActive(true);
             building.GetComponent<BuildingColider>().isSettingComplete = true;
+            building.GetComponent<BuildingColider>().isBuildComplete = true;
+            if (building.GetComponent<Storage>() != null)
+			{
+                building.GetComponent<Storage>().AddStorageList();
+			}
             callBuildingAttachMouseToWaitingBuildingEventDriven.RunGetObjectEvent(building);
             buildingRange.SetActive(false);
             Destroy(this.gameObject);

@@ -10,7 +10,7 @@ public class Storage : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.instance.StorageList.Add(this.gameObject);
+        //GameManager.instance.StorageList.Add(this.gameObject);
     }
 
     private void Start()
@@ -26,4 +26,14 @@ public class Storage : MonoBehaviour
             GameManager.instance.Wheat += ResourceStack;
         }
     }
+
+    public void AddStorageList()
+	{
+        GameManager.instance.StorageList.Add(this.gameObject);
+    }
+
+	private void OnDisable()
+	{
+        GameManager.instance.StorageList.Remove(this.gameObject);
+	}
 }

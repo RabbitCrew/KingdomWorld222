@@ -11,6 +11,7 @@ public class BuildingColider : MonoBehaviour
     [SerializeField] private int objTypeNum;
     public bool isFollowMouse { get; set; }
     public bool isSettingComplete { get; set; }
+    public bool isBuildComplete { get; set; }
     public ulong objCode { get; set; }
     private List<Collider> colList = new List<Collider>();
     private CallBuildingAttachMouseToBuildingColiderEventDriven callBuildingButtonToBuildingColiderEventDriven = new CallBuildingAttachMouseToBuildingColiderEventDriven();
