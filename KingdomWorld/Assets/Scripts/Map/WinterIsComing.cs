@@ -30,7 +30,7 @@ public class WinterIsComing : MonoBehaviour
 	{
         isOneDay = false;
         isWinter = false;
-        winterCount = 10;
+        winterCount = 7;
         isChangedSprite = false;
         intensity = 0f;
         emissionModule.rateOverTime = 0f;

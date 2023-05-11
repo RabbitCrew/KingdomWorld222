@@ -397,7 +397,7 @@ public class NPC : NPCScrip
                 if (GameManager.instance.WaitingBuildingList.Count > 0 && !OneCycle)
                 {
                     Building = GameManager.instance.WaitingBuildingList[0];
-                    GameManager.instance.WaitingBuildingList.RemoveAt(0);
+                    //GameManager.instance.WaitingBuildingList.RemoveAt(0);
                     isBuilingStart = true;
                     ResetPath(this.transform, Building.transform);
                     currentPathIndex = 0;
@@ -725,6 +725,7 @@ public class NPC : NPCScrip
                 isBuilingStart = false;
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
+                GameManager.instance.WaitingBuildingList.Remove(Building);
                 Building = null;
                 OneCycle = false;
                 yield break;

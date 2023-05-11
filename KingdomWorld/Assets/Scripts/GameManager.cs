@@ -75,12 +75,12 @@ public class GameManager : Resource
         isDaytime = true;
         tutorialPanel.UnLockAllButton();
         tutorialPanel.unLockSpawn = true;
-		if (!tutorialPanel.StartTutorial)
-		{
-			GameManager.instance.GameStop = true;
-			uiManager.SetAcitveTutoPanel(true);
-			tutorialPanel.StartTuto();
-		}
+		//if (!tutorialPanel.StartTutorial)
+		//{
+		//	GameManager.instance.GameStop = true;
+		//	uiManager.SetAcitveTutoPanel(true);
+		//	tutorialPanel.StartTuto();
+		//}
 	}
 
     private void expensed()

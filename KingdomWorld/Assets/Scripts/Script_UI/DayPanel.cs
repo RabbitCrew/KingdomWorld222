@@ -33,7 +33,7 @@ public class DayPanel : UIComment
         Index = 2;
         commentNum = 2;
         temMonth = 0;
-        time = 10;
+        time = 7;
         CountDay();
     }
 
