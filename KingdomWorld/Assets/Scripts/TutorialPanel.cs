@@ -17,6 +17,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 	public bool isHumanListButtonOpen { get; private set; }
 	public bool isResourceButtonOpen { get; private set; }
 	public bool isBuildingTypeButtonOpen { get; private set; }
+	public bool isPossibleDeleteBuilding { get; private set; }
 	private int startTutorialNum;
 	// Start is called before the first frame update
 	void Awake()
@@ -47,6 +48,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 		isBuildingTypeButtonOpen = false;
 		isHumanListButtonOpen = false;
 		isResourceButtonOpen = false;
+		isPossibleDeleteBuilding = false;
 	}
 
 	public void UnLockAllButton()
@@ -55,6 +57,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 		isBuildingTypeButtonOpen = true;
 		isHumanListButtonOpen = true;
 		isResourceButtonOpen = true;
+		isPossibleDeleteBuilding = true;
 	}
 	public void StartTuto()
 	{
@@ -109,7 +112,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 				startTutorialNum++;
 				break;
 			case 8:
-				tutoText.text = "이제 직업 고르기 버튼을 누르고, 목수를 선택해봅시다 !";
+				tutoText.text = "이제 직업 바꾸기 버튼을 누르고, 목수를 선택해봅시다 !";
 				unLockSpawn = false;
 				startTutorialNum++;
 				break;

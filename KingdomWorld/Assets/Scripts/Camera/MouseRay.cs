@@ -125,6 +125,8 @@ public class MouseRay : MonoBehaviour
         if (Input.GetMouseButtonDown(2) && !IsPointerOverUIObject() && !GameManager.instance.ReturnTutorialPanel().TutorialProceeding)
         {
             //Debug.Log(1);
+            if (!GameManager.instance.ReturnTutorialPanel().isPossibleDeleteBuilding) { return; }
+
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);
             hits = Physics.RaycastAll(ray, distance);
             for (int i = 0; i < hits.Length; i++)
