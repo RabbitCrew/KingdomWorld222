@@ -59,7 +59,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 	}
 	public void Update()
 	{
-		Debug.Log(StartTutorial);
+		//Debug.Log(StartTutorial);
 	}
 	public void StartTuto()
 	{
