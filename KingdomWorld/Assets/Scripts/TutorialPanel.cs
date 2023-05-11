@@ -124,7 +124,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 				startTutorialNum++;
 				break;
 			case 10:
-				tutoText.text = "이 기세를 몰아 이 땅을 발전해나가자구요!! 그럼 이만!";
+				tutoText.text = "이 기세를 몰아 이 땅을 발전해나가자구요!! 인구 100명을 목표로 스타트!";
 				startTutorialNum++;
 				break;
 			case 11:
