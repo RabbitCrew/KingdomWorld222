@@ -99,6 +99,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 			{
 				RefreshChunks();
 				cameraTrans.position = new Vector3(i * 20f, 40f, j * 20f);
+                //Debug.Log("Abcd");
 			}
 		}
         cameraTrans.position = startVector3;
@@ -189,6 +190,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
                 else if (pointList.FindIndex(a => a.x == worldChunks[x, y].transform.localPosition.x && a.z == worldChunks[x, y].transform.localPosition.y) == -1 &&
                          pointList.Count + falseChunksList.Count < worldChunks.GetLength(0) * worldChunks.GetLength(1))
                 {
+                    Debug.Log(1111);
                     //청크 좌표에 맞춰 맵을 재생성한다.
                     RefreshTexture(worldChunks[x, y], worldChunks[x, y].transform.localPosition.x, worldChunks[x, y].transform.localPosition.y);
                     //청크 좌표를 청크 좌표 리스트(pointList)에 추가한다.
@@ -576,6 +578,11 @@ public class PerlinNoiseMapMaker : MonoBehaviour
         tile.GetComponent<SpriteRenderer>().sortingOrder = tileDIc[4].tileOrder;
         tile.GetComponent<TileInfo>().TileNum = tileDIc[4].tileNum;
         AttachTag(tile, tileDIc[4].tileNum);
+        if (tile.GetComponent<TileInfo>().TileNum == 5)
+        {
+            settingObject.AddObjectPointList(chunkX, chunkY, (int)ObjectTypeNum.STONE, x, y);
+
+        }
 
         //우중단
         if (tileDIc[5].tileOrder >= tileDIc[4].tileOrder && tileDIc[5].tileNum != tileDIc[4].tileNum)
