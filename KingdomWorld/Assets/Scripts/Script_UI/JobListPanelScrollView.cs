@@ -89,6 +89,10 @@ public class JobListPanelScrollView : JobStringArr
 
     public void ClickJobButton(int index)
     {
+        if (GameManager.instance.ReturnTutorialPanel().StartTutorial && index != 2) { return; }
+
+        if (GameManager.instance.ReturnTutorialPanel().StartTutorial) { GameManager.instance.ReturnTutorialPanel().StartTuto(); }
+
         if (GameManager.instance.isDaytime)
         {
             if (citizenInfoPanel != null)

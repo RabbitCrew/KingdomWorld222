@@ -103,6 +103,7 @@ public class PerlinNoiseMapMaker : MonoBehaviour
 		}
         cameraTrans.position = startVector3;
 
+        
     }
     private void Update()
     {

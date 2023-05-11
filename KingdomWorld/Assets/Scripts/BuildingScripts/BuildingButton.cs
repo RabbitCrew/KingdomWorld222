@@ -9,6 +9,7 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerClickH
 {
     [SerializeField] private BuildingAttachMouse buildingAttachMouse;
     public GameObject prefab; // 생성할 오브젝트 프리팹
+    public int tuto;
     //public static GameObject clone { get; private set; } // 생성된 오브젝트 인스턴스
     //public static bool isClick { get; private set; }
     private Image img;
@@ -36,6 +37,10 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerClickH
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (tuto == 0 && GameManager.instance.ReturnTutorialPanel().TutorialProceeding 
+            && GameManager.instance.ReturnTutorialPanel().isBuildingTypeButtonOpen) { return; }
+
+
         if (!isImpossibleBuild)
         {
             buildingAttachMouse.CloneInst(prefab);

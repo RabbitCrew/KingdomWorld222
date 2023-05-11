@@ -117,7 +117,7 @@ public class BuildingColider : MonoBehaviour
 	}
     public void clickRemoveObject()
     {
-        Debug.Log("만트라 !");
+        //Debug.Log("만트라 !");
         if (isSettingComplete)
         {
             if (this.gameObject.GetComponent<BuildingSetting>() != null)

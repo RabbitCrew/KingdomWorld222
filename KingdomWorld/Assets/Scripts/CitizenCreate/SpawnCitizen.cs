@@ -42,7 +42,7 @@ public class SpawnCitizen : MonoBehaviour
 
     void SpawnintgCitizen()
     {
-        if (GameManager.instance.GameStop) { return; }
+        if (!GameManager.instance.ReturnTutorialPanel().unLockSpawn) { return; }
 
         HouseCount();
 

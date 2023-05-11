@@ -32,6 +32,10 @@ public class BuildingPanelOpenUI : UIComment
 
     public void MoveButton()
     {
+        if (!GameManager.instance.ReturnTutorialPanel().IsBuildingButtonOpen) { return; }
+
+        if (GameManager.instance.ReturnTutorialPanel().TutorialProceeding) { GameManager.instance.ReturnTutorialPanel().StartTuto(); }
+
         if (!isOpen)
         {
             isOpen = true;

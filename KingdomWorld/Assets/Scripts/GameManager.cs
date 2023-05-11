@@ -5,6 +5,8 @@ public class GameManager : Resource
 {
     [SerializeField] private PerlinNoiseMapMaker perlinNoise;
     [SerializeField] private HumanListPanel humanListPanel;
+    [SerializeField] private TutorialPanel tutorialPanel;
+    [SerializeField] private UIManager uiManager;
     [SerializeField] private DayPanel dayPanel;
     private float startTime;
     private float timeElapsed;
@@ -71,6 +73,12 @@ public class GameManager : Resource
         Invoke("InitGrid", Time.deltaTime * 3f);
         //startTime = Time.realtimeSinceStartup;
         isDaytime = true;
+        if (!tutorialPanel.StartTutorial)
+        {
+            GameManager.instance.GameStop = true;
+            uiManager.SetAcitveTutoPanel(true);
+            tutorialPanel.StartTuto(); 
+        }
     }
 
     private void expensed()
@@ -99,6 +107,10 @@ public class GameManager : Resource
         //humanListPanel.UpdateHumanList();
     }
 
+    public TutorialPanel ReturnTutorialPanel()
+	{
+        return tutorialPanel;
+	}
 
     void Update()
     {

@@ -20,6 +20,7 @@ public class MoveBackgroundAsMouse : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.GameStop) { return; }
 
         if (Input.mousePosition.x <= Screen.width && Input.mousePosition.x >= 0 &&
             Input.mousePosition.y <= Screen.height && Input.mousePosition.y >= 0)

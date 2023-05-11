@@ -12,6 +12,7 @@ public class UIManager : JobStringArr
     [SerializeField] private GameObject npcHpAndShieldBarUIObj;
     [SerializeField] private GameObject npcHpShieldBarUIObjPanel;
     [SerializeField] private GameObject endingPanel;
+    [SerializeField] private GameObject tutorialPanel;
     [SerializeField] private Image hpBarMask;
     [SerializeField] private Image shieldBarMask;
     [SerializeField] private Image npcHpBarMask;
@@ -33,6 +34,11 @@ public class UIManager : JobStringArr
         openJobChangeUIVec = new Vector3(-740f, 100f, 0f);
         closeJobChangeUIVec = new Vector3(-1180f, 100f, 0f);
     }
+
+    public void SetAcitveTutoPanel(bool bo)
+	{
+        tutorialPanel.SetActive(bo);
+	}
 
     public void SetIsHpAndShieldBarUIObj(bool bo, int hp, int shield, int maxHp, int maxShield, int buildingNumber)
 	{
@@ -102,6 +108,8 @@ public class UIManager : JobStringArr
 	}
     public void SetActiveHumanListPanel()
     {
+        if (!GameManager.instance.ReturnTutorialPanel().isHumanListButtonOpen) { return; }
+
         if (humanListPanel.activeSelf)
         {
             humanListPanel.SetActive(false);

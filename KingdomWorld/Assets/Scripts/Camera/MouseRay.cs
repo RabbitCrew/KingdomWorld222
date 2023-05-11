@@ -28,7 +28,7 @@ public class MouseRay : MonoBehaviour
             }
         }
 
-        if (Time.timeScale == 0) { return; }
+        //if (Time.timeScale == 0) { return; }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -107,6 +107,13 @@ public class MouseRay : MonoBehaviour
             {
                 if (hits[i].transform.GetComponent<CitizenInfoPanel>() != null)
                 {
+                    Debug.Log(GameManager.instance.ReturnTutorialPanel().unLockSpawn);
+                    Debug.Log(GameManager.instance.ReturnTutorialPanel().StartTutorial);
+                    if (GameManager.instance.ReturnTutorialPanel().unLockSpawn && GameManager.instance.ReturnTutorialPanel().StartTutorial)
+					{
+                        GameManager.instance.ReturnTutorialPanel().StartTuto();
+                    }
+
                     uiManager.SetIsOpenCitizenPanel(true, hits[i].transform.GetComponent<CitizenInfoPanel>());
                     SetTargetTransform(hits[i].transform);
                     break;
@@ -115,7 +122,7 @@ public class MouseRay : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(2) && !IsPointerOverUIObject())
+        if (Input.GetMouseButtonDown(2) && !IsPointerOverUIObject() && !GameManager.instance.ReturnTutorialPanel().TutorialProceeding)
         {
             //Debug.Log(1);
             Ray ray = new Ray(Camera.main.ScreenToWorldPoint(Input.mousePosition), transform.forward);

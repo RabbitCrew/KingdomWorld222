@@ -29,6 +29,8 @@ public class ChangeResourceUISprite : UIComment
 
 	public void ChangeSprite()
 	{
+		if (!GameManager.instance.ReturnTutorialPanel().isResourceButtonOpen) { return; }
+
 		if (isLong)
 		{
 			isLong = false;
