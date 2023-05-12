@@ -122,6 +122,10 @@ public class BuildingSetting : MonoBehaviour
             GameManager.instance.FullResourceBuildingList.Add(this.gameObject);
             addStop = true;
         }
+        if (!GameManager.instance.isDaytime || npcs.Count <= 0)
+        {
+            isWork = false;
+        }
         EmptyNPCListner();
     }
     void EmptyNPCListner()
