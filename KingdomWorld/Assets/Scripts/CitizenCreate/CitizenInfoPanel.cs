@@ -23,7 +23,7 @@ public class CitizenInfoPanel : MonoBehaviour
             jobNumEnum = (JobNum)jobCode;
             if (GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject)) != -1)
 			{
-                GameManager.instance.RestHuman.Remove(gameObject);
+                GameManager.instance.RestHuman.Remove(this.gameObject);
 			}
         }
         //Debug.Log(jobNumEnum);
