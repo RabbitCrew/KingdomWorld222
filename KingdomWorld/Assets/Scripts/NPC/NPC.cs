@@ -471,9 +471,14 @@ public class NPC : NPCScrip
                     }
                 }
             }
+            else if (this.CompareTag("WoodCutter") && Tree != null && !cuttingTree)//나무에 도착시 나무자르기
+            {
+                if (other.transform == Tree)
+                    StartCoroutine(CuttingTree(3));
+            }
         }
-            
     }
+    bool cuttingTree = false;
     private void OnTriggerEnter(Collider other)//목적지 도착시 일시작
     {
         if(BuildingNum != null)
@@ -534,11 +539,7 @@ public class NPC : NPCScrip
             {
                 searchWood();
             }
-            else if(this.CompareTag("WoodCutter") && Tree != null)//나무에 도착시 나무자르기
-            {
-                if(other.transform == Tree)
-                    StartCoroutine(CuttingTree(3));
-            }else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedResource > 0)
+            else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedResource > 0)
             {
                 StartCoroutine(PutWood(1f, other));
                 /*else
@@ -734,6 +735,7 @@ public class NPC : NPCScrip
     }
     private IEnumerator CuttingTree(float delay)
     {
+        cuttingTree = true;
         yield return new WaitForSeconds(delay);
         if(Tree != null)
             Destroy(Tree.gameObject);
@@ -741,6 +743,7 @@ public class NPC : NPCScrip
         Tree = null;
         ResetPath(this.transform, BuildingNum.transform);
         currentPathIndex = 0;
+        cuttingTree = false;
         yield break;
     }
     private IEnumerator HuntingAnimal(float delay, Transform animal)//동물 사냥 완료
