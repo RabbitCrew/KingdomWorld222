@@ -119,6 +119,8 @@ public class JobListPanelScrollView : JobStringArr
                         citizenInfoPanel.gameObject.GetComponent<NPC>().searchMyBuilding();
                         //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " けけけ 穿");
                         GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)]--;
+                        int index2 = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.citizenInfoPanel.gameObject));
+                        if (index2 != -1) { GameManager.instance.RestHuman.RemoveAt(index2); }
                         //Debug.Log(GameManager.instance.jobCountDic[(JobNum)(jobListButnArr[index].butnNum)] + " けけけ 板");
                     }
                     else

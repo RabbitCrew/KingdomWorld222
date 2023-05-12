@@ -8,7 +8,6 @@ public class OneClickAllNPCWork : MonoBehaviour
     private SpriteManager spriteManager;
 
     private int jobCode;
-
     private void Update()
     {
         OneClickNPCWork();

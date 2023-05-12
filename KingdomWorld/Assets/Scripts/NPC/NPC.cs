@@ -203,7 +203,7 @@ public class NPC : NPCScrip
     }
     //창고지기 
     private bool isCargoWorkStart = false;//목표로 이동했는지 체크
-    Transform fullbuilding = null;//저장량이 가득찬 건물
+    
     private bool isreturntocargo = false;//목표건물에서 다시 창고로 복귀하는지 체크
     void CargoClass()
     {
@@ -386,7 +386,7 @@ public class NPC : NPCScrip
     }
     bool isBuilingStart = false;
     bool isRepairStart = false;
-    GameObject Building = null;
+    
     float currentBuildingGauge = 0f;
     void Carpenter()//목수
     {
@@ -397,7 +397,7 @@ public class NPC : NPCScrip
                 if (GameManager.instance.WaitingBuildingList.Count > 0 && !OneCycle)
                 {
                     Building = GameManager.instance.WaitingBuildingList[0];
-                    //GameManager.instance.WaitingBuildingList.RemoveAt(0);
+                    GameManager.instance.WaitingBuildingList.RemoveAt(0);
                     isBuilingStart = true;
                     ResetPath(this.transform, Building.transform);
                     currentPathIndex = 0;
@@ -471,9 +471,14 @@ public class NPC : NPCScrip
                     }
                 }
             }
+            else if (this.CompareTag("WoodCutter") && Tree != null && !cuttingTree)//나무에 도착시 나무자르기
+            {
+                if (other.transform == Tree)
+                    StartCoroutine(CuttingTree(3));
+            }
         }
-            
     }
+    bool cuttingTree = false;
     private void OnTriggerEnter(Collider other)//목적지 도착시 일시작
     {
         if(BuildingNum != null)
@@ -534,11 +539,7 @@ public class NPC : NPCScrip
             {
                 searchWood();
             }
-            else if(this.CompareTag("WoodCutter") && Tree != null)//나무에 도착시 나무자르기
-            {
-                if(other.transform == Tree)
-                    StartCoroutine(CuttingTree(3));
-            }else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedResource > 0)
+            else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedResource > 0)
             {
                 StartCoroutine(PutWood(1f, other));
                 /*else
@@ -725,7 +726,7 @@ public class NPC : NPCScrip
                 isBuilingStart = false;
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
-                GameManager.instance.WaitingBuildingList.Remove(Building);
+                //GameManager.instance.WaitingBuildingList.Remove(Building);
                 Building = null;
                 OneCycle = false;
                 yield break;
@@ -734,6 +735,7 @@ public class NPC : NPCScrip
     }
     private IEnumerator CuttingTree(float delay)
     {
+        cuttingTree = true;
         yield return new WaitForSeconds(delay);
         if(Tree != null)
             Destroy(Tree.gameObject);
@@ -741,6 +743,7 @@ public class NPC : NPCScrip
         Tree = null;
         ResetPath(this.transform, BuildingNum.transform);
         currentPathIndex = 0;
+        cuttingTree = false;
         yield break;
     }
     private IEnumerator HuntingAnimal(float delay, Transform animal)//동물 사냥 완료

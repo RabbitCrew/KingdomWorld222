@@ -16,6 +16,8 @@ public class NPCParameter : MonoBehaviour
     public int HavedAnimal;
     protected Dictionary<string, int> cargoclasshaveitem = new Dictionary<string, int>();
 
+    protected GameObject Building = null;
+    protected Transform fullbuilding = null;//저장량이 가득찬 건물
     public int Maxhp
     {
         get { return maxHp; }
@@ -32,7 +34,7 @@ public class NPCParameter : MonoBehaviour
             }else if(value <= 0)
             {
                 //Debug.Log("����");
-                if(buildingNum != null)//유휴시민일시 시민사망
+                if(buildingNum != null)//직업이 할당된시민일시 시민사망
                 {
                     int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
                     if (index != -1) { GameManager.instance.RestHuman.RemoveAt(index); }
@@ -40,8 +42,16 @@ public class NPCParameter : MonoBehaviour
                     if (index != -1) { BuildingNum.GetComponent<BuildingSetting>().npcs.RemoveAt(index); }
                     index = GameManager.instance.AllHuman.FindIndex(a => a.Equals(this.gameObject));
                     if (index != -1) { GameManager.instance.AllHuman.RemoveAt(index); }
+                    if (Building != null)
+                    {
+                        GameManager.instance.WaitingBuildingList.Add(Building);
+                    }
+                    if (fullbuilding != null)
+                    {
+                        GameManager.instance.FullResourceBuildingList.Add(fullbuilding.gameObject);
+                    }
                 }
-                else//직업이 할당된시민일시 시민사망
+                else//유휴시민일시 사망
                 {
                     int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
                     if (index != -1) { GameManager.instance.RestHuman.RemoveAt(index); }

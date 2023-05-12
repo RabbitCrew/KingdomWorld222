@@ -6,7 +6,7 @@ using ObjectNS;
 public class CitizenInfoPanel : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer clothesSpr;
-    public JobNum jobNumEnum;  // ½Ã¹ÎÀÇ Á÷¾÷ Á¤º¸¸¦ ´ã°í ÀÖÀ½.
+    public JobNum jobNumEnum;  // ï¿½Ã¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
     public void WareClothes(Sprite clothes, int jobCode) 
     {
@@ -21,10 +21,10 @@ public class CitizenInfoPanel : MonoBehaviour
         else
         {
             jobNumEnum = (JobNum)jobCode;
-            if (GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject)) != -1)
+            /*if (GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject)) != -1)
 			{
-                GameManager.instance.RestHuman.Remove(this.gameObject);
-			}
+                GameManager.instance.RestHuman.Remove(gameObject);
+			}*/
         }
         //Debug.Log(jobNumEnum);
     }

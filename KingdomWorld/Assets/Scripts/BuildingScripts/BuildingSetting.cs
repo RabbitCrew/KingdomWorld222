@@ -122,13 +122,17 @@ public class BuildingSetting : MonoBehaviour
             GameManager.instance.FullResourceBuildingList.Add(this.gameObject);
             addStop = true;
         }
+        if (!GameManager.instance.isDaytime || npcs.Count <= 0)
+        {
+            isWork = false;
+        }
         EmptyNPCListner();
     }
     void EmptyNPCListner()
     {
         if (BuildComplete)
         {
-            if (npcs.Count == 0 && !GameManager.instance.EmptyNPCBuilding.Contains(this.gameObject) && !this.CompareTag("IronMine") && !this.CompareTag("Wheatfield") && !this.CompareTag("House"))
+            if (npcs.Count == 0 && !GameManager.instance.EmptyNPCBuilding.Contains(this.gameObject) && !this.CompareTag("IronMine") && !this.CompareTag("Wheatfield") && !this.CompareTag("House") && !this.CompareTag("Street"))
             {
                 GameManager.instance.EmptyNPCBuilding.Add(this.gameObject);
                 //int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
