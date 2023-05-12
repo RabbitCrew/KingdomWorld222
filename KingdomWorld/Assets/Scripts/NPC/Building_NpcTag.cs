@@ -125,9 +125,9 @@ public class Building_NpcTag : MonoBehaviour
         else if (ToCheckNpc.tag.Equals("CarpenterNPC")) { return InputJobText[2]; }
         else if (ToCheckNpc.tag.Equals("Hunter")) { return InputJobText[3]; }
         else if (ToCheckNpc.tag.Equals("Pastoralist")) { return InputJobText[4]; }
-        else if (ToCheckNpc.tag.Equals("Farmer")) { return InputJobText[5]; }
-        else if (ToCheckNpc.tag.Equals("StoneMiner")) { return InputJobText[6]; }
-        else if (ToCheckNpc.tag.Equals("IronMiner")) { return InputJobText[7]; }
+        else if (ToCheckNpc.tag.Equals("FarmNPC")) { return InputJobText[5]; }
+        else if (ToCheckNpc.tag.Equals("StoneMineWorker")) { return InputJobText[6]; }
+        else if (ToCheckNpc.tag.Equals("IronMineWorker")) { return InputJobText[7]; }
         else if (ToCheckNpc.tag.Equals("HamNPC")) { return InputJobText[8]; }
         else if (ToCheckNpc.tag.Equals("CheeseNPC")) { return InputJobText[9]; }
         else if (ToCheckNpc.tag.Equals("FabricNPC")) { return InputJobText[10]; }
