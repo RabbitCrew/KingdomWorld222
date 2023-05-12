@@ -109,7 +109,7 @@ public class Resource : Setgrid
                 if(value < 0)
                 {
                     value *= -1;
-                    for (int i = 0; i < value / 10; i++)
+                    for (int i = 0; i < value / 6; i++)
                     {
                         if (AllHuman.Count >= 1)
                         {
@@ -119,10 +119,10 @@ public class Resource : Setgrid
                     }
                     value = 0;
                 }
-                else if (value >= 0 && value < 10)
+                else if (value >= 0 && value < 6)
                 {
                     value = 10;
-                    for (int i = 0; i < value / 10; i++)
+                    for (int i = 0; i < value / 6; i++)
                     {
                         if (AllHuman.Count >= 1)
                         {
@@ -146,9 +146,9 @@ public class Resource : Setgrid
             }else if(value < 0)
             {
                 value *= -1;
-                if (value > 0 && value < 10)
+                if (value > 0 && value < 2)
                     value = 10;
-                for (int i = 0; i < value / 10; i++)
+                for (int i = 0; i < value / 2; i++)
                 {
                     if (AllHuman.Count >= 1)
                     {

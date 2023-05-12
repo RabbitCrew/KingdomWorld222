@@ -128,7 +128,7 @@ public class BuildingSetting : MonoBehaviour
     {
         if (BuildComplete)
         {
-            if (npcs.Count == 0 && !GameManager.instance.EmptyNPCBuilding.Contains(this.gameObject) && !this.CompareTag("IronMine") && !this.CompareTag("Wheatfield") && !this.CompareTag("House"))
+            if (npcs.Count == 0 && !GameManager.instance.EmptyNPCBuilding.Contains(this.gameObject) && !this.CompareTag("IronMine") && !this.CompareTag("Wheatfield") && !this.CompareTag("House") && !this.CompareTag("Street"))
             {
                 GameManager.instance.EmptyNPCBuilding.Add(this.gameObject);
                 //int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));

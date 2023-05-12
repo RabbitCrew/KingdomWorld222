@@ -203,7 +203,7 @@ public class NPC : NPCScrip
     }
     //창고지기 
     private bool isCargoWorkStart = false;//목표로 이동했는지 체크
-    Transform fullbuilding = null;//저장량이 가득찬 건물
+    
     private bool isreturntocargo = false;//목표건물에서 다시 창고로 복귀하는지 체크
     void CargoClass()
     {
@@ -386,7 +386,7 @@ public class NPC : NPCScrip
     }
     bool isBuilingStart = false;
     bool isRepairStart = false;
-    GameObject Building = null;
+    
     float currentBuildingGauge = 0f;
     void Carpenter()//목수
     {
@@ -397,7 +397,7 @@ public class NPC : NPCScrip
                 if (GameManager.instance.WaitingBuildingList.Count > 0 && !OneCycle)
                 {
                     Building = GameManager.instance.WaitingBuildingList[0];
-                    //GameManager.instance.WaitingBuildingList.RemoveAt(0);
+                    GameManager.instance.WaitingBuildingList.RemoveAt(0);
                     isBuilingStart = true;
                     ResetPath(this.transform, Building.transform);
                     currentPathIndex = 0;
@@ -725,7 +725,7 @@ public class NPC : NPCScrip
                 isBuilingStart = false;
                 ResetPath(this.transform, BuildingNum.transform);
                 currentPathIndex = 0;
-                GameManager.instance.WaitingBuildingList.Remove(Building);
+                //GameManager.instance.WaitingBuildingList.Remove(Building);
                 Building = null;
                 OneCycle = false;
                 yield break;
