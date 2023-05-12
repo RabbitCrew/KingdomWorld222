@@ -190,6 +190,18 @@ public class Recource_UI : MonoBehaviour
                         RText[i].color = defaultTextColor;
                     }
                     break;
+                case 13:
+                    RText[i].text = GameManager.instance.Ham.ToString();
+
+                    if (GameManager.instance.Ham <= 0)//자원이 0개가 됬을 때 색상 변경
+                    {
+                        RText[i].color = TextColor;
+                    }
+                    else
+                    {
+                        RText[i].color = defaultTextColor;
+                    }
+                    break;
                 default:
                     break;
             }
