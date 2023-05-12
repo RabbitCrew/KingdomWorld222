@@ -20,10 +20,10 @@ public class NPCHP : MonoBehaviour
 
         RandomDead = Random.Range(0, 100);
 
-        if (RandomDead <= 5)
-        {
-            this.transform.parent.SendMessage("DeadBodyCreate", this.transform.position);
-        }
+        //if (RandomDead <= 5)
+        //{
+        //    this.transform.parent.SendMessage("DeadBodyCreate", this.transform.position);
+        //}
     }
 
     private void OnDisable()
