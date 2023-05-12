@@ -53,7 +53,7 @@ public class UISmallComment : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 				smallCommentText.text = "돌입니다." + "\n" + "기본적으로 건물을 지을 때 사용됩니다.";
 				break;
 			case 7:
-				smallCommentText.text = "우유입니다." + "\n" + "농장에서 소를 길러 얻을 수 있습니다. 거래소에서 거래할 때 사용됩니다.";
+				smallCommentText.text = "우유입니다." + "\n" + "농장에서 소를 길러 얻을 수 있습니다. 식량이 0 아래로 되었을 때 우유는 식량 1당 2의 비율로 바뀝니다.";
 				break;
 			case 8:
 				smallCommentText.text = "주조철입니다." + "\n" + "대장간에서 철광석을 제련하여 얻을 수 있습니다. 기본적으로 건물을 지을 때 사용됩니다.";
