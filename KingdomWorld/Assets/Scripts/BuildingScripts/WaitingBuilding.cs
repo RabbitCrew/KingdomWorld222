@@ -83,6 +83,7 @@ public class WaitingBuilding : MonoBehaviour
         //if (time >= maxTime)    // 윗줄 코드와 전환
         {
             building.SetActive(true);
+            building.GetComponent<BuildingSetting>().BuildComplete = true;
             building.GetComponent<BuildingColider>().isSettingComplete = true;
             building.GetComponent<BuildingColider>().isBuildComplete = true;
             if (building.GetComponent<Storage>() != null)

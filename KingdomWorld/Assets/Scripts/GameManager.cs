@@ -31,6 +31,7 @@ public class GameManager : Resource
     public List<GameObject> WaitingBuildingList = new List<GameObject>();
     public List<GameObject> StorageList = new List<GameObject>();
     public List<GameObject> FullResourceBuildingList = new List<GameObject>();
+    public List<GameObject> EmptyNPCBuilding = new List<GameObject>();
     public float dayLength; 
     public static GameManager instance = null;
     private void Awake()

@@ -32,6 +32,7 @@ public class BuildingSetting : MonoBehaviour
     int MaxResource = 10;
     public int milk = 0;
     public int fleece = 0;
+    public bool BuildComplete = false;
 
     public bool EmptyTrigger;
     public bool isWork = false;
@@ -121,8 +122,26 @@ public class BuildingSetting : MonoBehaviour
             GameManager.instance.FullResourceBuildingList.Add(this.gameObject);
             addStop = true;
         }
+        EmptyNPCListner();
     }
-
+    void EmptyNPCListner()
+    {
+        if (BuildComplete)
+        {
+            if (npcs.Count == 0 && !GameManager.instance.EmptyNPCBuilding.Contains(this.gameObject) && !this.CompareTag("IronMine") && !this.CompareTag("Wheatfield") && !this.CompareTag("House"))
+            {
+                GameManager.instance.EmptyNPCBuilding.Add(this.gameObject);
+                //int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
+            }
+            /*else if (npcs.Count > 0 && GameManager.instance.EmptyNPCBuilding.Contains(this.gameObject))
+            {
+                int index = GameManager.instance.EmptyNPCBuilding.FindIndex(a => a.Equals(this.gameObject));
+                if (index != -1) { GameManager.instance.EmptyNPCBuilding.RemoveAt(index); }
+            }*/
+        }
+        
+        
+    }
     //private void OnTriggerEnter2D(Collider2D other)
     //{
     //    //if (other.tag == "carpenter")
