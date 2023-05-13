@@ -68,7 +68,7 @@ public class GameManager : Resource
     void Start()
     {
         //InitializeGrid(500, 500);
-        Food = 10;
+        Food = 50;
         Wood = 50;
         perlinNoise.InitStart();
         Invoke("InitGrid", Time.deltaTime * 3f);

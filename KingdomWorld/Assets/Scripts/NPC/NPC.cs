@@ -642,10 +642,13 @@ public class NPC : NPCScrip
     private IEnumerator CuttingStone(float delay)
     {
         yield return new WaitForSeconds(delay);
-        HavedResource += 1;
-        Stone = null;
-        ResetPath(this.transform, BuildingNum.transform);
-        currentPathIndex = 0;
+        if (this.CompareTag("StoneMineWorker"))
+        {
+            HavedResource += 1;
+            Stone = null;
+            ResetPath(this.transform, BuildingNum.transform);
+            currentPathIndex = 0;
+        }
         yield break;
     }
     IEnumerator PutWood(float delay, Collider other)
@@ -737,26 +740,33 @@ public class NPC : NPCScrip
     {
         cuttingTree = true;
         yield return new WaitForSeconds(delay);
-        if(Tree != null)
-            Destroy(Tree.gameObject);
-        HavedResource += 3;
-        Tree = null;
-        ResetPath(this.transform, BuildingNum.transform);
-        currentPathIndex = 0;
+        if (this.CompareTag("WoodCutter"))
+        {
+            if (Tree != null)
+                Destroy(Tree.gameObject);
+            HavedResource += 3;
+            Tree = null;
+            Debug.Log(BuildingNum);
+            ResetPath(this.transform, BuildingNum.transform);
+            currentPathIndex = 0;
+        }
         cuttingTree = false;
         yield break;
     }
     private IEnumerator HuntingAnimal(float delay, Transform animal)//동물 사냥 완료
     {
         yield return new WaitForSeconds(delay);
-        if(animal != null)
-            Destroy(animal.gameObject);
-        HavedAnimal += 1;
-        Animal = null;
-        hunting = false;
-        isReturntohunterhouse = true;
-        ResetPath(this.transform, BuildingNum.transform);
-        currentPathIndex = 0;
+        if (this.CompareTag("Hunter"))
+        {
+            if (animal != null)
+                Destroy(animal.gameObject);
+            HavedAnimal += 1;
+            Animal = null;
+            hunting = false;
+            isReturntohunterhouse = true;
+            ResetPath(this.transform, BuildingNum.transform);
+            currentPathIndex = 0;
+        }
         yield break;
     }
     public void ResetParameter()

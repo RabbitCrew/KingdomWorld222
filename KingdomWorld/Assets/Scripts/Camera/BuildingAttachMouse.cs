@@ -181,7 +181,7 @@ public class BuildingAttachMouse : MonoBehaviour
         clone2.transform.position = new Vector3(chunkX * 20 + tileX + plusX, 0, chunkY * 20 + tileY + plusZ);
         clone2.transform.eulerAngles = new Vector3(90, 0, 0);
         clone2.GetComponent<BuildingColider>().isSettingComplete = true;
-
+        clone2.GetComponent<BuildingSetting>().BuildComplete = true;
         if (clone2.transform.localPosition.x % 1 != 0) { x = -0.5f; }
         else { x = 0; }
 

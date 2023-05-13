@@ -18,6 +18,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 	public bool isResourceButtonOpen { get; private set; }
 	public bool isBuildingTypeButtonOpen { get; private set; }
 	public bool isPossibleDeleteBuilding { get; private set; }
+	public bool isAutoNPCWorkButtonOpen { get; private set; }
 	private int startTutorialNum;
 	// Start is called before the first frame update
 	void Awake()
@@ -49,6 +50,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 		isHumanListButtonOpen = false;
 		isResourceButtonOpen = false;
 		isPossibleDeleteBuilding = false;
+		isAutoNPCWorkButtonOpen = false;
 	}
 
 	public void UnLockAllButton()
@@ -58,6 +60,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 		isHumanListButtonOpen = true;
 		isResourceButtonOpen = true;
 		isPossibleDeleteBuilding = true;
+		isAutoNPCWorkButtonOpen = true;
 	}
 	public void StartTuto()
 	{

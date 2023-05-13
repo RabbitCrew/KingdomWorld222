@@ -70,7 +70,7 @@ public class Resource : Setgrid
         {
             if (value >= MaxResource)
             {
-                Debug.Log("Food 맥스리소스 초과");
+                //Debug.Log("Food 맥스리소스 초과");
                 value = MaxResource;
             }
             else if(value < 0)//죽음의조건

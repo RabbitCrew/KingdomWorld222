@@ -62,6 +62,13 @@ public abstract class UIComment : MonoBehaviour, IPointerEnterHandler, IPointerE
 
 				commentText.text = "클릭 시, 현재 소유중인 유물을 보여줍니다. 아직 개발되지 않았습니다.";
 				break;
+			case 6:
+				commentPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 450f);
+				commentPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100f);
+				commentPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(-215f, -400f);
+
+				commentText.text = "클릭 시, 직업이 없는 시민은 자동으로 직업이 배정되도록 합니다.";
+				break;
 
 		}
 	}

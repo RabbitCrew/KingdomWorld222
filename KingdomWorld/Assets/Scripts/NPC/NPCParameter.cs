@@ -37,7 +37,7 @@ public class NPCParameter : MonoBehaviour
                 if(buildingNum != null)//직업이 할당된시민일시 시민사망
                 {
                     int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
-                    if (index != -1) { GameManager.instance.RestHuman.RemoveAt(index); }
+                    if (index != -1) { GameManager.instance.RestHuman.Remove(this.gameObject); }
                     index = BuildingNum.GetComponent<BuildingSetting>().npcs.FindIndex(a => a.Equals(this.gameObject));
                     if (index != -1) { BuildingNum.GetComponent<BuildingSetting>().npcs.RemoveAt(index); }
                     index = GameManager.instance.AllHuman.FindIndex(a => a.Equals(this.gameObject));
@@ -54,7 +54,7 @@ public class NPCParameter : MonoBehaviour
                 else//유휴시민일시 사망
                 {
                     int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
-                    if (index != -1) { GameManager.instance.RestHuman.RemoveAt(index); }
+                    if (index != -1) { GameManager.instance.RestHuman.Remove(this.gameObject); }
                     /*index = BuildingNum.GetComponent<BuildingSetting>().npcs.FindIndex(a => a.Equals(this.gameObject));
                     if (index != -1) { BuildingNum.GetComponent<BuildingSetting>().npcs.RemoveAt(index); }*/
                     index = GameManager.instance.AllHuman.FindIndex(a => a.Equals(this.gameObject));

@@ -1,19 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class OneClickAllNPCWork : MonoBehaviour
+public class OneClickAllNPCWork : UIComment
 {
     [SerializeField]
     private SpriteManager spriteManager;
-
+    [SerializeField] private TextMeshProUGUI text;
+    private bool isOn;
     private int jobCode;
-    private void Update()
+	private void Awake()
+	{
+        isOn = false;
+        commentNum = 6;
+
+    }
+	private void Update()
     {
         OneClickNPCWork();
     }
+
+    public void SetIsOn()
+	{
+        if (isOn) { isOn = false; text.text = "자동배정Off"; }
+        else { isOn = true; text.text = "자동배정On"; }
+	}
+
     void OneClickNPCWork()
     {
+        if (!GameManager.instance.ReturnTutorialPanel().isAutoNPCWorkButtonOpen) { return; }
+        if (!isOn) { return; }
+
         if(GameManager.instance.EmptyNPCBuilding.Count > 0 && GameManager.instance.isDaytime && GameManager.instance.RestHuman.Count > 0)
         {
             if (GameManager.instance.EmptyNPCBuilding[0].tag.Equals("Storage")) { jobCode = 6; }

@@ -21,6 +21,7 @@ public class Building_NpcTag : MonoBehaviour
     private GameObject JobBuilding;
 
     private int jobCount;   // 현재 누른 건물에 할당된 시민 수
+    private int jobMaxCount;    // 현재 누른 건물에 할당될 수 있는 최대 시민 수
     private int jobCode;    // 배정받을 직업의 번호
     private float distance = 50f;
 
@@ -88,10 +89,10 @@ public class Building_NpcTag : MonoBehaviour
 
                         JobPanel.SetActive(true);
 
-                        if (hits[i].collider.GetComponent<BuildingSetting>() != null)
-						{
-                            jobCount = hits[i].collider.GetComponent<BuildingSetting>().npcCount;
-						}
+                        if (JobBuilding.GetComponent<BuildingSetting>() != null)
+                        {
+                            jobMaxCount = JobBuilding.GetComponent<BuildingSetting>().npcCount;
+                        }
 
                         for (int j = 0; j < NPCPanel.Length; j++)
                         {
@@ -100,22 +101,34 @@ public class Building_NpcTag : MonoBehaviour
 
                         NPCFound();
 
-                        if (hits[i].collider.gameObject.tag.Equals("Storage")) {jobCode = 6;}
-                        else if (JobBuilding.tag.Equals("WoodCutter_house")) {jobCode = 1;}
-                        else if (JobBuilding.tag.Equals("Carpenter_house")) {jobCode = 2;}
-                        else if (JobBuilding.tag.Equals("Hunter_house")) {jobCode = 3;}
-                        else if (JobBuilding.tag.Equals("Farm_house")) {jobCode = 5;}
-                        else if (JobBuilding.tag.Equals("WheatField")) {jobCode = -1;}
-                        else if (JobBuilding.tag.Equals("Mine_house")) {jobCode = 8;}
-                        else if (JobBuilding.tag.Equals("Ham_house")) {jobCode = 9;}
-                        else if (JobBuilding.tag.Equals("Cheese_house")) {jobCode = 10;}
-                        else if (JobBuilding.tag.Equals("Cloth_house")) {jobCode = 11;}
-                        else if (JobBuilding.tag.Equals("Smith_house")) {jobCode = 12;}
-                        else { JobPanel.SetActive(false);}
+                        if (hits[i].collider.gameObject.tag.Equals("Storage")) { jobCode = 6; }
+                        else if (JobBuilding.tag.Equals("WoodCutter_house")) { jobCode = 1; }
+                        else if (JobBuilding.tag.Equals("Carpenter_house")) { jobCode = 2; }
+                        else if (JobBuilding.tag.Equals("Hunter_house")) { jobCode = 3; }
+                        else if (JobBuilding.tag.Equals("Farm_house")) { jobCode = 5; }
+                        else if (JobBuilding.tag.Equals("WheatField")) { jobCode = -1; }
+                        else if (JobBuilding.tag.Equals("Mine_house")) { jobCode = 8; }
+                        else if (JobBuilding.tag.Equals("Ham_house")) { jobCode = 9; }
+                        else if (JobBuilding.tag.Equals("Cheese_house")) { jobCode = 10; }
+                        else if (JobBuilding.tag.Equals("Cloth_house")) { jobCode = 11; }
+                        else if (JobBuilding.tag.Equals("Smith_house")) { jobCode = 12; }
+                        else { JobPanel.SetActive(false); }
                     }
                 }
             }
         }
+        NPCFound();
+
+        //if (JobBuilding != null)
+        //{
+        //    if (JobBuilding.GetComponent<BuildingSetting>() != null)
+        //    {
+        //        if (jobCount != JobBuilding.GetComponent<BuildingSetting>().npcs.Count)
+        //        {
+        //            jobCount = JobBuilding.GetComponent<BuildingSetting>().npcs.Count;
+        //        }
+        //    }
+        //}
     }
 
     string TagCheck(GameObject ToCheckNpc)
@@ -138,7 +151,7 @@ public class Building_NpcTag : MonoBehaviour
     public void AddJobButton()
     {
         // 배정가능한 인원의 수가 꽉차면 더 이상 배정 불가능.
-        if (jobNPCList.Count >= jobCount) { return; }
+        if (jobNPCList.Count >= jobMaxCount) { return; }
 
         int index = GameManager.instance.AllHuman.FindIndex(a => a.tag.Equals("NPC"));
 
@@ -158,7 +171,12 @@ public class Building_NpcTag : MonoBehaviour
         jobNPCList.Add(GameManager.instance.AllHuman[index]);
 
         int index2 = GameManager.instance.RestHuman.FindIndex(a => a.Equals(GameManager.instance.AllHuman[index]));
-        if (index2 != -1) { GameManager.instance.RestHuman.RemoveAt(index2); }
+        if (index2 != -1) { GameManager.instance.RestHuman.Remove(GameManager.instance.AllHuman[index]); }
+
+        if (jobNPCList.Count >= jobMaxCount)
+		{
+            GameManager.instance.EmptyNPCBuilding.Remove(JobBuilding);
+		}
 
         NPCFound();
     }
@@ -176,9 +194,17 @@ public class Building_NpcTag : MonoBehaviour
         GameManager.instance.AllHuman[index].GetComponent<NPC>().BuildingNum = null;
         GameManager.instance.AllHuman[index].GetComponent<NPC>().searchMyBuilding();
 
-        GameManager.instance.RestHuman.Add(GameManager.instance.AllHuman[index]);
-
+        if (GameManager.instance.RestHuman.FindIndex(a => a.Equals(GameManager.instance.AllHuman[index])) == -1)
+        {
+            GameManager.instance.RestHuman.Add(GameManager.instance.AllHuman[index]);
+        }
         jobNPCList.Remove(GameManager.instance.AllHuman[index]);
+
+        if (jobNPCList.Count < jobMaxCount && GameManager.instance.EmptyNPCBuilding.FindIndex(a => a.Equals(JobBuilding)) == -1)
+		{
+            GameManager.instance.EmptyNPCBuilding.Add(JobBuilding);
+		}
+
 
         NPCFound();
 
