@@ -19,6 +19,7 @@ public class UIManager : JobStringArr
     [SerializeField] private Image npcShieldBarMask;
     [SerializeField] private GameObject humanListPanel;
     [SerializeField] private TextMeshProUGUI buildingText;
+    [SerializeField] private TextMeshProUGUI HumanCountText;
     [SerializeField] private Image endingPanelImage;
     public bool isOpenCitizenPanel { get; private set; }
 
@@ -153,5 +154,7 @@ public class UIManager : JobStringArr
         {
             endingPanelImage.color += new Color(0, 0, 0, 5 / 255f);
         }
+
+        HumanCountText.text = "√— ¿Œ±∏ : " + GameManager.instance.AllHuman.Count;
     }
 }

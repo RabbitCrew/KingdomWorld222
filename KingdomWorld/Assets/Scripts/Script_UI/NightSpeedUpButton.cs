@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class NightSpeedUpButton : MonoBehaviour
+public class NightSpeedUpButton : UIComment
 {
 	[SerializeField] private TextMeshProUGUI nightSpeedUpText;
     private bool isOnNightSpeedUp;
@@ -12,7 +12,9 @@ public class NightSpeedUpButton : MonoBehaviour
     void Awake()
     {
         isOnNightSpeedUp = true;
-    }
+		commentNum = 7;
+
+	}
 
 	private void Update()
 	{

@@ -69,7 +69,13 @@ public abstract class UIComment : MonoBehaviour, IPointerEnterHandler, IPointerE
 
 				commentText.text = "클릭 시, 직업이 없는 시민은 자동으로 직업이 배정되도록 합니다.";
 				break;
+			case 7:
+				commentPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 450f);
+				commentPanel.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100f);
+				commentPanel.GetComponent<RectTransform>().anchoredPosition = new Vector2(-35f, -400f);
 
+				commentText.text = "클릭 시, 밤 시간대를 빠르게 혹은 느리게 조절할 수 있습니다.";
+				break;
 		}
 	}
 
