@@ -476,6 +476,11 @@ public class NPC : NPCScrip
                 if (other.transform == Tree)
                     StartCoroutine(CuttingTree(3));
             }
+            else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedResource == 0 && other.GetComponent<BuildingSetting>().store <
+                other.GetComponent<BuildingSetting>().storeMax && !searchWoodStop && Tree == null)//출근시 나무탐색
+            {
+                searchWood();
+            }
         }
     }
     bool cuttingTree = false;
@@ -535,10 +540,7 @@ public class NPC : NPCScrip
                 {
                     Invoke("farmNPCpushWheat", 3f);
                 }
-            } else if (this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedResource == 0 && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)//출근시 나무탐색
-            {
-                searchWood();
-            }
+            } 
             else if(this.CompareTag("WoodCutter") && other.transform == BuildingNum.transform && HavedResource > 0)
             {
                 StartCoroutine(PutWood(1f, other));
@@ -660,8 +662,10 @@ public class NPC : NPCScrip
             searchWood();
         }
     }
+    bool searchWoodStop = false;
     void searchWood()
     {
+        searchWoodStop = true;
         float i = 1f;
         while (true)
         {
@@ -675,11 +679,13 @@ public class NPC : NPCScrip
                     Tree.GetComponent<NatureObject>().Slave = true;
                     ResetPath(this.transform, Tree);
                     currentPathIndex = 0;
+                    searchWoodStop = false;
                     return;
                 }
             }
             if(i >= 1000)
             {
+                searchWoodStop = false;
                 Debug.Log("나무가 없습니다");
                 return;
             }
@@ -773,5 +779,6 @@ public class NPC : NPCScrip
         allwork = false;//나무꾼
         Stone = null;//돌광부
         HavedResource = 0;
+        searchWoodStop = false;
     }
 }
