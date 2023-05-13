@@ -110,6 +110,14 @@ public class PerlinNoiseMapMaker : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+		{
+            RefreshChunks();
+            Camera.main.transform.position += new Vector3(0, 0, 200f);
+            RefreshChunks();
+            Camera.main.transform.position -= new Vector3(0, 0, 200f);
+        }
+
         RefreshChunks();
     }
     // 청크를 생성하는 함수
