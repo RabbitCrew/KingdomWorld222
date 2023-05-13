@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerClickHandler
 {
     [SerializeField] private BuildingAttachMouse buildingAttachMouse;
+    [SerializeField] private CautionUI cautionUI;
     public GameObject prefab; // 생성할 오브젝트 프리팹
     public int tuto;
     //public static GameObject clone { get; private set; } // 생성된 오브젝트 인스턴스
@@ -27,6 +28,7 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerClickH
         if (!buildingAttachMouse.CheckResourceToMakeBuilding(prefab))
 		{
             img.color = Color.red;
+            cautionUI.SetActiveTrueCautionObj(1);
             isImpossibleBuild = true;
 		}
         else

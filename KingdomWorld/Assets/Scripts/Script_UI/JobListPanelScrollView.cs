@@ -9,6 +9,7 @@ public class JobListPanelScrollView : JobStringArr
     [SerializeField] private GameObject[] jobButtonPoolingArr;
     [SerializeField] private SpriteManager spriteManager;
     [SerializeField] private GameObject contentObj;
+    [SerializeField] private CautionUI cautionUI;
     public CitizenInfoPanel citizenInfoPanel { get; set; }
 
     private JobListButn[] jobListButnArr;
@@ -129,7 +130,7 @@ public class JobListPanelScrollView : JobStringArr
                     }
                     else
                     {
-                        //Debug.Log((JobNum)(jobListButnArr[index].butnNum) + " 빈 자리가 없습니다.");
+                        cautionUI.SetActiveTrueCautionObj(0);
                     }
                 }
             }
