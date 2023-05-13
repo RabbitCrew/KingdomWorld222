@@ -30,11 +30,11 @@ public class MouseRay : MonoBehaviour
 
         //if (Time.timeScale == 0) { return; }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             if (GameManager.instance.timeSpeed == 1f)
             {
-                GameManager.instance.timeSpeed = 10f;
+                GameManager.instance.timeSpeed = 50f;
             }
             else
 			{

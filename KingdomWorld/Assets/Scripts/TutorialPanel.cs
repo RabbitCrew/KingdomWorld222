@@ -125,10 +125,14 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 				startTutorialNum++;
 				break;
 			case 10:
-				tutoText.text = "이 기세를 몰아 이 땅을 발전해나가자구요!! 인구 100명을 목표로 스타트!";
+				tutoText.text = "이처럼 목수는 저희 마을에 건설을 담당하고 있습니다. 심지어 밭까지 갈아주죠. 만들고 싶은게 있다면 목수를 부릅시다!";
 				startTutorialNum++;
 				break;
 			case 11:
+				tutoText.text = "이 기세를 몰아 이 땅을 발전해나가자구요!! 인구 100명을 목표로 스타트!";
+				startTutorialNum++;
+				break;
+			case 12:
 				UnLockAllButton();
 				unLockSpawn = true;
 				GameManager.instance.GameStop = false;
