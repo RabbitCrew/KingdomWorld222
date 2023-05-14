@@ -226,7 +226,7 @@ public class NPC : NPCScrip
     }
         
 
-    public Transform Tree = null;
+    Transform Tree = null;
     bool allwork = false;
     void WoodCutter()
     {
@@ -240,7 +240,7 @@ public class NPC : NPCScrip
         }
         if (BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger && work)
         {
-            /*searchWood();*/
+            searchWood();
             BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger = false;
         }
         Move();
@@ -660,11 +660,11 @@ public class NPC : NPCScrip
         GameManager.instance.Wood += HavedResource;
         HavedResource = 0;
         allwork = false;
-        Tree = null;
-        /*if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
+        //Tree = null;
+        if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
         {
             searchWood();
-        }*/
+        }
     }
     bool searchWoodStop = false;
     void searchWood()
@@ -753,7 +753,7 @@ public class NPC : NPCScrip
                 Destroy(Tree.gameObject);
             HavedResource += 3;
             Tree = null;
-
+            Debug.Log(BuildingNum);
             ResetPath(this.transform, BuildingNum.transform);
             currentPathIndex = 0;
         }
