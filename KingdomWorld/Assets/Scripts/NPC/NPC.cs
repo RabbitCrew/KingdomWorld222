@@ -660,10 +660,10 @@ public class NPC : NPCScrip
         GameManager.instance.Wood += HavedResource;
         HavedResource = 0;
         allwork = false;
-        if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
+        /*if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
         {
             searchWood();
-        }
+        }*/
     }
     bool searchWoodStop = false;
     void searchWood()
