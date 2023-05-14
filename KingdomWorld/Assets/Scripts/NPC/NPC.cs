@@ -660,6 +660,7 @@ public class NPC : NPCScrip
         GameManager.instance.Wood += HavedResource;
         HavedResource = 0;
         allwork = false;
+        Tree = null;
         /*if (GameManager.instance.isDaytime && other.GetComponent<BuildingSetting>().store < other.GetComponent<BuildingSetting>().storeMax)
         {
             searchWood();
@@ -752,7 +753,7 @@ public class NPC : NPCScrip
                 Destroy(Tree.gameObject);
             HavedResource += 3;
             Tree = null;
-            Debug.Log(BuildingNum);
+
             ResetPath(this.transform, BuildingNum.transform);
             currentPathIndex = 0;
         }
