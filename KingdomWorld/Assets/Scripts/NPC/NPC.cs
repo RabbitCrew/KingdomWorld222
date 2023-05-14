@@ -226,7 +226,7 @@ public class NPC : NPCScrip
     }
         
 
-    Transform Tree = null;
+    public Transform Tree = null;
     bool allwork = false;
     void WoodCutter()
     {

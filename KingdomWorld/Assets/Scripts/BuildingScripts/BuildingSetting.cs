@@ -137,11 +137,11 @@ public class BuildingSetting : MonoBehaviour
                 GameManager.instance.EmptyNPCBuilding.Add(this.gameObject);
                 //int index = GameManager.instance.RestHuman.FindIndex(a => a.Equals(this.gameObject));
             }
-            /*else if (npcs.Count > 0 && GameManager.instance.EmptyNPCBuilding.Contains(this.gameObject))
+            else if (npcs.Count > 0 && GameManager.instance.EmptyNPCBuilding.Contains(this.gameObject))
             {
                 int index = GameManager.instance.EmptyNPCBuilding.FindIndex(a => a.Equals(this.gameObject));
                 if (index != -1) { GameManager.instance.EmptyNPCBuilding.RemoveAt(index); }
-            }*/
+            }
         }
         
         

@@ -16,7 +16,7 @@ public class OneClickAllNPCWork : UIComment
         commentNum = 6;
 
     }
-	private void Update()
+	private void LateUpdate()
     {
         OneClickNPCWork();
     }
