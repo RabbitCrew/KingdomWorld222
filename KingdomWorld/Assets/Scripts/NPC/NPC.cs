@@ -686,6 +686,7 @@ public class NPC : NPCScrip
                     Tree.GetComponent<NatureObject>().Slave = true;
                     ResetPath(this.transform, Tree);
                     currentPathIndex = 0;
+                    allwork = true;
                     searchWoodStop = false;
                     return;
                 }

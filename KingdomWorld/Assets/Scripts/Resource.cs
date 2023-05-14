@@ -259,6 +259,7 @@ public class Resource : Setgrid
                 value = MaxResource;
                 ham = value;
             }
+            ham = value;
         }
     }
 
