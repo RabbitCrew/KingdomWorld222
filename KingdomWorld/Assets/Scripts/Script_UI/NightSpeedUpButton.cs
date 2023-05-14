@@ -30,6 +30,8 @@ public class NightSpeedUpButton : UIComment
 
 	public void SetIsOnNightSpeedUp()
 	{
+		if (!GameManager.instance.ReturnTutorialPanel().isNightSpeedUpButtonOpen) { return; }
+
         if (isOnNightSpeedUp) { isOnNightSpeedUp = false; nightSpeedUpText.text = "广 积帆Off"; }
         else { isOnNightSpeedUp = true; nightSpeedUpText.text = "广 积帆On"; }
 	}

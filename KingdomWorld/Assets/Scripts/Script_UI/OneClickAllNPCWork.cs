@@ -22,14 +22,15 @@ public class OneClickAllNPCWork : UIComment
     }
 
     public void SetIsOn()
-	{
+    {
+        if (!GameManager.instance.ReturnTutorialPanel().isAutoNPCWorkButtonOpen) { return; }
+
         if (isOn) { isOn = false; text.text = "자동배정Off"; }
         else { isOn = true; text.text = "자동배정On"; }
 	}
 
     void OneClickNPCWork()
     {
-        if (!GameManager.instance.ReturnTutorialPanel().isAutoNPCWorkButtonOpen) { return; }
         if (!isOn) { return; }
 
         if(GameManager.instance.EmptyNPCBuilding.Count > 0 && GameManager.instance.isDaytime && GameManager.instance.RestHuman.Count > 0)

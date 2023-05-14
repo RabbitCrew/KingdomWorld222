@@ -39,9 +39,11 @@ public class BuildingButton : MonoBehaviour, IPointerDownHandler, IPointerClickH
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (tuto == 0 && GameManager.instance.ReturnTutorialPanel().TutorialProceeding 
-            && GameManager.instance.ReturnTutorialPanel().isBuildingTypeButtonOpen) { return; }
-
+        if (GameManager.instance.ReturnTutorialPanel().TutorialProceeding)
+        {
+            if (!(GameManager.instance.ReturnTutorialPanel().buildingClickCount == tuto && GameManager.instance.ReturnTutorialPanel().isBuildingTypeButtonOpen))
+            { return; }
+        }
 
         if (!isImpossibleBuild)
         {

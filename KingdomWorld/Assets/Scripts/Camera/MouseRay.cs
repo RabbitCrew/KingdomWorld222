@@ -42,6 +42,14 @@ public class MouseRay : MonoBehaviour
 			}
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+		{
+            GameManager.instance.CastIron += 50;
+            GameManager.instance.Food += 50;
+            GameManager.instance.Stone += 50;
+            GameManager.instance.Wood += 50;
+		}
+
 
         if (!IsPointerOverUIObject())
 		{
@@ -107,16 +115,18 @@ public class MouseRay : MonoBehaviour
             {
                 if (hits[i].transform.GetComponent<CitizenInfoPanel>() != null)
                 {
-                    Debug.Log(GameManager.instance.ReturnTutorialPanel().unLockSpawn);
-                    Debug.Log(GameManager.instance.ReturnTutorialPanel().StartTutorial);
-                    if (GameManager.instance.ReturnTutorialPanel().unLockSpawn && GameManager.instance.ReturnTutorialPanel().StartTutorial)
-					{
-                        GameManager.instance.ReturnTutorialPanel().StartTuto();
-                    }
+                    if ((GameManager.instance.ReturnTutorialPanel().StartTutorial && hits[i].transform.GetComponent<CitizenInfoPanel>().jobNumEnum == ObjectNS.JobNum.CITIZEN) || !GameManager.instance.ReturnTutorialPanel().StartTutorial)
+                    {
+                        if (GameManager.instance.ReturnTutorialPanel().unLockSpawn && GameManager.instance.ReturnTutorialPanel().StartTutorial)
+                        {
+                            GameManager.instance.ReturnTutorialPanel().StartTuto();
+                            GameManager.instance.ReturnTutorialPanel().unLockSpawn = false;
+                        }
 
-                    uiManager.SetIsOpenCitizenPanel(true, hits[i].transform.GetComponent<CitizenInfoPanel>());
-                    SetTargetTransform(hits[i].transform);
-                    break;
+                        uiManager.SetIsOpenCitizenPanel(true, hits[i].transform.GetComponent<CitizenInfoPanel>());
+                        SetTargetTransform(hits[i].transform);
+                        break;
+                    }
                 }
                 isTarget = false;
             }

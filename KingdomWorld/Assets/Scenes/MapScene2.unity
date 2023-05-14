@@ -2682,7 +2682,7 @@ MonoBehaviour:
   buildingAttachMouse: {fileID: 2557609454556374691}
   cautionUI: {fileID: 1670026091}
   prefab: {fileID: 8611218813536486430, guid: 700aa2d17f0051e4ba63da7d0a3c956a, type: 3}
-  tuto: 0
+  tuto: 2
 --- !u!222 &297444411641194208
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18554,7 +18554,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -126.499985, y: 150.00009}
+  m_AnchoredPosition: {x: -126.499985, y: 149.99979}
   m_SizeDelta: {x: 250, y: 600}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2391261027092093378

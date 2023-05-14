@@ -19,6 +19,9 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 	public bool isBuildingTypeButtonOpen { get; private set; }
 	public bool isPossibleDeleteBuilding { get; private set; }
 	public bool isAutoNPCWorkButtonOpen { get; private set; }
+	public bool isNightSpeedUpButtonOpen { get; private set; }
+	public int jobButtonIndex { get; private set; }
+	public int buildingClickCount { get; private set; }
 	private int startTutorialNum;
 	// Start is called before the first frame update
 	void Awake()
@@ -26,7 +29,9 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 		thisImg = this.GetComponent<Image>();
 		thisImg.color = new Color(1, 1, 1, 1/255f);
 		TutorialNum = 0;
-        StartTutorial = false;
+		buildingClickCount = 1;
+		jobButtonIndex = 2;
+		StartTutorial = false;
 		UnLockAllButton();
 		TutorialProceeding = false;
 		unLockSpawn = false;
@@ -51,6 +56,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 		isResourceButtonOpen = false;
 		isPossibleDeleteBuilding = false;
 		isAutoNPCWorkButtonOpen = false;
+		isNightSpeedUpButtonOpen = false;
 	}
 
 	public void UnLockAllButton()
@@ -61,6 +67,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 		isResourceButtonOpen = true;
 		isPossibleDeleteBuilding = true;
 		isAutoNPCWorkButtonOpen = true;
+		isNightSpeedUpButtonOpen = true;
 	}
 	public void StartTuto()
 	{
@@ -70,6 +77,8 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 				GameManager.instance.GameStop = true;
 				TutorialProceeding = true;
 				StartTutorial = true;
+				buildingClickCount = 1;
+				jobButtonIndex = 2;
 				tutoImg.SetActive(true);
 				LockAllButton();
 				tutoImg.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 1300f);
@@ -99,6 +108,7 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 			case 5:
 				tutoText.text = "좋습니다. 이번엔 나무꾼의 오두막을 찾아서 아무곳에나 설치해봅시다 !";
 				LockAllButton();
+				buildingClickCount = 1;
 				isBuildingTypeButtonOpen = true;
 				startTutorialNum++;
 				break;
@@ -116,11 +126,11 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 				break;
 			case 8:
 				tutoText.text = "이제 직업 바꾸기 버튼을 누르고, 목수를 선택해봅시다 !";
-				unLockSpawn = false;
 				startTutorialNum++;
 				break;
 			case 9:
 				tutoText.text = "앗! 건설이 됩니다..!";
+				unLockSpawn = false;
 				thisImg.enabled = true;
 				startTutorialNum++;
 				break;
@@ -129,10 +139,51 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 				startTutorialNum++;
 				break;
 			case 11:
-				tutoText.text = "이 기세를 몰아 이 땅을 발전해나가자구요!! 인구 100명을 목표로 스타트!";
+				tutoText.text = "이번엔 창고를 만들어봅시다 !";
+				LockAllButton();
+				buildingClickCount = 2;
+				thisImg.enabled = false;
+				IsBuildingButtonOpen = true;
+				isBuildingTypeButtonOpen = true;
 				startTutorialNum++;
 				break;
 			case 12:
+				tutoText.text = "창고에는 각종 물자들이 들어갑니다. 나무, 식량, 밀, 전부 다요. ";
+				LockAllButton();
+				thisImg.enabled = true;
+				startTutorialNum++;
+				break;
+			case 13:
+				tutoText.text = "그러면 이번엔 창고로 물자를 전달하는 창고지기를 시민 한명에게 배정해봅시다. 시민이 나올때까지 다시 대기합시다 !";
+				jobButtonIndex = 6;
+				unLockSpawn = true;
+				thisImg.enabled = false;
+				startTutorialNum++;
+				break;
+			case 14:
+				tutoText.text = "직업 바꾸기에서 창고지기를 선택합시다 !";
+				startTutorialNum++;
+				break;
+			case 15:
+				tutoText.text = "아차차! 생각해보니 나무꾼이 없군요 ! 시민 한명이 나올때까지 대기한 후 나무꾼을 배정해봅시다.";
+				unLockSpawn = true;
+				jobButtonIndex = 1;
+				startTutorialNum++;
+				break;
+			case 16:
+				tutoText.text = "직업 바꾸기에서 나무꾼을 선택합시다 !";
+				startTutorialNum++;
+				break;
+			case 17:
+				tutoText.text = "이러면 나무꾼이 나무를 캐고, 창고지기가 오두막에 있는 나무를 창고로 가져가고..순환이 되죠";
+				thisImg.enabled = true;
+				startTutorialNum++;
+				break;
+			case 18:
+				tutoText.text = "이 기세를 몰아 이 땅을 발전해나가자구요!! 인구 100명을 목표로 스타트!";
+				startTutorialNum++;
+				break;
+			case 19:
 				UnLockAllButton();
 				unLockSpawn = true;
 				GameManager.instance.GameStop = false;
@@ -142,6 +193,5 @@ public class TutorialPanel : MonoBehaviour,IPointerClickHandler
 				this.gameObject.SetActive(false);
 				break;
 		}
-
 	}
 }
