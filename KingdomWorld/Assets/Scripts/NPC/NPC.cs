@@ -648,8 +648,11 @@ public class NPC : NPCScrip
         {
             HavedResource += 1;
             Stone = null;
-            ResetPath(this.transform, BuildingNum.transform);
-            currentPathIndex = 0;
+            if (BuildingNum != null)
+            {
+                ResetPath(this.transform, BuildingNum.transform);
+                currentPathIndex = 0;
+            }
         }
         yield break;
     }
@@ -753,9 +756,11 @@ public class NPC : NPCScrip
                 Destroy(Tree.gameObject);
             HavedResource += 3;
             Tree = null;
-
-            ResetPath(this.transform, BuildingNum.transform);
-            currentPathIndex = 0;
+            if(BuildingNum != null)
+            {
+                ResetPath(this.transform, BuildingNum.transform);
+                currentPathIndex = 0;
+            }
         }
         cuttingTree = false;
         yield break;
