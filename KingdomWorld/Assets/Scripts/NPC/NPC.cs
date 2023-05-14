@@ -240,7 +240,7 @@ public class NPC : NPCScrip
         }
         if (BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger && work)
         {
-            searchWood();
+            /*searchWood();*/
             BuildingNum.GetComponent<BuildingSetting>().EmptyTrigger = false;
         }
         Move();
